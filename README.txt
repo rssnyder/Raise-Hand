@@ -8,3 +8,4 @@ This project will allow students to ask questions anonymously by submitting them
 Currently working on:
 
 Bugs found:
+Text on README all on one long line.
