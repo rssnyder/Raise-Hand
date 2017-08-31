@@ -1,1 +1,6 @@
-Branch for expiriments before project really gets started.
+README:
+Overview of project:
+
+Currently working on:
+
+Bugs found:
