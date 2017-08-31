@@ -1,6 +1,1 @@
-README:
-Overview of project:
-
-Currently working on:
-
-Bugs found:
+Pretty much, if Area 51 was a branch, this would be it. 
