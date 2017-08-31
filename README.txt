@@ -26,4 +26,4 @@ answers appear toward the top of the discussion board.
 Currently working on:
 
 Bugs found:
-Text on README all on one long line.
+
