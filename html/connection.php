@@ -21,7 +21,7 @@
     $query = "SELECT * FROM $table";
     $result = $db->query($query) or die('Error querying database.');
     while ($row = $result->fetch_assoc()) {
-      echo $row["$value"] .'<br>';
+      echo $row["id"] . $row["$value"] .'<br>';
   }
   ?>
   </body>
