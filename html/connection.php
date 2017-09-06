@@ -16,10 +16,12 @@
     Connected to SQL server.
   </h1>
   <?php
-    $query = "SELECT * FROM threads";
+    $table = 'threads';
+    $value = 'text';
+    $query = "SELECT * FROM $table";
     $result = $db->query($query) or die('Error querying database.');
     while ($row = $result->fetch_assoc()) {
-      echo $row["text"] .'<br>';
+      echo $row["$value"] .'<br>';
   }
   ?>
   </body>
