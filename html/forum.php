@@ -17,7 +17,7 @@
       //Indentation for comment hiarchy
       echo str_repeat('&nbsp;', 4*$level);
       //Print comment
-      echo $row["text"] . '<font size="-2"> by ' . $row["owner"] . '</font><br>';
+      echo $row["text"] . '<font size="-2"> - ' . $row["owner"] . '</font><br>';
       //Recursivly get child comments for any that exist
       getComments($row["id"], $level + 1, $db);
     }
@@ -50,6 +50,9 @@
   .unhidden {
       display:block;
   }
+  body {
+    background-color: #ff5733;
+  }
 </style>
 
 <html>
@@ -59,6 +62,8 @@
       getComments(1000, 0, $db);
       echo '<br><br>';
     ?>
+
+    <!-- Hidden comment section -->
     <div id="about" class="hidden">
       <div class="content3">
         <form action="comment.php" method="post">
@@ -70,26 +75,5 @@
     </div>
     <input type="button" onclick="unhide(this, 'about') " value="Comment">
 
-    <!-- AJAX call for comment placement
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script type = "text/javascript">
-      $(function() {
-        $('form').on('submit', function(e) {
-          e.preventDefault();
-          $.ajax({
-            type: 'post',
-            url: 'comment.php',
-            data: $('form').serialize(),
-            success: function() {
-              alert('Comment was posted!');
-            }
-            error: function(xhr) {
-              alert("fuck me");
-            }
-          })
-        })
-      }
-    })
-  </script> -->
   </body>
 </html>

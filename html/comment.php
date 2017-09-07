@@ -17,16 +17,13 @@
   }
 
   //Do not allow empty comments
-  if("" == trim($_POST['comment'])) {
-    echo '<html><body><script>alert("Cannot enter empty comment");</script></body></html>';
-  }
-  else {
+  if("" != trim($_POST['comment'])) {
     $comment =  $_POST['comment'];
     putComment("1000", $username, $comment, $db);
   }
 
   //If we ever get here, just go back to forum
-  header("Location: connection.php");
+  header("Location: forum.php");
 
   //Function to send a new comment to the database
   function putComment($parentID, $owner, $text, $db) {
