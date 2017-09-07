@@ -1,17 +1,39 @@
-<style>
-  .hidden {
-      display:none;
+<?php
+
+  session_start();
+  if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+
+  } else {
+    header("Location: login.php");
   }
 
-  .unhidden {
-      display:block;
-  }
-  body {
-    background-color: #FFC300;
-  }
-</style>
+  //Define paramiters and initalize connection
+  $host = "127.0.0.1";
+  $username = "root";
+  $password = "raisehand";
+  $database = "topics";
+  $db = new mysqli($host, $username, $password, $database, 3306) or die('Error connecting to server');
+  //Print out host information
+  //echo $db->host_info;
 
-<!-- Scrtipt to hide signup form, or show it, based on button press -->
+  //Function to print comments in a parent->child order
+  function getComments($parentID, $level, $db) {
+    $query = "SELECT * FROM posts WHERE parent=$parentID";
+    $result = $db->query($query) or die('Error querying database.');
+    //Get children and print comments
+    while ($row = $result->fetch_assoc()) {
+      //Indentation for comment hiarchy
+      echo str_repeat('&nbsp;', 4*$level);
+      //Print comment
+      echo $row["text"] . '<font size="-2"> - ' . $row["owner"] . '</font><br>';
+      //Recursivly get child comments for any that exist
+      getComments($row["id"], $level + 1, $db);
+    }
+  }
+
+?>
+
+<!-- Scrtipt to hide comment form, or show it, based on button press -->
 <script type="text/javascript">
   function unhide(clickedButton, divID) {
     var item = document.getElementById(divID);
@@ -22,38 +44,44 @@
         }
         else {
             item.className = 'hidden';
-            clickedButton.value = 'Sign Up'
+            clickedButton.value = 'Comment'
         }
   }}
 </script>
 
+<!-- Style for the hidden comment button -->
+<style>
+  .hidden {
+      display:none;
+  }
+
+  .unhidden {
+      display:block;
+  }
+  body {
+    background-color: #ff5733;
+  }
+</style>
+
 <html>
   <body>
-    <center>
-      <h1> Welcome! Sign in below. </h1>
-      <br><br><br><br><br><br><br><br><br>
+    <h1>Welcome to the forums!<font size="-2">beta</font></h1>
+    <?php
+      getComments(1000, 0, $db);
+      echo '<br><br>';
+    ?>
 
-        <form action="signin.php" method="post">
-          Username: <input type="text" name="username" value=""><br>
-          Password:  <input type="text" name="password" value=""><br>
-          <input name="signin" type="submit" value="Login">
+    <!-- Hidden comment section -->
+    <div id="about" class="hidden">
+      <div class="content3">
+        <form action="comment.php" method="post">
+          <!--Username: <input type="text" name="username" value=""><br> -->
+          <input type="text" name="comment" value=""><br>
+          <input name="submit" type="submit" value="Submit">
         </form>
-
-        <!-- Signup Form -->
-        <div id="signup" class="hidden">
-          <div class="content3">
-            <form action="signup.php" method="post">
-              <br>
-              Username: <input type="text" name="username" value=""><br>
-              Email: <input type="text" name="email" value=""><br>
-              Password:  <input type="text" name="password" value=""><br>
-              <font size="-2">Passwords are stored as a salted hash</font><br>
-              <input name="signupp" type="submit" value="Sign Up">
-            </form>
-          </div>
-        </div>
-        <input type="button" onclick="unhide(this, 'signup') " value="Sign Up">
-    </center>
+      </div>
+    </div>
+    <input type="button" onclick="unhide(this, 'about') " value="Comment">
 
   </body>
 </html>

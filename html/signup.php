@@ -1,6 +1,5 @@
-<html>
-<body>
 <?php
+session_start();
   //Define paramiters and initalize connection
   $host = "127.0.0.1";
   $username = "root";
@@ -11,13 +10,13 @@
   //echo $db->host_info;
   //Make sure everything is there and then sign them up
   if("" == trim($_POST['username'])) {
-    header("Location: index.php");
+    header("Location: login.php");
   }
   else if("" == trim($_POST['email'])) {
-    header("Location: index.php");
+    header("Location: login.php");
   }
   else if("" == trim($_POST['password'])) {
-    header("Location: index.php");
+    header("Location: login.php");
   }
   else {
     $username = $_POST['username'];
@@ -28,7 +27,7 @@
     $uname = $result->fetch_assoc();
     $uname = $uname['username'];
     if($uname) {
-      header("Location: index.php");
+      header("Location: login.php");
       die("User exists");
     }
 
@@ -43,8 +42,8 @@
     $insert = "INSERT INTO users (username, email, password, points) VALUES ('$username', '$email', '$password', '0')";
     //Excecute
     $result = $db->query($insert) or die($db->error);
-    header("Location: forum.php");
+    $_SESSION['loggedin'] = true;
+    $_SESSION['username'] = $username;
+    header("Location: index.php");
   }
 ?>
-</html>
-</body>

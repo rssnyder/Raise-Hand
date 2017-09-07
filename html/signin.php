@@ -1,6 +1,5 @@
-<html>
-<body>
 <?php
+  session_start();
   //Define paramiters and initalize connection
   $host = "127.0.0.1";
   $username = "root";
@@ -11,11 +10,13 @@
   //echo $db->host_info;
   //Make sure everything is there and then sign them up
   if("" == trim($_POST['username'])) {
-    die("No username");
+    $_SESSION['error'] = true;
+    $_SESSION['errorCode'] = "No Username";
     header("Location: login.php");
   }
   else if("" == trim($_POST['password'])) {
-    die("No password");
+    $_SESSION['error'] = true;
+    $_SESSION['errorCode'] = "No Password";
     header("Location: login.php");
   }
   else {
@@ -33,15 +34,15 @@
     $pass = $result->fetch_assoc();
     $pass = $pass["password"];
     if(password_verify($password, $pass)) {
-      echo "made it";
-      header("Location: forum.php");
+      $_SESSION['loggedin'] = true;
+      $_SESSION['username'] = $username;
+      $_SESSION['error']  = false;
+      header("Location: index.php");
     }
     else {
-      echo "Failed";
-
-      header("Location: index.php");
+      $_SESSION['error'] = true;
+      $_SESSION['errorCode'] = "Sign in failed";
+      header("Location: login.php");
     }
   }
 ?>
-</body>
-</html>
