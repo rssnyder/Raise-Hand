@@ -22,13 +22,42 @@
       getComments($row["id"], $level + 1, $db);
     }
   }
+
 ?>
 
 <html>
   <body>
     <h1>Connected to SQL server.</h1>
     <?php
-      getComments(100, 0, $db);
+      getComments(1000, 0, $db);
+      echo '<br><br>';
     ?>
+    <!--Comment form-->
+    <form action="comment.php" method="post">
+      <input type="text" name="username" value=""><br>
+      <input type="text" name="comment" value=""><br>
+      <input name="submit" type="submit" value="Submit">
+    </form>
+    <!-- AJAX call for comment placement
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type = "text/javascript">
+      $(function() {
+        $('form').on('submit', function(e) {
+          e.preventDefault();
+          $.ajax({
+            type: 'post',
+            url: 'comment.php',
+            data: $('form').serialize(),
+            success: function() {
+              alert('Comment was posted!');
+            }
+            error: function(xhr) {
+              alert("fuck me");
+            }
+          })
+        })
+      }
+    })
+  </script> -->
   </body>
 </html>
