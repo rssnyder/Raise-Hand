@@ -6,7 +6,7 @@
   $database = "topics";
   $db = new mysqli($host, $username, $password, $database, 3306) or die('Error connecting to server');
   //Print out host information
-  echo $db->host_info;
+  //echo $db->host_info;
 
   //Function to print comments in a parent->child order
   function getComments($parentID, $level, $db) {
@@ -17,7 +17,7 @@
       //Indentation for comment hiarchy
       echo str_repeat('&nbsp;', 4*$level);
       //Print comment
-      echo $row["text"] . '<font size="-2">by ' . $row["owner"] . '</font><br>';
+      echo $row["text"] . '<font size="-2"> by ' . $row["owner"] . '</font><br>';
       //Recursivly get child comments for any that exist
       getComments($row["id"], $level + 1, $db);
     }
@@ -25,19 +25,51 @@
 
 ?>
 
+<!-- Scrtipt to hide comment form, or show it, based on button press -->
+<script type="text/javascript">
+  function unhide(clickedButton, divID) {
+    var item = document.getElementById(divID);
+    if (item) {
+        if(item.className=='hidden') {
+            item.className = 'unhidden' ;
+            clickedButton.value = 'Cancel'
+        }
+        else {
+            item.className = 'hidden';
+            clickedButton.value = 'Comment'
+        }
+  }}
+</script>
+
+<!-- Style for the hidden comment button -->
+<style>
+  .hidden {
+      display:none;
+  }
+
+  .unhidden {
+      display:block;
+  }
+</style>
+
 <html>
   <body>
-    <h1>Connected to SQL server.</h1>
+    <h1>Welcome to the forums!<font size="-2">beta</font></h1>
     <?php
       getComments(1000, 0, $db);
       echo '<br><br>';
     ?>
-    <!--Comment form-->
-    <form action="comment.php" method="post">
-      <input type="text" name="username" value=""><br>
-      <input type="text" name="comment" value=""><br>
-      <input name="submit" type="submit" value="Submit">
-    </form>
+    <div id="about" class="hidden">
+      <div class="content3">
+        <form action="comment.php" method="post">
+          Username: <input type="text" name="username" value=""><br>
+          Comment:  <input type="text" name="comment" value=""><br>
+          <input name="submit" type="submit" value="Submit">
+        </form>
+      </div>
+    </div>
+    <input type="button" onclick="unhide(this, 'about') " value="Comment">
+
     <!-- AJAX call for comment placement
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type = "text/javascript">
