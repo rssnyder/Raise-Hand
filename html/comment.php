@@ -19,11 +19,12 @@
   */
 
   $username = $_SESSION['username'];
-  $parentID = $_POST['parentID'];
-  //Do not allow empty comments
-  if("" != trim($_POST['comment'])) {
+  //$parentID = $_POST['parentID'];
+  //Do not allow empty comments or parent id fields
+  if(("" != trim($_POST['comment'])) && ("" != trim($_POST['parentID']))) {
     $comment =  $_POST['comment'];
-    putComment("1000", $username, $comment, $db);
+    $parentID = $_POST['parentID'];
+    putComment($parentID, $username, $comment, $db);
   }
 
   //If we ever get here, just go back to forum

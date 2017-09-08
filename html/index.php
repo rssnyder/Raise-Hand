@@ -23,20 +23,36 @@
     //Get children and print comments
     while ($row = $result->fetch_assoc()) {
       //Indentation for comment hiarchy
-      echo str_repeat('&nbsp;', 4*$level);
+      echo str_repeat('&nbsp;', 8*$level);
 
       //Get the values for the comment
       $owner = $row["owner"];
       $text = $row["text"];
       $id = $row["id"];
 
+      //Make the comment itself a button
+      echo('<button class="comment" onclick="unhide(this,\'childComment' . $id . '\')">');
 
+      //Print the comment
       if(!strcmp($owner, 'rssnyder')) {
-        echo '<font color=yellow>' . $text . '</font>' . '<font size="-2"> - ' . $row["owner"] . '</font><br>';
+        echo '<font size= "5" color=yellow>' . $text . '</font><font size="-2"> - ' . $row["owner"] . '</font><br>';
       }
       else {
-        echo $text . '<font size="-2"> - ' . $row["owner"] . '</font><br>';
+        echo '<font size="5">' . $text . '</font><font size="-2"> - ' . $row["owner"] . '</font><br>';
       }
+
+      echo '</button><br>';
+      //echo str_repeat('&nbsp;', 8*$level);
+      //Create the dropdown text box that appears when the comment is clicked
+      echo '<div id="childComment' . $id . '" class="hidden">
+            <div class="content3">
+              <form action="comment.php" method="post">
+                <input type="hidden" name="parentID" value="' . $id . '"/>
+                <input type="text" name="comment" value="" /><br>
+                <input name="submit" type="submit" value="Submit" /><br>
+              </form>
+            </div>
+          </div>';
 
       //Recursivly get child comments for any that exist
       getComments($row["id"], $level + 1, $db);
@@ -87,24 +103,30 @@
     <link rel="stylesheet" type="text/css" href="mystyle.css">
   </head>
   <body>
-    <h1>Welcome to the *shitty forums!<font size="-2">beta v0.1.5</font></h1>
+    <h1>Welcome to the *shitty forums!<font size="-2">beta v0.2</font></h1>
     <?php
       getComments(1000, 0, $db);
       echo '<br><br>';
     ?>
 
-    <!-- Hidden comment section -->
+    <!--Submit top level comment  -->
+    <form action="comment.php" method="post">
+      <input type="hidden" name="parentID" value="1000"/>
+      <input type="text" name="comment" value="" /><br>
+      <input name="submit" type="submit" value="Submit" />
+    </form>
+
+    <!-- Hidden comment section
     <div id="about" class="hidden">
       <div class="content3">
         <form action="comment.php" method="post">
-          <!--Username: <input type="text" name="username" value=""><br> -->
           <input type="text" name="comment" value=""><br>
           <input name="submit" type="submit" value="Submit">
         </form>
       </div>
     </div>
     <input type="button" onclick="unhide(this, 'about') " value="Comment">
-
+    -->
 
   </body>
 
