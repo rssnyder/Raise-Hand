@@ -25,7 +25,13 @@
       //Indentation for comment hiarchy
       echo str_repeat('&nbsp;', 4*$level);
       //Print comment
-      echo $row["text"] . '<font size="-2"> - ' . $row["owner"] . '</font><br>';
+      $owner = $row["owner"];
+      if(!strcmp($owner, 'rssnyder')) {
+        echo '<font color=yellow>' . $row["text"] . '</font>' . '<font size="-2"> - ' . $row["owner"] . '</font><br>';
+      }
+      else {
+        echo $row["text"] . '<font size="-2"> - ' . $row["owner"] . '</font><br>';
+      }
       //Recursivly get child comments for any that exist
       getComments($row["id"], $level + 1, $db);
     }
@@ -61,11 +67,16 @@
   body {
     background-color: #ff5733;
   }
+
+
 </style>
 
 <html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+  </head>
   <body>
-    <h1>Welcome to the forums!<font size="-2">beta</font></h1>
+    <h1>Welcome to the *shitty forums!<font size="-2">beta v0.1.13</font></h1>
     <?php
       getComments(1000, 0, $db);
       echo '<br><br>';
@@ -84,4 +95,15 @@
     <input type="button" onclick="unhide(this, 'about') " value="Comment">
 
   </body>
+
+
+  <div id="container">
+    <div id="footer">
+      <font size="-2">
+       Copyright Riley Snyder Industries<br>
+       Contact information: <a href="mailto:rileysndr@gmail.com">
+       rileysndr@gmail.com</a></text>
+    </div>
+  </div>
+
 </html>

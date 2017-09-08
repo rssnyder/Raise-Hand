@@ -45,7 +45,7 @@
 
         <form action="signin.php" method="post">
           Username: <input type="text" name="username" value=""><br>
-          Password:  <input type="text" name="password" value=""><br>
+          Password:  <input type="password" name="password" value=""><br>
           <input name="signin" type="submit" value="Login">
         </form>
 
@@ -56,7 +56,7 @@
               <br>
               Username: <input type="text" name="username" value=""><br>
               Email: <input type="text" name="email" value=""><br>
-              Password:  <input type="text" name="password" value=""><br>
+              Password:  <input type="password" name="password" value=""><br>
               <font size="-2">Passwords are stored as a salted hash</font><br>
               <input name="signupp" type="submit" value="Sign Up">
             </form>
