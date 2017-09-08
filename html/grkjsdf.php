@@ -1,3 +1,6 @@
 <?php
-echo $password = file_get_contents("sql.config");
- ?>
+$a = 'How are you?';
+
+if (strpos($a, ';') !== false) {
+    echo 'true';
+} ?>

@@ -129,6 +129,10 @@
   </head>
   <body>
     <?php
+      if($_SESSION['message'] !== false) {
+        echo '<h8>' . $_SESSION['message'] . '</h8>';
+        $_SESSION['message'] = false;
+      }
       //$thread = $_GET['thread'];
       $thread = $_SESSION['thread'];
       $id = getThread($thread, $db);

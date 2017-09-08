@@ -19,17 +19,27 @@
   }
   */
 
+  //Get return URL ready
+  $re = "Location: index.php?thread=";
+  $direct = $_SESSION['thread'];
+
   $username = $_SESSION['username'];
   //$parentID = $_POST['parentID'];
   //Do not allow empty comments or parent id fields
   if(("" != trim($_POST['comment'])) && ("" != trim($_POST['parentID']))) {
     $comment =  $_POST['comment'];
+    //If they have a semi-colon, we are just gonna say they are trying to inject
+    //We have no tolerance here
+    if (strpos($comment, ';') !== false) {
+        //Get outa here
+        $_SESSION['message'] = "I hope you DROP hot soup all over youself";
+        header($re . $direct);
+        die("Get outa here");
+    }
     $parentID = $_POST['parentID'];
     putComment($parentID, $username, $comment, $db);
   }
 
-  $re = "Location: index.php?thread=";
-  $direct = $_SESSION['thread'];
   //Either way just go back to forum
   header($re . $direct);
 
