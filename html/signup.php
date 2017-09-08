@@ -44,6 +44,7 @@ session_start();
     $result = $db->query($insert) or die($db->error);
     $_SESSION['loggedin'] = true;
     $_SESSION['username'] = $username;
+    $_SESSION['thread'] = "General";
     header("Location: index.php");
   }
 ?>

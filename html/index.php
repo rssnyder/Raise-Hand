@@ -2,14 +2,16 @@
 
   session_start();
   if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-
+    $_SESSION['thread'] = $_GET['thread'];
   } else {
     header("Location: login.php");
   }
 
+
   //Define paramiters and initalize connection
   $host = "127.0.0.1";
   $username = "root";
+  //Get SQL password from config failed
   $password = "raisehand";
   $database = "topics";
   $db = new mysqli($host, $username, $password, $database, 3306) or die('Error connecting to server');
@@ -23,7 +25,7 @@
     //Get children and print comments
     while ($row = $result->fetch_assoc()) {
       //Indentation for comment hiarchy
-      echo str_repeat('&nbsp;', 8*$level);
+      echo str_repeat('-', 8*$level);
 
       //Get the values for the comment
       $owner = $row["owner"];
@@ -48,7 +50,7 @@
             <div class="content3">
               <form action="comment.php" method="post">
                 <input type="hidden" name="parentID" value="' . $id . '"/>
-                <input type="text" name="comment" value="" /><br>
+                <input type="text" size="30" name="comment" value="" /><br>
                 <input name="submit" type="submit" value="Submit" /><br>
               </form>
             </div>
@@ -59,6 +61,29 @@
     }
   }
 
+  function getThread($thread, $db) {
+    $query = "SELECT * FROM threads WHERE title = '$thread'";
+    $result = $db->query($query) or die('Error querying database.');
+    //Get children and print comments
+    while ($row = $result->fetch_assoc()) {
+      echo '<h1>' . $row['title'] . '<br>';
+      echo '<font size="-2">' . $row['description'] . '</font></h1>';
+      return $row['id'];
+    }
+  }
+
+  function getThreads($thread, $db) {
+    $query = "SELECT * FROM threads WHERE title != '$thread'";
+    $result = $db->query($query) or die('Error querying database.');
+    //Get children and print comments
+    echo '<h5>';
+    while ($row = $result->fetch_assoc()) {
+      $thisThread = $row['title'];
+      echo '<a href="index.php?thread=' . $thisThread . '">' . $thisThread . '</a>';
+      echo str_repeat('&nbsp;', 10);
+    }
+    echo '</h5>';
+  }
 ?>
 
 <!-- Scrtipt to hide comment form, or show it, based on button press -->
@@ -103,41 +128,22 @@
     <link rel="stylesheet" type="text/css" href="mystyle.css">
   </head>
   <body>
-    <h1>Welcome to the *shitty forums!<font size="-2">beta v0.2</font></h1>
     <?php
-      getComments(1000, 0, $db);
+      //$thread = $_GET['thread'];
+      $thread = $_SESSION['thread'];
+      $id = getThread($thread, $db);
+      getThreads($thread, $db);
+      getComments($id, 0, $db);
       echo '<br><br>';
+      //Submit top level comment  -->
+
+      echo '<form action="comment.php" method="post">
+              <input type="hidden" name="parentID" value="' . $id . '"/>
+              <input type="text" size="30" name="comment" value="" /><br>
+              <input name="submit" type="submit" value="Submit" />
+            </form>';
     ?>
 
-    <!--Submit top level comment  -->
-    <form action="comment.php" method="post">
-      <input type="hidden" name="parentID" value="1000"/>
-      <input type="text" name="comment" value="" /><br>
-      <input name="submit" type="submit" value="Submit" />
-    </form>
-
-    <!-- Hidden comment section
-    <div id="about" class="hidden">
-      <div class="content3">
-        <form action="comment.php" method="post">
-          <input type="text" name="comment" value=""><br>
-          <input name="submit" type="submit" value="Submit">
-        </form>
-      </div>
-    </div>
-    <input type="button" onclick="unhide(this, 'about') " value="Comment">
-    -->
 
   </body>
-
-<!--
-  <div id="container">
-    <div id="footer">
-      <font size="-2">
-       Copyright Riley Snyder Industries<br>
-       Contact information: <a href="mailto:rileysndr@gmail.com">
-       rileysndr@gmail.com</a></text>
-    </div>
-  </div>
--->
 </html>

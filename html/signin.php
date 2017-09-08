@@ -37,7 +37,8 @@
       $_SESSION['loggedin'] = true;
       $_SESSION['username'] = $username;
       $_SESSION['error']  = false;
-      header("Location: index.php");
+      $_SESSION['thread'] = "General";
+      header("Location: index.php?thread=General");
     }
     else {
       $_SESSION['error'] = true;

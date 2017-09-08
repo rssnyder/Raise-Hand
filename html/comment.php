@@ -3,6 +3,7 @@
   //Define paramiters and initalize connection
   $host = "127.0.0.1";
   $username = "root";
+  //Get SQL password from config failed
   $password = "raisehand";
   $database = "topics";
   $db = new mysqli($host, $username, $password, $database, 3306) or die('Error connecting to server');
@@ -27,8 +28,10 @@
     putComment($parentID, $username, $comment, $db);
   }
 
-  //If we ever get here, just go back to forum
-  header("Location: index.php");
+  $re = "Location: index.php?thread=";
+  $direct = $_SESSION['thread'];
+  //Either way just go back to forum
+  header($re . $direct);
 
   //Function to send a new comment to the database
   function putComment($parentID, $owner, $text, $db) {
@@ -36,6 +39,5 @@
     $query = "INSERT INTO posts (id, parent, owner, points, endorsed, timestamp, text) VALUES (NULL, '$parentID', '$owner', '0', '0', '$timestamp', '$text')";
     //echo $query;
     $result = $db->query($query) or die($db->error);
-    header("Location: connection.php");
   }
 ?>
