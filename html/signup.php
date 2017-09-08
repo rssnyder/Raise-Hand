@@ -10,12 +10,18 @@ session_start();
   //echo $db->host_info;
   //Make sure everything is there and then sign them up
   if("" == trim($_POST['username'])) {
+    $_SESSION['error'] = true;
+    $_SESSION['errorCode'] = "Username Required";
     header("Location: login.php");
   }
   else if("" == trim($_POST['email'])) {
+    $_SESSION['error'] = true;
+    $_SESSION['errorCode'] = "Email Required (it can be fake)";
     header("Location: login.php");
   }
   else if("" == trim($_POST['password'])) {
+    $_SESSION['error'] = true;
+    $_SESSION['errorCode'] = "Password Required";
     header("Location: login.php");
   }
   else {
@@ -27,6 +33,8 @@ session_start();
     $uname = $result->fetch_assoc();
     $uname = $uname['username'];
     if($uname) {
+      $_SESSION['error'] = true;
+      $_SESSION['errorCode'] = "Username Taken";
       header("Location: login.php");
       die("User exists");
     }

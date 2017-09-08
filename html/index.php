@@ -2,9 +2,17 @@
 
   session_start();
   if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+    if($_GET['thread'] === null) {
+      header("Location: index.php?thread=General");
+      die("oops");
+    }
     $_SESSION['thread'] = $_GET['thread'];
   } else {
     header("Location: login.php");
+  }
+  if($_GET['thread'] === null) {
+    header("Location: index.php?thread=General");
+    die("oops");
   }
 
 
@@ -44,7 +52,26 @@
       }
 
       echo '</button><br>';
-      //echo str_repeat('&nbsp;', 8*$level);
+
+      //This is for Davien. Lord bless her Soul
+      $username = $_SESSION['username'];
+      //This is your comment
+      if(!strcmp($owner, $username)) {
+        echo '<div id="childComment' . $id . '" class="hidden">
+              <div class="content3">
+                <form action="comment.php" method="post">
+                  <input type="hidden" name="commentID" value="' . $id . '"/>
+                  <input name="delete" type="submit" value="Delete" />
+                </form>
+                <form action="comment.php" method="post">
+                  <input name="submit" type="submit" value="Comment" /><br>
+                  <input type="hidden" name="parentID" value="' . $id . '"/>
+                  <input type="text" size="30" name="comment" value="" /><br>
+                </form>
+              </div>
+            </div>';
+      }
+
       //Create the dropdown text box that appears when the comment is clicked
       echo '<div id="childComment' . $id . '" class="hidden">
             <div class="content3">

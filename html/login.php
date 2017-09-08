@@ -34,13 +34,14 @@
 <html>
   <body>
     <center>
-      <h1>Welcome to the *shitty forums!<font size="-2">beta v0.1.3</font></h1>
+      <h1>Welcome to the *shitty forums!<font size="-2">beta v0.1.32</font></h1>
       <br><br>
       <h6>Sign in below</h6>
       <br><br>
       <?php
         if($_SESSION['error']) {
           echo $_SESSION['errorCode'];
+          $_SESSION['error'] = false;
         }
       ?>
       <br><br><br><br><br>
