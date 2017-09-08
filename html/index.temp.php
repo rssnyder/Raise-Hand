@@ -30,13 +30,27 @@
       $text = $row["text"];
       $id = $row["id"];
 
+      //Make the comment a button
+      //htmlspecialchars(<button class="comment" onclick="unhide(this, comment) ">)
+      echo('<button class="comment" onclick="unhide(this,\'comment' . $id . '\')">');
 
       if(!strcmp($owner, 'rssnyder')) {
-        echo '<font color=yellow>' . $text . '</font>' . '<font size="-2"> - ' . $row["owner"] . '</font><br>';
+        echo '<font color=yellow>' . $text . '</font>' . '<font size="-2"> - ' . $row["owner"] . '</font>';
       }
       else {
-        echo $text . '<font size="-2"> - ' . $row["owner"] . '</font><br>';
+        echo $text . '<font size="-2"> - ' . $row["owner"] . '</font>';
       }
+      echo '</button><br>';
+
+      //Create a button and text field to create a child comment. Put the parents ID in so we can connect the two
+      echo '<div id="comment' . $id . '" class="hidden">
+            <div class="content3">
+              <form action="comment.php" method="post">
+                <input type="text" name="comment" value=""><br>
+                <input onclick="parrentID("' . $id . '")" name="submit" type="submit" value="Submit">
+              </form>
+            </div>
+            </div>';
 
       //Recursivly get child comments for any that exist
       getComments($row["id"], $level + 1, $db);
@@ -60,6 +74,11 @@
         }
   }}
 
+  function parentID(id) {
+    <?php
+      $_SESSION['parentID'] = id;
+    ?>
+  }
 </script>
 
 <!-- Style for the hidden comment button -->
@@ -87,7 +106,7 @@
     <link rel="stylesheet" type="text/css" href="mystyle.css">
   </head>
   <body>
-    <h1>Welcome to the *shitty forums!<font size="-2">beta v0.1.5</font></h1>
+    <h1>Welcome to the *shitty forums!<font size="-2">beta v0.1.26</font></h1>
     <?php
       getComments(1000, 0, $db);
       echo '<br><br>';
@@ -105,6 +124,7 @@
     </div>
     <input type="button" onclick="unhide(this, 'about') " value="Comment">
 
+    <button class="comment">Click here</button>
 
   </body>
 

@@ -1,3 +1,5 @@
+<html>
+<body>
 <?php
   session_start();
   //Define paramiters and initalize connection
@@ -6,7 +8,7 @@
   $password = "raisehand";
   $database = "topics";
   $db = new mysqli($host, $username, $password, $database, 3306) or die('Error connecting to server');
-
+echo 'sup';
   //Check for empty comment
   /*
   if("" == trim($_POST['username'])) {
@@ -19,11 +21,17 @@
   */
 
   $username = $_SESSION['username'];
-  $parentID = $_POST['parentID'];
+  echo $_POST['parentID'];
+  $parentID = $_SESSION['parentID'];
+  if(!strcmp($parentID, "0")) {
+    $parentID = "1000";
+  }
+  $_SESSION['parentID'] = "0";
+
   //Do not allow empty comments
   if("" != trim($_POST['comment'])) {
     $comment =  $_POST['comment'];
-    putComment("1000", $username, $comment, $db);
+    putComment($parentID, $username, $comment, $db);
   }
 
   //If we ever get here, just go back to forum
@@ -38,3 +46,5 @@
     header("Location: connection.php");
   }
 ?>
+</body>
+</html>
