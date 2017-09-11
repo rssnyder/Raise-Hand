@@ -1,11 +1,13 @@
 CREATE TABLE users (
+ID int NOT NULL,
+role_id int NOT NULL,
+class_id int,
 first_name VARCHAR(20), 
 last_name VARCHAR(20),
-pass VARCHAR(20),
-username VARCHAR(10),
-posts_written numeric,
-answers_written numeric,
-role VARCHAR(10)
+pass VARCHAR(260),
+username VARCHAR(20),
+PRIMARY KEY(ID),
+FOREIGN KEY (role_id) references roles(ID)
 );
 
 ALTER TABLE users
