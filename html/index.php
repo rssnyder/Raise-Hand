@@ -47,6 +47,18 @@
       if(!strcmp($owner, 'rssnyder')) {
         echo '<font size= "5" color=yellow>' . $text . '</font><font size="-2"> - ' . $row["owner"] . '</font><br>';
       }
+      else if(!strcmp($owner, 'Joel')) {
+        echo '<font size= "5" color=green>' . $text . '</font><font size="-2"> - ' . $row["owner"] . '</font><br>';
+      }
+      else if(!strcmp($owner, 'secretusername')) {
+        echo '<font size= "5" color=orange>' . $text . '</font><font size="-2"> - ' . $row["owner"] . '</font><br>';
+      }
+      else if(!strcmp($owner, 'jaggarwal')) {
+        echo '<font size= "5" color=purple>' . $text . '</font><font size="-2"> - ' . $row["owner"] . '</font><br>';
+      }
+      else if(!strcmp($owner, 'davienschweitzer')) {
+        echo '<font size= "5" color=pink>' . $text . '</font><font size="-2"> - ' . $row["owner"] . '</font><br>';
+      }
       else {
         echo '<font size="5">' . $text . '</font><font size="-2"> - ' . $row["owner"] . '</font><br>';
       }

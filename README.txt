@@ -1,1 +1,3 @@
-Pretty much, if Area 51 was a branch, this would be it. 
+An expirimental forum website. I chose this idea to learn html/php/sql.
+
+Complete with user login, threads, and child comments. 
