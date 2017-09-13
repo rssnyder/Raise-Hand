@@ -1,5 +1,5 @@
 CREATE TABLE threads(
-	ID int NOT NULL,
+	ID int NOT NULL auto_increment,
 	topic_id int NOT NULL,
     owner_id int NOT NULL,
     title VARCHAR(30),

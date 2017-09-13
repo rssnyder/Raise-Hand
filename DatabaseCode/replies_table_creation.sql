@@ -1,5 +1,5 @@
 CREATE TABLE replies(
-	ID int NOT NULL,
+	ID int NOT NULL auto_increment,
 	thread_id int NOT NULL,
     owner_id int NOT NULL,
     endorsed_user_id int,

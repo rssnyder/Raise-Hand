@@ -1,5 +1,5 @@
 CREATE TABLE classes(
-	ID int NOT NULL,
+	ID int NOT NULL auto_increment,
 	teacher_id int NOT NULL,
     class_name VARCHAR(30),
     class_start DATE,

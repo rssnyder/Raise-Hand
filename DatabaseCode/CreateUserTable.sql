@@ -1,5 +1,5 @@
 CREATE TABLE users (
-ID int NOT NULL,
+ID int NOT NULL auto_increment,
 role_id int NOT NULL,
 class_id int,
 first_name VARCHAR(20), 
