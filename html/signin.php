@@ -28,19 +28,25 @@
   //Function to enter new user into database
   function signIn($username, $password, $db) {
     //Create sql command
-    $insert = "SELECT password FROM users WHERE username = '$username' ";
+    $insert = "SELECT * FROM users WHERE username = '$username' ";
     //Excecute
     $result = $db->query($insert) or die($db->error);
     $pass = $result->fetch_assoc();
+    $admin = $pass["admin"];
     $pass = $pass["password"];
     if(password_verify($password, $pass)) {
       $_SESSION['loggedin'] = true;
       $_SESSION['username'] = $username;
       $_SESSION['error']  = false;
       $_SESSION['thread'] = "General";
+      $_SESSION['admin'] = $admin;
       header("Location: index.php?thread=General");
     }
     else {
+      $_SESSION['loggedin'] = false;
+      $_SESSION['username'] = "";
+      $_SESSION['thread'] = "";
+      $_SESSION['admin'] = "";
       $_SESSION['error'] = true;
       $_SESSION['errorCode'] = "Sign in failed";
       header("Location: login.php");

@@ -47,7 +47,7 @@ session_start();
   //Function to enter new user into database
   function signUp($username, $email, $password, $db) {
     //Create sql command
-    $insert = "INSERT INTO users (username, email, password, points) VALUES ('$username', '$email', '$password', '0')";
+    $insert = "INSERT INTO users (username, email, password, points, admin) VALUES ('$username', '$email', '$password', '0', '0')";
     //Excecute
     $result = $db->query($insert) or die($db->error);
     $_SESSION['loggedin'] = true;
