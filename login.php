@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
+    <div align="center">
+      <h1>Raise Hand</h1>
+    </div>
       <div align="center" class="container">
         <form id="login-form" action="signin.php" method="post">
           Username: <br>

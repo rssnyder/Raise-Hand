@@ -1,8 +1,8 @@
 body {
-   background-color: powderblue;
+   background-color: #C8102E;
 }
 h1 {
-   color: blue;
+   color: #F1BE48;
 }
 p {
    color: red;
@@ -22,9 +22,37 @@ login-form {
   align-items: center; /* center vertically */
   height: 100%;
 }
-tml {
+html {
   height: 100%;
 }
 body {
   min-height: 100%;
+}
+.top {
+    position:absolute;
+    left:0; right:0;
+    height: 80px;
+    border: 3px solid black;
+}
+.left {
+    position:absolute;
+    left:0; top:92px; bottom: 0;
+    width: 180px;
+    border: 3px solid black;
+}
+.main {
+    position: absolute;
+    left:186px; top:95px; right:0; bottom:0;
+}
+a.logout {
+  color: red;
+  text-decoration: none;
+}
+a.home {
+  color: blue;
+  text-decoration: none;
+}
+a.notifications {
+  color: #000066;
+  text-decoration: none;
 }

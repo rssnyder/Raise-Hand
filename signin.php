@@ -17,14 +17,23 @@
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "No Username";
     header("Location: login.php");
+    die("No username.");
   }
   //Check and make sure they entered a password
   else if("" == trim($_POST['password'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "No Password";
     header("Location: login.php");
+    die("No password.");
   }
-  //If both fields are populated then execute login function
+  //Injection? Maybe, maybe not. Maybe screw you.
+  else if (strpos($comment, ';')) {
+    $_SESSION['error'] = true;
+    $_SESSION['errorCode'] = "No thanks.";
+    header("Location: login.php");
+    die("Injection attempt");
+  }
+  //If both fields are populated correctly then execute login function
   else {
     //Get post variables and send to function
     $password = $_POST['password'];
