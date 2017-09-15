@@ -5,3 +5,10 @@ Written by Stephanie Engelhardt on 09/15/2017 **/
 to allow access to both of them. */
 SELECT thread.*, reply.* FROM threads thread
 LEFT OUTER JOIN replies reply ON thread.ID=reply.thread_id;
+
+/* This query selects all of the flagged posts from the same university as the admin */
+SELECT * FROM replies reply
+	WHERE reply.flagged=1
+    /*I may need to change this from the sys_user, I'm not sure yet how we will access the user's ID*/
+	AND @sys_user.ID = (SELECT university_id FROM users
+		WHERE users.ID= reply.owner_id);
