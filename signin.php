@@ -44,7 +44,7 @@
   //Function to enter new user into database
   function signIn($username, $password, $db) {
     //Create sql command
-    $insert = "SELECT * FROM users WHERE username = '$username' ";
+    $insert = "SELECT * FROM users WHERE users.username = '$username' ";
     //Excecute
     $result = $db->query($insert) or die($db->error);
     //Get the data of the username they specified
