@@ -8,6 +8,9 @@
   <!-- The top banner of the webpage -->
   <div class="top">
       <font size="-5"><a class="logout" href="login.php">Logout</a></font>
+      <center>
+        <h1>Welcome, User</h1>
+      </center>
   </div>
 
   <!-- The left sidebar -->
