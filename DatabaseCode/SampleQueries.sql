@@ -24,4 +24,9 @@ WHERE threads.owner_id= @sys_user.ID;
 SELECT * FROM topics
 WHERE topics.class_id= @sys_user.class_id;
 
+/* This is the user login information:
+it will have to be written dyanmically, so you will save what the user inputs and then compare it.
+sql= 'SELECT * FROM users WHERE users.username=' + input of username 'AND users.pass=' input of password ';';
+If the user does NOT put in the correct information, it will return back with no results found. If
+it does match, then the users information will be returned */
 
