@@ -12,3 +12,7 @@ SELECT * FROM replies reply
     /*I may need to change this from the sys_user, I'm not sure yet how we will access the user's ID*/
 	AND @sys_user.ID = (SELECT university_id FROM users
 		WHERE users.ID= reply.owner_id);
+
+/*This query selects all of the threads (aka questions) that a user has created*/
+SELECT * FROM threads
+WHERE threads.owner_id= @sys_user.ID;
