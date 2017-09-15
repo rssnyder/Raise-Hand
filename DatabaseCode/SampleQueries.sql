@@ -6,6 +6,8 @@ to allow access to both of them. Orders them in order of most upped thread, (the
 SELECT thread.*, reply.* FROM threads thread
 LEFT OUTER JOIN replies reply ON thread.ID=reply.thread_id
 ORDER BY thread.points, reply.points;
+/* A condition can also be added here as "WHERE class_id= current class id" but we need to figure out 
+how the systems will interact first before i can call that data. */
 
 /* This query selects all of the flagged posts from the same university as the admin */
 SELECT * FROM replies reply
