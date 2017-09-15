@@ -2,18 +2,19 @@
   //Clear session
   session_unset();
 ?>
-
 <html>
+  <head>
+    <link rel="stylesheet" href="styles.css">
+  </head>
   <body>
-
-
-    <!-- Sign In Field
-    <form action="signin.php" method="post">
-      Username: <input type="text" name="username" value=""><br>
-      Password:  <input type="password" name="password" value=""><br>
-      <input name="signin" type="submit" value="Login">
-    </form>
-    -->
-
+      <div align="center" class="container">
+        <form id="login-form" action="signin.php" method="post">
+          Username: <br>
+          <input type="text" name="username" value="" size="35"><br>
+          Password: <br>
+          <input type="password" name="password" value="" size="35"><br><br>
+          <input name="signin" type="submit" value="Login">
+        </form>
+      </div>
   </body>
 </html>

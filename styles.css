@@ -1,0 +1,30 @@
+body {
+   background-color: powderblue;
+}
+h1 {
+   color: blue;
+}
+p {
+   color: red;
+}
+center {
+   display: table;
+   width: 100%;
+}
+login-form {
+   display: table-cell;
+   text-align: center;
+   vertical-align: middle;
+}
+.container {
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: center; /* center vertically */
+  height: 100%;
+}
+tml {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+}

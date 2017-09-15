@@ -1,4 +1,11 @@
 <?php
+	session_start();
+	if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+
+	} else {
+		header("Location: login.php");
+	}
+
 	//TODO Grab all this from a file
 	//Define sql database information
 	$host="mysql.cs.iastate.edu";
