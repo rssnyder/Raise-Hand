@@ -24,6 +24,7 @@ other students. There will be a system to make sure that the more correct
 answers appear toward the top of the discussion board.
 
 Currently working on:
+Joel: Teacher App mockup
 
 Bugs found:
 
