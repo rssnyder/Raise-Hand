@@ -1,9 +1,4 @@
 package com.example.sae1.raisehand;
-
-/**
- * Created by sae1 on 9/17/17.
- */
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +15,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.sae1.raisehand.Activity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,20 +25,15 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button buttonUnsortedlist,buttonSortedbybrand,buttonSortedbyprice,buttonFilterresults;
-    ProgressDialog progressDialog;
-    TextView textView;  SharedPreferences sharedPreferences;
-    String URL = "Your URL for getData.php";
-    String mn;
-    LaptopAdapter laptopAdapter;
-    ArrayList<Laptop> laptopList= new ArrayList<Laptop>();
-    String jsonString;
+    EditText editTextUsername, editTextEmail, editTextPassword;
+    RadioGroup radioGroupGender;
+    ProgressBar progressBar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_main);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
