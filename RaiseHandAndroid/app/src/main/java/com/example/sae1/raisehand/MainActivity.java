@@ -29,9 +29,14 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText editTextUsername, editTextEmail, editTextPassword;
-    RadioGroup radioGroupGender;
-    ProgressBar progressBar;
+    Button buttonUnsortedlist,buttonSortedbybrand,buttonSortedbyprice,buttonFilterresults;
+    ProgressDialog progressDialog;
+    TextView textView;  SharedPreferences sharedPreferences;
+    String URL = "Your URL for getData.php";
+    String mn;
+    LaptopAdapter laptopAdapter;
+    ArrayList<Laptop> laptopList= new ArrayList<Laptop>();
+    String jsonString;
 
 
     @Override
