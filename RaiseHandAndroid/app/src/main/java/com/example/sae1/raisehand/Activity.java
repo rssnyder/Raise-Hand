@@ -3,6 +3,7 @@ import android.app.Application;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import android.content.Context;
 /**
  * Created by sae1 on 9/17/17.
  * Using source code from tutorialsbuzz.com
@@ -11,38 +12,30 @@ import com.android.volley.toolbox.Volley;
 public class Activity extends Application {
     private RequestQueue mRequestQueue;
     private static Activity mInstance;
+    private static Context mCtx;
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        mInstance = this;
+    private Activity(Context context) {
+        mCtx = context;
+        mRequestQueue = getRequestQueue();
     }
 
-    public static synchronized Activity getInstance() {
+    public static synchronized Activity getInstance(Context context) {
+        if (mInstance == null) {
+            mInstance = new Activity(context);
+        }
         return mInstance;
     }
 
-    public RequestQueue getReqQueue() {
+    public RequestQueue getRequestQueue() {
         if (mRequestQueue == null) {
-            mRequestQueue = Volley.newRequestQueue(getApplicationContext());
+            // getApplicationContext() is key, it keeps you from leaking the
+            // Activity or BroadcastReceiver if someone passes one in.
+            mRequestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
         }
-
         return mRequestQueue;
     }
 
-    public <T> void addToReqQueue(Request<T> req, String tag) {
-
-        getReqQueue().add(req);
-    }
-
-    public <T> void addToReqQueue(Request<T> req) {
-
-        getReqQueue().add(req);
-    }
-
-    public void cancelPendingReq(Object tag) {
-        if (mRequestQueue != null) {
-            mRequestQueue.cancelAll(tag);
-        }
+    public <T> void addToRequestQueue(Request<T> req) {
+        getRequestQueue().add(req);
     }
 }
