@@ -15,7 +15,7 @@
 					$first_name = $_POST['first_name'];
 					$last_name = $_POST['last_name']; 
 					
-					$stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
+					$stmt = $conn->prepare("SELECT username FROM users WHERE username = ?");
 					$stmt->bind_param("ss", $username);
 					$stmt->execute();
 					$stmt->store_result();
@@ -64,7 +64,7 @@
 					$username = $_POST['username'];
 					$pass = $_POST['pass']; 
 					
-					$stmt = $conn->prepare("SELECT username FROM users WHERE username = ? AND pass = ?");
+					$stmt = $conn->prepare("SELECT username, pass FROM users WHERE username = ? AND pass = ?");
 					$stmt->bind_param("ss",$username, $pass);
 					
 					$stmt->execute();
