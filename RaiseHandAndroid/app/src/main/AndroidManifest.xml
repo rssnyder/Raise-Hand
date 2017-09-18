@@ -30,11 +30,15 @@
         <activity
             android:name=".TeacherClasses"
             android:screenOrientation="portrait"/>
-        <activity android:name=".TeacherNotifications"
-                  android:screenOrientation="portrait">
+        <activity
+            android:name=".TeacherNotifications"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".TeacherStudents"
-                  android:screenOrientation="portrait">
+        <activity
+            android:name=".TeacherStudents"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".TeacherSettings">
         </activity>
     </application>
 

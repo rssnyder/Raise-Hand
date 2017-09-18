@@ -1,6 +1,8 @@
 package com.example.sae1.raisehand;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -29,6 +31,36 @@ public class TeacherStudents extends AppCompatActivity {
         mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        nv = (NavigationView) findViewById(R.id.nv1);
+        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case(R.id.nav_home):
+                        Intent teacherHome = new Intent(getApplicationContext(), TeacherHomePage.class);
+                        startActivity(teacherHome);
+                        break;
+                    case (R.id.nav_classes):
+                        Intent teacherClasses = new Intent(getApplicationContext(), TeacherClasses.class);
+                        startActivity(teacherClasses);
+                        break;
+                    case (R.id.nav_notifications):
+                        Intent teacherNotifications = new Intent(getApplicationContext(), TeacherNotifications.class);
+                        startActivity(teacherNotifications);
+                        break;
+                    case (R.id.nav_students):
+                        mDrawerLayout.closeDrawers();
+                        break;
+                    case (R.id.nav_settings):
+                        Intent teacherSettings = new Intent(getApplicationContext(), TeacherSettings.class);
+                        startActivity(teacherSettings);
+                        break;
+                }
+                return true;
+            }
+        });
+
 
     }
 
