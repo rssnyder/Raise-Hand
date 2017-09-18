@@ -57,9 +57,7 @@
     }
     $password = $_POST['password'];
     $password = password_hash($password, PASSWORD_DEFAULT);
-    echo $password;
     signUp($username, $_POST['first'], $_POST['last'], $password, $db);
-    echo $password;
   }
 
   //Function to enter new user into database

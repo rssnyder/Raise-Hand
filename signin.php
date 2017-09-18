@@ -64,6 +64,7 @@
       $_SESSION['role'] = $role;
       //Send user to their homepage
       header("Location: home.php");
+
     }
     else {
       //Set session varibales to notify user
