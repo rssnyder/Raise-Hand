@@ -1,10 +1,17 @@
 <?php
 
- $host="mysql.cs.iastate.edu";
+    $servername="mysql.cs.iastate.edu";
 	$port=3306;
 	$socket="";
-	$user="dbu309sab3";
-	$password="SD0wFGqd";
-	$dbname="db309sab3";
-  $conn = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
+	$username="dbu309sab3";
+	$pass="SD0wFGqd";
+	$database="db309sab3";
+    $conn = new mysqli($servername, $username, $pass, $database, $port, $socket);
+ 
+//if there is some error connecting to the database
+//with die we will stop the further execution by displaying a message causing the error 
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
 ?>
