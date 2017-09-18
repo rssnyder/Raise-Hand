@@ -11,7 +11,7 @@
   //Connect to database
   $db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
   //Print out host information
-  echo $db->host_info;
+  //echo $db->host_info;
   //Make sure everything is there and then sign them up
   if("" == trim($_POST['first'])) {
     $_SESSION['error'] = true;
@@ -55,10 +55,11 @@
       header("Location: newAccount.php");
       die("User exists");
     }
-
     $password = $_POST['password'];
     $password = password_hash($password, PASSWORD_DEFAULT);
+    echo $password;
     signUp($username, $_POST['first'], $_POST['last'], $password, $db);
+    echo $password;
   }
 
   //Function to enter new user into database
@@ -70,6 +71,7 @@
     $_SESSION['loggedin'] = true;
     $_SESSION['username'] = $username;
     $_SESSION['thread'] = "General";
-    header("Location: index.php");
+    header("Location: home.php");
+    die("done");
   }
 ?>
