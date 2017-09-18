@@ -9,14 +9,14 @@
 		switch($_GET['apicall']){
 			
 			case 'signup':
-				if(isTheseParametersAvailable(array('username','email','password','gender'))){
+				if(isTheseParametersAvailable(array('username','pass','first_name', 'last_name'))){
 					$username = $_POST['username']; 
-					$email = $_POST['email']; 
-					$password = md5($_POST['password']);
-					$gender = $_POST['gender']; 
+					$pass = $_POST['pass']; 
+					$first_name = $_POST['first_name'];
+					$last_name = $_POST['last_name']; 
 					
 					$stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
-					$stmt->bind_param("ss", $username, $email);
+					$stmt->bind_param("ss", $username);
 					$stmt->execute();
 					$stmt->store_result();
 					
@@ -25,21 +25,21 @@
 						$response['message'] = 'User already registered';
 						$stmt->close();
 					}else{
-						$stmt = $conn->prepare("INSERT INTO users (username, pass) VALUES (?, ?, ?, ?)");
-						$stmt->bind_param("ssss", $username, $email, $password, $gender);
+						$stmt = $conn->prepare("INSERT INTO users (username, pass) VALUES (?, ?)");
+						$stmt->bind_param("ssss", $username, $pass);
 
 						if($stmt->execute()){
-							$stmt = $conn->prepare("SELECT id, id, username, email, gender FROM users WHERE username = ?"); 
+							$stmt = $conn->prepare("SELECT username, pass FROM users WHERE username = ?"); 
 							$stmt->bind_param("s",$username);
 							$stmt->execute();
-							$stmt->bind_result($userid, $id, $username, $email, $gender);
+							$stmt->bind_result($username, $pass);
 							$stmt->fetch();
 							
 							$user = array(
-								'id'=>$id, 
 								'username'=>$username, 
-								'email'=>$email,
-								'gender'=>$gender
+								'pass'=>$pass,
+								'first_name'=>$first_name,
+								'last_name'=>$last_name
 							);
 							
 							$stmt->close();
@@ -59,13 +59,13 @@
 			
 			case 'login':
 				
-				if(isTheseParametersAvailable(array('username', 'password'))){
+				if(isTheseParametersAvailable(array('username', 'pass'))){
 					
 					$username = $_POST['username'];
-					$password = md5($_POST['password']); 
+					$pass = $_POST['pass']; 
 					
-					$stmt = $conn->prepare("SELECT id, username FROM users WHERE username = ? AND pass = ?");
-					$stmt->bind_param("ss",$username, $password);
+					$stmt = $conn->prepare("SELECT username FROM users WHERE username = ? AND pass = ?");
+					$stmt->bind_param("ss",$username, $pass);
 					
 					$stmt->execute();
 					
@@ -73,14 +73,14 @@
 					
 					if($stmt->num_rows > 0){
 						
-						$stmt->bind_result($id, $username, $email, $gender);
+						$stmt->bind_result($username, $pass);
 						$stmt->fetch();
 						
 						$user = array(
-							'id'=>$id, 
 							'username'=>$username, 
-							'email'=>$email,
-							'gender'=>$gender
+							'pass'=>$pass,
+							'first_name'=>$first_name,
+							'last_name'=>$last_name
 						);
 						
 						$response['error'] = false; 
