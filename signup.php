@@ -16,7 +16,7 @@
   if("" == trim($_POST['username'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Username Required";
-    header("Location: login.php");
+    header("Location: newAccount.php");
   }
   /*
   else if("" == trim($_POST['email'])) {
@@ -28,17 +28,17 @@
   else if("" == trim($_POST['first'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "First Name Required";
-    header("Location: login.php");
+    header("Location: newAccount.php");
   }
   else if("" == trim($_POST['last'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Last Name Required";
-    header("Location: login.php");
+    header("Location: newAccount.php");
   }
   else if("" == trim($_POST['password'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Password Required";
-    header("Location: login.php");
+    header("Location: newAccount.php");
   }
   else {
     $username = $_POST['username'];
@@ -52,7 +52,7 @@
     if($uname) {
       $_SESSION['error'] = true;
       $_SESSION['errorCode'] = "Username Taken";
-      header("Location: login.php");
+      header("Location: newAccount.php");
       die("User exists");
     }
 
