@@ -8,16 +8,16 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-public class TeacherClasses extends AppCompatActivity {
+public class TeacherNotifications extends AppCompatActivity {
+
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
-    private NavigationView nv;
     private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teacher_classes);
+        setContentView(R.layout.activity_teacher_notifications);
 
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);

@@ -41,6 +41,15 @@ public class TeacherHomePage extends AppCompatActivity {
                     case (R.id.nav_classes):
                         Intent teacherClasses = new Intent(getApplicationContext(),TeacherClasses.class);
                         startActivity(teacherClasses);
+                        break;
+                    case (R.id.nav_notifications):
+                        Intent teacherNotifications = new Intent(getApplicationContext(), TeacherNotifications.class);
+                        startActivity(teacherNotifications);
+                        break;
+                    case (R.id.nav_students):
+                        Intent teacherStudents = new Intent(getApplicationContext(), TeacherStudents.class);
+                        startActivity(teacherStudents);
+                        break;
                 }
                 return true;
             }
