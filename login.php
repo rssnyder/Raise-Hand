@@ -1,11 +1,16 @@
 <?php
   //Clear session
   session_start();
+  //Check for error from previous sign in
+  if($_SESSION['error']){
+    //Do nothing
+  }
   //If user already logged in then take to their home
-  if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+  else if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     header("Location: home.php");
   //Otherwise, clear this session and send them to the login
-  } else {
+  }
+  else {
     session_unset();
 	}
 ?>
@@ -17,6 +22,11 @@
     <div align="center">
       <h1>Raise Hand</h1>
     </div>
+    <?php
+    if($_SESSION['error']){
+        echo "<br><br><br><div align=\"center\">Error: " . $_SESSION['errorCode'] . "</div>";
+    }
+    ?>
       <div align="center" class="container">
         <form id="login-form" action="signin.php" method="post">
           Username: <br>

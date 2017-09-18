@@ -18,9 +18,21 @@
     $_SESSION['errorCode'] = "Username Required";
     header("Location: login.php");
   }
+  /*
   else if("" == trim($_POST['email'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Email Required (it can be fake)";
+    header("Location: login.php");
+  }
+  */
+  else if("" == trim($_POST['first'])) {
+    $_SESSION['error'] = true;
+    $_SESSION['errorCode'] = "First Name Required";
+    header("Location: login.php");
+  }
+  else if("" == trim($_POST['last'])) {
+    $_SESSION['error'] = true;
+    $_SESSION['errorCode'] = "Last Name Required";
     header("Location: login.php");
   }
   else if("" == trim($_POST['password'])) {
@@ -46,13 +58,13 @@
 
     $password = $_POST['password'];
     $password = password_hash($password, PASSWORD_DEFAULT);
-    signUp($username, $_POST['email'], $password, $db);
+    signUp($username, $_POST['first'], $_POST['last'], $password, $db);
   }
 
   //Function to enter new user into database
-  function signUp($username, $email, $password, $db) {
+  function signUp($username, $first, $last, $password, $db) {
     //Create sql command
-    $insert = "INSERT INTO users (username, email, password, points, admin) VALUES ('$username', '$email', '$password', '0', '0')";
+    $insert = "INSERT INTO users(role_id, first_name, last_name, pass, username) VALUES (4, '$first', '$last', '$password', '$username')";
     //Excecute
     $result = $db->query($insert) or die($db->error);
     $_SESSION['loggedin'] = true;

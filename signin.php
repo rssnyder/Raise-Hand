@@ -52,9 +52,10 @@
     //Check for admin/teacher privilages
     $role = $pass["role"];
     //Get hashed password from database
-    $pass = $pass["password"];
+    $pass = $pass["pass"];
     //If the passwords match
-    if(password_verify($password, $pass)) {
+    //if(password_verify($password, $pass)) {
+    if(!strcmp($password, $pass)) {
       //Set logged in variables
       $_SESSION['loggedin'] = true;
       $_SESSION['username'] = $username;
@@ -62,7 +63,7 @@
       $_SESSION['thread'] = "General";
       $_SESSION['role'] = $role;
       //Send user to their homepage
-      header("Location: homepage.php");
+      header("Location: home.php");
     }
     else {
       //Set session varibales to notify user
