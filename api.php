@@ -26,7 +26,7 @@
 						$stmt->close();
 					}else{
 						$stmt = $conn->prepare("INSERT INTO users (username, pass) VALUES (?, ?)");
-						$stmt->bind_param("ssss", $username, $pass);
+						$stmt->bind_param("ss", $username, $pass);
 
 						if($stmt->execute()){
 							$stmt = $conn->prepare("SELECT username, pass FROM users WHERE username = ?"); 
