@@ -13,7 +13,17 @@
   //Print out host information
   echo $db->host_info;
   //Make sure everything is there and then sign them up
-  if("" == trim($_POST['username'])) {
+  if("" == trim($_POST['first'])) {
+    $_SESSION['error'] = true;
+    $_SESSION['errorCode'] = "First Name Required";
+    header("Location: newAccount.php");
+  }
+  else if("" == trim($_POST['last'])) {
+    $_SESSION['error'] = true;
+    $_SESSION['errorCode'] = "Last Name Required";
+    header("Location: newAccount.php");
+  }
+  else if("" == trim($_POST['username'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Username Required";
     header("Location: newAccount.php");
@@ -25,16 +35,6 @@
     header("Location: login.php");
   }
   */
-  else if("" == trim($_POST['first'])) {
-    $_SESSION['error'] = true;
-    $_SESSION['errorCode'] = "First Name Required";
-    header("Location: newAccount.php");
-  }
-  else if("" == trim($_POST['last'])) {
-    $_SESSION['error'] = true;
-    $_SESSION['errorCode'] = "Last Name Required";
-    header("Location: newAccount.php");
-  }
   else if("" == trim($_POST['password'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Password Required";
