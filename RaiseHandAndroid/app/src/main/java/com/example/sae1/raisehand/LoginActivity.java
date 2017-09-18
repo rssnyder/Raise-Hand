@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //open register screen
-                finish();
+               finish();
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
@@ -89,40 +89,13 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         progressBar.setVisibility(View.GONE);
-
-                        try {
-                            //converting response to json object
-                            JSONObject obj = new JSONObject(response);
-
-                            //if no error in response
-                            if (!obj.getBoolean("error")) {
-                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
-
-                                //getting the user from the response
-                                JSONObject userJson = obj.getJSONObject("user");
-
-                                //creating a new user object
-                                User user = new User(
-                                        userJson.getInt("id"),
-                                        userJson.getString("username"),
-                                        userJson.getString("email"),
-                                        userJson.getString("gender")
-                                );
-
                                 //storing the user in shared preferences
                                 SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
 
                                 //starting the profile activity
                                 finish();
                                 startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                            } else {
-                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {

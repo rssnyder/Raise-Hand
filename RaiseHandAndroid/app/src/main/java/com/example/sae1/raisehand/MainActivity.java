@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     RadioGroup radioGroupGender;
     ProgressBar progressBar;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,8 +52,6 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.buttonRegister).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //if user pressed on button register
-                //here we will register the user to server
                 registerUser();
             }
         });
@@ -62,8 +59,6 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.textViewLogin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //if user pressed on login
-                //we will open the login screen
                 finish();
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
@@ -78,8 +73,6 @@ public class MainActivity extends AppCompatActivity {
 
         final String gender = ((RadioButton) findViewById(radioGroupGender.getCheckedRadioButtonId())).getText().toString();
 
-        //first we will do the validations
-
         if (TextUtils.isEmpty(username)) {
             editTextUsername.setError("Please enter username");
             editTextUsername.requestFocus();
@@ -88,12 +81,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (TextUtils.isEmpty(email)) {
             editTextEmail.setError("Please enter your email");
-            editTextEmail.requestFocus();
-            return;
-        }
-
-        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            editTextEmail.setError("Enter a valid email");
             editTextEmail.requestFocus();
             return;
         }
