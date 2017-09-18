@@ -15,7 +15,7 @@
 					$password = md5($_POST['password']);
 					$gender = $_POST['gender']; 
 					
-					$stmt = $conn->prepare("SELECT id FROM users WHERE username = ? OR email = ?");
+					$stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
 					$stmt->bind_param("ss", $username, $email);
 					$stmt->execute();
 					$stmt->store_result();
@@ -25,7 +25,7 @@
 						$response['message'] = 'User already registered';
 						$stmt->close();
 					}else{
-						$stmt = $conn->prepare("INSERT INTO users (username, email, password, gender) VALUES (?, ?, ?, ?)");
+						$stmt = $conn->prepare("INSERT INTO users (username, pass) VALUES (?, ?, ?, ?)");
 						$stmt->bind_param("ssss", $username, $email, $password, $gender);
 
 						if($stmt->execute()){
@@ -64,7 +64,7 @@
 					$username = $_POST['username'];
 					$password = md5($_POST['password']); 
 					
-					$stmt = $conn->prepare("SELECT id, username, email, gender FROM users WHERE username = ? AND password = ?");
+					$stmt = $conn->prepare("SELECT id, username FROM users WHERE username = ? AND pass = ?");
 					$stmt->bind_param("ss",$username, $password);
 					
 					$stmt->execute();
