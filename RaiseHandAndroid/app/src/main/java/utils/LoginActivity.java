@@ -1,4 +1,4 @@
-package com.example.sae1.raisehand;
+package utils;
 import android.app.ProgressDialog;
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,24 +7,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-
-import android.text.TextUtils;
-import android.widget.EditText;
 import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import com.example.sae1.raisehand.R;
 
-import static android.Manifest.permission.INTERNET;
+import app.MainActivity;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends Activity {
     private String TAG= LoginActivity.class.getSimpleName();
     private Button buttonLogin;
     private TextView msgResponse;
@@ -32,9 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     private String tag_string_req= "string_req";
     /**
     EditText editTextUsername, editTextPassword;
-    //ProgressBar progressBar;
-    private String tag_json_obj= "jobj_req", tag_json_arry= "jarray_req";
-    private ProgressDialog pDialog;**/
+     **/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
                 userLogin();
             }
         });
-
+/*
         //if user presses on not registered
         findViewById(R.id.textViewRegister).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                finish();
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
-        });
+        });*/
     }
 
     private void showProgressDialog() {
@@ -84,8 +77,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void userLogin() {
-        showProgressDialog();;
-        StringRequest strReq= new StringRequest(Method.GET, URLS.URL_LOGIN, new Response.Listener<String>(){
+        showProgressDialog();
+        StringRequest strReq= new StringRequest(Method.GET, URLS.URL_STRING_REQ, new Response.Listener<String>(){
                     @Override
                     public void onResponse(String response){
                         Log.d(TAG, response.toString());

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import utils.LoginActivity;
+
 
 public class SharedPrefManager {
 
