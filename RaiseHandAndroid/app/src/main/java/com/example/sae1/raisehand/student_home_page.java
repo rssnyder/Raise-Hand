@@ -39,8 +39,8 @@ public class student_home_page extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case (R.id.nav_classes):
-                        Intent studentLive = new Intent(getApplicationContext(),StudentLiveSession.class);
-                        startActivity(studentLive);
+                        Intent teacherClasses = new Intent(getApplicationContext(),StudentLiveSession.class);
+                        startActivity(teacherClasses);
                 }
                 return true;
             }
