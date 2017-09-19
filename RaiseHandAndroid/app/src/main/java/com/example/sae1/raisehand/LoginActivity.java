@@ -118,6 +118,6 @@ public class LoginActivity extends AppCompatActivity {
         }**/
 
         //if everything is okay
-        MainActivity.getInstance(this).addToRequestQueue(strReq, tag_string_req);
+        MainActivity.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 }
