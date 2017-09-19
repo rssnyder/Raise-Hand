@@ -5,11 +5,6 @@
   if($_SESSION['error']){
     //Do nothing
   }
-  //If user already logged in then take to their home
-  else if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-    header("Location: home.php");
-  //Otherwise, clear this session and send them to the login
-  }
   else {
     session_unset();
 	}

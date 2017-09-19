@@ -7,7 +7,7 @@
 
   <!-- The top banner of the webpage -->
   <div class="top">
-      <font size="-5"><a class="logout" href="login.php">Logout</a></font>
+      <font size="-5"><a class="logout" href="login.php?event=logout">Logout</a></font>
       <center>
         <h1>Welcome, User</h1>
       </center>

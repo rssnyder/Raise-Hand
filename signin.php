@@ -54,8 +54,8 @@
     //Get hashed password from database
     $pass = $pass["pass"];
     //If the passwords match
-    //if(password_verify($password, $pass)) {
-    if(!strcmp($password, $pass)) {
+    if(password_verify($password, $pass)) {
+    //if(!strcmp($password, $pass)) {
       //Set logged in variables
       $_SESSION['loggedin'] = true;
       $_SESSION['username'] = $username;
