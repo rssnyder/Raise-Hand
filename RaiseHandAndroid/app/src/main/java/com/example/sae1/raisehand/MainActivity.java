@@ -10,19 +10,16 @@ import com.android.volley.toolbox.Volley;
  */
 
 public class MainActivity extends Application {
+    public static final String TAG= MainActivity.class.getSimpleName();
     private RequestQueue mRequestQueue;
     private static MainActivity mInstance;
-    private static Context mCtx;
 
-    private MainActivity(Context context) {
-        mCtx = context;
-        mRequestQueue = getRequestQueue();
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mInstance = this;
     }
-
-    public static synchronized MainActivity getInstance(Context context) {
-        if (mInstance == null) {
-            mInstance = new MainActivity(context);
-        }
+    public static synchronized MainActivity getInstance() {
         return mInstance;
     }
 
@@ -30,10 +27,11 @@ public class MainActivity extends Application {
         if (mRequestQueue == null) {
             // getApplicationContext() is key, it keeps you from leaking the
             // Activity or BroadcastReceiver if someone passes one in.
-            mRequestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
+            mRequestQueue = Volley.newRequestQueue(getApplicationContext());
         }
         return mRequestQueue;
     }
+
     public <T> void addToRequestQueue(Request<T> req, String tag) {
         // set the default tag if tag is empty
         req.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
@@ -41,6 +39,7 @@ public class MainActivity extends Application {
     }
 
     public <T> void addToRequestQueue(Request<T> req) {
+        req.setTag(TAG);
         getRequestQueue().add(req);
     }
 
