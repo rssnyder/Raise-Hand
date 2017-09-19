@@ -23,6 +23,7 @@ public class LoginActivity extends Activity {
     private TextView msgResponse;
     private ProgressDialog pDialog;
     private String tag_string_req= "string_req";
+    private StringRequest strReq;
     /**
     EditText editTextUsername, editTextPassword;
      **/
@@ -62,7 +63,7 @@ public class LoginActivity extends Activity {
 
     private void userLogin() {
         showProgressDialog();
-        StringRequest strReq= new StringRequest(Method.GET, URLS.URL_STRING_REQ, new Response.Listener<String>(){
+        strReq= new StringRequest(Method.GET, URLS.URL_STRING_REQ, new Response.Listener<String>(){
                     @Override
                     public void onResponse(String response){
                         Log.d(TAG, response.toString());
@@ -71,6 +72,8 @@ public class LoginActivity extends Activity {
                     }}, new Response.ErrorListener(){
                         @Override
                             public void onErrorResponse(VolleyError error){
+                                msgResponse.setText("unable to read");
+                                Log.d(TAG, "unable to read");
                                 VolleyLog.d(TAG, "Error: "+ error.getMessage());
                                 hideProgressDialog();;
                             }

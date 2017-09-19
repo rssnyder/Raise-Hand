@@ -1,4 +1,4 @@
-package com.example.sae1.raisehand;
+package utils;
 
 /**
  * Created by sae1 on 9/17/17.

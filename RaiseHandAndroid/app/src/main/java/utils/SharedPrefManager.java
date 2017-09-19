@@ -1,11 +1,9 @@
-package com.example.sae1.raisehand; /**
+package utils; /**
  * Created by sae1 on 9/17/17.
  */
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-
-import utils.LoginActivity;
 
 
 public class SharedPrefManager {
