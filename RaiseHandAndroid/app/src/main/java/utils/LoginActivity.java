@@ -1,21 +1,19 @@
 package utils;
 import android.app.ProgressDialog;
+import app.MainActivity;
+import utils.URLS;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.example.sae1.raisehand.R;
-
-import app.MainActivity;
-
 /**
  * A login screen that offers login via email/password.
  */
@@ -33,12 +31,8 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         buttonLogin= (Button) findViewById(R.id.buttonLogin);
-        //msgResponse= (TextView) findViewById(R.id.msgResponse);
-        /**
-        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
-            finish();
-            startActivity(new Intent(this, ProfileActivity.class));
-        }**/
+        msgResponse = (TextView) findViewById(R.id.msgResponse);
+
         pDialog= new ProgressDialog(this);
         pDialog.setMessage("Loading...");
         pDialog.setCancelable(false);
@@ -52,16 +46,6 @@ public class LoginActivity extends Activity {
                 userLogin();
             }
         });
-/*
-        //if user presses on not registered
-        findViewById(R.id.textViewRegister).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //open register screen
-               finish();
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            }
-        });*/
     }
 
     private void showProgressDialog() {
@@ -109,8 +93,6 @@ public class LoginActivity extends Activity {
             editTextPassword.requestFocus();
             return;
         }**/
-
-        //if everything is okay
         MainActivity.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 }
