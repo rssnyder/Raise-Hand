@@ -31,7 +31,13 @@
             android:name=".TeacherClasses"
             android:screenOrientation="portrait" />
         <activity android:name=".student_home_page" />
-        <activity android:name=".StudentLiveSession"></activity>
+        <activity android:name=".StudentLiveSession" />
+        <activity android:name=".student_notifications" />
+        <activity android:name=".student_classes" />
+        <activity
+            android:name=".student_settings"
+            android:label="@string/title_activity_student_settings" />
+        <activity android:name=".student_logout"></activity>
     </application>
 
 </manifest>
