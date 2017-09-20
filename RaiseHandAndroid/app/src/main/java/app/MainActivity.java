@@ -20,7 +20,6 @@ public class MainActivity extends Application {
         mInstance = this;
     }
     public static synchronized MainActivity getInstance() {
-
         return mInstance;
     }
 
