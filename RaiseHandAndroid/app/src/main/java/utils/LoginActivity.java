@@ -96,9 +96,7 @@ public class LoginActivity extends Activity {
             editTextPassword.requestFocus();
             return;
         }
-
-        //This is where I am having an issue. mainActivity.getInstance() is fine
-
+        
         MainActivity.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 }
