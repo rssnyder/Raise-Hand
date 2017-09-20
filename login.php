@@ -12,11 +12,11 @@
 
 <html>
   <head>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/home.css">
   </head>
   <body>
-    <div align="center">
-      <h1>Raise Hand</h1>
+    <div id="title" align="center">
+      <h1 id="title">Raise Hand</h1>
     </div>
     <?php
     if($_SESSION['error']){

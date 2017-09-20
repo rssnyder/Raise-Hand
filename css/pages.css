@@ -1,4 +1,4 @@
-/* Color Guide
+/* ISU Color Guide
 Cardinal: #C8102E
 Gold: #F1BE48
 Dark Brown: #524727
@@ -6,13 +6,15 @@ Light Brown Greenish: #9B945F
 Light Brown: #CAC7A7
 */
 
+/*Color for background of webpage*/
 body {
-   background-color: #C8102E;
+    background-color: white;
 }
+/*Color for heading on each page*/
 h1 {
-   color: #F1BE48;
+   color: #C8102E;
 }
-
+/*Sytle for the login/signup form*/
 login-form {
    display: table-cell;
    text-align: center;
@@ -24,6 +26,7 @@ login-form {
   align-items: center; /* center vertically */
   height: 100%;
 }
+/*Defining size to help with sections*/
 html {
   height: 100%;
 }
@@ -35,7 +38,6 @@ body {
     position:absolute;
     left:0; right:0;
     height: 80px;
-    /* border: 3px solid black; */
 }
 .left {
     position: absolute;
@@ -53,11 +55,26 @@ a.logout {
   color: #524727;
   text-decoration: none;
 }
-a.home {
-  color: #CAC7A7;
-  text-decoration: none;
+/*Buttons in the sidebar*/
+.left .button {
+    background-color: #F1BE48;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    width: 178px;
+    display: block;
 }
-a.notifications {
-  color: #F1BE48;
-  text-decoration: none;
+/*When hovering over the button*/
+.left .button:hover {
+  background-color: #C8102E;
+}
+/*When clicking the button*/
+.left .button:active {
+  background-color: #C8102E;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }

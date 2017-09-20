@@ -14,10 +14,10 @@
     session_unset();
 	}
 ?>
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/home.css">
   </head>
   <body>
     <div align="center">
