@@ -23,14 +23,14 @@
   else if("" == trim($_POST['password'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "No Password";
-    //header("Location: login.php");
+    header("Location: login.php");
     die("No password.");
   }
   //Injection? Maybe, maybe not. Maybe screw you.
   else if (strpos($comment, ';')) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "No thanks.";
-    //header("Location: login.php");
+    header("Location: login.php");
     die("Injection attempt");
   }
   //If both fields are populated correctly then execute login function
@@ -57,6 +57,7 @@
     if(password_verify($password, $pass)) {
     //if(!strcmp($password, $pass)) {
       //Set logged in variables
+      echo "success";
       $_SESSION['loggedin'] = true;
       $_SESSION['username'] = $username;
       $_SESSION['error']  = false;
@@ -67,7 +68,6 @@
         die("Going to admin panel");
       }
       //Send user to their homepage
-      echo "success";
       header("Location: home.php");
       
       
