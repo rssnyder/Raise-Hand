@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 README:
 
 Project Name: Raise Hand
@@ -27,3 +28,8 @@ Currently working on:
 
 Bugs found:
 
+=======
+An expirimental forum website. I chose this idea to learn html/php/sql.
+
+Complete with user login, threads, and child comments. 
+>>>>>>> 07f808e1f30d71d3f4a1bc1ce39eb156361e74cc

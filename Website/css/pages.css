@@ -1,0 +1,80 @@
+/* ISU Color Guide
+Cardinal: #C8102E
+Gold: #F1BE48
+Dark Brown: #524727
+Light Brown Greenish: #9B945F
+Light Brown: #CAC7A7
+*/
+
+/*Color for background of webpage*/
+body {
+    background-color: white;
+}
+/*Color for heading on each page*/
+h1 {
+   color: #C8102E;
+}
+/*Sytle for the login/signup form*/
+login-form {
+   display: table-cell;
+   text-align: center;
+   vertical-align: middle;
+}
+.container {
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: center; /* center vertically */
+  height: 100%;
+}
+/*Defining size to help with sections*/
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+}
+/* The style for our 3 main secions */
+.top {
+    position:absolute;
+    left:0; right:0;
+    height: 80px;
+}
+.left {
+    position: absolute;
+    left:0; top:92px; bottom: 0;
+    width: 184px;
+    border: 3px solid black;
+}
+.main {
+    position: absolute;
+    left:183px; top:92px; right:0; bottom:0;
+    border: 3px solid black;
+}
+/* Style for common links on all pages */
+a.logout {
+  color: #524727;
+  text-decoration: none;
+}
+/*Buttons in the sidebar*/
+.left .button {
+    background-color: #F1BE48;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    width: 178px;
+    display: block;
+}
+/*When hovering over the button*/
+.left .button:hover {
+  background-color: #C8102E;
+}
+/*When clicking the button*/
+.left .button:active {
+  background-color: #C8102E;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
