@@ -1,6 +1,6 @@
 <?php
   //Start a session
-  session_start();
+  //session_start();
   //Define paramiters and initalize connection
   $host="mysql.cs.iastate.edu";
 	$port=3306;
