@@ -1,13 +1,13 @@
 package utils;
-import android.app.ProgressDialog;
 import app.MainActivity;
-import utils.URLS;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.EditText;
 import com.android.volley.Request.Method;
@@ -23,7 +23,7 @@ public class LoginActivity extends Activity {
     private String TAG= LoginActivity.class.getSimpleName();
     private Button buttonLogin;
     private TextView msgResponse;
-    private ProgressDialog pDialog;
+    private ProgressBar pBar;
     private String tag_string_req= "string_req";
     private StringRequest strReq;
     EditText editTextUsername, editTextPassword;
@@ -32,32 +32,21 @@ public class LoginActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        pBar =  (ProgressBar) findViewById(R.id.loginProgressBar);
+        pBar.setVisibility(View.INVISIBLE);
         buttonLogin= (Button) findViewById(R.id.buttonLogin);
         msgResponse = (TextView) findViewById(R.id.msgResponse);
 
-        pDialog= new ProgressDialog(this);
-        pDialog.setMessage("Loading...");
-        pDialog.setCancelable(false);
+        pBar =  (ProgressBar) findViewById(R.id.loginProgressBar);
         editTextUsername = (EditText) findViewById(R.id.editTextUsername);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         buttonLogin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                pBar.setVisibility(View.VISIBLE);
                 userLogin();
             }
         });
-    }
-
-    private void showProgressDialog() {
-        if(!pDialog.isShowing()) {
-            pDialog.show();
-        }
-    }
-
-    private void hideProgressDialog() {
-        if(pDialog.isShowing()) {
-            pDialog.hide();
-        }
     }
 
     private void userLogin() {
@@ -65,22 +54,26 @@ public class LoginActivity extends Activity {
         final String username = editTextUsername.getText().toString();
         final String password = editTextPassword.getText().toString();
 
+<<<<<<< HEAD
         String urlSuffix= "?username="+username+"&password="+password;
         String url_final= URLS.URL_STRING_REQ+urlSuffix;
         showProgressDialog();
         strReq= new StringRequest(Method.GET, url_final, new Response.Listener<String>(){
+=======
+        strReq= new StringRequest(Method.GET, URLS.URL_STRING_REQ, new Response.Listener<String>(){
+>>>>>>> e0bcda278aef3ec5687060298409aed5dd817f67
                     @Override
                     public void onResponse(String response){
                         Log.d(TAG, response.toString());
                         msgResponse.setText(response.toString());
-                        hideProgressDialog();
+                        pBar.setVisibility(View.INVISIBLE);
                     }}, new Response.ErrorListener(){
                         @Override
                             public void onErrorResponse(VolleyError error){
                                 msgResponse.setText("unable to read");
                                 Log.d(TAG, "unable to read");
                                 VolleyLog.d(TAG, "Error: "+ error.getMessage());
-                                hideProgressDialog();;
+                            pBar.setVisibility(View.INVISIBLE);
                             }
         });
 
