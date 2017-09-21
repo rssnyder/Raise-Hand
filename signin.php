@@ -74,6 +74,7 @@
 
     }
     else {
+        echo "fail";
       //Set session varibales to notify user
       $_SESSION['loggedin'] = false;
       $_SESSION['error'] = true;
