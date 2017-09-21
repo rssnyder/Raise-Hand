@@ -7,8 +7,9 @@ Light Brown: #CAC7A7
 */
 
 /*Color for background of webpage*/
-body {
-    background-color: white;
+.body {
+    background-color: #C8102E;
+    min-height: 100%;
 }
 /*Color for heading on each page*/
 h1 {
@@ -30,9 +31,6 @@ login-form {
 html {
   height: 100%;
 }
-body {
-  min-height: 100%;
-}
 /* The style for our 3 main secions */
 .top {
     position:absolute;
@@ -41,7 +39,7 @@ body {
 }
 .main {
     position: absolute;
-    left:0; top:92px; right:0; bottom:0;
+    left:0; top:90px; right:0; bottom:0;
     border: 3px solid black;
 }
 /* Style for common links on all pages */
@@ -50,7 +48,7 @@ a.logout {
   text-decoration: none;
 }
 /*Buttons in the sidebar*/
-.left .button {
+.button {
     background-color: #F1BE48;
     color: white;
     padding: 15px 32px;
@@ -63,12 +61,21 @@ a.logout {
     display: block;
 }
 /*When hovering over the button*/
-.left .button:hover {
+.button:hover {
   background-color: #C8102E;
 }
 /*When clicking the button*/
-.left .button:active {
+.button:active {
   background-color: #C8102E;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
+}
+/* Style for home boxes*/
+.home {
+  left: 0; right: 0;
+  border: 2px solid black;
+}
+/*Style for the boxes on the homepage*/
+p {
+  font-size: 24px;
 }
