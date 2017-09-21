@@ -4,11 +4,13 @@ import app.MainActivity;
 import utils.URLS;
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
 import android.widget.TextView;
+import android.widget.EditText;
 import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -24,9 +26,9 @@ public class LoginActivity extends Activity {
     private TextView msgResponse;
     private ProgressDialog pDialog;
     private String tag_string_req= "string_req";
-    /**
+    private StringRequest strReq;
     EditText editTextUsername, editTextPassword;
-     **/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,10 +39,8 @@ public class LoginActivity extends Activity {
         pDialog= new ProgressDialog(this);
         pDialog.setMessage("Loading...");
         pDialog.setCancelable(false);
-        /**
         editTextUsername = (EditText) findViewById(R.id.editTextUsername);
-        editTextPassword = (EditText) findViewById(R.id.editTextPassword);**/
-
+        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         buttonLogin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -64,8 +64,9 @@ public class LoginActivity extends Activity {
     }
 
     private void userLogin() {
+
         showProgressDialog();
-        StringRequest strReq= new StringRequest(Method.GET, URLS.URL_STRING_REQ, new Response.Listener<String>(){
+        strReq= new StringRequest(Method.GET, URLS.URL_STRING_REQ, new Response.Listener<String>(){
                     @Override
                     public void onResponse(String response){
                         Log.d(TAG, response.toString());
@@ -74,12 +75,14 @@ public class LoginActivity extends Activity {
                     }}, new Response.ErrorListener(){
                         @Override
                             public void onErrorResponse(VolleyError error){
+                                msgResponse.setText("unable to read");
+                                Log.d(TAG, "unable to read");
                                 VolleyLog.d(TAG, "Error: "+ error.getMessage());
                                 hideProgressDialog();;
                             }
         });
 
-            /**
+
         //first getting the values
         final String username = editTextUsername.getText().toString();
         final String password = editTextPassword.getText().toString();
@@ -95,7 +98,8 @@ public class LoginActivity extends Activity {
             editTextPassword.setError("Please enter your password");
             editTextPassword.requestFocus();
             return;
-        }**/
+        }
+        
         MainActivity.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 }
