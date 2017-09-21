@@ -18,7 +18,7 @@
 
   <!-- The left sidebar -->
   <div class="left">
-    <button class="button" onclick="window.location='pages.php?page=home';">Home</button>
+    <button class="button" onclick="window.location='home.php';">Home</button>
     <button class="button" onclick="window.location='pages.php?page=createClass';">Create class</button>
     <button class="button" onclick="window.location='pages.php?page=viewReports';">View reports</button>
     <button class="button" onclick="window.location='pages.php?page=createUser';">Create user</button>

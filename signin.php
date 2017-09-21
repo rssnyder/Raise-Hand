@@ -50,7 +50,7 @@
     //Get the data of the username they specified
     $pass = $result->fetch_assoc();
     //Check for admin/teacher privilages
-    $role = $pass["role"];
+    $role = $pass["role_id"];
     //Get hashed password from database
     $pass = $pass["pass"];
     //If the passwords match
@@ -62,6 +62,10 @@
       $_SESSION['error']  = false;
       $_SESSION['thread'] = "General";
       $_SESSION['role'] = $role;
+      if($role = 1) {
+        header("Location: admin/home.php");
+        die("Going to admin panel");
+      }
       //Send user to their homepage
       header("Location: home.php");
 
