@@ -1,3 +1,20 @@
+<?php
+  session_start();
+  //Check if user is logged in
+  if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+    if($_SESSION['role'] != 1) {
+      $_SESSION['error'] = true;
+      $_SESSION['errorCode'] = "Not Permitted";
+      header("Location: ../login.php");
+      die("oops");
+    }
+  } else {
+    $_SESSION['error'] = true;
+    $_SESSION['errorCode'] = "Session Expired";
+    header("Location: ../login.php");
+  }
+?>
+
 <!-- This is the format we will use for the pages on the website. CSS to be added as
     time goes on and I continue to learn more. -->
 <html lang="en">
@@ -25,6 +42,7 @@
         <div class="col-md-6">
           <div class="home">
             <center>
+              <br>
               <button class="button" onclick="window.location='pages.php?page=createClass';">Create a class</button>
               <p>
                 Create a new class.
@@ -35,6 +53,7 @@
         <div class="col-md-6">
           <div class="home">
             <center>
+              <br>
               <button class="button" onclick="window.location='pages.php?page=viewReports';">View reports</button>
               <p>
                 View reports of abuse by users.
@@ -48,6 +67,7 @@
         <div class="col-md-6">
           <div class="home">
             <center>
+              <br>
               <button class="button" onclick="window.location='pages.php?page=createUser';">Create a user</button>
               <p>
                 Create a new user.
@@ -58,6 +78,7 @@
         <div class="col-md-6">
           <div class="home">
             <center>
+              <br>
               <button class="button" onclick="window.location='pages.php?page=other';">Do other stuff</button>
               <p>
                 Additional administrative tools.
