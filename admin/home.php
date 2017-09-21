@@ -25,7 +25,7 @@
         <div class="col-md-6">
           <div class="home">
             <center>
-              <button class="button" onclick="window.location='createClass.php';">Create a class</button>
+              <button class="button" onclick="window.location='pages.php?page=createClass';">Create a class</button>
               <p>
                 Create a new class.
               </p>
@@ -35,7 +35,7 @@
         <div class="col-md-6">
           <div class="home">
             <center>
-              <button class="button" onclick="window.location='viewReports.php';">View reports</button>
+              <button class="button" onclick="window.location='pages.php?page=viewReports';">View reports</button>
               <p>
                 View reports of abuse by users.
               </p>
@@ -48,7 +48,7 @@
         <div class="col-md-6">
           <div class="home">
             <center>
-              <button class="button" onclick="window.location='createUser.php';">Create a user</button>
+              <button class="button" onclick="window.location='pages.php?page=createUser';">Create a user</button>
               <p>
                 Create a new user.
               </p>
@@ -58,7 +58,7 @@
         <div class="col-md-6">
           <div class="home">
             <center>
-              <button class="button" onclick="window.location='';">Do other stuff</button>
+              <button class="button" onclick="window.location='pages.php?page=other';">Do other stuff</button>
               <p>
                 Additional administrative tools.
               </p>

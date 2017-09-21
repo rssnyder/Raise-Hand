@@ -1,29 +1,76 @@
-<html lang="en">
-  <head>
-    <link rel="stylesheet" href="../css/pages.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-    <!-- The top banner of the webpage -->
-    <div class="top">
-        <font size="-5"><a class="logout" href="login.php?event=logout">Logout</a></font>
-        <center>
-          <h1>Welcome, User</h1>
-        </center>
-    </div>
-  </head>
+<?php
+  session_start();
+  //TODO Grab all this from a file
+  //Define sql database information
+  $host="mysql.cs.iastate.edu";
+  $port=3306;
+  $socket="";
+  $user="dbu309sab3";
+  $password="SD0wFGqd";
+  $dbname="db309sab3";
+  //Connect to database
+  $db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
+  //Print out host information
+  //echo $db->host_info;
+  //Make sure everything is there and then sign them up
+  if("" == trim($_POST['first'])) {
+    $_SESSION['error'] = true;
+    $_SESSION['errorCode'] = "First Name Required";
+    header("Location: pages.php?page=createUser");
+  }
+  else if("" == trim($_POST['last'])) {
+    $_SESSION['error'] = true;
+    $_SESSION['errorCode'] = "Last Name Required";
+    header("Location: pages.php?page=createUser");
+  }
+  else if("" == trim($_POST['username'])) {
+    $_SESSION['error'] = true;
+    $_SESSION['errorCode'] = "Username Required";
+    header("Location: pages.php?page=createUser");
+  }
+  /*
+  else if("" == trim($_POST['email'])) {
+    $_SESSION['error'] = true;
+    $_SESSION['errorCode'] = "Email Required (it can be fake)";
+    header("Location: login.php");
+  }
+  */
+  else if("" == trim($_POST['password'])) {
+    $_SESSION['error'] = true;
+    $_SESSION['errorCode'] = "Password Required";
+    header("Location: pages.php?page=createUser");
+  }
+  else {
+    $username = $_POST['username'];
+    //Check for existing username
+    $ucheck = "SELECT username FROM users WHERE username = '$username' ";
+    //Excecute
+    $result = $db->query($ucheck) or die($db->error);
+    $uname = $result->fetch_assoc();
+    $uname = $uname['username'];
+    if($uname) {
+      $_SESSION['error'] = true;
+      $_SESSION['errorCode'] = "Username Taken";
+      header("Location: pages.php?page=createUser");
+      die("User exists");
+    }
+    $password = $_POST['password'];
+    $password = password_hash($password, PASSWORD_DEFAULT);
+    signUp($username, $_POST['first'], $_POST['last'], $password, $db);
+  }
 
-  <!-- The left sidebar -->
-  <div class="left">
-    <button class="button" onclick="window.location='home.php';">Home</button>
-    <button class="button" onclick="window.location='createClass.php';">Create class</button>
-    <button class="button" onclick="window.location='viewReports.php';">View reports</button>
-    <button class="button" onclick="window.location='createUser.php';">Create user</button>
-    <button class="button" onclick="window.location='other.php';">Other</button>
-  </div>
-
-  <!-- Main content of the webpage -->
-  <div class="main">
-      This is where content will go.
-  </div>
-
-</html>
+  //Function to enter new user into database
+  function signUp($username, $first, $last, $password, $db) {
+    //Create sql command
+    $insert = "INSERT INTO users(role_id, first_name, last_name, pass, username) VALUES (4, '$first', '$last', '$password', '$username')";
+    //Excecute
+    $result = $db->query($insert) or die($db->error);
+    $_SESSION['loggedin'] = true;
+    $_SESSION['username'] = $username;
+    $_SESSION['thread'] = "General";
+    $_SESSION['error'] = true;
+    $_SESSION['errorCode'] = "User created successfully";
+    header("Location: pages.php?page=createUser");
+    die("done");
+  }
+?>
