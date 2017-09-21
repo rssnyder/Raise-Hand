@@ -67,6 +67,7 @@
         die("Going to admin panel");
       }
       //Send user to their homepage
+      echo "success";
       header("Location: home.php");
       
       
