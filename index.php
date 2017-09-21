@@ -6,7 +6,7 @@
 		header("Location: home.php");
 	}
 	//Otherwise, send to login page
-	else {
-		header("Location: login.php");
-	}
+	//else {
+	//	header("Location: login.php");
+	//}
 ?>
