@@ -1,6 +1,9 @@
 <?php
   //Clear session
   session_start();
+  if($_SESSION['loggedin']){
+      echo "success";
+  }
   //Check for error from previous sign in
   if($_SESSION['error']){
     //Do nothing
