@@ -61,9 +61,14 @@ public class LoginActivity extends Activity {
     }
 
     private void userLogin() {
+        //first getting the values
+        final String username = editTextUsername.getText().toString();
+        final String password = editTextPassword.getText().toString();
 
+        String urlSuffix= "?username="+username+"&password="+password;
+        String url_final= URLS.URL_STRING_REQ+urlSuffix;
         showProgressDialog();
-        strReq= new StringRequest(Method.GET, URLS.URL_STRING_REQ, new Response.Listener<String>(){
+        strReq= new StringRequest(Method.GET, url_final, new Response.Listener<String>(){
                     @Override
                     public void onResponse(String response){
                         Log.d(TAG, response.toString());
@@ -80,9 +85,7 @@ public class LoginActivity extends Activity {
         });
 
 
-        //first getting the values
-        final String username = editTextUsername.getText().toString();
-        final String password = editTextPassword.getText().toString();
+
 
         //validating inputs
         if (TextUtils.isEmpty(username)) {
@@ -96,7 +99,7 @@ public class LoginActivity extends Activity {
             editTextPassword.requestFocus();
             return;
         }
-        
+
         MainActivity.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 }
