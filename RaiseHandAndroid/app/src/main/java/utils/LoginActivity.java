@@ -1,15 +1,18 @@
 package utils;
+import android.app.ProgressDialog;
 import app.MainActivity;
-
+import utils.URLS;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.android.volley.Request;
 import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -23,7 +26,7 @@ public class LoginActivity extends Activity {
     private String TAG= LoginActivity.class.getSimpleName();
     private Button buttonLogin;
     private TextView msgResponse;
-    private ProgressBar pBar;
+    private ProgressDialog pDialog;
     private String tag_string_req= "string_req";
     private StringRequest strReq;
     EditText editTextUsername, editTextPassword;
@@ -32,21 +35,32 @@ public class LoginActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        pBar =  (ProgressBar) findViewById(R.id.loginProgressBar);
-        pBar.setVisibility(View.INVISIBLE);
         buttonLogin= (Button) findViewById(R.id.buttonLogin);
         msgResponse = (TextView) findViewById(R.id.msgResponse);
 
-        pBar =  (ProgressBar) findViewById(R.id.loginProgressBar);
+        pDialog= new ProgressDialog(this);
+        pDialog.setMessage("Loading...");
+        pDialog.setCancelable(false);
         editTextUsername = (EditText) findViewById(R.id.editTextUsername);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         buttonLogin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                pBar.setVisibility(View.VISIBLE);
                 userLogin();
             }
         });
+    }
+
+    private void showProgressDialog() {
+        if(!pDialog.isShowing()) {
+            pDialog.show();
+        }
+    }
+
+    private void hideProgressDialog() {
+        if(pDialog.isShowing()) {
+            pDialog.hide();
+        }
     }
 
     private void userLogin() {
@@ -54,26 +68,27 @@ public class LoginActivity extends Activity {
         final String username = editTextUsername.getText().toString();
         final String password = editTextPassword.getText().toString();
 
-<<<<<<< HEAD
         String urlSuffix= "?username="+username+"&password="+password;
         String url_final= URLS.URL_STRING_REQ+urlSuffix;
         showProgressDialog();
-        strReq= new StringRequest(Method.GET, url_final, new Response.Listener<String>(){
-=======
-        strReq= new StringRequest(Method.GET, URLS.URL_STRING_REQ, new Response.Listener<String>(){
->>>>>>> e0bcda278aef3ec5687060298409aed5dd817f67
+        strReq= new StringRequest(Request.Method.GET, url_final, new Response.Listener<String>(){
                     @Override
                     public void onResponse(String response){
-                        Log.d(TAG, response.toString());
-                        msgResponse.setText(response.toString());
-                        pBar.setVisibility(View.INVISIBLE);
+                        Log.d(TAG, response);
+                        if(response=="success")
+                            Toast.makeText(MainActivity.getInstance(), "Logged In Successfully", Toast.LENGTH_LONG).show();
+                        else if (response=="failed")
+                            Toast.makeText(MainActivity.getInstance(), "Logged In Failed", Toast.LENGTH_LONG).show();
+                        else
+                            Toast.makeText(MainActivity.getInstance(), "Not Reading Correctly", Toast.LENGTH_LONG).show();
+                        hideProgressDialog();
+
                     }}, new Response.ErrorListener(){
                         @Override
                             public void onErrorResponse(VolleyError error){
-                                msgResponse.setText("unable to read");
                                 Log.d(TAG, "unable to read");
                                 VolleyLog.d(TAG, "Error: "+ error.getMessage());
-                            pBar.setVisibility(View.INVISIBLE);
+                                hideProgressDialog();
                             }
         });
 
