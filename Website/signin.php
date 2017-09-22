@@ -10,7 +10,7 @@
 	$dbname="db309sab3";
   $db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
   //Print out host information
-  //echo $db->host_info;
+  echo $db->host_info;
 
   //Check and make sure they entered a username
   if("" == trim($_POST['username'])) {
@@ -57,6 +57,7 @@
     if(password_verify($password, $pass)) {
     //if(!strcmp($password, $pass)) {
       //Set logged in variables
+      echo "success";
       $_SESSION['loggedin'] = true;
       $_SESSION['username'] = $username;
       $_SESSION['error']  = false;
@@ -67,13 +68,14 @@
         die("Going to admin panel");
       }
       //Send user to their homepage
-      echo "success";
+	echo “success”;
       header("Location: home.php");
       
       
 
     }
     else {
+        echo "fail";
       //Set session varibales to notify user
       $_SESSION['loggedin'] = false;
       $_SESSION['error'] = true;
