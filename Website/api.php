@@ -1,5 +1,5 @@
 <?php 
-	 //Start a session
+  //Start a session
   session_start();
   //Define paramiters and initalize connection
   $host="mysql.cs.iastate.edu";
@@ -9,17 +9,17 @@
 	$password="SD0wFGqd";
 	$dbname="db309sab3";
   $db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
-
+echo $db->host_info;
   //Check and make sure they entered a username
   if("" == trim($_GET[‘username'])) {
-$_SESSION['loggedin’]=false;
+    $_SESSION['loggedin’]=false;
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "No Username";
     die("No username.");
   }
   //Check and make sure they entered a password
   else if("" == trim($_GET[‘password'])) {
-$_SESSION['loggedin’]=false;
+    $_SESSION['loggedin’]=false;
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "No Password";
     die("No password.");
@@ -30,6 +30,7 @@ $_SESSION['loggedin’]=false;
     $password = $_GET[‘password'];
     $username = $_GET[‘username'];
     signIn($username, $password, $db);
+    Echo ($_SESSION['loggedin’]);
   }
 
   //Function to enter new user into database
@@ -51,7 +52,6 @@ $_SESSION['loggedin’]=false;
       $_SESSION['error'] = true;
       $_SESSION['errorCode'] = "Sign in failed";
     }	
-    Echo $_SESSION['loggedin’];
   }
-	
+echo ($_SESSION['loggedin’]);
 ?>
