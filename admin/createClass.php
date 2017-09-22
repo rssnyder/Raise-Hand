@@ -68,23 +68,43 @@
     header("Location: pages.php?page=createUser");
   }
   else {
-    $create = "CREATE TABLE 'classes' (
-    'ID' int(11) NOT NULL AUTO_INCREMENT,
-    'teacher_id' int(11) NOT NULL,
-    'class_name' varchar(30) DEFAULT NULL,
-    'class_start' date DEFAULT NULL,
-    'class_end' date DEFAULT NULL,
-    'class_time_start' time DEFAULT NULL,
-    'class_time_end' time DEFAULT NULL,
-    'times_met_per_week' int(11) DEFAULT NULL,
-    'access_code' int(11) DEFAULT NULL,
-    'university_id' int(11) DEFAULT NULL,
-    PRIMARY KEY ('ID'),
-    KEY 'teacher_id' ('teacher_id'),
-    KEY 'fk_class_universityID' ('university_id'),
-    CONSTRAINT 'classes_ibfk_1' FOREIGN KEY ('teacher_id') REFERENCES 'users' ('ID'),
-    CONSTRAINT 'fk_class_universityID' FOREIGN KEY ('university_id') REFERENCES 'universities' ('ID')
-    ) ENGINE=InnoDB DEFAULT CHARSET=latin1";
+    //Get teacher id
+    $teacherID = $_POST['teacher'];
+    $teacherQ = "SELECT ID FROM users WHERE username = '$teacherID' ";
+    $result = $db->query($insert) or die($db->error);
+    //Get the data of the username they specified
+    $pass = $result->fetch_assoc();
+    //Check for admin/teacher privilages
+    $teacherID = $pass["ID"];
+
+    $name = $_POST['name'];
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
+    $startTime = $_POST['startTime'];
+    $endTime = $_POST['endTime'];
+    $meetingsPerWeek = $_POST['meetingsPerWeek'];
+    $universityID = $_POST['universityID'];
+    $accessCode = rand();
+    $create = "INSERT INTO 'db309sab3'.'classes'
+      ('teacher_id',
+      'class_name',
+      'class_start',
+      'class_end',
+      'class_time_start',
+      'class_time_end',
+      'times_met_per_week',
+      'access_code',
+      'university_id')
+      VALUES
+      ('$teacherID',
+      '$name',
+      '$startDate',
+      '$endDate',
+      '$startTime',
+      '$endTime',
+      '$meetingsPerWeek',
+      $accessCode,
+      '$universityID')";
 
     $result = $db->query($create) or die($db->error);
     header("Location: pages.php?page=createClass");
