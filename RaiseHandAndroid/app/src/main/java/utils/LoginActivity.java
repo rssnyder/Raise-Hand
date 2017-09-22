@@ -12,13 +12,23 @@ import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.sae1.raisehand.R;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * A login screen that offers login via email/password.
  */
@@ -67,10 +77,23 @@ public class LoginActivity extends Activity {
         //first getting the values
         final String username = editTextUsername.getText().toString();
         final String password = editTextPassword.getText().toString();
-
-        String urlSuffix= "?username="+username+"&password="+password;
-        String url_final= URLS.URL_STRING_REQ+urlSuffix;
         showProgressDialog();
+        JsonArrayRequest req = new JsonArrayRequest(URLS.URL_STRING_REQ,
+                    new Response.Listener<JSONArray>() { @Override
+                    public void onResponse(JSONArray response) { Log.d(TAG, response.toString()); msgResponse.setText(response.toString()); hideProgressDialog();
+                    }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) { VolleyLog.d(TAG, "Error: " + error.getMessage()); hideProgressDialog();
+                } });
+        // Adding request to request queue
+        MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
+        // Cancelling request
+// ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
+    }
+        //String urlSuffix= "?username="+username+"&password="+password;
+       // String url_final= URLS.URL_STRING_REQ+urlSuffix;
+        /*showProgressDialog();
         strReq= new StringRequest(Request.Method.GET, url_final, new Response.Listener<String>(){
                     @Override
                     public void onResponse(String response){
@@ -109,5 +132,5 @@ public class LoginActivity extends Activity {
         }
 
         MainActivity.getInstance().addToRequestQueue(strReq, tag_string_req);
-    }
+    }*/
 }
