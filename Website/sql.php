@@ -1,7 +1,5 @@
 <?php
 //How to initiate a connection to the sql server
-
-//TODO Grab all this from a file
 //Define sql database information
 $host="mysql.cs.iastate.edu";
 $port=3306;
