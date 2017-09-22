@@ -77,27 +77,14 @@ public class LoginActivity extends Activity {
         //first getting the values
         final String username = editTextUsername.getText().toString();
         final String password = editTextPassword.getText().toString();
+        String urlSuffix= "?username="+username+"&password="+password;
+        String url_final= URLS.URL_STRING_LOGIN+urlSuffix;
         showProgressDialog();
-        JsonArrayRequest req = new JsonArrayRequest(URLS.URL_STRING_REQ,
+        JsonArrayRequest req = new JsonArrayRequest(url_final,
                     new Response.Listener<JSONArray>() { @Override
-                    public void onResponse(JSONArray response) { Log.d(TAG, response.toString()); msgResponse.setText(response.toString()); hideProgressDialog();
-                    }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) { VolleyLog.d(TAG, "Error: " + error.getMessage()); hideProgressDialog();
-                } });
-        // Adding request to request queue
-        MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
-        // Cancelling request
-// ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
-    }
-        //String urlSuffix= "?username="+username+"&password="+password;
-       // String url_final= URLS.URL_STRING_REQ+urlSuffix;
-        /*showProgressDialog();
-        strReq= new StringRequest(Request.Method.GET, url_final, new Response.Listener<String>(){
-                    @Override
-                    public void onResponse(String response){
-                        Log.d(TAG, response);
+                    public void onResponse(JSONArray response) {
+                        Log.d(TAG, response.toString());
+                        msgResponse=response.toString();
                         if(response=="success")
                             Toast.makeText(MainActivity.getInstance(), "Logged In Successfully", Toast.LENGTH_LONG).show();
                         else if (response=="failed")
@@ -105,19 +92,14 @@ public class LoginActivity extends Activity {
                         else
                             Toast.makeText(MainActivity.getInstance(), "Not Reading Correctly", Toast.LENGTH_LONG).show();
                         hideProgressDialog();
-
-                    }}, new Response.ErrorListener(){
+                    },new Response.ErrorListener() {
                         @Override
-                            public void onErrorResponse(VolleyError error){
-                                Log.d(TAG, "unable to read");
-                                VolleyLog.d(TAG, "Error: "+ error.getMessage());
-                                hideProgressDialog();
-                            }
-        });
-
-
-
-
+                        public void onErrorResponse(VolleyError error) {
+                            VolleyLog.d(TAG, "Error: " + error.getMessage());
+                            hideProgressDialog();
+                } });
+        // Adding request to request queue
+        MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
         //validating inputs
         if (TextUtils.isEmpty(username)) {
             editTextUsername.setError("Please enter your username");
@@ -132,5 +114,5 @@ public class LoginActivity extends Activity {
         }
 
         MainActivity.getInstance().addToRequestQueue(strReq, tag_string_req);
-    }*/
+    }
 }
