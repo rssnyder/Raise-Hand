@@ -43,10 +43,6 @@
     <div align="center" class="container">
       <?php
         if($_GET['page'] == 'createClass') {
-          if($_SESSION['error']){
-              echo "<br>" . $_SESSION['errorCode'] . "<br><br>";
-              $_SESSION['error'] = false;
-          }
           echo '<form id="singup-form" action="createClass.php" method="post">';
           if($_SESSION['error']){
               echo '<font color="red">' . $_SESSION['errorCode'] . "</font><br><br>";
@@ -92,7 +88,15 @@
 
         }
         else if($_GET['page'] == 'other') {
-
+          echo '<form id="singup-form" action="other.php?type=makeAdmin" method="post">';
+          if($_SESSION['error']){
+              echo '<font color="red">' . $_SESSION['errorCode'] . "</font><br><br>";
+              $_SESSION['error'] = false;
+          }
+          echo 'Username: <br>
+            <input type="text" name="username" value="" size="35"><br><br>
+            <input name="signup" type="submit" value="Make Administrator"><br><br>
+          </form>';
         }
       ?>
     </div>

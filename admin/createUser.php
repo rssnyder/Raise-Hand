@@ -78,6 +78,8 @@
     $insert = "INSERT INTO users(role_id, first_name, last_name, pass, username) VALUES (4, '$first', '$last', '$password', '$username')";
     //Excecute
     $result = $db->query($insert) or die($db->error);
+    $_SESSION['error'] = true;
+    $_SESSION['errorCode'] = "Account Created";
     header("Location: pages.php?page=createUser");
     die("done");
   }

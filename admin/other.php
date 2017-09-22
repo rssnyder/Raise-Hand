@@ -13,4 +13,34 @@
     $_SESSION['errorCode'] = "Session Expired";
     header("Location: ../login.php");
   }
+  //TODO Grab all this from a file
+  //Define sql database information
+  $host="mysql.cs.iastate.edu";
+  $port=3306;
+  $socket="";
+  $user="dbu309sab3";
+  $password="SD0wFGqd";
+  $dbname="db309sab3";
+  //Connect to database
+  $db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
+  //Print out host information
+  //echo $db->host_info;
+
+  if($_GET['type'] == 'makeAdmin') {
+    $uname = $_POST['username'];
+    if("" == trim($_POST['username'])) {
+      $_SESSION['error'] = true;
+      $_SESSION['errorCode'] = "Username Required";
+      header("Location: pages.php?page=other");
+      die('No username');
+    }
+    else {
+      $makeAdmin = "UPDATE users SET role_id = 1 WHERE username = '$uname'";
+      $result = $db->query($makeAdmin) or die($makeAdmin);
+      $_SESSION['error'] = true;
+      $_SESSION['errorCode'] = "User Level Elivated";
+      header("Location: pages.php?page=other");
+    }
+  }
+
 ?>

@@ -30,42 +30,42 @@
   if("" == trim($_POST['name'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Class Name Required";
-    header("Location: pages.php?page=createUser");
+    header("Location: pages.php?page=createClass");
   }
   else if("" == trim($_POST['teacher'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Instructor Required";
-    header("Location: pages.php?page=createUser");
+    header("Location: pages.php?page=createClass");
   }
   else if("" == trim($_POST['startDate'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Start Date Required";
-    header("Location: pages.php?page=createUser");
+    header("Location: pages.php?page=createClass");
   }
   else if("" == trim($_POST['endDate'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "End Date Required";
-    header("Location: login.php");
+    header("Location: pages.php?page=createClass");
   }
   else if("" == trim($_POST['startTime'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Start Time Required";
-    header("Location: pages.php?page=createUser");
+    header("Location: pages.php?page=createClass");
   }
   else if("" == trim($_POST['endTime'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "End Time Required";
-    header("Location: pages.php?page=createUser");
+    header("Location: pages.php?page=createClass");
   }
   else if("" == trim($_POST['meetingsPerWeek'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Meetings Per Week Required";
-    header("Location: pages.php?page=createUser");
+    header("Location: pages.php?page=createClass");
   }
   else if("" == trim($_POST['universityID'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "University ID Required";
-    header("Location: pages.php?page=createUser");
+    header("Location: pages.php?page=createClass");
   }
   else {
     //Get teacher id
@@ -76,6 +76,9 @@
     $pass = $result->fetch_assoc();
     //Check for admin/teacher privilages
     $teacherID = $pass["ID"];
+    //Make user teacher
+    $makeTeacher = "UPDATE db309sab3.users SET role_id = 2 WHERE ID = $teacherID"
+    $result = $db->query($makeTeacher) or die($db->error);
 
     $name = $_POST['name'];
     $startDate = $_POST['startDate'];
@@ -107,6 +110,8 @@
       '$universityID')";
 
     $result = $db->query($create) or die($db->error);
+    $_SESSION['error'] = true;
+    $_SESSION['errorCode'] = "Class Created";
     header("Location: pages.php?page=createClass");
     die("done");
   }
