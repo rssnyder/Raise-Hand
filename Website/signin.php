@@ -10,7 +10,7 @@
 	$dbname="db309sab3";
   $db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
   //Print out host information
-  //echo $db->host_info;
+  echo $db->host_info;
 
   //Check and make sure they entered a username
   if("" == trim($_POST['username'])) {
