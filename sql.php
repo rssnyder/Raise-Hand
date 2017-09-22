@@ -9,5 +9,5 @@ $password="SD0wFGqd";
 $dbname="db309sab3";
 //Connect to database
 $db = mysql_connect($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
-mysql_select_db($mysql_database, $db) or die (“Could not connect”);
+//mysql_select_db($mysql_database, $db) or die (“Could not connect”);
 ?>
