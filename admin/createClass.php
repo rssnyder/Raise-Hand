@@ -71,13 +71,13 @@
     //Get teacher id
     $teacherID = $_POST['teacher'];
     $teacherQ = "SELECT ID FROM users WHERE username = '$teacherID' ";
-    $result = $db->query($insert) or die($db->error);
+    $result = $db->query($teacherQ) or die($db->error);
     //Get the data of the username they specified
     $pass = $result->fetch_assoc();
     //Check for admin/teacher privilages
     $teacherID = $pass["ID"];
     //Make user teacher
-    $makeTeacher = "UPDATE db309sab3.users SET role_id = 2 WHERE ID = $teacherID"
+    $makeTeacher = "UPDATE users SET role_id = 2 WHERE ID = '$teacherID'";
     $result = $db->query($makeTeacher) or die($db->error);
 
     $name = $_POST['name'];
@@ -88,27 +88,28 @@
     $meetingsPerWeek = $_POST['meetingsPerWeek'];
     $universityID = $_POST['universityID'];
     $accessCode = rand();
-    $create = "INSERT INTO 'db309sab3'.'classes'
-      ('teacher_id',
-      'class_name',
-      'class_start',
-      'class_end',
-      'class_time_start',
-      'class_time_end',
-      'times_met_per_week',
-      'access_code',
-      'university_id')
+    $create = "INSERT INTO classes
+      (
+      teacher_id,
+      class_name,
+      class_start,
+      class_end,
+      class_time_start,
+      class_time_end,
+      times_met_per_week,
+      access_code,
+      university_id)
       VALUES
-      ('$teacherID',
+      (
+      $teacherID,
       '$name',
       '$startDate',
       '$endDate',
       '$startTime',
       '$endTime',
-      '$meetingsPerWeek',
+      $meetingsPerWeek,
       $accessCode,
-      '$universityID')";
-
+      $universityID)";
     $result = $db->query($create) or die($db->error);
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Class Created";

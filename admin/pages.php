@@ -53,17 +53,17 @@
             Instructor: <br>
             <input type="text" name="teacher" value="" size="35"><br><br>
             Start Date: <br>
-            <input type="text" name="startDate" value="" size="35"><br><br>
+            <input type="text" name="startDate" value="YYYY-MM-DD" size="35"><br><br>
             End Date: <br>
-            <input type="text" name="endDate" value="" size="35"><br><br>
+            <input type="text" name="endDate" value="YYYY-MM-DD" size="35"><br><br>
             Class Start Time: <br>
-            <input type="text" name="startTime" value="" size="35"><br><br>
+            <input type="text" name="startTime" value="HH:MM:SS" size="35"><br><br>
             Class End Time: <br>
-            <input type="text" name="endTime" value="" size="35"><br><br>
+            <input type="text" name="endTime" value="HH:MM:SS" size="35"><br><br>
             Meetings Per Week: <br>
             <input type="text" name="meetingsPerWeek" value="" size="35"><br><br>
             University Class ID: <br>
-            <input type="text" name="universityID" value="" size="35"><br><br>
+            <input type="text" name="universityID" value="1" size="35"><br><br>
             <input name="signup" type="submit" value="Create Class"><br><br>
           </form>';
         }
