@@ -99,16 +99,13 @@ public class LoginActivity extends Activity {
                             public void onErrorResponse(VolleyError error) {
                                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                                 hideProgressDialog();
-<<<<<<< HEAD
                             }
                     }
         );
         // Adding request to request queue
         MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
-=======
                             } }
                     });
->>>>>>> 43c9f2afcfe67d337ee7b8e1e3d36af2219ad4e1
         //validating inputs
         if (TextUtils.isEmpty(username)) {
             editTextUsername.setError("Please enter your username");
