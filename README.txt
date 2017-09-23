@@ -1,4 +1,4 @@
-README:
+﻿README:
 
 Project Name: Raise Hand
 
@@ -25,6 +25,7 @@ answers appear toward the top of the discussion board.
 
 Currently working on:
 Joel: Teacher App mockup
+Stephanie: Connecting android & the database
 
 Bugs found:
 
