@@ -19,23 +19,32 @@
 
 	//If correct password
 	if(password_verify($password, $pass)) {
-		die('Correct password');
-	}
-
-
-	if($stmt->num_rows > 0){
 		$user = array(
+		    'logged_in'=>"true",
+		    'id'=>$id,
+		    'role_id'=> $role_id,
 			'username'=>$username,
-			'pass'=>$pass,
 			'first_name'=>$first_name,
 			'last_name'=>$last_name
 		);
-
+	}
+	if($pass==$password){
+		$user = array(
+		    'logged_in'=>"true",
+		    'id'=>$id,
+		    'role_id'=> $role_id,
+			'username'=>$username,
+			'first_name'=>$first_name,
+			'last_name'=>$last_name
+		);
 		$response['error'] = false;
 		$response['message'] = 'Login successfull';
 		$response['user'] = $user;
 	}
 	else{
+	    $user=array(
+	        'logged_in'=>"false"
+	   );
 		$response['error'] = false;
 		$response['message'] = 'Invalid username or password';
 	}
