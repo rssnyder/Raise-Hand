@@ -95,28 +95,39 @@ public class LoginActivity extends Activity {
         }
 
         JsonArrayRequest req = new JsonArrayRequest(url_final,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        Log.d(TAG, response.toString());
-                        msgResponse.setText(response.toString());
-                        if (response.toString() == "success")
-                            Toast.makeText(MainActivity.getInstance(), "Logged In Successfully", Toast.LENGTH_LONG).show();
-                        else if (response.toString() == "failed")
-                            Toast.makeText(MainActivity.getInstance(), "Logged In Failed", Toast.LENGTH_LONG).show();
-                        else
-                            Toast.makeText(MainActivity.getInstance(), "Not Reading Correctly", Toast.LENGTH_LONG).show();
-                        hideProgressDialog();
+                                                    new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
+                            Log.d(TAG, response.toString());
+                            msgResponse.setText(response.toString());
+                            if (response.toString() == "success")
+                                Toast.makeText(MainActivity.getInstance(), "Logged In Successfully", Toast.LENGTH_LONG).show();
+                            else if (response.toString() == "failed")
+                                Toast.makeText(MainActivity.getInstance(), "Logged In Failed", Toast.LENGTH_LONG).show();
+                            else
+                                Toast.makeText(MainActivity.getInstance(), "Not Reading Correctly", Toast.LENGTH_LONG).show();
+                            hideProgressDialog();
                     }}, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-                hideProgressDialog();
-            }
-        }
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                                hideProgressDialog();
+                            }
+                    }
         );
         // Adding request to request queue
         MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
+<<<<<<< HEAD
+                            } }
+});
+        //validating inputs
+        if (TextUtils.isEmpty(username)) {
+            editTextUsername.setError("Please enter your username");
+            editTextUsername.requestFocus();
+            return;
+        }
+=======
+>>>>>>> 3071e0a814a193d9072ebe74a5c83859fe7f641d
 
 
 
