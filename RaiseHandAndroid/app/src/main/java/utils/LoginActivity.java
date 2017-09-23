@@ -90,7 +90,12 @@ public class LoginActivity extends Activity {
 
                             if(seperated[2]=="true") {
                                 Toast.makeText(MainActivity.getInstance(), "Logged In Successfully", Toast.LENGTH_LONG).show();
-                                currentUser=new User(1,1,seperated[2],seperated[4],seperated[6],true);
+                                String usern=seperated[4];
+                                String first=seperated[5];
+                                String last=seperated[6];
+                                int unique_id=seperated[3];
+                                int roleID=seperated[4];
+                                currentUser=new User(unique_id,roleID,usern,first,last,true);
                             }
                             else {
                                 Toast.makeText(MainActivity.getInstance(), "Logged In Failed", Toast.LENGTH_LONG).show();
