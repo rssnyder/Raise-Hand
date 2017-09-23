@@ -102,6 +102,11 @@ public class LoginActivity extends Activity {
                                 last=last.substring(0,first.indexOf("}"));
 
                                 currentUser=new User(unique_id,roleID,usern,first,last,true);
+                                Log.d(TAG,usern);
+                                Log.d(TAG,unique_id);
+                                Log.d(TAG,roleID);
+                                Log.d(TAG,first);
+                                Log.d(TAG,last);
                             }
                             else {
                                 Toast.makeText(MainActivity.getInstance(), "Logged In Failed", Toast.LENGTH_LONG).show();
