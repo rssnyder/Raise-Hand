@@ -12,13 +12,22 @@ import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.Request.Method;
 import com.android.volley.Response;
+import com.android.volley.Response.ErrorListener;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.sae1.raisehand.R;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * A login screen that offers login via email/password.
  */
@@ -67,34 +76,29 @@ public class LoginActivity extends Activity {
         //first getting the values
         final String username = editTextUsername.getText().toString();
         final String password = editTextPassword.getText().toString();
-
         String urlSuffix= "?username="+username+"&password="+password;
-        String url_final= URLS.URL_STRING_REQ+urlSuffix;
+        String url_final= URLS.URL_STRING_LOGIN+urlSuffix;
         showProgressDialog();
-        strReq= new StringRequest(Request.Method.GET, url_final, new Response.Listener<String>(){
-                    @Override
-                    public void onResponse(String response){
-                        Log.d(TAG, response);
-                        if(response=="success")
+        JsonArrayRequest req = new JsonArrayRequest(url_final,
+                    new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
+                        Log.d(TAG, response.toString());
+                        msgResponse.setText(response.toString());
+                        if(response.toString()=="success")
                             Toast.makeText(MainActivity.getInstance(), "Logged In Successfully", Toast.LENGTH_LONG).show();
-                        else if (response=="failed")
+                        else if (response.toString()=="failed")
                             Toast.makeText(MainActivity.getInstance(), "Logged In Failed", Toast.LENGTH_LONG).show();
                         else
                             Toast.makeText(MainActivity.getInstance(), "Not Reading Correctly", Toast.LENGTH_LONG).show();
                         hideProgressDialog();
-
-                    }}, new Response.ErrorListener(){
-                        @Override
-                            public void onErrorResponse(VolleyError error){
-                                Log.d(TAG, "unable to read");
-                                VolleyLog.d(TAG, "Error: "+ error.getMessage());
+                    }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                VolleyLog.d(TAG, "Error: " + error.getMessage());
                                 hideProgressDialog();
-                            }
-        });
-
-
-
-
+                            } }
+                    });
         //validating inputs
         if (TextUtils.isEmpty(username)) {
             editTextUsername.setError("Please enter your username");
@@ -108,6 +112,6 @@ public class LoginActivity extends Activity {
             return;
         }
 
-        MainActivity.getInstance().addToRequestQueue(strReq, tag_string_req);
+        MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
     }
 }
