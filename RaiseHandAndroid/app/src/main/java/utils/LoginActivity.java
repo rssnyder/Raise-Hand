@@ -16,11 +16,13 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Request.Method;
 import com.android.volley.Response;
+import com.android.volley.Response.ErrorListener;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.sae1.raisehand.R;
 
 import org.json.JSONArray;
@@ -81,23 +83,24 @@ public class LoginActivity extends Activity {
         String url_final= URLS.URL_STRING_LOGIN+urlSuffix;
         showProgressDialog();
         JsonArrayRequest req = new JsonArrayRequest(url_final,
-                    new Response.Listener<JSONArray>() { @Override
-                    public void onResponse(JSONArray response) {
+                    new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
                         Log.d(TAG, response.toString());
-                        msgResponse=response.toString();
-                        if(response=="success")
+                        msgResponse.setText(response.toString());
+                        if(response.toString()=="success")
                             Toast.makeText(MainActivity.getInstance(), "Logged In Successfully", Toast.LENGTH_LONG).show();
-                        else if (response=="failed")
+                        else if (response.toString()=="failed")
                             Toast.makeText(MainActivity.getInstance(), "Logged In Failed", Toast.LENGTH_LONG).show();
                         else
                             Toast.makeText(MainActivity.getInstance(), "Not Reading Correctly", Toast.LENGTH_LONG).show();
                         hideProgressDialog();
-                    },new Response.ErrorListener() {
-                        @Override
+                    }, new Response.ErrorListener() {
+                        //@Override
                         public void onErrorResponse(VolleyError error) {
                             VolleyLog.d(TAG, "Error: " + error.getMessage());
-                            hideProgressDialog();
-                } });
+                            hideProgressDialog();}
+                    }});
         // Adding request to request queue
         MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
         //validating inputs
