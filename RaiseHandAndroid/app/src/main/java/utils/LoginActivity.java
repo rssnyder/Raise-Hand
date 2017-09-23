@@ -88,13 +88,13 @@ public class LoginActivity extends Activity {
                             String phpResponse=response.toString();
                             String[] seperated=phpResponse.split(":");
 
-                            if(seperated[2]=="true") {
+                            if(seperated[1].contains("true")) {
                                 Toast.makeText(MainActivity.getInstance(), "Logged In Successfully", Toast.LENGTH_LONG).show();
-                                String usern=seperated[4];
-                                String first=seperated[5];
-                                String last=seperated[6];
-                                int unique_id=seperated[3];
-                                int roleID=seperated[4];
+                                String usern=seperated[3];
+                                String first=seperated[4];
+                                String last=seperated[5];
+                                String unique_id=seperated[2];
+                                String roleID=seperated[3];
                                 currentUser=new User(unique_id,roleID,usern,first,last,true);
                             }
                             else {
