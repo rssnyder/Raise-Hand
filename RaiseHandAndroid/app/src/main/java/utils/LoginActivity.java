@@ -85,15 +85,10 @@ public class LoginActivity extends Activity {
                         public void onResponse(String response) {
 
                             Log.d(TAG, response.toString());
-<<<<<<< HEAD
-                            msgResponse.setText(response.toString());
-                            if (response.toString() == username)
-=======
                             String phpResponse=response.toString();
                             String[] seperated=phpResponse.split(":");
 
                             if(seperated[2]=="true") {
->>>>>>> 1d44ace97d47d4ff83b51cb8b5556e4d52295a23
                                 Toast.makeText(MainActivity.getInstance(), "Logged In Successfully", Toast.LENGTH_LONG).show();
                                 currentUser=new User(1,1,seperated[2],seperated[4],seperated[6],true);
                             }
