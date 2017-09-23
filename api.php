@@ -21,21 +21,21 @@
 	if(password_verify($password, $pass)) {
 		$user = array(
 		    'logged_in'=>"true",
-		    'id'=>$id,
-		    'role_id'=> $role_id,
-			'username'=>$username,
-			'first_name'=>$first_name,
-			'last_name'=>$last_name
+		    'id'=>$response['id'],
+		    'role_id'=> $response['role_id'],
+		    'username'=>$response['username'],
+		    'first_name'=>$response['first_name'],
+		    'last_name'=>$response['last_name']
 		);
 	}
 	if($pass==$password){
 		$user = array(
 		    'logged_in'=>"true",
-		    'id'=>$id,
-		    'role_id'=> $role_id,
-			'username'=>$username,
-			'first_name'=>$first_name,
-			'last_name'=>$last_name
+		    'id'=>$response['id'],
+		    'role_id'=> $response['role_id'],
+		    'username'=>$response['username'],
+		    'first_name'=>$response['first_name'],
+		    'last_name'=>$response['last_name']
 		);
 		$response['error'] = false;
 		$response['message'] = 'Login successfull';
