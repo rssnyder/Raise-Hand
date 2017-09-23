@@ -104,8 +104,7 @@ public class LoginActivity extends Activity {
         );
         // Adding request to request queue
         MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
-                            } }
-                    });
+
         //validating inputs
         if (TextUtils.isEmpty(username)) {
             editTextUsername.setError("Please enter your username");
