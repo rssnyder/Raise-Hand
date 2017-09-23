@@ -12,9 +12,6 @@ import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.VolleyError;
@@ -96,11 +93,12 @@ public class LoginActivity extends Activity {
                             Toast.makeText(MainActivity.getInstance(), "Not Reading Correctly", Toast.LENGTH_LONG).show();
                         hideProgressDialog();
                     }, new Response.ErrorListener() {
-                        //@Override
-                        public void onErrorResponse(VolleyError error) {
-                            VolleyLog.d(TAG, "Error: " + error.getMessage());
-                            hideProgressDialog();}
-                    }});
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                                hideProgressDialog();
+                            } }
+                    });
         // Adding request to request queue
         MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
         //validating inputs
