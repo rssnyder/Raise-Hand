@@ -88,9 +88,14 @@ public class LoginActivity extends Activity {
                             String phpResponse=response.toString();
                             String[] seperated=phpResponse.split(":");
 
-                            if(seperated[2]=="true") {
+                            if(seperated[1].contains("true")) {
                                 Toast.makeText(MainActivity.getInstance(), "Logged In Successfully", Toast.LENGTH_LONG).show();
-                                currentUser=new User(1,1,seperated[2],seperated[4],seperated[6],true);
+                                String usern=seperated[3];
+                                String first=seperated[4];
+                                String last=seperated[5];
+                                String unique_id=seperated[2];
+                                String roleID=seperated[3];
+                                currentUser=new User(unique_id,roleID,usern,first,last,true);
                             }
                             else {
                                 Toast.makeText(MainActivity.getInstance(), "Logged In Failed", Toast.LENGTH_LONG).show();
