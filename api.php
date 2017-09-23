@@ -41,5 +41,5 @@
 		$response['error'] = false;
 		$response['message'] = 'Invalid username or password';
 	}
-	die(json_encode($response));
+	die(json_encode($user));
 ?>
