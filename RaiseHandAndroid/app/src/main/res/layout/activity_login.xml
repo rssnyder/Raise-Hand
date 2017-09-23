@@ -52,24 +52,7 @@
             android:text="Dont' have an account?\nRegister Here"
             android:textAlignment="center"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
-        <TextView
-            android:id="@+id/msgResponse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="27dp"
-            android:layout_marginStart="27dp"
-            android:text="Response"
-            android:layout_below="@+id/linearLayout"
-            android:layout_toRightOf="@+id/progressBar" />
     </LinearLayout>
-
-    <ProgressBar
-        android:id="@+id/loginProgressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:layout_below="@+id/linearLayout"
-        android:layout_centerHorizontal="true"/>
 
 
 
