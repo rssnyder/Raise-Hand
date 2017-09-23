@@ -89,23 +89,19 @@ public class LoginActivity extends Activity {
                             String[] seperated=phpResponse.split(":");
 
                             if(seperated[1].contains("true")) {
-                                Toast.makeText(MainActivity.getInstance(), "Logged In Successfully", Toast.LENGTH_LONG).show();
+                                //concat strings to make it so that the array is properly read from the php response
                                 String unique_id=seperated[2];
-                                unique_id=unique_id.substring(0, unique_id.indexOf(","));
+                                unique_id=unique_id.substring(1, unique_id.indexOf(",")-1);
                                 String roleID=seperated[3];
-                                roleID=roleID.substring(0,roleID.indexOf(","));
-                                String usern=seperated[3];
-                                usern=usern.substring(0, usern.indexOf(","));
-                                String first=seperated[4];
-                                first=first.substring(0, first.indexOf(","));
-                                String last=seperated[5];
-
+                                roleID=roleID.substring(1,roleID.indexOf(",")-1);
+                                String usern=seperated[4];
+                                usern=usern.substring(1, usern.indexOf(",")-1);
+                                String first=seperated[5];
+                                first=first.substring(1, first.indexOf(",")-1);
+                                String last=seperated[6];
+                                last=last.substring(1,last.length()-2);
+                                Toast.makeText(MainActivity.getInstance(), "Welcome back "+first+"!", Toast.LENGTH_LONG).show();
                                 currentUser=new User(unique_id,roleID,usern,first,last,true);
-                                Log.d(TAG,usern);
-                                Log.d(TAG,unique_id);
-                                Log.d(TAG,roleID);
-                                Log.d(TAG,first);
-                                Log.d(TAG,last);
                             }
                             else {
                                 Toast.makeText(MainActivity.getInstance(), "Logged In Failed", Toast.LENGTH_LONG).show();
