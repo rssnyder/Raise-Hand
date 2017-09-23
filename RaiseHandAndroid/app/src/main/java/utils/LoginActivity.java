@@ -1,33 +1,21 @@
 package utils;
 import android.app.ProgressDialog;
 import app.MainActivity;
-import utils.URLS;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
-import com.android.volley.Response.ErrorListener;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.sae1.raisehand.R;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * A login screen that offers login via email/password.
@@ -35,19 +23,16 @@ import java.util.Map;
 public class LoginActivity extends Activity {
     private String TAG= LoginActivity.class.getSimpleName();
     private Button buttonLogin;
-    private TextView msgResponse;
     private ProgressDialog pDialog;
     private String tag_string_req= "string_req";
     private StringRequest strReq;
     EditText editTextUsername, editTextPassword;
-
+    public User currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         buttonLogin= (Button) findViewById(R.id.buttonLogin);
-        msgResponse = (TextView) findViewById(R.id.msgResponse);
-
         pDialog= new ProgressDialog(this);
         pDialog.setMessage("Loading...");
         pDialog.setCancelable(false);
@@ -94,18 +79,27 @@ public class LoginActivity extends Activity {
             return;
         }
 
-        JsonArrayRequest req = new JsonArrayRequest(url_final,
-                                                    new Response.Listener<JSONArray>() {
+        StringRequest req = new StringRequest(Request.Method.GET,url_final,
+                                                    new Response.Listener<String>() {
                         @Override
-                        public void onResponse(JSONArray response) {
+                        public void onResponse(String response) {
+
                             Log.d(TAG, response.toString());
+<<<<<<< HEAD
                             msgResponse.setText(response.toString());
                             if (response.toString() == username)
+=======
+                            String phpResponse=response.toString();
+                            String[] seperated=phpResponse.split(":");
+
+                            if(seperated[2]=="true") {
+>>>>>>> 1d44ace97d47d4ff83b51cb8b5556e4d52295a23
                                 Toast.makeText(MainActivity.getInstance(), "Logged In Successfully", Toast.LENGTH_LONG).show();
-                            else if (response.toString() == "failed")
+                                currentUser=new User(1,1,seperated[2],seperated[4],seperated[6],true);
+                            }
+                            else {
                                 Toast.makeText(MainActivity.getInstance(), "Logged In Failed", Toast.LENGTH_LONG).show();
-                            else
-                                Toast.makeText(MainActivity.getInstance(), "Not Reading Correctly", Toast.LENGTH_LONG).show();
+                            }
                             hideProgressDialog();
                     }}, new Response.ErrorListener() {
                             @Override
