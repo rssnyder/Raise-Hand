@@ -99,7 +99,6 @@ public class LoginActivity extends Activity {
                                 String first=seperated[4];
                                 first=first.substring(0, first.indexOf(","));
                                 String last=seperated[5];
-                                last=last.substring(0,first.indexOf("}"));
 
                                 currentUser=new User(unique_id,roleID,usern,first,last,true);
                                 Log.d(TAG,usern);
