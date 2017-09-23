@@ -87,7 +87,7 @@ public class LoginActivity extends Activity {
                         public void onResponse(JSONArray response) {
                             Log.d(TAG, response.toString());
                             msgResponse.setText(response.toString());
-                            if (response.toString() == "success")
+                            if (response.toString() == username)
                                 Toast.makeText(MainActivity.getInstance(), "Logged In Successfully", Toast.LENGTH_LONG).show();
                             else if (response.toString() == "failed")
                                 Toast.makeText(MainActivity.getInstance(), "Logged In Failed", Toast.LENGTH_LONG).show();
