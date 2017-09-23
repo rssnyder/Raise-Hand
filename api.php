@@ -1,8 +1,6 @@
 <?php
 
 	//require_once 'sql.php';
-	//How to initiate a connection to the sql server
-	//Define sql database information
 	$host="mysql.cs.iastate.edu";
 	$port=3306;
 	$socket="";

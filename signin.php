@@ -49,6 +49,8 @@
     $result = $db->query($insert) or die($db->error);
     //Get the data of the username they specified
     $pass = $result->fetch_assoc();
+    //Get name
+    $name = $pass['first_name'];
     //Check for admin/teacher privilages
     $role = $pass["role_id"];
     //Get hashed password from database
@@ -60,18 +62,27 @@
       echo "success";
       $_SESSION['loggedin'] = true;
       $_SESSION['username'] = $username;
+      $_SESSION['name'] = $name;
       $_SESSION['error']  = false;
       $_SESSION['thread'] = "General";
       $_SESSION['role'] = $role;
-      if($role = 1) {
+      if($role == 1) {
         header("Location: admin/home.php");
+        die("Going to admin panel");
+      }
+      else if($role == 2) {
+        header("Location: teacher/home.php");
+        die("Going to admin panel");
+      }
+      else if($role == 4) {
+        header("Location: student/home.php");
         die("Going to admin panel");
       }
       //Send user to their homepage
 	echo “success”;
       header("Location: home.php");
-      
-      
+
+
 
     }
     else {

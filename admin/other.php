@@ -43,4 +43,8 @@
     }
   }
 
+  if($_GET['type'] == 'thisThing') {
+
+  }
+
 ?>

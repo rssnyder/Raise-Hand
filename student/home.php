@@ -2,9 +2,9 @@
   session_start();
   //Check if user is logged in
   if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-    if($_SESSION['role'] != 1) {
+    if($_SESSION['role'] != 4) {
       $_SESSION['error'] = true;
-      $_SESSION['errorCode'] = "Not Permitted";
+      $_SESSION['errorCode'] = "Not a student";
       header("Location: ../login.php");
       die("oops");
     }
