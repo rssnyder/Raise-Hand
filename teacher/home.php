@@ -61,7 +61,7 @@
                     <div class="home">
                       <center>
                         <br>
-                        <button class="button" onclick="window.location="pages.php?class=' . $class['ID'] . '";">' . $class['class_name'] . '</button>
+                        <button class="button" onclick="window.location=\'pages.php?class=' . $class['ID'] . '\';">' . $class['class_name'] . '</button>
                         <p>
                           Class description here.
                         </p>
@@ -73,13 +73,15 @@
                       <div class="home">
                         <center>
                           <br>
-                          <button class="button" onclick="window.location="pages.php?class=' . $class['ID'] . '";">' . $class['class_name'] . '</button>
+                          <button class="button" onclick="window.location=\'pages.php?class=' . $class['ID'] . '\';">' . $class['class_name'] . '</button>
                           <p>
                             Class description here.
                           </p>
                         </center>
                       </div>
-                    </div>';
+                    </div>
+                  </div>
+                    <br>';
           }
         }
 
