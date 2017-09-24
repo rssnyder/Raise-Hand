@@ -7,7 +7,7 @@
 /build
 /captures
 .externalNativeBuild
-
+/.idea/*
 # Created by https://www.gitignore.io/api/macos,android,windows,androidstudio
 
 ### Android ###
