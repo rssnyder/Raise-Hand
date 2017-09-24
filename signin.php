@@ -49,6 +49,8 @@
     $result = $db->query($insert) or die($db->error);
     //Get the data of the username they specified
     $pass = $result->fetch_assoc();
+    //Get ID
+    $id = $pass['ID'];
     //Get name
     $name = $pass['first_name'];
     //Check for admin/teacher privilages
@@ -62,6 +64,7 @@
       echo "success";
       $_SESSION['loggedin'] = true;
       $_SESSION['username'] = $username;
+      $_SESSION['id'] = $id;
       $_SESSION['name'] = $name;
       $_SESSION['error']  = false;
       $_SESSION['thread'] = "General";
