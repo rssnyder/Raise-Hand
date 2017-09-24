@@ -27,5 +27,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="app.TeacherClasses"></activity>
+        <activity android:name="app.TeacherHomePage"></activity>
+        <activity android:name="app.TeacherNotifications"></activity>
+        <activity android:name="app.TeacherSettings"></activity>
+        <activity android:name="app.TeacherStudents"></activity>
     </application>
 </manifest>
