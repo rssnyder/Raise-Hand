@@ -3,7 +3,18 @@
 	session_start();
 	//If user is already logged in then send to their home
 	if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-		header("Location: home.php");
+		if($_SESSION['role'] == 1) {
+      header("Location: admin/home.php");
+      die("go");
+    }
+		else if($_SESSION['role'] == 2) {
+      header("Location: teacher/home.php");
+      die("go");
+    }
+		else {
+			header("Location: student/home.php");
+			die("go");
+		}
 	}
 	//Otherwise, send to login page
 	else {
