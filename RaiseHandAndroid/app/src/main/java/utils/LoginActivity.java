@@ -47,11 +47,11 @@ public class LoginActivity extends Activity {
 
         mPreferences = getSharedPreferences("User", MODE_PRIVATE);
         //if the username is already stored, stay logged in.
-        if(mPreferences.contains("username")){
+      /*  if(mPreferences.contains("username")){
             Intent teacherNotifications = new Intent(getApplicationContext(), TeacherNotifications.class);
             startActivity(teacherNotifications);
             finish();
-        }
+        }*/
 
         buttonLogin.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -115,14 +115,14 @@ public class LoginActivity extends Activity {
                                 first=first.substring(1, first.indexOf(",")-1);
                                 String last=seperated[6];
                                 last=last.substring(1,last.length()-2);
-                                Toast.makeText(MainActivity.getInstance(), "Welcome back "+first+"!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(MainActivity.getInstance(), "Welcome back, "+first+"!", Toast.LENGTH_LONG).show();
                                 currentUser=new User(unique_id,roleID,usern,first,last,true);
 
                                 //store the username on login
                                 SharedPreferences.Editor editor = mPreferences.edit();
                                 editor.putString("username", usern);
                                 editor.commit();
-                                
+
                                 //TODO make it go to the student or teacher page depending on what kind of user logged in
                                 //Go to the teacher notification page
                                 Intent teacherNotifications = new Intent(getApplicationContext(), TeacherNotifications.class);
