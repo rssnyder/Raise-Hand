@@ -13,6 +13,22 @@
     $_SESSION['errorCode'] = "Session Expired";
     header("Location: ../login.php");
   }
+
+  //TODO Grab all this from a file
+  //Define sql database information
+  $host="mysql.cs.iastate.edu";
+  $port=3306;
+  $socket="";
+  $user="dbu309sab3";
+  $password="SD0wFGqd";
+  $dbname="db309sab3";
+  //Connect to database
+  $db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
+
+  //Get the classes that the teacher is a teacher of
+  $query = "SELECT * FROM classes WHERE teacher_id = 6";
+  $result = $db->query($query) or die($db->error);
+
 ?>
 
 <!-- This is the format we will use for the pages on the website. CSS to be added as
@@ -35,60 +51,44 @@
 
 
 
-  <!-- Main content of the webpage "do the wave" -->
+  <!-- Main content of the webpage -->
 <body>
   <div class="main">
     <br>
     <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="home">
-            <center>
-              <br>
-              <button class="button" onclick="window.location='pages.php?page=createClass';">Create a class</button>
-              <p>
-                Create a new class.
-              </p>
-            </center>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="home">
-            <center>
-              <br>
-              <button class="button" onclick="window.location='pages.php?page=viewReports';">View reports</button>
-              <p>
-                View reports of abuse by users.
-              </p>
-            </center>
-          </div>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="home">
-            <center>
-              <br>
-              <button class="button" onclick="window.location='pages.php?page=createUser';">Create a user</button>
-              <p>
-                Create a new user.
-              </p>
-            </center>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="home">
-            <center>
-              <br>
-              <button class="button" onclick="window.location='pages.php?page=other';">Do other stuff</button>
-              <p>
-                Additional administrative tools.
-              </p>
-            </center>
-          </div>
-        </div>
-      </div>
+      <?php
+      //Get all the classes that this student is a part of and build the homepage
+        while ($class = $result->fetch_assoc()) {
+          echo '<div class="row">
+                  <div class="col-md-6">
+                    <div class="home">
+                      <center>
+                        <br>
+                        <button class="button" onclick="window.location=\'pages.php?class=' . $class['ID'] . '\';">' . $class['class_name'] . '</button>
+                        <p>
+                          ' . $class['description'] . '
+                        </p>
+                      </center>
+                    </div>
+                  </div>';
+          if($class = $result->fetch_assoc()) {
+            echo '<div class="col-md-6">
+                      <div class="home">
+                        <center>
+                          <br>
+                          <button class="button" onclick="window.location=\'pages.php?class=' . $class['ID'] . '\';">' . $class['class_name'] . '</button>
+                          <p>
+                          ' . $class['description'] . '
+                          </p>
+                        </center>
+                      </div>
+                    </div>
+                  </div>
+                    <br>';
+          }
+        }
+
+       ?>
     </div>
   </div>
 </body>
