@@ -13,6 +13,23 @@
     $_SESSION['errorCode'] = "Session Expired";
     header("Location: ../login.php");
   }
+
+  //TODO Grab all this from a file
+  //Define sql database information
+  $host="mysql.cs.iastate.edu";
+  $port=3306;
+  $socket="";
+  $user="dbu309sab3";
+  $password="SD0wFGqd";
+  $dbname="db309sab3";
+  //Connect to database
+  $db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
+
+  //Get this class
+  $query = "SELECT * FROM classes WHERE ID = " . $_GET['class'];
+  $result = $db->query($query) or die($db->error);
+  $class = $result->fetch_assoc()
+
 ?>
 
 <html lang="en">
@@ -24,7 +41,9 @@
     <div class="top">
         <font size="-5"><a class="logout" href="../login.php?event=logout">Logout</a></font>
         <center>
-          <h1>Class Settings</h1>
+          <?php
+            echo '<h1>' . $class['class_name'] . '</h1>';
+          ?>
         </center>
     </div>
   </head>
@@ -51,6 +70,8 @@
           }
           echo 'Class Name: <br>
             <input type="text" name="name" value="" size="35"><br><br>
+            Class Description: <br>
+            <input type="text" name="description" value="" size="35"><br><br>
             Start Date "YYYY-MM-DD": <br>
             <input type="text" name="startDate" value="" size="35"><br><br>
             End Date "YYYY-MM-DD": <br>

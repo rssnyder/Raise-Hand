@@ -83,6 +83,15 @@
       $updateString = $updateString . ", times_met_per_week = " . $_POST['meetingsPerWeek'];
     }
   }
+  if(!("" == trim($_POST['description']))) {
+    if($first) {
+      $updateString = $updateString . "description= '" . $_POST['description'] . "'";
+      $first = 0;
+    }
+    else {
+      $updateString = $updateString . ", description = '" . $_POST['description'] . "'";
+    }
+  }
   if($first) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "No Updates";
@@ -91,7 +100,7 @@
   }
 
   //Cap off the query
-  $updateString = $updateString . "WHERE ID = " . $_GET['class'];
+  $updateString = $updateString . " WHERE ID = " . $_GET['class'];
 
     //Send update to db
     $result = $db->query($updateString) or die($db->error);

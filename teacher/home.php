@@ -24,6 +24,11 @@
   $dbname="db309sab3";
   //Connect to database
   $db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
+
+  //Get the classes that the teacher is a teacher of
+  $query = "SELECT * FROM classes WHERE teacher_id = 6";
+  $result = $db->query($query) or die($db->error);
+  
 ?>
 
 <!-- This is the format we will use for the pages on the website. CSS to be added as
@@ -35,7 +40,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     <!-- The top banner of the webpage -->
     <div class="top">
-        <font size="-5"><a class="logout" href="login.php?event=logout">Logout</a></font>
+        <font size="-5"><a class="logout" href="../login.php?event=logout">Logout</a></font>
         <center>
           <?php
             echo "<h1>Welcome, " . $_SESSION['name'] . "</h1>";
@@ -52,9 +57,6 @@
     <br>
     <div class="container-fluid">
       <?php
-        //Get the classes that the teacher is a teacher of
-        $query = "SELECT * FROM classes WHERE teacher_id = 6";
-        $result = $db->query($query) or die($db->error);
         while ($class = $result->fetch_assoc()) {
           echo '<div class="row">
                   <div class="col-md-6">
@@ -63,7 +65,7 @@
                         <br>
                         <button class="button" onclick="window.location=\'pages.php?class=' . $class['ID'] . '\';">' . $class['class_name'] . '</button>
                         <p>
-                          Class description here.
+                          ' . $class['description'] . '
                         </p>
                       </center>
                     </div>
@@ -75,7 +77,7 @@
                           <br>
                           <button class="button" onclick="window.location=\'pages.php?class=' . $class['ID'] . '\';">' . $class['class_name'] . '</button>
                           <p>
-                            Class description here.
+                          ' . $class['description'] . '
                           </p>
                         </center>
                       </div>

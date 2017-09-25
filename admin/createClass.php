@@ -98,7 +98,8 @@
       class_time_end,
       times_met_per_week,
       access_code,
-      university_id)
+      university_id,
+      description)
       VALUES
       (
       $teacherID,
@@ -109,7 +110,8 @@
       '$endTime',
       $meetingsPerWeek,
       $accessCode,
-      $universityID)";
+      $universityID,
+      'A class')";
     $result = $db->query($create) or die($db->error);
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Class Created";
