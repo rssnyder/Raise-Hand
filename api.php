@@ -14,8 +14,7 @@
 	$stmt = "SELECT * FROM users WHERE username = '$username'";
 	$stmt = $db->query($stmt) or die($db->error);
 	$response = $stmt->fetch_assoc();
-	$pass = $response['password'];
-	$password = $_GET['pass'];
+	$password = $response['pass'];
 
 	//If correct password
 	if(password_verify($pass, $password)) {
