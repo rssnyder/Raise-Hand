@@ -44,60 +44,28 @@
     <div align="center" class="container">
       <?php
         if($_GET['page'] == 'classSettings') {
-          echo '<form id="singup-form" action="createClass.php" method="post">';
+          echo '<form id="singup-form" action="updateClass.php?class=' . $_GET['class'] . '" method="post">';
           if($_SESSION['error']){
               echo '<font color="red">' . $_SESSION['errorCode'] . "</font><br><br>";
               $_SESSION['error'] = false;
           }
           echo 'Class Name: <br>
             <input type="text" name="name" value="" size="35"><br><br>
-            Instructor: <br>
-            <input type="text" name="teacher" value="" size="35"><br><br>
-            Start Date: <br>
-            <input type="text" name="startDate" value="YYYY-MM-DD" size="35"><br><br>
-            End Date: <br>
-            <input type="text" name="endDate" value="YYYY-MM-DD" size="35"><br><br>
-            Class Start Time: <br>
-            <input type="text" name="startTime" value="HH:MM:SS" size="35"><br><br>
-            Class End Time: <br>
-            <input type="text" name="endTime" value="HH:MM:SS" size="35"><br><br>
+            Start Date "YYYY-MM-DD": <br>
+            <input type="text" name="startDate" value="" size="35"><br><br>
+            End Date "YYYY-MM-DD": <br>
+            <input type="text" name="endDate" value="" size="35"><br><br>
+            Class Start Time "HH:MM:SS": <br>
+            <input type="text" name="startTime" value="" size="35"><br><br>
+            Class End Time "HH:MM:SS": <br>
+            <input type="text" name="endTime" value="" size="35"><br><br>
             Meetings Per Week: <br>
             <input type="text" name="meetingsPerWeek" value="" size="35"><br><br>
-            University Class ID: <br>
-            <input type="text" name="universityID" value="1" size="35"><br><br>
-            <input name="signup" type="submit" value="Create Class"><br><br>
-          </form>';
-        }
-        else if($_GET['page'] == 'createUser') {
-          echo '<form id="singup-form" action="createUser.php" method="post">';
-          if($_SESSION['error']){
-              echo '<font color="red">' . $_SESSION['errorCode'] . "</font><br><br>";
-              $_SESSION['error'] = false;
-          }
-          echo 'First Name: <br>
-            <input type="text" name="first" value="" size="35"><br><br>
-            Last Name: <br>
-            <input type="text" name="last" value="" size="35"><br><br>
-            Username: <br>
-            <input type="text" name="username" value="" size="35"><br><br>
-            Password: <br>
-            <input type="password" name="password" value="" size="35"><br><br>
-            <input name="signup" type="submit" value="Create Account"><br><br>
+            <input name="signup" type="submit" value="Update Class"><br><br>
           </form>';
         }
         else if($_GET['page'] == 'viewReports') {
 
-        }
-        else if($_GET['page'] == 'other') {
-          echo '<form id="singup-form" action="other.php?type=makeAdmin" method="post">';
-          if($_SESSION['error']){
-              echo '<font color="red">' . $_SESSION['errorCode'] . "</font><br><br>";
-              $_SESSION['error'] = false;
-          }
-          echo 'Username: <br>
-            <input type="text" name="username" value="" size="35"><br><br>
-            <input name="signup" type="submit" value="Make Administrator"><br><br>
-          </form>';
         }
       ?>
     </div>
