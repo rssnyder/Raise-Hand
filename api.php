@@ -27,16 +27,6 @@
 		    'first_name'=>$response['first_name'],
 		    'last_name'=>$response['last_name']
 		);
-	}
-	if($pass==$password){
-		$user = array(
-		    'logged_in'=>"true",
-		    'id'=>$response['id'],
-		    'role_id'=> $response['role_id'],
-		    'username'=>$response['username'],
-		    'first_name'=>$response['first_name'],
-		    'last_name'=>$response['last_name']
-		);
 		$response['error'] = false;
 		$response['message'] = 'Login successfull';
 		$response['user'] = $user;
