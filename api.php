@@ -18,7 +18,7 @@
 	$password = $_GET['pass'];
 
 	//If correct password
-	if(password_verify($password, $pass)) {
+	if(password_verify($pass, $password)) {
 		$user = array(
 		    'logged_in'=>"true",
 		    'id'=>$response['id'],
