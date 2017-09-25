@@ -24,7 +24,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     <!-- The top banner of the webpage -->
     <div class="top">
-        <font size="-5"><a class="logout" href="login.php?event=logout">Logout</a></font>
+        <font size="-5"><a class="logout" href="../login.php?event=logout">Logout</a></font>
         <center>
           <?php
             echo "<h1>Welcome, " . $_SESSION['name'] . "</h1>";

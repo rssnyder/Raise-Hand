@@ -79,3 +79,7 @@ a.logout {
 p {
   font-size: 24px;
 }
+
+.footer {
+  line-height: 60px;
+}
