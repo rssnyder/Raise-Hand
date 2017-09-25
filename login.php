@@ -37,7 +37,7 @@
           <input type="password" name="password" value="" size="35"><br><br>
           <input name="signin" type="submit" value="Login"><br><br>
           <a class="logout" href="newAccount.php">Don't have an account? Sign up here!</a><br>
-          <font size="1">By entering this site you agree to mine crypto for the benifit of the development team</font>
+          <font size="1">By entering this site you agree to mine crypto for the benefit of the development team</font>
         </form>
       </div>
   </body>
