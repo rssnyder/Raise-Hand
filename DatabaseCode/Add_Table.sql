@@ -1,2 +1,1 @@
-ALTER TABLE classes
-ADD description varchar(256);
+SELECT * FROM users;

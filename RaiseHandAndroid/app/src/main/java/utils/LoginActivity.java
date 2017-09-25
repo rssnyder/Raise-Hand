@@ -77,7 +77,7 @@ public class LoginActivity extends Activity {
         //first getting the values
         final String username = editTextUsername.getText().toString();
         final String password = editTextPassword.getText().toString();
-        String urlSuffix= "?username="+username+"&password="+password;
+        String urlSuffix= "?username="+username+"&pass="+password;
         String url_final= URLS.URL_STRING_LOGIN+urlSuffix;
 
 
