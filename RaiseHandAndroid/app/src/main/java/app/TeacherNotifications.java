@@ -12,6 +12,8 @@ import android.view.MenuItem;
 
 import com.example.sae1.raisehand.R;
 
+import utils.LoginActivity;
+
 public class TeacherNotifications extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
@@ -58,6 +60,11 @@ public class TeacherNotifications extends AppCompatActivity {
                     case (R.id.nav_settings):
                         Intent teacherSettings = new Intent(getApplicationContext(), TeacherSettings.class);
                         startActivity(teacherSettings);
+                        break;
+                    case (R.id.nav_logout):
+                        Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(loginPage);
+                        finish();
                         break;
                 }
                 return true;

@@ -5,7 +5,11 @@ android {
     buildToolsVersion "26.0.1"
     defaultConfig {
         applicationId "com.example.sae1.raisehand"
+<<<<<<< HEAD
+        minSdkVersion 21
+=======
         minSdkVersion 19
+>>>>>>> a66c0d779b54797376f6dff49f2e3f706026b565
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -27,5 +31,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support:design:26.+'
     compile 'com.android.volley:volley:1.0.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:support-v4:26.+'
     testCompile 'junit:junit:4.12'
 }

@@ -26,4 +26,6 @@ public class User {
     public String getLast_name(){ return last_name;}
     public boolean isLoggedIn(){return loggedIn;}
     public void logOut(){loggedIn=false;}
+
+
 }
