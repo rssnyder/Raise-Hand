@@ -1,7 +1,11 @@
 package utils;
 import android.app.ProgressDialog;
 import app.MainActivity;
+import app.TeacherNotifications;
+
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -28,6 +32,8 @@ public class LoginActivity extends Activity {
     private StringRequest strReq;
     EditText editTextUsername, editTextPassword;
     public User currentUser;
+    private SharedPreferences mPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +44,15 @@ public class LoginActivity extends Activity {
         pDialog.setCancelable(false);
         editTextUsername = (EditText) findViewById(R.id.editTextUsername);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+
+        mPreferences = getSharedPreferences("User", MODE_PRIVATE);
+        //if the username is already stored, stay logged in.
+        if(mPreferences.contains("username")){
+            Intent teacherNotifications = new Intent(getApplicationContext(), TeacherNotifications.class);
+            startActivity(teacherNotifications);
+            finish();
+        }
+
         buttonLogin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -64,7 +79,7 @@ public class LoginActivity extends Activity {
         final String password = editTextPassword.getText().toString();
         String urlSuffix= "?username="+username+"&password="+password;
         String url_final= URLS.URL_STRING_LOGIN+urlSuffix;
-        showProgressDialog();
+
 
         //validating inputs
         if (TextUtils.isEmpty(username)) {
@@ -78,7 +93,7 @@ public class LoginActivity extends Activity {
             editTextPassword.requestFocus();
             return;
         }
-
+        showProgressDialog();
         StringRequest req = new StringRequest(Request.Method.GET,url_final,
                                                     new Response.Listener<String>() {
                         @Override
@@ -102,6 +117,17 @@ public class LoginActivity extends Activity {
                                 last=last.substring(1,last.length()-2);
                                 Toast.makeText(MainActivity.getInstance(), "Welcome back "+first+"!", Toast.LENGTH_LONG).show();
                                 currentUser=new User(unique_id,roleID,usern,first,last,true);
+
+                                //store the username on login
+                                SharedPreferences.Editor editor = mPreferences.edit();
+                                editor.putString("username", usern);
+                                editor.commit();
+                                
+                                //TODO make it go to the student or teacher page depending on what kind of user logged in
+                                //Go to the teacher notification page
+                                Intent teacherNotifications = new Intent(getApplicationContext(), TeacherNotifications.class);
+                                startActivity(teacherNotifications);
+                                finish(); //finsih this activity so you can't press back to go to the login screen after already logging in
                             }
                             else {
                                 Toast.makeText(MainActivity.getInstance(), "Logged In Failed", Toast.LENGTH_LONG).show();
