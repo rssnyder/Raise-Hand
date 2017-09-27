@@ -115,9 +115,9 @@ public class LoginActivity extends Activity {
                                 String first=seperated[5];
                                 first=first.substring(1, first.indexOf(",")-1);
                                 String last=seperated[6];
-                                last=last.substring(1,first.indexOf(",")-1);
+                                last=last.substring(1,last.indexOf(",")-1);
                                 String class_ids=seperated[7];
-                                class_ids=class_ids.substring(1, last.length()-2);
+                                class_ids=class_ids.substring(1, class_ids.length()-2);
                                 Toast.makeText(MainActivity.getInstance(), "Welcome back, "+first+"!", Toast.LENGTH_LONG).show();
                                 currentUser=new User(unique_id,roleID,usern,first,last,class_ids, true);
 
