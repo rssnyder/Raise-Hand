@@ -52,7 +52,7 @@ public class LoginActivity extends Activity {
             startActivity(teacherNotifications);
             finish();
         }*/
-
+        //TODO: Set sign up button to have an on click listener too and go to a different page
         buttonLogin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
