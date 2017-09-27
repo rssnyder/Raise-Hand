@@ -41,6 +41,7 @@
 	if($user['logged_in']){
 	    $tempID= $response['ID'];
 	    $stmt = "SELECT class_id FROM UserClasses WHERE user_id = '$tempID' ";
+	    //TODO: Edit so that it isn't null if the select statement doesn't return anything
 	    $stmt = $db->query($stmt) or die($db->error);
 	    $res = $stmt->fetch_assoc();
 	}
