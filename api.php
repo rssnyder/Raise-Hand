@@ -36,6 +36,13 @@
 	   );
 		$response['error'] = false;
 		$response['message'] = 'Invalid username or password';
+		$res['class_id']=0;
 	}
-	die(json_encode($user));
+	if($user['logged_in']){
+	    $tempID= $response['ID'];
+	    $stmt = "SELECT class_id FROM UserClasses WHERE user_id = '$tempID' ";
+	    $stmt = $db->query($stmt) or die($db->error);
+	    $res = $stmt->fetch_assoc();
+	}
+	die(json_encode($user, $res));
 ?>
