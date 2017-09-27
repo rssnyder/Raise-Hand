@@ -78,6 +78,7 @@ public class LoginActivity extends Activity {
         //first getting the values
         final String username = editTextUsername.getText().toString();
         final String password = editTextPassword.getText().toString();
+        //url to be used to get the user information via PHP/ volley
         String urlSuffix= "?username="+username+"&pass="+password;
         String url_final= URLS.URL_STRING_LOGIN+urlSuffix;
 
@@ -102,6 +103,7 @@ public class LoginActivity extends Activity {
 
                             Log.d(TAG, response.toString());
                             String phpResponse=response.toString();
+                            //in the php file, the user information is stored in an array with : as a delimiter between the variable name and actual value
                             String[] seperated=phpResponse.split(":");
 
                             if(seperated[1].contains("true")) {
@@ -118,6 +120,10 @@ public class LoginActivity extends Activity {
                                 last=last.substring(1,last.indexOf(",")-1);
                                 String class_ids=seperated[7];
                                 class_ids=class_ids.substring(1, class_ids.length()-2);
+                                //In the php file, if someone is not in a class, I made it return 0 (meaning no classes for this user)
+                                if(class_ids=="0") {
+                                    class_ids = "None available";
+                                }
                                 Toast.makeText(MainActivity.getInstance(), "Welcome back, "+first+"!", Toast.LENGTH_LONG).show();
                                 currentUser=new User(unique_id,roleID,usern,first,last,class_ids, true);
 
@@ -128,6 +134,7 @@ public class LoginActivity extends Activity {
                                 editor.putString("unique_id", unique_id);
                                 editor.putString("first_name", first);
                                 editor.putString("last_name", last);
+                                editor.putString("classes",class_ids);
                                 editor.commit();
 
                                 //TODO make it go to the student or teacher page depending on what kind of user logged in
