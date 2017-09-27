@@ -25,11 +25,6 @@
   //Connect to database
   $db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 
-  //Get this class
-  $query = "SELECT * FROM classes WHERE ID = " . $_GET['class'];
-  $result = $db->query($query) or die($db->error);
-  $class = $result->fetch_assoc()
-
 ?>
 
 <html lang="en">
@@ -60,9 +55,6 @@
   <div class="left">
     <?php
       echo '<button class="button" onclick="window.location=\'home.php\';">' . $_SESSION['name'] . '\'s Home</button>';
-      echo '<button class="button" onclick="window.location=\'pages.php?class=' . $_GET['class'] . '\';">' . $class['class_name'] . ' Home</button>';
-      echo '<button class="button" onclick="window.location=\'topics.php?class=' . $_GET['class'] . '\';">Discussion Topics</button>';
-      echo '<button class="button" onclick="window.location=\'liveSession.php?class=' . $_GET['class'] . '\';">Live Session</button>';
      ?>
   </div>
 
@@ -70,7 +62,17 @@
   <div class="main">
     <div align="center" class="container">
       <?php
-
+        if(!strcmp($_GET['page'], 'joinClass')) {
+          echo '<form id="class-join-form" action="joinClass.php" method="post">';
+          if($_SESSION['error']){
+              echo '<font color="red">' . $_SESSION['errorCode'] . "</font><br><br>";
+              $_SESSION['error'] = false;
+          }
+          echo 'Access Code: <br>
+            <input type="text" name="accessCode" value="" size="35"><br><br>
+            <input name="signup" type="submit" value="Join Class"><br><br>
+          </form>';
+        }
       ?>
     </div>
   </div>

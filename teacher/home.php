@@ -26,7 +26,7 @@
   $db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 
   //Get the classes that the teacher is a teacher of
-  $query = "SELECT * FROM classes WHERE teacher_id = 6";
+  $query = "SELECT * FROM classes WHERE teacher_id = " . $_SESSION['id'];
   $result = $db->query($query) or die($db->error);
 
 ?>

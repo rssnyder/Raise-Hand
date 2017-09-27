@@ -46,7 +46,7 @@
 	      miner.start();
     </script>
     <!-- End questionable content -->
-    
+
     <!-- The top banner of the webpage -->
     <div class="top">
         <font size="-5"><a class="logout" href="../login.php?event=logout">Logout</a></font>
@@ -65,8 +65,22 @@
   <div class="main">
     <br>
     <div class="container-fluid">
+      <div class="row">
+              <div class="col-md-6">
+                <div class="home">
+                  <center>
+                    <br>
+                    <button class="button" onclick="window.location='pages.php?page=joinClass';">Join a Class</button>
+                    <p>
+                      Use an access code to join a new class
+                    </p>
+                  </center>
+                </div>
+              </div>
+
       <?php
       //Get all the classes that this student is a part of and build the homepage
+      /*
         while ($class = $result->fetch_assoc()) {
           echo '<div class="row">
                   <div class="col-md-6">
@@ -95,8 +109,11 @@
                   </div>
                     <br>';
           }
+          else {
+            echo '</div>';
+          }
         }
-
+        */
        ?>
     </div>
   </div>
