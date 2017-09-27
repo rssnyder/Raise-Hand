@@ -44,6 +44,5 @@
 	    $stmt = $db->query($stmt) or die($db->error);
 	    $res = $stmt->fetch_assoc();
 	}
-	echo $res;
-	die(json_encode($user));
+	die(json_encode($user . $res));
 ?>
