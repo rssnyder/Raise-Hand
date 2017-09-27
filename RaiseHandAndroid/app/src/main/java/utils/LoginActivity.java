@@ -70,6 +70,7 @@ public class LoginActivity extends Activity {
     private void hideProgressDialog() {
         if(pDialog.isShowing()) {
             pDialog.hide();
+            pDialog.dismiss();
         }
     }
 
@@ -121,13 +122,22 @@ public class LoginActivity extends Activity {
                                 //store the username on login
                                 SharedPreferences.Editor editor = mPreferences.edit();
                                 editor.putString("username", usern);
+                                editor.putString("role", roleID);
+                                editor.putString("unique_id", unique_id);
+                                editor.putString("first_name", first);
+                                editor.putString("last_name", last);
                                 editor.commit();
 
                                 //TODO make it go to the student or teacher page depending on what kind of user logged in
                                 //Go to the teacher notification page
-                                Intent teacherNotifications = new Intent(getApplicationContext(), TeacherNotifications.class);
-                                startActivity(teacherNotifications);
-                                finish(); //finsih this activity so you can't press back to go to the login screen after already logging in
+                                System.out.println("role: "+roleID);
+                                System.out.println("enum: " + Roles.TEACHER.toString());
+                                if(roleID.equals(Roles.TEACHER.toString())) {
+                                    Intent teacherNotifications =
+                                            new Intent(getApplicationContext(), TeacherNotifications.class);
+                                    startActivity(teacherNotifications);
+                                    finish(); //finsih this activity so you can't press back to go to the login screen after already logging in
+                                }
                             }
                             else {
                                 Toast.makeText(MainActivity.getInstance(), "Logged In Failed", Toast.LENGTH_LONG).show();
