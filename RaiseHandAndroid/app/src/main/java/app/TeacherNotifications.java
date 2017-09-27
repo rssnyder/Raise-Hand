@@ -7,14 +7,25 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.example.sae1.raisehand.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import RecyclerViews.ListItemTeacherNotifications;
+import RecyclerViews.MyAdapter;
 import utils.LoginActivity;
 
 public class TeacherNotifications extends AppCompatActivity {
+
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private List<ListItemTeacherNotifications> listItems;
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
@@ -25,6 +36,21 @@ public class TeacherNotifications extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_notifications);
+
+        recyclerView = (RecyclerView) findViewById(R.id.notificationRecyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        listItems = new ArrayList<>();
+        for(int i = 0; i < 10; i++){
+            ListItemTeacherNotifications listItem = new ListItemTeacherNotifications("Notification " + (i+1),
+                                                                                     "Dummy text. I'm here to notify you!");
+            listItems.add(listItem);
+        }
+
+        adapter = new MyAdapter(listItems, this);
+
+        recyclerView.setAdapter(adapter);
 
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
