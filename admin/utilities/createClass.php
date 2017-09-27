@@ -5,13 +5,13 @@
     if($_SESSION['role'] != 1) {
       $_SESSION['error'] = true;
       $_SESSION['errorCode'] = "Not Permitted";
-      header("Location: ../login.php");
+      header("Location: ../../login.php");
       die("oops");
     }
   } else {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Session Expired";
-    header("Location: ../login.php");
+    header("Location: ../../login.php?event=logout");
   }
   //TODO Grab all this from a file
   //Define sql database information
@@ -30,42 +30,42 @@
   if("" == trim($_POST['name'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Class Name Required";
-    header("Location: pages.php?page=createClass");
+    header("Location: ../pages.php?page=createClass");
   }
   else if("" == trim($_POST['teacher'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Instructor Required";
-    header("Location: pages.php?page=createClass");
+    header("Location: ../pages.php?page=createClass");
   }
   else if("" == trim($_POST['startDate'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Start Date Required";
-    header("Location: pages.php?page=createClass");
+    header("Location: ../pages.php?page=createClass");
   }
   else if("" == trim($_POST['endDate'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "End Date Required";
-    header("Location: pages.php?page=createClass");
+    header("Location: ../pages.php?page=createClass");
   }
   else if("" == trim($_POST['startTime'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Start Time Required";
-    header("Location: pages.php?page=createClass");
+    header("Location: ../pages.php?page=createClass");
   }
   else if("" == trim($_POST['endTime'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "End Time Required";
-    header("Location: pages.php?page=createClass");
+    header("Location: ../pages.php?page=createClass");
   }
   else if("" == trim($_POST['meetingsPerWeek'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Meetings Per Week Required";
-    header("Location: pages.php?page=createClass");
+    header("Location: ../pages.php?page=createClass");
   }
   else if("" == trim($_POST['universityID'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "University ID Required";
-    header("Location: pages.php?page=createClass");
+    header("Location: ../pages.php?page=createClass");
   }
   else {
     //Get teacher id
@@ -115,7 +115,7 @@
     $result = $db->query($create) or die($db->error);
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Class Created";
-    header("Location: pages.php?page=createClass");
+    header("Location: ../pages.php?page=createClass");
     die("done");
   }
 ?>

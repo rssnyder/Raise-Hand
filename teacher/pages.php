@@ -11,7 +11,7 @@
   } else {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Session Expired";
-    header("Location: ../login.php");
+    header("Location: ../login.php?event=logout");
   }
 
   //TODO Grab all this from a file
@@ -28,8 +28,13 @@
   //Get this class
   $query = "SELECT * FROM classes WHERE ID = " . $_GET['class'];
   $result = $db->query($query) or die($db->error);
-  $class = $result->fetch_assoc()
+  $class = $result->fetch_assoc();
 
+  //Check to see if this teacher actaully owns this classes
+  if($class['teacher_id'] != $_SESSION['id']) {
+    header("Location: home.php");
+    die("oops");
+  }
 ?>
 
 <html lang="en">
@@ -73,7 +78,8 @@
     <div align="center" class="container">
       <?php
         if($_GET['page'] == 'classSettings') {
-          echo '<form id="singup-form" action="updateClass.php?class=' . $_GET['class'] . '" method="post">';
+          echo '<form id="singup-form" action="utilities/updateClass.php?class=' . $_GET['class'] . '" method="post">';
+          echo '<br><br>The access code for this class is: ' . $class['access_code'] . '<br><br>';
           if($_SESSION['error']){
               echo '<font color="red">' . $_SESSION['errorCode'] . "</font><br><br>";
               $_SESSION['error'] = false;

@@ -11,7 +11,7 @@
   } else {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Session Expired";
-    header("Location: ../login.php");
+    header("Location: ../login.php?event=logout");
   }
 ?>
 
@@ -51,7 +51,7 @@
     <div align="center" class="container">
       <?php
         if($_GET['page'] == 'createClass') {
-          echo '<form id="singup-form" action="createClass.php" method="post">';
+          echo '<form id="singup-form" action="utilities/createClass.php" method="post">';
           if($_SESSION['error']){
               echo '<font color="red">' . $_SESSION['errorCode'] . "</font><br><br>";
               $_SESSION['error'] = false;
@@ -76,7 +76,7 @@
           </form>';
         }
         else if($_GET['page'] == 'createUser') {
-          echo '<form id="singup-form" action="createUser.php" method="post">';
+          echo '<form id="singup-form" action="utilities/createUser.php" method="post">';
           if($_SESSION['error']){
               echo '<font color="red">' . $_SESSION['errorCode'] . "</font><br><br>";
               $_SESSION['error'] = false;
@@ -96,7 +96,7 @@
 
         }
         else if($_GET['page'] == 'other') {
-          echo '<form id="singup-form" action="other.php?type=makeAdmin" method="post">';
+          echo '<form id="singup-form" action="utilities/other.php?type=makeAdmin" method="post">';
           if($_SESSION['error']){
               echo '<font color="red">' . $_SESSION['errorCode'] . "</font><br><br>";
               $_SESSION['error'] = false;

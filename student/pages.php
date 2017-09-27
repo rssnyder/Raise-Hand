@@ -11,7 +11,7 @@
   } else {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Session Expired";
-    header("Location: ../login.php");
+    header("Location: ../login.php?event=logout");
   }
 
   //TODO Grab all this from a file
@@ -22,6 +22,7 @@
   $user="dbu309sab3";
   $password="SD0wFGqd";
   $dbname="db309sab3";
+
   //Connect to database
   $db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 
@@ -63,7 +64,7 @@
     <div align="center" class="container">
       <?php
         if(!strcmp($_GET['page'], 'joinClass')) {
-          echo '<form id="class-join-form" action="joinClass.php" method="post">';
+          echo '<form id="class-join-form" action="utilities/joinClass.php" method="post">';
           if($_SESSION['error']){
               echo '<font color="red">' . $_SESSION['errorCode'] . "</font><br><br>";
               $_SESSION['error'] = false;

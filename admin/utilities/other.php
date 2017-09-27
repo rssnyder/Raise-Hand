@@ -5,13 +5,13 @@
     if($_SESSION['role'] != 1) {
       $_SESSION['error'] = true;
       $_SESSION['errorCode'] = "Not Permitted";
-      header("Location: ../login.php");
+      header("Location: ../../login.php");
       die("oops");
     }
   } else {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Session Expired";
-    header("Location: ../login.php");
+    header("Location: ../../login.php?event=logout");
   }
   //TODO Grab all this from a file
   //Define sql database information
@@ -31,7 +31,7 @@
     if("" == trim($_POST['username'])) {
       $_SESSION['error'] = true;
       $_SESSION['errorCode'] = "Username Required";
-      header("Location: pages.php?page=other");
+      header("Location: ../pages.php?page=other");
       die('No username');
     }
     else {
@@ -39,7 +39,7 @@
       $result = $db->query($makeAdmin) or die($makeAdmin);
       $_SESSION['error'] = true;
       $_SESSION['errorCode'] = "User Level Elivated";
-      header("Location: pages.php?page=other");
+      header("Location: ../pages.php?page=other");
     }
   }
 

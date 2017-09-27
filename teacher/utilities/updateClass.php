@@ -5,13 +5,13 @@
     if($_SESSION['role'] != 2) {
       $_SESSION['error'] = true;
       $_SESSION['errorCode'] = "Not Permitted";
-      header("Location: ../login.php");
+      header("Location: ../../login.php");
       die("oops");
     }
   } else {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Session Expired";
-    header("Location: ../login.php");
+    header("Location: ../../login.php?event=logout");
   }
   //TODO Grab all this from a file
   //Define sql database information
@@ -95,7 +95,7 @@
   if($first) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "No Updates";
-    header("Location: pages.php?class=" . $_GET['class'] . "&page=classSettings");
+    header("Location: ../pages.php?class=" . $_GET['class'] . "&page=classSettings");
     die("done");
   }
 
@@ -106,7 +106,7 @@
     $result = $db->query($updateString) or die($db->error);
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Class Updated";
-    header("Location: pages.php?class=" . $_GET['class'] . "&page=classSettings");
+    header("Location: ../pages.php?class=" . $_GET['class'] . "&page=classSettings");
     die("done");
 
 ?>

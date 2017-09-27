@@ -11,6 +11,6 @@
   } else {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Session Expired";
-    header("Location: ../login.php");
+    header("Location: ../login.php?event=logout");
   }
 ?>

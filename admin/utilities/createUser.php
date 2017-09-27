@@ -5,13 +5,13 @@
     if($_SESSION['role'] != 1) {
       $_SESSION['error'] = true;
       $_SESSION['errorCode'] = "Not Permitted";
-      header("Location: ../login.php");
+      header("Location: ../../login.php");
       die("oops");
     }
   } else {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Session Expired";
-    header("Location: ../login.php");
+    header("Location: ../../login.php?event=logout");
   }
   //TODO Grab all this from a file
   //Define sql database information
@@ -29,17 +29,17 @@
   if("" == trim($_POST['first'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "First Name Required";
-    header("Location: pages.php?page=createUser");
+    header("Location: ../pages.php?page=createUser");
   }
   else if("" == trim($_POST['last'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Last Name Required";
-    header("Location: pages.php?page=createUser");
+    header("Location: ../pages.php?page=createUser");
   }
   else if("" == trim($_POST['username'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Username Required";
-    header("Location: pages.php?page=createUser");
+    header("Location: ../pages.php?page=createUser");
   }
   /*
   else if("" == trim($_POST['email'])) {
@@ -51,7 +51,7 @@
   else if("" == trim($_POST['password'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Password Required";
-    header("Location: pages.php?page=createUser");
+    header("Location: ../pages.php?page=createUser");
   }
   else {
     $username = $_POST['username'];
@@ -64,7 +64,7 @@
     if($uname) {
       $_SESSION['error'] = true;
       $_SESSION['errorCode'] = "Username Taken";
-      header("Location: pages.php?page=createUser");
+      header("Location: ../pages.php?page=createUser");
       die("User exists");
     }
     $password = $_POST['password'];
@@ -80,7 +80,7 @@
     $result = $db->query($insert) or die($db->error);
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Account Created";
-    header("Location: pages.php?page=createUser");
+    header("Location: ../pages.php?page=createUser");
     die("done");
   }
 ?>
