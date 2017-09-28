@@ -139,12 +139,12 @@ public class LoginActivity extends Activity {
                                     finish(); //finsih this activity so you can't press back to go to the login screen after already logging in
                                 }
 
-                                else if (roleID.equals(Roles.STUDENT.toString())){
+                                /*else if (roleID.equals(Roles.STUDENT.toString())){
                                     Intent studentNotifications =
                                             new Intent(getApplicationContext(), com.example.sae1.raisehand.student_notifications.class);
                                     startActivity(studentNotifications);
                                     finish();
-                                }
+                                }*/
                             }
                             else {
                                 Toast.makeText(MainActivity.getInstance(), "Logged In Failed", Toast.LENGTH_LONG).show();
