@@ -1,5 +1,5 @@
 <?php
-  shell_exec('sudo git pull');
+  shell_exec('git pull');
   header("Location: ../login.php?event=logout");
   die("You have pulled.")
 ?>
