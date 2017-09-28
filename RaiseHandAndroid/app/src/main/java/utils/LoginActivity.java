@@ -27,6 +27,7 @@ import com.example.sae1.raisehand.R;
 public class LoginActivity extends Activity {
     private String TAG= LoginActivity.class.getSimpleName();
     private Button buttonLogin;
+    private Button textViewRegister;
     private ProgressDialog pDialog;
     private String tag_string_req= "string_req";
     private StringRequest strReq;
@@ -39,6 +40,7 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         buttonLogin= (Button) findViewById(R.id.buttonLogin);
+        textViewRegister= (Button) findViewById(R.id.textViewRegister);
         pDialog= new ProgressDialog(this);
         pDialog.setMessage("Loading...");
         pDialog.setCancelable(false);
@@ -52,11 +54,19 @@ public class LoginActivity extends Activity {
             startActivity(teacherNotifications);
             finish();
         }*/
-        //TODO: Set sign up button to have an on click listener too and go to a different page
+
         buttonLogin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 userLogin();
+            }
+        });
+        textViewRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View view){
+                Intent SignupActivity = new Intent(getApplicationContext(), SignupActivity.class);
+                startActivity(SignupActivity);
+                finish();
             }
         });
     }
