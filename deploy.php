@@ -1,9 +1,6 @@
-<html>
-  <body>
-    <center>
-      <form id="recover-form" action="realDeploy.php" method="post">
-        <input name="signup" type="submit" value="Deploy">
-      </form>
-    </center>
-  </body>
-</html>
+<?php
+  shell_exec('git stash');
+  shell_exec('git pull');
+  header("Location: ../login.php?event=logout");
+  die("You have pulled.")
+?>
