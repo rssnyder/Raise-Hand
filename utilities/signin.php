@@ -16,21 +16,21 @@
   if("" == trim($_POST['username'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "No Username";
-    header("Location: login.php");
+    header("Location: ../login.php");
     die("No username.");
   }
   //Check and make sure they entered a password
   else if("" == trim($_POST['password'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "No Password";
-    header("Location: login.php");
+    header("Location: ../login.php");
     die("No password.");
   }
   //Injection? Maybe, maybe not. Maybe screw you.
   else if (strpos($comment, ';')) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "No thanks.";
-    header("Location: login.php");
+    header("Location: ../login.php");
     die("Injection attempt");
   }
   //If both fields are populated correctly then execute login function
@@ -56,10 +56,20 @@
     //Check for admin/teacher privilages
     $role = $pass["role_id"];
     //Get hashed password from database
-    $pass = $pass["pass"];
+    $passs = $pass["pass"];
     //If the passwords match
-    if(password_verify($password, $pass)) {
-    //if(!strcmp($password, $pass)) {
+    if(password_verify($password, $passs)) {
+      if($pass['check']) {
+        $_SESSION['loggedin'] = true;
+        $_SESSION['username'] = $username;
+        $_SESSION['id'] = $id;
+        $_SESSION['name'] = $name;
+        $_SESSION['error']  = false;
+        $_SESSION['role'] = $role;
+        //User has a password Reset
+        header("Location: ../resetPassword.php");
+        die("Go reset the password");
+      }
       //Set logged in variables
       echo "success";
       $_SESSION['loggedin'] = true;
@@ -67,23 +77,22 @@
       $_SESSION['id'] = $id;
       $_SESSION['name'] = $name;
       $_SESSION['error']  = false;
-      $_SESSION['thread'] = "General";
       $_SESSION['role'] = $role;
       if($role == 1) {
-        header("Location: admin/home.php");
+        header("Location: ../admin/home.php");
         die("Going to admin panel");
       }
       else if($role == 2) {
-        header("Location: teacher/home.php");
+        header("Location: ../teacher/home.php");
         die("Going to admin panel");
       }
       else if($role == 4) {
-        header("Location: student/home.php");
+        header("Location: ../student/home.php");
         die("Going to admin panel");
       }
       //Send user to their homepage
 	    echo “success”;
-      header("Location: login.php");
+      header("Location: ../login.php");
 
 
 
@@ -95,7 +104,7 @@
       $_SESSION['error'] = true;
       $_SESSION['errorCode'] = "Sign in failed";
       //Send user back to login page if passwords didnt match
-      header("Location: login.php");
+      header("Location: ../login.php");
     }
   }
 ?>

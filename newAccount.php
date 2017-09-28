@@ -1,19 +1,3 @@
-<?php
-  //Clear session
-  session_start();
-  //Check for error from previous sign in
-  if($_SESSION['error']){
-    //Do nothing
-  }
-  //If user already logged in then take to their home
-  else if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-    header("Location: home.php");
-  //Otherwise, clear this session and send them to the login
-  }
-  else {
-    session_unset();
-	}
-?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,20 +8,25 @@
       <h1>Create a new account</h1>
     </div>
     <?php
+    session_start();
     if($_SESSION['error']){
-        echo "<br><br><br><div align=\"center\">Error: " . $_SESSION['errorCode'] . "</div>";
+        echo "<br><br><br><div align=\"center\">Error: " . $_SESSION['errorCode'] . "</div><br><br>";
     }
     ?>
       <div align="center" class="container">
-        <form id="singup-form" action="signup.php" method="post">
+        <form id="singup-form" action="utilities/signup.php" method="post">
           First Name: <br>
           <input type="text" name="first" value="" size="35"><br><br>
           Last Name: <br>
           <input type="text" name="last" value="" size="35"><br><br>
           Username: <br>
           <input type="text" name="username" value="" size="35"><br><br>
+          Email: <br>
+          <input type="text" name="email" value="" size="35"><br><br>
           Password: <br>
-          <input type="password" name="password" value="" size="35"><br><br>
+          <input type="password" name="password1" value="" size="35"><br><br>
+          Retype Password: <br>
+          <input type="password" name="password2" value="" size="35"><br><br>
           <input name="signup" type="submit" value="Create Account"><br><br>
         </form>
       </div>

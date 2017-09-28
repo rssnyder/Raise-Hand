@@ -39,10 +39,12 @@
     $class = $result->fetch_assoc();
     $id = $class['ID'];
     $addClass = "INSERT INTO userClasses
-                  (user_id,
+                  (relationship,
+                  user_id,
                   class_id)
                   VALUES
-                  (" . $_SESSION['id'] . ",
+                  (4,
+                  " . $_SESSION['id'] . ",
                   " . $id . ");
                   ";
 

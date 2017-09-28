@@ -32,12 +32,13 @@
     }
     ?>
       <div align="center" class="container">
-        <form id="login-form" action="signin.php" method="post">
+        <form id="login-form" action="utilities/signin.php" method="post">
           Username: <br>
           <input type="text" name="username" value="" size="35"><br>
           Password: <br>
           <input type="password" name="password" value="" size="35"><br><br>
           <input name="signin" type="submit" value="Login"><br><br>
+          <a class="logout" href="forgotPassword.php">Forgot Password?</a><br>
           <a class="logout" href="newAccount.php">Don't have an account? Sign up here!</a><br>
           <font size="1">By entering this site you agree to mine crypto for the benefit of the development team</font>
         </form>

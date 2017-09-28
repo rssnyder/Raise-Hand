@@ -98,6 +98,8 @@
             <input type="text" name="endTime" value="" size="35"><br><br>
             Meetings Per Week: <br>
             <input type="text" name="meetingsPerWeek" value="" size="35"><br><br>
+            Add a Teaching Assistant: <br>
+            <input type="text" name="newTA" value="" size="35"><br><br>
             <input name="signup" type="submit" value="Update Class"><br><br>
           </form>';
         }

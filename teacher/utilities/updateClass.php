@@ -25,13 +25,38 @@
   $db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
   //Print out host information
   //echo $db->host_info;
+
+  //If specified, add a TA
+  $taAdd = false;
+  if(!("" == trim($_POST['newTA']))) {
+    $ta = $_POST['newTA'];
+    $query = "SELECT ID FROM users WHERE username = '$ta'";
+    $result = $db->query($query) or die($db->error);
+    $ta = $result->fetch_assoc();
+    $taID = $ta['ID'];
+
+    $addClass = "INSERT INTO userClasses
+                  (relationship,
+                  user_id,
+                  class_id)
+                  VALUES
+                  (3,
+                  " . $taID . ",
+                  " . $_GET['class'] . ");
+                  ";
+
+    $result = $db->query($addClass) or die($db->error);
+    $taAdd = true;
+  }
+
+
   //Make sure everything is there and then create the class
 
-    //Our update string
-    $updateString = "UPDATE classes SET ";
+  //Our update string
+  $updateString = "UPDATE classes SET ";
 
-    //First change marker
-    $first = 1;
+  //First change marker
+  $first = 1;
 
   //Build thr string based on things that were changed
   if(!("" == trim($_POST['name']))) {
@@ -93,20 +118,31 @@
     }
   }
   if($first) {
-    $_SESSION['error'] = true;
-    $_SESSION['errorCode'] = "No Updates";
-    header("Location: ../pages.php?class=" . $_GET['class'] . "&page=classSettings");
-    die("done");
+    if($taAdd) {
+      $_SESSION['error'] = true;
+      $_SESSION['errorCode'] = "Teaching Assistant Added";
+      header("Location: ../pages.php?class=" . $_GET['class'] . "&page=classSettings");
+      die("done");
+    }
+    else {
+      $_SESSION['error'] = true;
+      $_SESSION['errorCode'] = "No Updates";
+      header("Location: ../pages.php?class=" . $_GET['class'] . "&page=classSettings");
+      die("done");
+    }
   }
 
   //Cap off the query
   $updateString = $updateString . " WHERE ID = " . $_GET['class'];
 
-    //Send update to db
-    $result = $db->query($updateString) or die($db->error);
-    $_SESSION['error'] = true;
-    $_SESSION['errorCode'] = "Class Updated";
-    header("Location: ../pages.php?class=" . $_GET['class'] . "&page=classSettings");
-    die("done");
+  //Send update to db
+  $result = $db->query($updateString) or die($db->error);
+
+
+
+  $_SESSION['error'] = true;
+  $_SESSION['errorCode'] = "Class Updated";
+  header("Location: ../pages.php?class=" . $_GET['class'] . "&page=classSettings");
+  die("done");
 
 ?>

@@ -16,29 +16,32 @@
   if("" == trim($_POST['first'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "First Name Required";
-    header("Location: newAccount.php");
+    header("Location: ../newAccount.php");
   }
   else if("" == trim($_POST['last'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Last Name Required";
-    header("Location: newAccount.php");
+    header("Location: ../newAccount.php");
   }
   else if("" == trim($_POST['username'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Username Required";
-    header("Location: newAccount.php");
+    header("Location: ../newAccount.php");
   }
-  /*
   else if("" == trim($_POST['email'])) {
     $_SESSION['error'] = true;
-    $_SESSION['errorCode'] = "Email Required (it can be fake)";
-    header("Location: login.php");
+    $_SESSION['errorCode'] = "Email Required";
+    header("Location: ../newAccount.php");
   }
-  */
-  else if("" == trim($_POST['password'])) {
+  else if("" == trim($_POST['password1'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Password Required";
-    header("Location: newAccount.php");
+    header("Location: ../newAccount.php");
+  }
+  else if($_POST['password1'] != $_POST['password2']) {
+    $_SESSION['error'] = true;
+    $_SESSION['errorCode'] = "Passwords Do Not Match";
+    header("Location: ../newAccount.php");
   }
   else {
     $username = $_POST['username'];
@@ -52,24 +55,35 @@
     if($uname) {
       $_SESSION['error'] = true;
       $_SESSION['errorCode'] = "Username Taken";
-      header("Location: newAccount.php");
+      header("Location: ../newAccount.php");
       die("User exists");
     }
-    $password = $_POST['password'];
+    $password = $_POST['password1'];
     $password = password_hash($password, PASSWORD_DEFAULT);
-    signUp($username, $_POST['first'], $_POST['last'], $password, $db);
+    signUp($username, $_POST['first'], $_POST['last'], $_POST['email'], $password, $db);
   }
 
   //Function to enter new user into database
-  function signUp($username, $first, $last, $password, $db) {
+  function signUp($username, $first, $last, $email, $password, $db) {
     //Create sql command
-    $insert = "INSERT INTO users(role_id, first_name, last_name, pass, username) VALUES (4, '$first', '$last', '$password', '$username')";
+    $insert = "INSERT INTO users(role_id, first_name, last_name, pass, username, email) VALUES (4, '$first', '$last', '$password', '$username', '$email')";
     //Excecute
     $result = $db->query($insert) or die($db->error);
+    //We need his ID so we should query his name
+    //Create sql command
+    $insert = "SELECT ID FROM users WHERE username = '$username' ";
+    //Excecute
+    $result = $db->query($insert) or die($db->error);
+    //Get the data of the username they specified
+    $id = $result->fetch_assoc();
+
     $_SESSION['loggedin'] = true;
     $_SESSION['username'] = $username;
-    $_SESSION['thread'] = "General";
-    header("Location: home.php");
+    $_SESSION['id'] = $id['id'];
+    $_SESSION['name'] = $first;
+    $_SESSION['error']  = false;
+    $_SESSION['role'] = 4;
+    header("Location: ../student/home.php");
     die("done");
   }
 ?>
