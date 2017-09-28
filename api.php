@@ -36,7 +36,7 @@
 	   );
 		$response['error'] = false;
 		$response['message'] = 'Invalid username or password';
-		$res['class_id']=0;
+		$res['class_id']="0";
 	}
 	if($user['logged_in']){
 	    $tempID= $response['ID'];
@@ -44,7 +44,7 @@
 	    $stmt = $db->query($stmt) or die($db->error);
 	    $res = $stmt->fetch_assoc();
 	    if(empty($res)){
-	        $res['class_id']=0;
+	        $res['class_id']="0";
 	    }
 	}
 	$final = array_merge($user, $res);
