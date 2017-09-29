@@ -17,6 +17,7 @@
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Email Required";
     header("Location: ../forgotPassword.php");
+    die('Go back');
   }
   else {
     $email = $_POST['email'];
@@ -27,8 +28,10 @@
       $uid = $uname['ID'];
       //Hash the email
       $temp = password_hash($uname['email'], PASSWORD_DEFAULT);
-      //Make the temp password
-      $tempP = password_hash(substr($pass, 10, 8), PASSWORD_DEFAULT);
+      //make the temp pass
+      $p = substr($temp, 10, 8);
+      //hash the temp password
+      $tempP = password_hash($p, PASSWORD_DEFAULT);
       //Update the users account
       $ucheck = "UPDATE users SET pass = '$tempP', reset = 1 WHERE ID = '$uid'";
       $result = $db->query($ucheck) or die($db->error);
@@ -36,16 +39,19 @@
       $to = $email;
       $subject = "Your password has been reset";
       $txt = "Hello,
-                You recently requested a password reset on your Raise Hand account. You will find
-                your new password below. This password has a one time use, and you will be asked to
-                enter a new password the next time you log in.
+      
+        You recently requested a password reset on your Raise Hand account. You will find
+        your new password below. This password has a one time use, and you will be asked to
+        enter a new password the next time you log in.
 
-                " . $tempP . "is your temporary password.
+        " . $p . " is your temporary password.
 
-                If you have any problems, please contact support at support@raisehand.com";
+        If you have any problems, please contact support at support@raisehand.com";
       $headers = "From: do-not-reply@raisehand.com" . "\r\n";
 
-mail($to,$subject,$txt,$headers);
+      mail($to,$subject,$txt,$headers);
+      header("Location: ../login.php");
+      die("go home");
     }
     else {
       $_SESSION['error'] = true;
