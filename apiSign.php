@@ -29,7 +29,7 @@
       $_SESSION['errorCode'] = "Username Taken";
       die("User exists");
     }
-	$email= $_GET['email'];
+	//$email= $_GET['email'];
 	$university= $_GET['university'];
 	
 	//Check for the university ID given the university name
@@ -38,7 +38,7 @@
 	$university_id=$statement->fetch_assoc();
     
     //finally, insert into the database
-	$stmt = "INSERT INTO users(role_id, first_name, last_name, pass, username, university_id, email) VALUES (4,'$first', '$last', '$password', '$username', $university_id, '$email')";
+	$stmt = "INSERT INTO users(role_id, first_name, last_name, pass, username, university_id) VALUES (4,'$first', '$last', '$password', '$username', $university_id)";
 	$stmt = $db->query($stmt) or die($db->error);
 	die("Done");
 
