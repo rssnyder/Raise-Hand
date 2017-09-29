@@ -40,6 +40,7 @@
     //finally, insert into the database
 	$stmt = "INSERT INTO users(role_id, first_name, last_name, pass, username, university_id, email) VALUES (4,'$first', '$last', '$password', '$username', $university_id, '$email')";
 	$stmt = $db->query($stmt) or die($db->error);
+	die("Done");
 
   
 
