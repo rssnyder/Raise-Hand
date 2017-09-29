@@ -26,9 +26,10 @@
   }
   else {
     $password = $_POST['password1'];
+    $temp = password_hash($password, PASSWORD_DEFAULT);
     $uid = $_SESSION['id'];
     //Update the users account
-    $ucheck = "UPDATE users SET pass = '$password', reset = 0 WHERE ID = '$uid'";
+    $ucheck = "UPDATE users SET pass = '$temp', reset = 0 WHERE ID = '$uid'";
     $result = $db->query($ucheck) or die($db->error);
     if($_SESSION['role'] == 1) {
       header("Location: ../admin/home.php");
