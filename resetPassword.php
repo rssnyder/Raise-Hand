@@ -1,4 +1,5 @@
 <?php
+/*
   if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 
   }
@@ -7,6 +8,7 @@
     $_SESSION['errorCode'] = "You don't belong there";
     header("Location: login.php?event=logout");
   }
+  */
 ?>
 <!DOCTYPE html>
 <html lang="en">
