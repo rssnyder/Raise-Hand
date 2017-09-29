@@ -102,7 +102,7 @@
       //Set session varibales to notify user
       $_SESSION['loggedin'] = false;
       $_SESSION['error'] = true;
-      $_SESSION['errorCode'] = "Sign in failed";
+      $_SESSION['errorCode'] = "Incorrect Password";
       //Send user back to login page if passwords didnt match
       header("Location: ../login.php");
     }

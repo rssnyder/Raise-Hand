@@ -11,6 +11,7 @@
     session_start();
     if($_SESSION['error']){
         echo "<br><br><br><div align=\"center\">Error: " . $_SESSION['errorCode'] . "</div><br><br>";
+        $_SESSION['error'] = false;
     }
     ?>
       <div align="center" class="container">
