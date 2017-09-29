@@ -149,8 +149,6 @@ public class LoginActivity extends Activity {
 
                                 //TODO make it go to the student or teacher page depending on what kind of user logged in
                                 //Go to the teacher notification page
-                                System.out.println("role: "+roleID);
-                                System.out.println("enum: " + Roles.TEACHER.toString());
                                 if(roleID.equals(Roles.TEACHER.toString())) {
                                     Intent teacherNotifications =
                                             new Intent(getApplicationContext(), TeacherNotifications.class);

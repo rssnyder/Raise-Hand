@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.ViewDragHelper;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 
 import com.example.sae1.raisehand.R;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +33,7 @@ public class TeacherNotifications extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
     private NavigationView nv;
+    private Field mDragger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,8 @@ public class TeacherNotifications extends AppCompatActivity {
             listItems.add(listItem);
         }
 
+
+
         adapter = new MyAdapter(listItems, this);
 
         recyclerView.setAdapter(adapter);
@@ -61,6 +66,7 @@ public class TeacherNotifications extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
 
+        slideOutMenu();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         nv = (NavigationView) findViewById(R.id.nv1);
@@ -99,6 +105,7 @@ public class TeacherNotifications extends AppCompatActivity {
 
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -107,6 +114,45 @@ public class TeacherNotifications extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void slideOutMenu(){
+
+        try {
+            mDragger = mDrawerLayout.getClass().getDeclaredField(
+                    "mLeftDragger");//mRightDragger for right obviously
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+        mDragger.setAccessible(true);
+        ViewDragHelper draggerObj = null;
+        try {
+            draggerObj = (ViewDragHelper) mDragger
+                    .get(mDrawerLayout);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        Field mEdgeSize = null;
+        try {
+            mEdgeSize = draggerObj.getClass().getDeclaredField(
+                    "mEdgeSize");
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+        mEdgeSize.setAccessible(true);
+        int edge = 0;
+        try {
+            edge = mEdgeSize.getInt(draggerObj);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            mEdgeSize.setInt(draggerObj, edge * 25);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
 }
