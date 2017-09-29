@@ -17,12 +17,12 @@
   if("" == trim($_POST['password1'])) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Password Required";
-    header("Location: ../forgotPassword.php");
+    header("Location: ../resetPassword.php");
   }
   else if($_POST['password1'] != $_POST['password2']) {
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Passwords do not match";
-    header("Location: ../forgotPassword.php");
+    header("Location: ../resetPassword.php");
   }
   else {
     $password = $_POST['password1'];

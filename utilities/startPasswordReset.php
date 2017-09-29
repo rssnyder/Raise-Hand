@@ -39,7 +39,7 @@
       $to = $email;
       $subject = "Your password has been reset";
       $txt = "Hello,
-      
+
         You recently requested a password reset on your Raise Hand account. You will find
         your new password below. This password has a one time use, and you will be asked to
         enter a new password the next time you log in.
@@ -50,6 +50,8 @@
       $headers = "From: do-not-reply@raisehand.com" . "\r\n";
 
       mail($to,$subject,$txt,$headers);
+      $_SESSION['error'] = true;
+      $_SESSION['errorCode'] = "Please check your email for further reset instructions";
       header("Location: ../login.php");
       die("go home");
     }
