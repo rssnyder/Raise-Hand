@@ -27,7 +27,7 @@
     </div>
     <?php
     if($_SESSION['error']){
-        echo "<br><br><br><div align=\"center\">Error: " . $_SESSION['errorCode'] . "</div>";
+        echo "<br><br><br><div align=\"center\">" . $_SESSION['errorCode'] . "</div>";
         $_SESSION['error'] = false;
     }
     ?>
