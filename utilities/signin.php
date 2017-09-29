@@ -59,7 +59,7 @@
     $passs = $pass["pass"];
     //If the passwords match
     if(password_verify($password, $passs)) {
-      if($pass['check']) {
+      if($pass['reset']) {
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $username;
         $_SESSION['id'] = $id;
