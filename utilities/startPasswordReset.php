@@ -30,10 +30,22 @@
       //Make the temp password
       $tempP = password_hash(substr($pass, 10, 8), PASSWORD_DEFAULT);
       //Update the users account
-      $ucheck = "UPDATE users SET password = '$tempP', reset = 1 WHERE ID = '$uid'";
+      $ucheck = "UPDATE users SET pass = '$tempP', reset = 1 WHERE ID = '$uid'";
       $result = $db->query($ucheck) or die($db->error);
       //Now need to send user email with temp password
-      
+      $to = $email;
+      $subject = "Your password has been reset";
+      $txt = "Hello,
+                You recently requested a password reset on your Raise Hand account. You will find
+                your new password below. This password has a one time use, and you will be asked to
+                enter a new password the next time you log in.
+
+                " . $tempP . "is your temporary password.
+
+                If you have any problems, please contact support at support@raisehand.com";
+      $headers = "From: do-not-reply@raisehand.com" . "\r\n";
+
+mail($to,$subject,$txt,$headers);
     }
     else {
       $_SESSION['error'] = true;
