@@ -27,9 +27,9 @@
       <div align="center" class="container">
         <form id="recover-form" action="utilities/resetPassword.php" method="post">
           Enter new password: <br>
-          <input type="text" name="password1" value="" size="35"><br><br>
+          <input type="password" name="password1" value="" size="35"><br><br>
           Retype password: <br>
-          <input type="text" name="password2" value="" size="35"><br><br>
+          <input type="password" name="password2" value="" size="35"><br><br>
           <input name="signup" type="submit" value="Create Account"><br><br>
         </form>
       </div>

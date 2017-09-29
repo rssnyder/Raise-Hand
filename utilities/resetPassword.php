@@ -1,6 +1,6 @@
 <?php
   session_start();
-  
+
   //TODO Grab all this from a file
   //Define sql database information
   $host="mysql.cs.iastate.edu";
@@ -28,7 +28,7 @@
     $password = $_POST['password1'];
     $uid = $_SESSION['id'];
     //Update the users account
-    $ucheck = "UPDATE users SET password = '$password', reset = 0 WHERE ID = '$uid'";
+    $ucheck = "UPDATE users SET pass = '$password', reset = 0 WHERE ID = '$uid'";
     $result = $db->query($ucheck) or die($db->error);
     if($_SESSION['role'] == 1) {
       header("Location: ../admin/home.php");
