@@ -30,7 +30,6 @@ public class LoginActivity extends Activity {
     private Button textViewRegister;
     private ProgressDialog pDialog;
     private String tag_string_req= "string_req";
-    private StringRequest strReq;
     EditText editTextUsername, editTextPassword;
     public User currentUser;
     private SharedPreferences mPreferences;
