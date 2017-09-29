@@ -97,75 +97,68 @@ public class LoginActivity extends Activity {
         }
         showProgressDialog();
         StringRequest req = new StringRequest(Request.Method.GET,url_final,
-                                                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
 
-                            Log.d(TAG, response.toString());
-                            String phpResponse=response.toString();
-                            //in the php file, the user information is stored in an array with : as a delimiter between the variable name and actual value
-                            String[] seperated=phpResponse.split(":");
+                        Log.d(TAG, response.toString());
+                        String phpResponse=response.toString();
+                        //in the php file, the user information is stored in an array with : as a delimiter between the variable name and actual value
+                        String[] seperated=phpResponse.split(":");
 
-                            if(seperated[1].contains("true")) {
-                                //concat strings to make it so that the array is properly read from the php response
-                                String unique_id=seperated[2];
-                                unique_id=unique_id.substring(1, unique_id.indexOf(",")-1);
-                                String roleID=seperated[3];
-                                roleID=roleID.substring(1,roleID.indexOf(",")-1);
-                                String usern=seperated[4];
-                                usern=usern.substring(1, usern.indexOf(",")-1);
-                                String first=seperated[5];
-                                first=first.substring(1, first.indexOf(",")-1);
-                                String last=seperated[6];
-                                last=last.substring(1,last.indexOf(",")-1);
-                                String class_ids=seperated[7];
-                                class_ids=class_ids.substring(1, class_ids.length()-2);
-                                //In the php file, if someone is not in a class, I made it return 0 (meaning no classes for this user)
-                                if(class_ids=="0") {
-                                    class_ids = "None available";
-                                }
-                                Toast.makeText(MainActivity.getInstance(), "Welcome back, "+first+"!", Toast.LENGTH_LONG).show();
-                                currentUser=new User(unique_id,roleID,usern,first,last,class_ids, true);
-
-                                //store the username on login
-                                SharedPreferences.Editor editor = mPreferences.edit();
-                                editor.putString("username", usern);
-                                editor.putString("role", roleID);
-                                editor.putString("unique_id", unique_id);
-                                editor.putString("first_name", first);
-                                editor.putString("last_name", last);
-                                editor.putString("classes",class_ids);
-                                editor.commit();
-
-                                //TODO make it go to the student or teacher page depending on what kind of user logged in
-                                //Go to the teacher notification page
-                                System.out.println("role: "+roleID);
-                                System.out.println("enum: " + Roles.TEACHER.toString());
-                                if(roleID.equals(Roles.TEACHER.toString())) {
-                                    Intent teacherNotifications =
-                                            new Intent(getApplicationContext(), TeacherNotifications.class);
-                                    startActivity(teacherNotifications);
-                                    finish(); //finsih this activity so you can't press back to go to the login screen after already logging in
-                                }
-
-                                /*else if (roleID.equals(Roles.STUDENT.toString())){
-                                    Intent studentNotifications =
-                                            new Intent(getApplicationContext(), com.example.sae1.raisehand.student_notifications.class);
-                                    startActivity(studentNotifications);
-                                    finish();
-                                }*/
+                        if(seperated[1].contains("true")) {
+                            //concat strings to make it so that the array is properly read from the php response
+                            String unique_id=seperated[2];
+                            unique_id=unique_id.substring(1, unique_id.indexOf(",")-1);
+                            String roleID=seperated[3];
+                            roleID=roleID.substring(1,roleID.indexOf(",")-1);
+                            String usern=seperated[4];
+                            usern=usern.substring(1, usern.indexOf(",")-1);
+                            String first=seperated[5];
+                            first=first.substring(1, first.indexOf(",")-1);
+                            String last=seperated[6];
+                            last=last.substring(1,last.indexOf(",")-1);
+                            String class_ids=seperated[7];
+                            class_ids=class_ids.substring(1, class_ids.length()-2);
+                            //In the php file, if someone is not in a class, I made it return 0 (meaning no classes for this user)
+                            if(class_ids=="0") {
+                                class_ids = "None available";
                             }
-                            else {
-                                Toast.makeText(MainActivity.getInstance(), "Logged In Failed", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.getInstance(), "Welcome back, "+first+"!", Toast.LENGTH_LONG).show();
+                            currentUser=new User(unique_id,roleID,usern,first,last,class_ids, true);
+
+                            //store the username on login
+                            SharedPreferences.Editor editor = mPreferences.edit();
+                            editor.putString("username", usern);
+                            editor.putString("role", roleID);
+                            editor.putString("unique_id", unique_id);
+                            editor.putString("first_name", first);
+                            editor.putString("last_name", last);
+                            editor.putString("classes",class_ids);
+                            editor.commit();
+
+                            //TODO make it go to the student or teacher page depending on what kind of user logged in
+                            //Go to the teacher notification page
+                            System.out.println("role: "+roleID);
+                            System.out.println("enum: " + Roles.TEACHER.toString());
+                            if(roleID.equals(Roles.TEACHER.toString())) {
+                                Intent teacherNotifications =
+                                        new Intent(getApplicationContext(), TeacherNotifications.class);
+                                startActivity(teacherNotifications);
+                                finish(); //finsih this activity so you can't press back to go to the login screen after already logging in
                             }
-                            hideProgressDialog();
+                        }
+                        else {
+                            Toast.makeText(MainActivity.getInstance(), "Logged In Failed", Toast.LENGTH_LONG).show();
+                        }
+                        hideProgressDialog();
                     }}, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                VolleyLog.d(TAG, "Error: " + error.getMessage());
-                                hideProgressDialog();
-                            }
-                    }
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                hideProgressDialog();
+            }
+        }
         );
         // Adding request to request queue
         MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
