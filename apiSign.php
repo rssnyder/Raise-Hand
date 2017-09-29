@@ -9,44 +9,15 @@
 	$dbname="db309sab3";
 	//Connect to database
 	$db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
+	$first=$_GET['first'];
+	$last=$_GET['last'];
+	$pass=$_GET['pass'];
 	$username = $_GET['username'];
-	$pass = $_GET['pass'];
-	$stmt = "SELECT * FROM users WHERE username = '$username'";
+	$email= $_GET['email'];
+	$university= $_GET['university'];
+	$statement="SELECT ID FROM universities WHERE name= '$university'";
+	$statement=$db->query($statement) or die($db->error);
+	$university_id=$statement->fetch_assoc();
+	$stmt = "INSERT INTO users(role_id, first_name, last_name, pass, username, university_id, email) VALUES (4,'$first', '$last', '$pass', '$username', $university_id, '$email')";
 	$stmt = $db->query($stmt) or die($db->error);
-	$response = $stmt->fetch_assoc();
-	$password = $response['pass'];
-
-	//If correct password
-	if(password_verify($pass, $password)) {
-		$user = array(
-		    'logged_in'=>"true",
-		    'id'=>$response['ID'],
-		    'role_id'=> $response['role_id'],
-		    'username'=>$response['username'],
-		    'first_name'=>$response['first_name'],
-		    'last_name'=>$response['last_name']
-		);
-		$response['error'] = false;
-		$response['message'] = 'Login successfull';
-		$response['user'] = $user;
-	}
-	else{
-	    $user=array(
-	        'logged_in'=>"false"
-	   );
-		$response['error'] = false;
-		$response['message'] = 'Invalid username or password';
-		$res['class_id']="0";
-	}
-	if($user['logged_in']){
-	    $tempID= $response['ID'];
-	    $stmt = "SELECT class_id FROM userClasses WHERE user_id = '$tempID' ";
-	    $stmt = $db->query($stmt) or die($db->error);
-	    $res = $stmt->fetch_assoc();
-	    if(empty($res)){
-	        $res['class_id']="0";
-	    }
-	}
-	$final = array_merge($user, $res);
-	die(json_encode($final));
 ?>
