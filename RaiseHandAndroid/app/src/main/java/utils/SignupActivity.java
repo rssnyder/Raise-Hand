@@ -54,10 +54,10 @@ public class SignupActivity extends AppCompatActivity {
         final String last = LastName.getText().toString();
         final String username = Username.getText().toString();
         final String password = Password.getText().toString();
-        final String email = Email.getText().toString();
+        //final String email = Email.getText().toString();
         final String university="Iowa State University";
         //url to be used to get the user information via PHP/ volley
-        String urlSuffix= "?first="+first+"&last="+last+"&pass="+password+"&username="+username+"&email="+email+"&university="+university;
+        String urlSuffix= "?first="+first+"&last="+last+"&pass="+password+"&username="+username;
         String url_final= URLS.URL_REGISTER+urlSuffix;
      /*
         //validating inputs
@@ -81,9 +81,15 @@ public class SignupActivity extends AppCompatActivity {
                         Log.d(TAG, response.toString());
                         String phpResponse=response.toString();
                         //in the php file, the user information is stored in an array with : as a delimiter between the variable name and actual value
-                        String[] seperated=phpResponse.split(":");
-
-
+                        if(phpResponse.contains("User exists")){
+                            Toast.makeText(MainActivity.getInstance(), "User exists, please try again", Toast.LENGTH_LONG).show();
+                        }
+                        else if(phpResponse.contains("Done")){
+                            Toast.makeText(MainActivity.getInstance(), "Success: user created", Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            Toast.makeText(MainActivity.getInstance(), "Error", Toast.LENGTH_LONG).show();
+                        }
                     }}, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
