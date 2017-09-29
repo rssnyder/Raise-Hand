@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -27,6 +29,8 @@ public class SignupActivity extends AppCompatActivity {
     private String TAG= SignupActivity.class.getSimpleName();
     private String tag_string_req= "string_req";
     EditText FirstName,LastName, Username, Password, Email;
+    Button buttonRegister;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +40,13 @@ public class SignupActivity extends AppCompatActivity {
         Username = (EditText) findViewById(R.id.Username);
         Password= (EditText) findViewById(R.id.Password);
         Email = (EditText) findViewById(R.id.Email);
+        buttonRegister= (Button) findViewById(R.id.buttonRegister);
+        buttonRegister.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                signUp();
+            }
+        });
 
     }
     public void signUp() {
