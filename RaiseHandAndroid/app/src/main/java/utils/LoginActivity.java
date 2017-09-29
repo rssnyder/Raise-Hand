@@ -143,7 +143,7 @@ public class LoginActivity extends Activity {
                                 editor.putString("unique_id", unique_id);
                                 editor.putString("first_name", first);
                                 editor.putString("last_name", last);
-                                editor.putString("classes",class_ids);
+                                //editor.putString("classes",class_ids);
                                 editor.commit();
 
                                 //TODO make it go to the student or teacher page depending on what kind of user logged in
