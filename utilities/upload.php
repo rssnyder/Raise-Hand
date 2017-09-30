@@ -16,5 +16,5 @@
     echo 'Here is some more debugging info:';
     print_r($_FILES);
     print "</pre>";
-    header("Location: uploads");
+    header("Location: ../uploads");
 ?>
