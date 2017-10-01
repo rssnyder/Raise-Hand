@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,12 +37,30 @@ public class SignupActivity extends AppCompatActivity {
     Spinner university;
     String universities[]={"Iowa State University", "Less cool university"};
     ArrayAdapter<String> adapterUniversities;
+    int university_id;
+    private AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
+        long arg3) {
+
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> arg0) {
+            // TODO Auto-generated method stub
+
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         university=(Spinner) findViewById(R.id.University);
+        adapterUniversities= new ArrayAdapter<String>(this, R.layout.activity_signup, universities);
+        university.setAdapter(adapterUniversities);
+        university.setOnItemSelectedListener(itemSelectedListener);
         FirstName = (EditText) findViewById(R.id.FirstName);
         LastName= (EditText) findViewById(R.id.LastName);
         Username = (EditText) findViewById(R.id.Username);
@@ -107,4 +126,10 @@ public class SignupActivity extends AppCompatActivity {
         // Adding request to request queue
         MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
     }
+    public void universityID(String result){
+        //need to keep adding universities here
+        if(result=="Iowa State University")
+            university_id=1;
+    }
+
 }
