@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -30,11 +33,15 @@ public class SignupActivity extends AppCompatActivity {
     private String tag_string_req= "string_req";
     EditText FirstName,LastName, Username, Password, Email;
     Button buttonRegister;
+    Spinner university;
+    String universities[]={"Iowa State University", "Less cool university"};
+    ArrayAdapter<String> adapterUniversities;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        university=(Spinner) findViewById(R.id.University);
         FirstName = (EditText) findViewById(R.id.FirstName);
         LastName= (EditText) findViewById(R.id.LastName);
         Username = (EditText) findViewById(R.id.Username);
