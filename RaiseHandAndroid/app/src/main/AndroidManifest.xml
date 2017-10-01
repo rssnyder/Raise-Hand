@@ -32,5 +32,6 @@
         <activity android:name="app.TeacherNotifications"></activity>
         <activity android:name="app.TeacherSettings"></activity>
         <activity android:name="app.TeacherStudents"></activity>
+        <activity android:name="utils.SignupActivity"></activity>
     </application>
 </manifest>
