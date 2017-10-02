@@ -96,6 +96,8 @@
         //Otherwise print the topics
         else {
           echo '<div class="container">';
+          echo '<div class="row">
+		        <div class="col-md-12">';
           $class = $_GET['class'];
           $query = "SELECT * FROM topics WHERE class_id = " . $class;
           $result = $db->query($query) or die('Error querying database.');
