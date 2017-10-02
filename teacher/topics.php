@@ -96,14 +96,15 @@
         //Otherwise print the topics
         else {
           echo '<div class="container">';
-          echo '<div class="row">
-		        <div class="col-md-12">';
+
           $class = $_GET['class'];
           $query = "SELECT * FROM topics WHERE class_id = " . $class;
           $result = $db->query($query) or die('Error querying database.');
           //Get topics
           while ($topic = $result->fetch_assoc()) {
-
+            echo '<div class="row">
+  		              <div class="col-md-12">
+                      <div class="jumbotron">';
             //Get the values for the topic
             $id = $topic["ID"];
             $name = $topic["topic_name"];
@@ -114,7 +115,7 @@
             echo '<a href="threads.php?class=' . $class . '&topic=' . $id . '" class="topic">';
 
             //Print the topic
-            echo '<font size="5">' . $name . '</font><br><font size="-2"> - ' . $desc . '</font></a><br><br><br></p></div></div>';
+            echo '<h2>' . $name . '</h2><br><p> - ' . $desc . '</p></a><br><br><br></p></div></div>';
         }
       }
       ?>
