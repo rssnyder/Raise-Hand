@@ -41,7 +41,7 @@
     description)
     VALUES
     (" . $_GET['class'] . ",
-    '" . $_POST['name']"',
+    '" . $_POST['name'] . "',
     '" . $_POST['description'] . "')";
 
   $result = $db->query($query) or die($db->error);
