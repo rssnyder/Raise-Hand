@@ -76,10 +76,10 @@
 
   <!-- Main content of the webpage -->
   <div class="main">
-    <div align="center" class="container">
       <?php
         //If teacher wants to create a new class
         if($_GET['page'] == 'createTopic') {
+          echo '<div align="center" class="container">';
           echo '<form id="newTopic-form" action="utilities/createTopic.php?class=' . $_GET['class'] . '" method="post">';
           echo '<br><br>Create a new topic<br><br>';
           if($_SESSION['error']){
@@ -95,6 +95,7 @@
         }
         //Otherwise print the topics
         else {
+          echo '<div class="container">';
           $class = $_GET['class'];
           $query = "SELECT * FROM topics WHERE class_id = " . $class;
           $result = $db->query($query) or die('Error querying database.');
