@@ -96,7 +96,7 @@
         //Otherwise print the topics
         else {
           $class = $_GET['class'];
-          $query = "SELECT * FROM topics WHERE class_id = $class";
+          $query = "SELECT * FROM topics WHERE class_id = " . $class;
           $result = $db->query($query) or die('Error querying database.');
           //Get topics
           while ($topic = $result->fetch_assoc()) {
@@ -112,6 +112,7 @@
             //Print the topic
             echo '<font size="5">' . $name . '</font><br><font size="-2"> - ' . $desc . '</font></a><br><br><br>';
         }
+      }
       ?>
     </div>
   </div>
