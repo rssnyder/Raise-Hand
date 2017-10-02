@@ -52,7 +52,8 @@
 
         //Size main
         var height = $(window).height() - 25;
-        $("#threads").height(height);
+        var it = document.getElementById("threads");
+        it.height(height);
     </script>
     <!-- End questionable content -->
 
@@ -100,7 +101,7 @@
         }
         //Otherwise print the topics
         else {
-          echo '<div id="threads" class="container-fluid" style="overflow-y: scroll;">';
+          echo '<div id="threads" class="container-fluid" style="overflow-y: auto;">';
 
           $class = $_GET['class'];
           $query = "SELECT * FROM topics WHERE class_id = " . $class;
