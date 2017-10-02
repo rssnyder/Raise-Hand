@@ -50,7 +50,7 @@ body {
     left:183px; top:92px; right:0; bottom:0;
     border: 3px solid black;
     height: 500px;
-    overflow-y: scroll;
+    overflow: scroll;
 }
 /* Style for common links on all pages */
 a.logout {
