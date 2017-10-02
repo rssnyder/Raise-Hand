@@ -95,7 +95,7 @@
         }
         //Otherwise print the topics
         else {
-          $class = $_GEt['class'];
+          $class = $_GET['class'];
           $query = "SELECT * FROM topics WHERE class_id = $class";
           $result = $db->query($query) or die('Error querying database.');
           //Get topics
@@ -107,16 +107,12 @@
             $desc = $topic["description"];
 
             //Make the topic itself a button
-            echo('<a href="threads.php?class=' . $class . '&topic=' . $id . '" class="topic">');
+            echo '<a href="threads.php?class=' . $class . '&topic=' . $id . '" class="topic">';
 
             //Print the topic
-            echo '<font size="5">' . $name . '</font><br><font size="-2"> - ' . $desc . '</font><br><br><br>';
-
-
-            echo '</button><br>';
+            echo '<font size="5">' . $name . '</font><br><font size="-2"> - ' . $desc . '</font></a><br><br><br>';
         }
       ?>
     </div>
   </div>
-
 </html>
