@@ -49,6 +49,7 @@ body {
     position: absolute;
     left:183px; top:92px; right:0; bottom:0;
     border: 3px solid black;
+    overflow-y: auto;
 }
 /* Style for common links on all pages */
 a.logout {
