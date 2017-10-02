@@ -104,18 +104,17 @@
           while ($topic = $result->fetch_assoc()) {
             echo '<div class="row">
   		              <div class="col-md-12">
-                      <div class="jumbotron">';
+                      <div class="jumbotron well">';
             //Get the values for the topic
             $id = $topic["ID"];
             $name = $topic["topic_name"];
             $desc = $topic["description"];
 
-            echo '<p>';
             //Make the topic itself a button
             echo '<a href="threads.php?class=' . $class . '&topic=' . $id . '" class="topic">';
 
             //Print the topic
-            echo '<h2>' . $name . '</h2></a><br><p> - ' . $desc . '</p></p></div></div>';
+            echo '<h2>' . $name . '</h2></a><br><p> - ' . $desc . '</p></div></div>';
         }
       }
       ?>
