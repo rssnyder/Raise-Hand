@@ -34,15 +34,18 @@
     die("No name");
   }
 
+  $class = $_GET['class'];
+  $name = $_POST['name'];
+  $desc = $_POST['description'];
   //Create the topic
   $query = "INSERT INTO topics
     class_id,
     topic_name,
     description)
     VALUES
-    (" . $_GET['class'] . ",
-    '" . $_POST['name'] . "',
-    '" . $_POST['description'] . "')";
+    ($class,
+    '$name',
+    '$desc')";
 
   $result = $db->query($query) or die($db->error);
 
