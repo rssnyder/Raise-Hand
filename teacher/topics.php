@@ -95,7 +95,7 @@
         }
         //Otherwise print the topics
         else {
-          echo '<div class="container">';
+          echo '<div class="container-fluid">';
 
           $class = $_GET['class'];
           $query = "SELECT * FROM topics WHERE class_id = " . $class;
