@@ -69,8 +69,8 @@
       echo '<button class="button" onclick="window.location=\'pages.php?class=' . $_GET['class'] . '\';">' . $class['class_name'] . ' Home</button>';
       echo '<button class="button" onclick="window.location=\'pages.php?class=' . $_GET['class'] . '&page=classSettings\';">Class Settings</button>';
       echo '<button class="button" onclick="window.location=\'topics.php?class=' . $_GET['class'] . '\';">Discussion Topics</button>';
-      echo '<button class="button" onclick="window.location=\'topics.php?class=' . $_GET['class'] . '\';">New Topic</button>';
-      echo '<button class="button" onclick="window.location=\'liveSession.php?class=' . $_GET['class'] . '&page=createTopic\';">Live Session</button>';
+      echo '<button class="button" onclick="window.location=\'topics.php?class=' . $_GET['class'] . '&page=createTopic\';">New Topic</button>';
+      echo '<button class="button" onclick="window.location=\'liveSession.php?class=' . $_GET['class'] . '\';">Live Session</button>';
      ?>
   </div>
 
