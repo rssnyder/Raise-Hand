@@ -36,12 +36,13 @@
 
   //Create the topic
   $query = "INSERT INTO topics
-    `class_id`,
-    `topic_name`)
+    class_id,
+    topic_name,
+    description)
     VALUES
     (" . $_GET['class'] . ",
-    " . $_POST['name']",
-    " . $_POST['description'] . ")";
+    '" . $_POST['name']"',
+    '" . $_POST['description'] . "')";
 
   $result = $db->query($query) or die($db->error);
 
