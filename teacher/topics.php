@@ -115,7 +115,7 @@
             echo '<a href="threads.php?class=' . $class . '&topic=' . $id . '" class="topic">';
 
             //Print the topic
-            echo '<h2>' . $name . '</h2><br><p> - ' . $desc . '</p></a><br><br><br></p></div></div>';
+            echo '<h2>' . $name . '</h2></a><br><p> - ' . $desc . '</p></p></div></div>';
         }
       }
       ?>
