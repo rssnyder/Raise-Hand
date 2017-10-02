@@ -39,7 +39,7 @@
   $desc = $_POST['description'];
   //Create the topic
   $query = "INSERT INTO topics
-    class_id,
+    (class_id,
     topic_name,
     description)
     VALUES
