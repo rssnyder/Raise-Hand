@@ -102,7 +102,7 @@
           while ($topic = $result->fetch_assoc()) {
 
             //Get the values for the topic
-            $id = $topic["ID"]
+            $id = $topic["ID"];
             $name = $topic["topic_name"];
             $desc = $topic["description"];
 
