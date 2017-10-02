@@ -113,7 +113,7 @@
             echo '<a href="threads.php?class=' . $class . '&topic=' . $id . '" class="topic">';
 
             //Print the topic
-            echo '<font size="5">' . $name . '</font><br><font size="-2"> - ' . $desc . '</font></a><br><br><br>';
+            echo '<font size="5">' . $name . '</font><br><font size="-2"> - ' . $desc . '</font></a><br><br><br></div></div>';
         }
       }
       ?>
