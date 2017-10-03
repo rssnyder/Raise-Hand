@@ -35,7 +35,6 @@ public class SignupActivity extends AppCompatActivity {
     EditText FirstName,LastName, Username, Password, Email;
     Button buttonRegister;
     Spinner university;
-    String universities[]={"Iowa State University", "Less cool university"};
     int university_id;
 
     @Override
@@ -46,13 +45,11 @@ public class SignupActivity extends AppCompatActivity {
         university.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+                
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 // TODO Auto-generated method stub
-
             }
         });
         FirstName = (EditText) findViewById(R.id.FirstName);
