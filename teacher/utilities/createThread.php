@@ -67,7 +67,7 @@
     die("Oops");
   }
   //Send them to their post
-  header("Location: ../posts.php?class=" . $_GET['class'] . "&post=" . $topic['ID']);
+  header("Location: ../posts.php?class=" . $_GET['class'] . "&thread=" . $topic['ID']);
   die("Done");
 
 ?>

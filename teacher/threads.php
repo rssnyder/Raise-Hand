@@ -67,11 +67,13 @@
   <!-- The left sidebar -->
   <div class="left">
     <?php
+      echo '<br><br>';
+      echo '<button class="button" onclick="window.location=\'threads.php?class=' . $_GET['class'] . '&thread=' . $_GET['thread'] . '&page=createThread\';">Create Post</button>';
+      echo '<br><br>';
       echo '<button class="button" onclick="window.location=\'home.php\';">' . $_SESSION['name'] . '\'s Home</button>';
       echo '<button class="button" onclick="window.location=\'pages.php?class=' . $_GET['class'] . '\';">' . $class['class_name'] . ' Home</button>';
       echo '<button class="button" onclick="window.location=\'pages.php?class=' . $_GET['class'] . '&page=classSettings\';">Class Settings</button>';
       echo '<button class="button" onclick="window.location=\'topics.php?class=' . $_GET['class'] . '\';">Discussion Topics</button>';
-      echo '<button class="button" onclick="window.location=\'threads.php?class=' . $_GET['class'] . '&thread=' . $_GET['thread'] . '&page=createThread\';">Create Post</button>';
       echo '<button class="button" onclick="window.location=\'liveSession.php?class=' . $_GET['class'] . '\';">Live Session</button>';
      ?>
   </div>
@@ -100,33 +102,33 @@
           echo '<div id="threads" class="container-fluid" style="overflow-y: auto;max-height: 90vh;">';
 
           $class = $_GET['class'];
-          $query = "SELECT * FROM topics WHERE class_id = " . $class;
+          $query = "SELECT * FROM threads WHERE class_id = " . $class;
           $result = $db->query($query) or die('Error querying database.');
           //Get topics
-          while ($topic = $result->fetch_assoc()) {
+          while ($thread = $result->fetch_assoc()) {
             echo '<div class="row">
   		              <div class="col-md-6">
                       <div class="jumbotron well">';
-            //Get the values for the topic
-            $id = $topic["ID"];
-            $name = $topic["topic_name"];
-            $desc = $topic["description"];
+            //Get the values for the thread
+            $id = $thread["ID"];
+            $name = $thread["topic_name"];
+            $desc = $thread["description"];
 
             //Make the topic itself a button
-            echo '<a href="threads.php?class=' . $class . '&topic=' . $id . '" class="topic">';
+            echo '<a href="posts.php?class=' . $class . '&thread=' . $id . '" class="topic">';
 
             //Print the topic
             echo '<h2>' . $name . '</h2></a><br><p> - ' . $desc . '</p></div></div>';
-            if($topic = $result->fetch_assoc()) {
+            if($thread = $result->fetch_assoc()) {
               echo '<div class="col-md-6">
                       <div class="jumbotron well">';
               //Get the values for the topic
-              $id = $topic["ID"];
-              $name = $topic["topic_name"];
-              $desc = $topic["description"];
+              $id = $thread["ID"];
+              $name = $thread["topic_name"];
+              $desc = $thread["description"];
 
               //Make the topic itself a button
-              echo '<a href="threads.php?class=' . $class . '&topic=' . $id . '" class="topic">';
+              echo '<a href="posts.php?class=' . $class . '&thread=' . $id . '" class="topic">';
 
               //Print the topic
               echo '<h2>' . $name . '</h2></a><br><p> - ' . $desc . '</p></div></div></div>';
