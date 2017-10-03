@@ -136,15 +136,15 @@ public class LoginActivity extends Activity {
                             Toast.makeText(MainActivity.getInstance(), "Welcome back, "+first+"!", Toast.LENGTH_LONG).show();
                             currentUser=new User(unique_id,roleID,usern,first,last,class_ids, true);
 
-                            //store the username on login
-                            SharedPreferences.Editor editor = mPreferences.edit();
-                            editor.putString("username", usern);
-                            editor.putString("role", roleID);
-                            editor.putString("unique_id", unique_id);
-                            editor.putString("first_name", first);
-                            editor.putString("last_name", last);
-                            editor.putString("classes",class_ids);
-                            editor.commit();
+                                //store the username on login
+                                SharedPreferences.Editor editor = mPreferences.edit();
+                                editor.putString("username", usern);
+                                editor.putString("role", roleID);
+                                editor.putString("unique_id", unique_id);
+                                editor.putString("first_name", first);
+                                editor.putString("last_name", last);
+                                //editor.putString("classes",class_ids);
+                                editor.commit();
 
                             //TODO make it go to the student or teacher page depending on what kind of user logged in
                             //Go to the teacher notification page

@@ -76,10 +76,19 @@
         android:ems="10"
         android:inputType="textEmailAddress" />
 
+    <!--the array for this is located in strings.xml-->
+    <Spinner
+        android:id="@+id/University"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"
+        android:entries= "@array/universities"/>
+
     <Button
         android:id="@+id/buttonRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Register" />
+
 
 </LinearLayout>
