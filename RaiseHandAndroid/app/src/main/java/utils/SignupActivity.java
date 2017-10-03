@@ -36,31 +36,25 @@ public class SignupActivity extends AppCompatActivity {
     Button buttonRegister;
     Spinner university;
     String universities[]={"Iowa State University", "Less cool university"};
-    ArrayAdapter<String> adapterUniversities;
     int university_id;
-    private AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
-        @Override
-        public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
-        long arg3) {
-
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> arg0) {
-            // TODO Auto-generated method stub
-
-        }
-    };
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         university=(Spinner) findViewById(R.id.University);
-        adapterUniversities= new ArrayAdapter<String>(this, R.layout.activity_signup, universities);
-        university.setAdapter(adapterUniversities);
-        university.setOnItemSelectedListener(itemSelectedListener);
+        university.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // TODO Auto-generated method stub
+
+            }
+        });
         FirstName = (EditText) findViewById(R.id.FirstName);
         LastName= (EditText) findViewById(R.id.LastName);
         Username = (EditText) findViewById(R.id.Username);
