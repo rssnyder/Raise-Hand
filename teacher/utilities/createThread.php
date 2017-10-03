@@ -50,6 +50,7 @@
     '$title',
     '$desc')";
 
+  die($query);
   $result = $db->query($query) or die($db->error);
 
   //Get the thread id so we can redirect the user there
