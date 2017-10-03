@@ -50,7 +50,7 @@
     '$title',
     '$desc')";
 
-  die($query);
+  //die('$query');
   $result = $db->query($query) or die($db->error);
 
   //Get the thread id so we can redirect the user there
@@ -61,7 +61,7 @@
     WHERE title = '$title' AND owner_id = $uID AND topic_id = $topic";
   $result = $db->query($query) or die($db->error);
   //Get that Post
-  $topic = $result->fetch_assoc()
+  $topic = $result->fetch_assoc();
   //If we have 2 posts that match, just send them to general thread page
   if($ohNo = $result->fetch_assoc()) {
     header("Location: ../threads.php?class=" . $_GET['class'] . "&topic=" . $topic);

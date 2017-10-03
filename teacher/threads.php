@@ -68,7 +68,7 @@
   <div class="left">
     <?php
       echo '<br><br>';
-      echo '<button class="button" onclick="window.location=\'threads.php?class=' . $_GET['class'] . '&thread=' . $_GET['thread'] . '&page=createThread\';">Create Post</button>';
+      echo '<button class="button" onclick="window.location=\'threads.php?class=' . $_GET['class'] . '&topic=' . $_GET['topic'] . '&page=createThread\';">Create Post</button>';
       echo '<br><br>';
       echo '<button class="button" onclick="window.location=\'home.php\';">' . $_SESSION['name'] . '\'s Home</button>';
       echo '<button class="button" onclick="window.location=\'pages.php?class=' . $_GET['class'] . '\';">' . $class['class_name'] . ' Home</button>';
@@ -84,7 +84,7 @@
         //If teacher wants to create a new class
         if($_GET['page'] == 'createThread') {
           echo '<div align="center" class="container">';
-          echo '<form id="newThread-form" action="utilities/createThread.php?class=' . $_GET['class'] . '&thread=' . $_GET['thread'] . '" method="post">';
+          echo '<form id="newThread-form" action="utilities/createThread.php?class=' . $_GET['class'] . '&topic=' . $_GET['topic'] . '" method="post">';
           echo '<br><br>Create a new post<br><br>';
           if($_SESSION['error']){
               echo '<font color="red">' . $_SESSION['errorCode'] . "</font><br><br>";
@@ -124,7 +124,7 @@
                       <div class="jumbotron well">';
               //Get the values for the topic
               $id = $thread["ID"];
-              $name = $thread["topic_name"];
+              $name = $thread["title"];
               $desc = $thread["description"];
 
               //Make the topic itself a button
