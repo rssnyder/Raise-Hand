@@ -80,28 +80,40 @@
 
       <?php
       //Get all the classes that this student is a part of and build the homepage
-      /*
+      //Get the classes that the teacher is a teacher of
+      $query = "SELECT * FROM userClasses WHERE user_id = " . $_SESSION['id'];
+      $result = $db->query($query) or die($db->error);
+
         while ($class = $result->fetch_assoc()) {
-          echo '<div class="row">
+          $id = $class['class_id'];
+          $query = "SELECT * FROM classes WHERE ID = $id";
+          $result2 = $db->query($query) or die($db->error);
+          $thisClass = $result->fetch_assoc();
+          echo $thisClass;
+          echo '
                   <div class="col-md-6">
                     <div class="home">
                       <center>
                         <br>
-                        <button class="button" onclick="window.location=\'pages.php?class=' . $class['ID'] . '\';">' . $class['class_name'] . '</button>
+                        <button class="button" onclick="window.location=\'pages.php?class=' . $thisClass['ID'] . '\';">' . $thisClass['class_name'] . '</button>
                         <p>
-                          ' . $class['description'] . '
+                          ' . $thisClass['description'] . '
                         </p>
                       </center>
                     </div>
                   </div>';
           if($class = $result->fetch_assoc()) {
-            echo '<div class="col-md-6">
+            $query = "SELECT * FROM classes WHERE ID = " . $class['class_id'];
+            $result2 = $db->query($query) or die($db->error);
+            $thisClass = $result->fetch_assoc();
+            echo '<div class="row">
+                    <div class="col-md-6">
                       <div class="home">
                         <center>
                           <br>
-                          <button class="button" onclick="window.location=\'pages.php?class=' . $class['ID'] . '\';">' . $class['class_name'] . '</button>
+                          <button class="button" onclick="window.location=\'pages.php?class=' . $thisClass['ID'] . '\';">' . $thisClass['class_name'] . '</button>
                           <p>
-                          ' . $class['description'] . '
+                          ' . $thisClass['description'] . '
                           </p>
                         </center>
                       </div>
@@ -113,7 +125,6 @@
             echo '</div>';
           }
         }
-        */
        ?>
     </div>
   </div>
