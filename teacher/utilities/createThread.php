@@ -39,7 +39,7 @@
   $title = $_POST['title'];
   $desc = $_POST['description'];
   //Create the topic
-  $query = "INSERT INTO db309sab3.threads
+  $query = "INSERT INTO threads
     (topic_id,
     owner_id,
     title,
