@@ -45,7 +45,11 @@ public class SignupActivity extends AppCompatActivity {
         university.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                
+                Object selected= adapterView.getItemAtPosition(i);
+                if(selected.toString().equals("Iowa State University")){
+                    //university id for ISU is 1
+                    university_id=1;
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -74,7 +78,7 @@ public class SignupActivity extends AppCompatActivity {
         //final String email = Email.getText().toString();
         final String university="Iowa State University";
         //url to be used to get the user information via PHP/ volley
-        String urlSuffix= "?first="+first+"&last="+last+"&pass="+password+"&username="+username;
+        String urlSuffix= "?first="+first+"&last="+last+"&pass="+password+"&username="+username+"&university="+university_id;
         String url_final= URLS.URL_REGISTER+urlSuffix;
      /*
         //validating inputs
