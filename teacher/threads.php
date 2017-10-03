@@ -111,7 +111,7 @@
                       <div class="jumbotron well">';
             //Get the values for the thread
             $id = $thread["ID"];
-            $name = $thread["topic_name"];
+            $name = $thread["title"];
             $desc = $thread["description"];
 
             //Make the topic itself a button
