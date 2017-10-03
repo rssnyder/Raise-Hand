@@ -97,7 +97,7 @@
         }
         //Otherwise print the topics
         else {
-          echo '<div id="threads" class="container-fluid" style="overflow-y: auto;max-height: 100vh;">';
+          echo '<div id="threads" class="container-fluid" style="overflow-y: auto;max-height: 75vh;">';
 
           $class = $_GET['class'];
           $query = "SELECT * FROM topics WHERE class_id = " . $class;
