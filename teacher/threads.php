@@ -102,7 +102,7 @@
           echo '<div id="threads" class="container-fluid" style="overflow-y: auto;max-height: 90vh;">';
 
           $class = $_GET['class'];
-          $query = "SELECT * FROM threads WHERE class_id = " . $class;
+          $query = "SELECT * FROM threads WHERE topic_id = " . $_GET['topic'];
           $result = $db->query($query) or die('Error querying database.');
           //Get topics
           while ($thread = $result->fetch_assoc()) {
