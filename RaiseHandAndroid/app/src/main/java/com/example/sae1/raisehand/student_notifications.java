@@ -18,11 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import RecyclerViews.ListItemTeacherNotifications;
-import RecyclerViews.MyAdapter;
-import app.TeacherClasses;
-import app.TeacherHomePage;
-import app.TeacherSettings;
-import app.TeacherStudents;
+import RecyclerViews.MyAdapterNotifications;
 import utils.LoginActivity;
 
 public class student_notifications extends AppCompatActivity {
@@ -55,7 +51,7 @@ public class student_notifications extends AppCompatActivity {
 
 
 
-        adapter = new MyAdapter(listItems, this);
+        adapter = new MyAdapterNotifications(listItems, this);
 
         recyclerView.setAdapter(adapter);
 
