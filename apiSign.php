@@ -30,15 +30,10 @@
       die("User exists");
     }
 	//$email= $_GET['email'];
-	//$university= $_GET['university'];
-	
-	//Check for the university ID given the university name
-	//$statement="SELECT ID FROM universities WHERE name= '$university'";
-	//$statement=$db->query($statement) or die($db->error);
-	//$university_id=$statement->fetch_assoc();
-    
+	$university= $_GET['university'];
+
     //finally, insert into the database
-	$stmt = "INSERT INTO users(role_id, first_name, last_name, pass, username, university_id) VALUES (4,'$first', '$last', '$password', '$username', 1)";
+	$stmt = "INSERT INTO users(role_id, first_name, last_name, pass, username, university_id) VALUES (4,'$first', '$last', '$password', '$username', '$university')";
 	$stmt = $db->query($stmt) or die($db->error);
 	die("Done");
 
