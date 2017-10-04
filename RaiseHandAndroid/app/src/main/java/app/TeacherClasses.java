@@ -46,7 +46,7 @@ public class TeacherClasses extends AppCompatActivity {
         listItems = new ArrayList<>();
         for(int i = 0; i < 10; i++){
             ListItemTeacherClasses listItem = new ListItemTeacherClasses("Class " + (i + 1),
-                                                                         "Dummy text. I'm here to notify you!");
+                                                                         "Dummy text. This is a class you're teaching!");
             listItems.add(listItem);
         }
         adapter = new MyAdapterClasses(listItems, this);
