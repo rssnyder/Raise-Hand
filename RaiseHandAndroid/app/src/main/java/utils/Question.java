@@ -8,6 +8,7 @@ public class Question {
     private String original_post;
     private int student_rating;
 
+
     public Question(String question, int rating){
         this.original_post=question;
         this.student_rating=rating;
