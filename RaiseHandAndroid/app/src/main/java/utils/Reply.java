@@ -7,9 +7,16 @@ import java.sql.Time;
  */
 
 public class Reply {
+    //What the student says
     private String reply;
+
+    //How many people upvoted this reply
     private int student_rating;
+
+    //If the teacher endorsed the answer
     private boolean endorsed;
+
+    //Time this reply was made
     private Time time_stamp;
 
     public Reply(String reply, int rating, boolean endorsed, Time time_stamp){
