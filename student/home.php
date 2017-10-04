@@ -2,7 +2,7 @@
   session_start();
   //Check if user is logged in
   if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-    if($_SESSION['role'] != 4) {
+    if(($_SESSION['role'] != 4) && $_SESSION['role'] != 3) {
       $_SESSION['error'] = true;
       $_SESSION['errorCode'] = "Not a student";
       header("Location: ../login.php");
@@ -24,10 +24,6 @@
   $dbname="db309sab3";
   //Connect to database
   $db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
-
-  //Get the classes that the teacher is a teacher of
-  $query = "SELECT * FROM classes WHERE teacher_id = 6";
-  $result = $db->query($query) or die($db->error);
 
 ?>
 
@@ -81,15 +77,13 @@
       <?php
       //Get all the classes that this student is a part of and build the homepage
       //Get the classes that the teacher is a teacher of
-      $query = "SELECT * FROM userClasses WHERE user_id = " . $_SESSION['id'];
+      $query = "SELECT class_id FROM userClasses WHERE user_id = " . $_SESSION['id'];
       $result = $db->query($query) or die($db->error);
-
         while ($class = $result->fetch_assoc()) {
           $id = $class['class_id'];
           $query = "SELECT * FROM classes WHERE ID = $id";
           $result2 = $db->query($query) or die($db->error);
-          $thisClass = $result->fetch_assoc();
-          echo $thisClass;
+          $thisClass = $result2->fetch_assoc();
           echo '
                   <div class="col-md-6">
                     <div class="home">
@@ -101,11 +95,14 @@
                         </p>
                       </center>
                     </div>
-                  </div>';
+                  </div>
+                </div>
+                <br>';
           if($class = $result->fetch_assoc()) {
-            $query = "SELECT * FROM classes WHERE ID = " . $class['class_id'];
+            $id = $class['class_id'];
+            $query = "SELECT * FROM classes WHERE ID = $id";
             $result2 = $db->query($query) or die($db->error);
-            $thisClass = $result->fetch_assoc();
+            $thisClass = $result2->fetch_assoc();
             echo '<div class="row">
                     <div class="col-md-6">
                       <div class="home">
@@ -118,11 +115,10 @@
                         </center>
                       </div>
                     </div>
-                  </div>
                     <br>';
           }
           else {
-            echo '</div>';
+            break;
           }
         }
        ?>

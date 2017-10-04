@@ -2,7 +2,7 @@
   session_start();
   //Check if user is logged in
   if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-    if(($_SESSION['role'] != 4) || $_SESSION['role'] != 3) {
+    if(($_SESSION['role'] != 4) && $_SESSION['role'] != 3) {
       $_SESSION['error'] = true;
       $_SESSION['errorCode'] = "Not Permitted";
       header("Location: ../login.php");
@@ -30,10 +30,26 @@
   $result = $db->query($query) or die($db->error);
   $class = $result->fetch_assoc();
 
-  //Check to see if this teacher actaully owns this classes
-  if($class['teacher_id'] != $_SESSION['id']) {
+  //Get this class
+  $query = "SELECT * FROM classes WHERE ID = " . $_GET['class'];
+  $result = $db->query($query) or die($db->error);
+  $class = $result->fetch_assoc();
+
+  //Check to see if student is actually in this class
+  $belongs = false;
+  $query = "SELECT class_id FROM userClasses WHERE user_id = " . $_SESSION['id'];
+  $result = $db->query($query) or die($db->error);
+  while ($class = $result->fetch_assoc()) {
+    if($_GET['class'] == $class['class_id']) {
+      //user is in this class
+      $belongs = true;
+      break;
+    }
+  }
+  if(!$belongs) {
+    //user is not in this class
     header("Location: home.php");
-    die("oops");
+    die("You shall not pass");
   }
 ?>
 
