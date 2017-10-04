@@ -19,18 +19,28 @@ public class User {
         loggedIn=logged_in;
 
     }
-
-    public String getReset(){return reset;}
-    public String getId() {
-        return id;
+    public Boolean getReset(User u){
+        //if it is a string of 0, then it doesn't need to have a password reset
+        if(u.reset.equals("0"))
+            return false;
+        else
+            return true;
     }
-    public String getUsername() { return username; }
-    public String getRoleId() {return role_id;}
-    public String getFirst_name(){ return first_name;}
-    public String getLast_name(){ return last_name;}
-    public boolean isLoggedIn(){return loggedIn;}
-    public void logOut(){loggedIn=false;}
-    public String getClasses(){return classes;}
-
+    public String getId(User u) {
+        return u.id;
+    }
+    public String getUsername(User u) {
+        return u.username;
+    }
+    public String getRoleId(User u) {
+        return u.role_id;
+    }
+    public String getFirst_name(User u){
+        return u.first_name;
+    }
+    public String getLast_name(User u){ return last_name;}
+    public boolean isLoggedIn(User u){return loggedIn;}
+    public void logOut(User u){loggedIn=false;}
+    public String getClasses(User u){return u.classes;}
 
 }
