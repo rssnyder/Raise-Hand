@@ -1,5 +1,7 @@
 package utils;
 
+import java.sql.Time;
+
 /**
  * Created by sae1 on 10/4/17.
  */
@@ -7,6 +9,7 @@ package utils;
 public class Question {
     private String original_post;
     private int student_rating;
+
 
 
     public Question(String question, int rating){
