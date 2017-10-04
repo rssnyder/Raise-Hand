@@ -4,11 +4,16 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.ViewDragHelper;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+
+import java.lang.reflect.Field;
+
+import utils.LoginActivity;
 
 public class student_home_page extends AppCompatActivity {
 
@@ -16,6 +21,7 @@ public class student_home_page extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
     private NavigationView nv;
     private Toolbar mToolbar;
+    private Field mDragger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +37,9 @@ public class student_home_page extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
 
+        slideOutMenu();
+        mToggle.syncState();
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         nv = (NavigationView) findViewById(R.id.nv1);
@@ -38,9 +47,27 @@ public class student_home_page extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
+                    case(R.id.nav_home_student):
+                        mDrawerLayout.closeDrawers();
+                        break;
                     case (R.id.nav_classes):
-                        Intent teacherClasses = new Intent(getApplicationContext(),StudentLiveSession.class);
-                        startActivity(teacherClasses);
+
+                        Intent studentClasses = new Intent(getApplicationContext(), student_classes.class);
+                        startActivity(studentClasses);
+                        break;
+                    case (R.id.nav_notifications):
+                        Intent studentNotifications = new Intent(getApplicationContext(), student_notifications.class);
+                        startActivity(studentNotifications);
+                        break;
+                    case (R.id.nav_settings):
+                        Intent studentSettings = new Intent(getApplicationContext(), student_settings.class);
+                        startActivity(studentSettings);
+                        break;
+                    case (R.id.nav_logout):
+                        Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(loginPage);
+                        finish();
+                        break;
                 }
                 return true;
             }
@@ -55,5 +82,44 @@ public class student_home_page extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void slideOutMenu(){
+
+        try {
+            mDragger = mDrawerLayout.getClass().getDeclaredField(
+                    "mLeftDragger");//mRightDragger for right obviously
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+        mDragger.setAccessible(true);
+        ViewDragHelper draggerObj = null;
+        try {
+            draggerObj = (ViewDragHelper) mDragger
+                    .get(mDrawerLayout);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        Field mEdgeSize = null;
+        try {
+            mEdgeSize = draggerObj.getClass().getDeclaredField(
+                    "mEdgeSize");
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+        mEdgeSize.setAccessible(true);
+        int edge = 0;
+        try {
+            edge = mEdgeSize.getInt(draggerObj);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            mEdgeSize.setInt(draggerObj, edge * 25);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 }

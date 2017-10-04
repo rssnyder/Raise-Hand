@@ -13,14 +13,25 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 
 import java.util.List;
+
+import app.TeacherClasses;
+import app.TeacherHomePage;
+import app.TeacherNotifications;
+import app.TeacherStudents;
+import utils.LoginActivity;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -34,6 +45,12 @@ import java.util.List;
  * API Guide</a> for more information on developing a Settings UI.
  */
 public class student_settings extends AppCompatPreferenceActivity {
+
+//    private DrawerLayout mDrawerLayout;
+//    private ActionBarDrawerToggle mToggle;
+//    private NavigationView nv;
+//    private Toolbar mToolbar;
+
     /**
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
@@ -119,7 +136,49 @@ public class student_settings extends AppCompatPreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_student_settings);
         setupActionBar();
+//
+//        mToolbar = (Toolbar) findViewById(R.id.nav_action);
+//        setSupportActionBar(mToolbar);
+//
+//        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+//        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+//
+//        mDrawerLayout.addDrawerListener(mToggle);
+//        mToggle.syncState();
+//
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        nv = (NavigationView) findViewById(R.id.nv1);
+//        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                switch (item.getItemId()){
+//                    case(R.id.nav_home):
+//                        Intent studentHome = new Intent(getApplicationContext(), student_home_page.class);
+//                        startActivity(studentHome);
+//                        break;
+//                    case (R.id.nav_classes):
+//                        Intent studentClasses = new Intent(getApplicationContext(), student_classes.class);
+//                        startActivity(studentClasses);
+//                        break;
+//                    case (R.id.nav_notifications):
+//                        mDrawerLayout.closeDrawers();
+//                        break;
+//                    case (R.id.nav_settings):
+//                        Intent studentSettings = new Intent(getApplicationContext(), student_settings.class);
+//                        startActivity(studentSettings);
+//                        break;
+//                    case (R.id.nav_logout):
+//                        Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
+//                        startActivity(loginPage);
+//                        finish();
+//                        break;
+//                }
+//                return true;
+//            }
+//        });
+
     }
 
     /**
