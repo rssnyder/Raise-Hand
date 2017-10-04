@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import RecyclerViews.ListItemTeacherNotifications;
-import RecyclerViews.MyAdapter;
+import RecyclerViews.MyAdapterNotifications;
 import utils.LoginActivity;
 
 public class TeacherNotifications extends AppCompatActivity {
@@ -51,9 +51,7 @@ public class TeacherNotifications extends AppCompatActivity {
             listItems.add(listItem);
         }
 
-
-
-        adapter = new MyAdapter(listItems, this);
+        adapter = new MyAdapterNotifications(listItems, this);
 
         recyclerView.setAdapter(adapter);
 
@@ -67,6 +65,7 @@ public class TeacherNotifications extends AppCompatActivity {
         mToggle.syncState();
 
         slideOutMenu();
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         nv = (NavigationView) findViewById(R.id.nv1);

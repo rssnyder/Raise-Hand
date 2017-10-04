@@ -1,7 +1,6 @@
 package RecyclerViews;
 
 
-import android.app.LauncherActivity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,12 +12,12 @@ import com.example.sae1.raisehand.R;
 
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+public class MyAdapterClasses extends RecyclerView.Adapter<MyAdapterClasses.ViewHolder> {
 
-    private List<ListItemTeacherNotifications> listItems;
+    private List<ListItemTeacherClasses> listItems;
     private Context context;
 
-    public MyAdapter(List<ListItemTeacherNotifications> listItems, Context context) {
+    public MyAdapterClasses(List<ListItemTeacherClasses> listItems, Context context) {
         this.listItems = listItems;
         this.context = context;
     }
@@ -26,13 +25,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_teacher_notifications, parent, false);
+                .inflate(R.layout.list_item_teacher_classes, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        ListItemTeacherNotifications listItem = listItems.get(position);
+        ListItemTeacherClasses listItem = listItems.get(position);
 
         holder.textViewHead.setText(listItem.getHead());
         holder.textViewDesc.setText(listItem.getDesc());
