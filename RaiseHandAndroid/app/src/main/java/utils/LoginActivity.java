@@ -149,9 +149,6 @@ public class LoginActivity extends Activity {
                                     //editor.putString("classes",class_ids);
                                     editor.commit();
 
-                                    if(currentUser.getReset().equals("1")){
-                                        //TODO move it to the
-                                    }
                                     //TODO make it go to the student or teacher page depending on what kind of user logged in
                                     //Go to the teacher notification page
                                     if(roleID.equals(Roles.TEACHER.toString())) {
