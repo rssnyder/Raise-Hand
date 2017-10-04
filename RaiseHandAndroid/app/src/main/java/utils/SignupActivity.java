@@ -75,10 +75,12 @@ public class SignupActivity extends AppCompatActivity {
         final String last = LastName.getText().toString();
         final String username = Username.getText().toString();
         final String password = Password.getText().toString();
-        //final String email = Email.getText().toString();
+        final String email = Email.getText().toString();
         final String university="Iowa State University";
+        final String email_user= email.substring(0, email.indexOf("@"));
+        final String email_domain=email.substring(email.indexOf("@")+1);
         //url to be used to get the user information via PHP/ volley
-        String urlSuffix= "?first="+first+"&last="+last+"&pass="+password+"&username="+username+"&university="+university_id;
+        String urlSuffix= "?first="+first+"&last="+last+"&pass="+password+"&username="+username+"&university="+university_id+"&emailU="+ email_user+ "&emailD="+ email_domain;
         String url_final= URLS.URL_REGISTER+urlSuffix;
      /*
         //validating inputs
