@@ -2,7 +2,7 @@
   session_start();
   //Check if user is logged in
   if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-    if(($_SESSION['role'] != 4) || $_SESSION['role'] != 3) {
+    if(($_SESSION['role'] != 4) && $_SESSION['role'] != 3) {
       $_SESSION['error'] = true;
       $_SESSION['errorCode'] = "Not Permitted";
       header("Location: ../../login.php");
