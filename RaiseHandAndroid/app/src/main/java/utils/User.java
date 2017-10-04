@@ -7,7 +7,7 @@ package utils;
 
 public class User {
     private String id, role_id, username, first_name, last_name, classes, reset;
-    private boolean loggedIn;
+    private boolean logged_in;
     public User(String reset, String id, String role_id, String username, String first_name, String last_name, String classes, boolean logged_in) {
         this.id = id;
         this.reset=reset;
@@ -16,7 +16,7 @@ public class User {
         this.first_name= first_name;
         this.last_name = last_name;
         this.classes=classes;
-        loggedIn=logged_in;
+        this.logged_in=logged_in;
 
     }
     public Boolean getReset(User u){
@@ -38,9 +38,9 @@ public class User {
     public String getFirst_name(User u){
         return u.first_name;
     }
-    public String getLast_name(User u){ return last_name;}
-    public boolean isLoggedIn(User u){return loggedIn;}
-    public void logOut(User u){loggedIn=false;}
-    public String getClasses(User u){return u.classes;}
+    public String get_last_name(User u){ return last_name;}
+    public boolean is_logged_in(User u){return logged_in;}
+    public void logout(User u){logged_in=false;}
+    public String get_classes(User u){return u.classes;}
 
 }
