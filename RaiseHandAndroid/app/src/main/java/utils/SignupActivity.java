@@ -32,7 +32,7 @@ import app.TeacherNotifications;
 public class SignupActivity extends AppCompatActivity {
     private String TAG= SignupActivity.class.getSimpleName();
     private String tag_string_req= "string_req";
-    EditText FirstName,LastName, Username, Password, Email;
+    EditText FirstName,LastName, Username, Password, Email, PasswordConfirm;
     Button buttonRegister;
     Spinner university;
     int university_id;
@@ -60,6 +60,7 @@ public class SignupActivity extends AppCompatActivity {
         LastName= (EditText) findViewById(R.id.LastName);
         Username = (EditText) findViewById(R.id.Username);
         Password= (EditText) findViewById(R.id.Password);
+        PasswordConfirm = (EditText) findViewById(R.id.PasswordConfirm);
         Email = (EditText) findViewById(R.id.Email);
         buttonRegister= (Button) findViewById(R.id.buttonRegister);
         buttonRegister.setOnClickListener(new View.OnClickListener(){
@@ -75,13 +76,24 @@ public class SignupActivity extends AppCompatActivity {
         final String last = LastName.getText().toString();
         final String username = Username.getText().toString();
         final String password = Password.getText().toString();
+        final String passwordConfirm = PasswordConfirm.getText().toString();
         final String email = Email.getText().toString();
         final String university="Iowa State University";
         final String email_user= email.substring(0, email.indexOf("@"));
         final String email_domain=email.substring(email.indexOf("@")+1);
+        String url_final = "";
         //url to be used to get the user information via PHP/ volley
-        String urlSuffix= "?first="+first+"&last="+last+"&pass="+password+"&username="+username+"&university="+university_id+"&emailU="+ email_user+ "&emailD="+ email_domain;
-        String url_final= URLS.URL_REGISTER+urlSuffix;
+
+        if (passwordConfirm.equals(password)) {
+            String urlSuffix = "?first=" + first + "&last=" + last + "&pass=" + password + "&username=" + username + "&university=" + university_id + "&emailU=" + email_user + "&emailD=" + email_domain;
+            url_final = URLS.URL_REGISTER + urlSuffix;
+        }
+
+        else{
+            Toast.makeText(MainActivity.getInstance(), "Passwords do not match", Toast.LENGTH_SHORT).show();
+            PasswordConfirm.setText("");
+            Password.setText("");
+        }
      /*
         //validating inputs
         if (TextUtils.isEmpty(FirstName)) {
