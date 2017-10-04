@@ -90,6 +90,7 @@ public class SignupActivity extends AppCompatActivity {
             isValidSignUp = false;
         }
         final String email_domain=email.substring(email.indexOf("@")+1);
+<<<<<<< HEAD
         String url_final = "";
         //url to be used to get the user information via PHP/ volley
 
@@ -103,6 +104,7 @@ public class SignupActivity extends AppCompatActivity {
             PasswordConfirm.setText("");
             Password.setText("");
         }
+=======
 
         boolean allFieldsFilled = !first.isEmpty() && !last.isEmpty() && !username.isEmpty() && !password.isEmpty() && !email.isEmpty();
 
@@ -121,7 +123,8 @@ public class SignupActivity extends AppCompatActivity {
                     "?first=" + first + "&last=" + last + "&pass=" + password + "&username=" +
                     username + "&university=" + university_id + "&emailU=" + email_user +
                     "&emailD=" + email_domain;
-            url_final = URLS.URL_REGISTER + urlSuffix;
+            String url_final = URLS.URL_REGISTER + urlSuffix;
+>>>>>>> 290a6fee33943428bcdcefa89c1687e3edf3044c
      /*
         //validating inputs
         if (TextUtils.isEmpty(FirstName)) {
