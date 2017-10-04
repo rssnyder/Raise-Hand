@@ -117,27 +117,30 @@ public class LoginActivity extends Activity {
 
                             if(seperated[1].contains("true")) {
                                 //concat strings to make it so that the array is properly read from the php response
-                                String unique_id=seperated[2];
+                                String reset=seperated[2];
+                                reset=reset.substring(1, reset.indexOf(",")-1);
+                                String unique_id=seperated[3];
                                 unique_id=unique_id.substring(1, unique_id.indexOf(",")-1);
-                                String roleID=seperated[3];
+                                String roleID=seperated[4];
                                 roleID=roleID.substring(1,roleID.indexOf(",")-1);
-                                String usern=seperated[4];
+                                String usern=seperated[5];
                                 usern=usern.substring(1, usern.indexOf(",")-1);
-                                String first=seperated[5];
+                                String first=seperated[6];
                                 first=first.substring(1, first.indexOf(",")-1);
-                                String last=seperated[6];
+                                String last=seperated[7];
                                 last=last.substring(1,last.indexOf(",")-1);
-                                String class_ids=seperated[7];
+                                String class_ids=seperated[8];
                                 class_ids=class_ids.substring(1, class_ids.length()-2);
                                 //In the php file, if someone is not in a class, I made it return 0 (meaning no classes for this user)
                                 if(class_ids=="0") {
                                     class_ids = "None available";
                                 }
                                 Toast.makeText(MainActivity.getInstance(), "Welcome back, "+first+"!", Toast.LENGTH_LONG).show();
-                                currentUser=new User(unique_id,roleID,usern,first,last,class_ids, true);
+                                currentUser=new User(reset, unique_id,roleID,usern,first,last,class_ids, true);
 
                                 //store the username on login
                                 SharedPreferences.Editor editor = mPreferences.edit();
+                                editor.putString("reset", reset);
                                 editor.putString("username", usern);
                                 editor.putString("role", roleID);
                                 editor.putString("unique_id", unique_id);

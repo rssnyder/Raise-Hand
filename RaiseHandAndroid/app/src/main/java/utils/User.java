@@ -6,10 +6,11 @@ package utils;
  */
 
 public class User {
-    private String id, role_id, username, email, first_name, last_name, pass, classes;
+    private String id, role_id, username, first_name, last_name, classes, reset;
     private boolean loggedIn;
-    public User(String id, String role_id, String username, String first_name, String last_name, String classes, boolean logged_in) {
+    public User(String reset, String id, String role_id, String username, String first_name, String last_name, String classes, boolean logged_in) {
         this.id = id;
+        this.reset=reset;
         this.role_id = role_id;
         this.username = username;
         this.first_name= first_name;
@@ -19,6 +20,7 @@ public class User {
 
     }
 
+    public String getReset(){return reset;}
     public String getId() {
         return id;
     }
