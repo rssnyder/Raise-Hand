@@ -1,6 +1,6 @@
 package utils;
 
-import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 
 public class Question {
@@ -15,7 +15,7 @@ public class Question {
     private String questionTitle;
 
     // Time question was created
-    private Time creationTime;
+    private Date creationTime;
 
     // Array of replies to the
     private List<Reply> replies;
@@ -30,7 +30,7 @@ public class Question {
     private String universityID;
 
 
-    public Question(String questionDescription, int studentRating, String questionTitle, Time creationTime, List<Reply> replies, String ownerID, String classID, String universityID) {
+    public Question(String questionDescription, int studentRating, String questionTitle, Date creationTime, List<Reply> replies, String ownerID, String classID, String universityID) {
         this.questionDescription = questionDescription;
         this.studentRating = studentRating;
         this.questionTitle = questionTitle;
@@ -54,7 +54,7 @@ public class Question {
         return questionTitle;
     }
 
-    public Time getCreationTime() {
+    public Date getCreationTime() {
         return creationTime;
     }
 
@@ -75,7 +75,7 @@ public class Question {
         this.questionTitle = questionTitle;
     }
 
-    public void setCreationTime(Time creationTime) {
+    public void setCreationTime(Date creationTime) {
         this.creationTime = creationTime;
     }
 
