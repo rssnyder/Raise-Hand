@@ -1,10 +1,7 @@
 package utils;
 
 import java.sql.Time;
-
-/**
- * Created by sae1 on 10/4/17.
- */
+import java.util.List;
 
 public class Question {
 
@@ -20,7 +17,8 @@ public class Question {
     // Time question was created
     private Time creationTime;
 
-    private Reply[] replies;
+    // Array of replies to the
+    private List<Reply> replies;
 
 
     public Question(String questionDescription, int studentRating, String questionTitle, Time creationTime) {
@@ -47,6 +45,10 @@ public class Question {
         return creationTime;
     }
 
+    public List<Reply> getReplies() {
+        return replies;
+    }
+
     public void setQuestionDescription(String questionDescription) {
         this.questionDescription = questionDescription;
     }
@@ -54,5 +56,17 @@ public class Question {
     public void setStudentRating(int studentRating) {
         this.studentRating = studentRating;
 
+    }
+
+    public void setQuestionTitle(String questionTitle) {
+        this.questionTitle = questionTitle;
+    }
+
+    public void setCreationTime(Time creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public void setReplies(List<Reply> replies) {
+        this.replies = replies;
     }
 }
