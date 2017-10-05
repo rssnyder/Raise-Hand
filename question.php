@@ -13,8 +13,8 @@
 	//start to read from the url
 	$university=$_GET['uniID'];
 	$username = $_GET['username'];
-    //TODO: Add in constraints
     
+    //TODO: Add in constraints, probably username and universityID, class ID? thread ID?
     $ucheck = "SELECT * FROM threads";
     //Excecute
     $result = $db->query($ucheck) or die($db->error);
