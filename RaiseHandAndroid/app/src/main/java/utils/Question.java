@@ -20,12 +20,25 @@ public class Question {
     // Array of replies to the
     private List<Reply> replies;
 
+    // Owner ID
+    private String ownerID;
 
-    public Question(String questionDescription, int studentRating, String questionTitle, Time creationTime) {
+    // Class ID that this question belongs to.
+    private String classID;
+
+    // University ID
+    private String universityID;
+
+
+    public Question(String questionDescription, int studentRating, String questionTitle, Time creationTime, List<Reply> replies, String ownerID, String classID, String universityID) {
         this.questionDescription = questionDescription;
         this.studentRating = studentRating;
         this.questionTitle = questionTitle;
         this.creationTime = creationTime;
+        this.replies = replies;
+        this.ownerID = ownerID;
+        this.classID = classID;
+        this.universityID = universityID;
     }
 
 
@@ -68,5 +81,29 @@ public class Question {
 
     public void setReplies(List<Reply> replies) {
         this.replies = replies;
+    }
+
+    public String getOwnerID() {
+        return ownerID;
+    }
+
+    public void setOwnerID(String ownerID) {
+        this.ownerID = ownerID;
+    }
+
+    public String getClassID() {
+        return classID;
+    }
+
+    public void setClassID(String classID) {
+        this.classID = classID;
+    }
+
+    public String getUniversityID() {
+        return universityID;
+    }
+
+    public void setUniversityID(String universityID) {
+        this.universityID = universityID;
     }
 }
