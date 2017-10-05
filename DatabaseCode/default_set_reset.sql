@@ -1,0 +1,1 @@
+ALTER TABLE users ALTER reset SET DEFAULT 0;

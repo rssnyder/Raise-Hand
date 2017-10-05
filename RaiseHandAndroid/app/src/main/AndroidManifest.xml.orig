@@ -27,27 +27,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-        <activity
-            android:name=".TeacherHomePage"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".TeacherClasses"
-            android:screenOrientation="portrait" />
-        <activity android:name=".student_home_page" />
-        <activity android:name=".StudentLiveSession" />
-        <activity android:name=".student_notifications" />
-        <activity android:name=".student_classes" />
-        <activity
-            android:name=".student_settings"
-            android:label="@string/title_activity_student_settings" />
-        <activity android:name=".student_logout"></activity>
-=======
         <activity android:name="app.TeacherClasses"></activity>
         <activity android:name="app.TeacherHomePage"></activity>
         <activity android:name="app.TeacherNotifications"></activity>
         <activity android:name="app.TeacherSettings"></activity>
         <activity android:name="app.TeacherStudents"></activity>
->>>>>>> 13370d1aa058f9e6f8f19289f978fb7e1816df0d
+        <activity android:name="utils.SignupActivity"></activity>
+<<<<<<< HEAD
+        <activity android:name="com.example.sae1.raisehand.student_notifications"></activity>
+        <activity android:name="com.example.sae1.raisehand.student_settings"></activity>
+        <activity android:name="com.example.sae1.raisehand.student_classes"></activity>
+        <activity android:name="com.example.sae1.raisehand.student_home_page"></activity>
+=======
+        <activity android:name="utils.QuestionActivity"></activity>
+>>>>>>> f591b1f58cd414e7727e6a5d807182b534961c8b
     </application>
 </manifest>

@@ -6,29 +6,41 @@ package utils;
  */
 
 public class User {
-    private String id, role_id, username, email, first_name, last_name, pass, classes;
-    private boolean loggedIn;
-    public User(String id, String role_id, String username, String first_name, String last_name, String classes, boolean logged_in) {
+    private String id, role_id, username, first_name, last_name, classes, reset;
+    private boolean logged_in;
+    public User(String reset, String id, String role_id, String username, String first_name, String last_name, String classes, boolean logged_in) {
         this.id = id;
+        this.reset=reset;
         this.role_id = role_id;
         this.username = username;
         this.first_name= first_name;
         this.last_name = last_name;
         this.classes=classes;
-        loggedIn=logged_in;
+        this.logged_in=logged_in;
 
     }
-
-    public String getId() {
-        return id;
+    public Boolean getReset(User u){
+        //if it is a string of 0, then it doesn't need to have a password reset
+        if(u.reset.equals("0"))
+            return false;
+        else
+            return true;
     }
-    public String getUsername() { return username; }
-    public String getRoleId() {return role_id;}
-    public String getFirst_name(){ return first_name;}
-    public String getLast_name(){ return last_name;}
-    public boolean isLoggedIn(){return loggedIn;}
-    public void logOut(){loggedIn=false;}
-    public String getClasses(){return classes;}
-
+    public String getId(User u) {
+        return u.id;
+    }
+    public String getUsername(User u) {
+        return u.username;
+    }
+    public String getRoleId(User u) {
+        return u.role_id;
+    }
+    public String getFirst_name(User u){
+        return u.first_name;
+    }
+    public String get_last_name(User u){ return last_name;}
+    public boolean is_logged_in(User u){return logged_in;}
+    public void logout(User u){logged_in=false;}
+    public String get_classes(User u){return u.classes;}
 
 }

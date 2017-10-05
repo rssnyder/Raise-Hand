@@ -37,5 +37,6 @@
         <activity android:name="com.example.sae1.raisehand.student_settings"></activity>
         <activity android:name="com.example.sae1.raisehand.student_classes"></activity>
         <activity android:name="com.example.sae1.raisehand.student_home_page"></activity>
+        <activity android:name="utils.QuestionActivity"></activity>
     </application>
 </manifest>
