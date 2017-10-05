@@ -15,10 +15,10 @@
 	$username = $_GET['username'];
     
     //TODO: Add in constraints, probably username and universityID, class ID? thread ID?
-    $ucheck = "SELECT * FROM threads";
+    $question = "SELECT * FROM threads";
     //Excecute
-    $result = $db->query($ucheck) or die($db->error);
-	die("Done");
+    $result = $db->query($question) or die($db->error);
+	die($result);
 
   
 
