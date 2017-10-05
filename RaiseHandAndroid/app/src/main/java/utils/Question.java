@@ -8,7 +8,6 @@ import java.sql.Time;
 
 public class Question {
 
-<<<<<<< HEAD
     // description of question
     private String questionDescription;
 
@@ -54,20 +53,6 @@ public class Question {
 
     public void setStudentRating(int studentRating) {
         this.studentRating = studentRating;
-=======
 
-
-    public Question(String question, int rating){
-        this.original_post=question;
-        this.student_rating=rating;
->>>>>>> 225b007e291404407505bc8385085f1e8af07bce
-    }
-
-    public void setQuestionTitle(String questionTitle) {
-        this.questionTitle = questionTitle;
-    }
-
-    public void setCreationTime(Time creationTime) {
-        this.creationTime = creationTime;
     }
 }
