@@ -26,11 +26,11 @@ public class Reply {
         this.time_stamp=time_stamp;
     }
 
-    public int getUpVotes(Reply r){
+    public int get_up_votes(Reply r){
         return r.student_rating;
     }
 
-    public String getQuestion(Reply r){
+    public String get_reply(Reply r){
         return r.reply;
     }
 
