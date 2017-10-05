@@ -1,5 +1,6 @@
 package utils;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -105,5 +106,31 @@ public class Question {
 
     public void setUniversityID(String universityID) {
         this.universityID = universityID;
+    }
+
+    //Given a class, this method will return the questions from the database that have to do with that class
+    public ArrayList<Question> get_question(int classID) {
+        ArrayList<Question> q= new ArrayList<Question>();
+        int existsQuestions;
+        if(existsQuestions==1) {
+            //todo: while loop to go through all of the questions
+            String description, title, ownerID, universityID;
+            int studentRating;
+            Date creationTime;
+            List<Reply> replies = new ArrayList<Reply>();
+            int existReplies;
+            //Return from the database information on whether or not there are replies to this question
+            if (existReplies == 1) {
+                //If there are replies, need to make a method that gets the information on all of the replies, similar to this question method
+            }
+            q.add(new Question(description, studentRating, title, creationTime, replies, ownerID, classID, universityID));
+        }
+
+        return q;
+    }
+
+    //Given a question, it will push this question to the database
+    public void add_question_to_database(Question q){
+        //TODO: add this question to the database
     }
 }

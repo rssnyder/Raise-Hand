@@ -61,7 +61,7 @@ public class TeacherQuestions extends AppCompatActivity {
                                              "1");
         listItems.add(questionItem);
 
-        adapter = new MyAdapterQuestions(listItems, this);
+        //adapter = new MyAdapterQuestions(listItems, this);
 
         recyclerView.setAdapter(adapter);
 

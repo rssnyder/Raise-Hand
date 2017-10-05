@@ -41,4 +41,8 @@ public class Reply {
     public Time time_stamp(Reply r){
         return r.time_stamp;
     }
+
+    public void add_to_database(Reply r, Question q){
+     //TODO: add a method to push information to the database on a new reply written in the app
+    }
 }
