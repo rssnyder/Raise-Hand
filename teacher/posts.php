@@ -143,7 +143,17 @@
                 <div class="col-md-12">
                   <div class="jumbotron well">';
         echo '<h5>' . $mainThread['title'] . '</h5><br>' . $mainThread['description'] . '<br><br>';
-        echo '<a href="#" class="commentButton">Reply</a><a href="#" class="commentButton">Flag</a><a href="#" class="commentButton">Endorse</a></div></div></div>';
+        echo '<button class="commentButton" onclick="unhide(this,\'childComment0\')">Reply</button><a href="#" class="commentButton">Flag</a><a href="#" class="commentButton">Endorse</a>';
+        //create the hidden comment box.
+        echo '<div id="childComment0" class="hidden">
+              <div class="content3">';
+        echo '<form action="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $_GET['thread'] . '" method="post">';
+        echo '<input type="hidden" name="parentID" value="0" size="35">
+              <input type="text" name="comment" value="" size="35"><br>
+              <input name="signup" type="submit" value="Submit">
+              </form>';
+        echo '</div></div>';
+        echo '</div></div></div>';
         //Now we can work on child comments
         getChildComments(0, 1, $thread, $db);
       ?>
