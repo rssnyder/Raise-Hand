@@ -29,11 +29,13 @@
       $_SESSION['errorCode'] = "Username Taken";
       die("User exists");
     }
-	//$email= $_GET['email'];
+	$email_user= $_GET['emailU'];
+	$email_domain=$_GET['emailD'];
+	$email=$email_user."@".$email_domain;
 	$university= $_GET['university'];
 
     //finally, insert into the database
-	$stmt = "INSERT INTO users(role_id, first_name, last_name, pass, username, university_id) VALUES (4,'$first', '$last', '$password', '$username', '$university')";
+	$stmt = "INSERT INTO users(role_id, first_name, last_name, pass, username, university_id, email) VALUES (4,'$first', '$last', '$password', '$username', '$university', '$email')";
 	$stmt = $db->query($stmt) or die($db->error);
 	die("Done");
 

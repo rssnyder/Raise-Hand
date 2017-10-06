@@ -20,6 +20,7 @@
 	if(password_verify($pass, $password)) {
 		$user = array(
 		    'logged_in'=>"true",
+		    'reset'=>$response['reset'],
 		    'id'=>$response['ID'],
 		    'role_id'=> $response['role_id'],
 		    'username'=>$response['username'],
