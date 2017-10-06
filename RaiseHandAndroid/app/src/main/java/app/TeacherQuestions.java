@@ -23,10 +23,7 @@
 //import java.util.List;
 //
 //import RecyclerViews.ListItemTeacherClasses;
-//import RecyclerViews.ListItemTeacherNotifications;
 //import RecyclerViews.MyAdapterClasses;
-//import RecyclerViews.MyAdapterNotifications;
-//import RecyclerViews.MyAdapterStudents;
 //import utils.Question;
 //import utils.Reply;
 //
@@ -64,7 +61,7 @@
 //                                             "1");
 //        listItems.add(questionItem);
 //
-//        adapter = new ListItemTeacher(listItems, this);
+//        adapter = new MyAdapterQuestions(listItems, this);
 //
 //        recyclerView.setAdapter(adapter);
 //
