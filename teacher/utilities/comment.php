@@ -25,10 +25,18 @@
   //Connect to database
   $db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 
+  $comment = $_POST['comment'];
+
+  //Check for empty comment
+  if("" == trim($comment)) {
+    header("Location: ../posts.php?class=" . $_GET['class'] . "&thread=" . $_GET['thread'] . "&post=failure");
+    die("No comment");
+  }
+  
   //Get the values
   $thread = $_GET['thread'];
   $parentID = $_POST['parentID'];
-  $comment = $_POST['comment'];
+  //$comment = $_POST['comment'];
   $userID = $_SESSION['id'];
   $username = $_SESSION['username'];
 
@@ -47,7 +55,7 @@
 
   //Submit the comment
   $result = $db->query($query) or die($query);
-  header("Location: ../posts.php?class=" . $_GET['class'] . "&thread=" . $thread);
+  header("Location: ../posts.php?class=" . $_GET['class'] . "&thread=" . $thread . "&post=success");
   die("Comment posted.");
 
 ?>

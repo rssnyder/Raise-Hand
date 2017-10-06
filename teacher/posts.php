@@ -55,16 +55,17 @@
               <div class="col-md-' . $lvl . '"></div>
               <div class="col-md-' . (12 - $lvl) . '">
                 <div class="jumbotron well">';
-      echo '<p>' . $text . '</p><br>-' . $author . ' @ ' . $creation . '<br><br>';
+      echo '<p>' . $text . '</p>  -' . $author . ' @ ' . $creation . '<br><br>';
       //Print the buttons
       echo '<button class="commentButton" onclick="unhide(this,\'childComment' . $id . '\')">Reply</button><a href="#" class="commentButton">Flag</a><a href="#" class="commentButton">Endorse</a>';
       //create the hidden comment box.
       echo '<div id="childComment' . $id . '" class="hidden">
             <div class="content3">';
-      echo '<form id="singup-form" action="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '" method="post">';
+      echo '<form action="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '" method="post">';
       echo '<input type="hidden" name="parentID" value="' . $id . '" size="35">
             <input type="text" name="comment" value="" size="35"><br>
-            <input name="signup" type="submit" value="Submit">';
+            <input name="signup' . $id . '" type="submit" value="Submit">
+            </form>';
       echo '</div></div>';
       echo '</div></div></div>';
       //Print any child comments of this comment
