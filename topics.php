@@ -22,7 +22,7 @@
         Echo ''.$row['topic_name'].' ';
         Echo 'DESCRIPTION ';
         Echo ''.$row['description'].' ';
-        $quest= "SELECT * FROM questions WHERE topic_id= '$row[ID]'";
+        $quest= "SELECT * FROM threads WHERE topic_id= '$row[ID]'";
         $res= $db->query($quest) or die($db->error);
         while($r= $res->fetch_array()){
             Echo 'NEWQUESTION ';
