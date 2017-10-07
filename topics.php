@@ -13,6 +13,7 @@
     $question = "SELECT * FROM topics WHERE class_id='$classId'";
     //Excecute
     $result = $db->query($question) or die($db->error);
+    //Fetch all of the topics for a given class
     while($row = $result->fetch_array())
     {
         Echo 'NEWTOPIC ';
@@ -24,6 +25,8 @@
         Echo ''.$row['description'].' ';
         $quest= "SELECT * FROM threads WHERE topic_id= '$row[ID]'";
         $res= $db->query($quest) or die($db->error);
+        //For each topic in the class, get all of the questions associated with the topic
+        //Using echo CAPITALTITLE to help parse the string in android studio
         while($r= $res->fetch_array()){
             Echo 'NEWQUESTION ';
             Echo 'QUESTIONTITLE ';
@@ -45,6 +48,7 @@
             Echo ''.$r['creation'].' ';
             $que= "SELECT * FROM replies WHERE thread_id= '$r[ID]'";
             $resp= $db->query($que) or die($db->error);
+            //For each question within this topic, get all of the replies to that question
             while($ro= $resp->fetch_array()){
                 Echo 'NEWREPLY ';
                 Echo 'REPLYTXT ';
