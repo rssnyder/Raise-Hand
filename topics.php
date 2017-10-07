@@ -15,9 +15,9 @@
     $result = $db->query($question) or die($db->error);
     while($row = $result->fetch_array())
     {
-        Echo 'New topic'."\n";
-        Echo ''.$row['creation_time'].''."\n";
-        Echo ''.$row['topic_name'].''."\n";
-        Echo ''.$row['description_name'].''."\n";
+        Echo 'NEWTOPIC ';
+        Echo ''.$row['creation_time'].'';
+        Echo ''.$row['topic_name'].'';
+        Echo ''.$row['description_name'].'';
     }
 ?>
