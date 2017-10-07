@@ -13,7 +13,9 @@
     $question = "SELECT t.creation_time, t.topic_name, t.description FROM topics t WHERE t.class_id='$classId'";
     //Excecute
     $result = $db->query($question) or die($db->error);
-    while($row = mysql_fetch_array($result)) {
-        echo $row['fieldname'];
+    while($row = $result->fetch_array())
+    {
+        echo $row['t.creation_time'] . " " . $row['t.topic_name']. " " . $row['t.description'];
+        echo "<br />";
     }
 ?>
