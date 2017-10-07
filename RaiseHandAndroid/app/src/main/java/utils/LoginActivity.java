@@ -98,7 +98,6 @@ public class LoginActivity extends Activity {
             editTextUsername.requestFocus();
             return;
         }
-
         if (TextUtils.isEmpty(password)) {
             editTextPassword.setError("Please enter your password");
             editTextPassword.requestFocus();
