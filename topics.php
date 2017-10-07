@@ -16,8 +16,11 @@
     while($row = $result->fetch_array())
     {
         Echo 'NEWTOPIC ';
-        Echo ''.$row['creation_time'].'';
-        Echo ''.$row['topic_name'].'';
-        Echo ''.$row['description_name'].'';
+        Echo 'CREATETIME ';
+        Echo ''.$row['creation_time'].' ';
+        Echo 'TOPICNAME ';
+        Echo ''.$row['topic_name'].' ';
+        Echo 'DESCRIPTION ';
+        Echo ''.$row['description_name'].' ';
     }
 ?>
