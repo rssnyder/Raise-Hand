@@ -16,6 +16,7 @@
     echo "start rows";
     while($row = $result->fetch_array())
     {
+        print_r[$row];
         echo $row['t.creation_time'] . " " . $row['t.topic_name']. " " . $row['t.description'];
         echo "<br />";
     }
