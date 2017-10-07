@@ -45,23 +45,23 @@
             Echo ''.$r['creation'].' ';
             $que= "SELECT * FROM replies WHERE thread_id= '$r[ID]'";
             $resp= $db->query($que) or die($db->error);
-            while($resp= $resp->fetch_array()){
+            while($ro= $resp->fetch_array()){
                 Echo 'NEWREPLY ';
                 Echo 'REPLYTXT ';
-                Echo ''.$resp['txt'].' ';
+                Echo ''.$ro['txt'].' ';
                 Echo 'REPLYUSER ';
-                Echo ''.$resp['user_name'].' ';
+                Echo ''.$ro['user_name'].' ';
                 Echo 'POINTS ';
-                Echo ''.$resp['points'].' ';
+                Echo ''.$ro['points'].' ';
                 Echo 'ENDORSED ';
-                if($resp['endorsed_user_id']==null){
+                if($ro['endorsed_user_id']==null){
                     Echo 'No ';
                 }
                 else{
                  Echo 'Yes ';
                 }
                 Echo 'CREATION ';
-                Echo ''.$resp['creation'].' ';
+                Echo ''.$ro['creation'].' ';
             }
         }
     }
