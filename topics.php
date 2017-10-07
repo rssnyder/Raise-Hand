@@ -10,7 +10,7 @@
 	$db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 	
 	$classId = $_GET['classId'];
-    $question = "SELECT creation_time, topic_name, description FROM topics WHERE class_id='$classId'";
+    $question = "SELECT * FROM topics WHERE class_id='$classId'";
     //Excecute
     $result = $db->query($question) or die($db->error);
     while($row = $result->fetch_array())
@@ -22,5 +22,47 @@
         Echo ''.$row['topic_name'].' ';
         Echo 'DESCRIPTION ';
         Echo ''.$row['description'].' ';
+        $quest= "SELECT * FROM questions WHERE topic_id= '$row[ID]'";
+        $res= $db->query($quest) or die($db->error);
+        while($r= $res->fetch_array()){
+            Echo 'NEWQUESTION ';
+            Echo 'QUESTIONTITLE ';
+            Echo ''.$r['title'].' ';
+            Echo 'QUESTIONDESCRIPTION ';
+            Echo ''.$r['description'].' ';
+            Echo 'QUESTIONUSER ';
+            Echo ''.$r['user_name'].' ';
+            Echo 'POINTS ';
+            Echo ''.$r['points'].' ';
+            Echo 'ENDORSED ';
+            if($r['endorsed_user_id']==null){
+                Echo 'No ';
+            }
+            else{
+                Echo 'Yes ';
+            }
+            Echo 'CREATION ';
+            Echo ''.$r['creation'].' ';
+            $que= "SELECT * FROM replies WHERE thread_id= '$r[ID]'";
+            $resp= $db->query($que) or die($db->error);
+            while($resp= $resp->fetch_array()){
+                Echo 'NEWREPLY ';
+                Echo 'REPLYTXT ';
+                Echo ''.$resp['txt'].' ';
+                Echo 'REPLYUSER ';
+                Echo ''.$resp['user_name'].' ';
+                Echo 'POINTS ';
+                Echo ''.$resp['points'].' ';
+                Echo 'ENDORSED ';
+                if($resp['endorsed_user_id']==null){
+                    Echo 'No ';
+                }
+                else{
+                 Echo 'Yes ';
+                }
+                Echo 'CREATION ';
+                Echo ''.$resp['creation'].' ';
+            }
+        }
     }
 ?>
