@@ -13,11 +13,11 @@
     $question = "SELECT t.creation_time, t.topic_name, t.description FROM topics t WHERE t.class_id='$classId'";
     //Excecute
     $result = $db->query($question) or die($db->error);
-    echo "start rows";
+    Echo "<html>";
     while($row = $result->fetch_array())
     {
-        print_r[$row];
-        echo $row['t.creation_time'] . " " . $row['t.topic_name']. " " . $row['t.description'];
-        echo "<br />";
+        
+        Echo "<title>HTML with PHP</title>";
+        Echo "<b>$row</b>";
     }
 ?>
