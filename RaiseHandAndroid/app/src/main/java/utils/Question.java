@@ -1,8 +1,23 @@
 package utils;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.text.TextUtils;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.StringRequest;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import app.MainActivity;
+import app.TeacherNotifications;
 
 public class Question {
 
@@ -106,27 +121,6 @@ public class Question {
 
     public void setUniversityID(String universityID) {
         this.universityID = universityID;
-    }
-
-    //Given a class, this method will return the questions from the database that have to do with that class
-    public ArrayList<Question> get_question(int classID) {
-        ArrayList<Question> q= new ArrayList<Question>();
-        int existsQuestions;
-        if(existsQuestions==1) {
-            //todo: while loop to go through all of the questions
-            String description, title, ownerID, universityID;
-            int studentRating;
-            Date creationTime;
-            List<Reply> replies = new ArrayList<Reply>();
-            int existReplies;
-            //Return from the database information on whether or not there are replies to this question
-            if (existReplies == 1) {
-                //If there are replies, need to make a method that gets the information on all of the replies, similar to this question method
-            }
-            q.add(new Question(description, studentRating, title, creationTime, replies, ownerID, classID, universityID));
-        }
-
-        return q;
     }
 
     //Given a question, it will push this question to the database
