@@ -10,7 +10,7 @@
 	$db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 	
 	$classId = $_GET['classId'];
-    $question = "SELECT * FROM topics WHERE class_id='$classId'";
+    $question = "SELECT t.creation_time, t.topic_name, t.description FROM topics t WHERE t.class_id='$classId'";
     //Excecute
     $result = $db->query($question) or die($db->error);
 	die($result);
