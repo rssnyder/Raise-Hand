@@ -15,7 +15,7 @@
     $result = $db->query($question) or die($db->error);
     while($row = $result->fetch_array())
     {
-        Echo '$row[creation_time]';
-        Echo '$row[topic_name]';
+        Echo ''.$row['creation_time'].'';
+        Echo ''.$row['topic_name'].'';
     }
 ?>
