@@ -21,6 +21,6 @@
         Echo 'TOPICNAME ';
         Echo ''.$row['topic_name'].' ';
         Echo 'DESCRIPTION ';
-        Echo ''.$row['description_name'].' ';
+        Echo ''.$row['description'].' ';
     }
 ?>
