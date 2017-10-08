@@ -26,8 +26,8 @@
   $db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 
   $thread = $_GET['thread'];
-  
-  if(!strcmp($_GET['action'], "comment")) {
+
+  if($_GET['action'] == 'comment') {
     $comment = $_POST['comment'];
 
     //Check for empty comment
@@ -61,7 +61,7 @@
     header("Location: ../posts.php?class=" . $_GET['class'] . "&thread=" . $thread);
     die("Comment posted.");
   }
-  else if(!strcmp($_GET['action'], "flag")) {
+  else if($_GET['action'] == 'flag') {
     $comment = $_GET['comment'];
     $query = "UPDATE replies
                 SET
@@ -72,7 +72,7 @@
     header("Location: ../posts.php?class=" . $_GET['class'] . "&thread=" . $thread);
     die("Flag submitted.");
   }
-  else if(!strcmp($_GET['action'], "endorse")) {
+  else if($_GET['action'] == 'endorse') {
     $id = $_SESSION['id'];
     $comment = $_GET['comment'];
     $query = "UPDATE replies
