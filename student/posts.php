@@ -52,6 +52,10 @@
       echo '<p>' . $text . '</p>  -' . $author . ' @ ' . $creation . '<br><br>';
       //Print the buttons
       echo '<button class="commentButton" onclick="unhide(this,\'childComment' . $id . '\')">Reply</button><a href="#" class="commentButton">Flag</a><a href="#" class="commentButton">Endorse</a>';
+      //Print endorsement
+      if($endorsedID) {
+        echo ' Endorsed!';
+      }
       //create the hidden comment box.
       echo '<div id="childComment' . $id . '" class="hidden">
             <div class="content3">';
