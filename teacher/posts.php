@@ -58,6 +58,11 @@
       echo '<p>' . $text . '</p>  -' . $author . ' @ ' . $creation . '<br><br>';
       //Print the buttons
       echo '<button class="commentButton" onclick="unhide(this,\'childComment' . $id . '\')">Reply</button><a href="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '&comment=' . $id . '&action=flag" class="commentButton">Flag</a><a href="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '&comment=' . $id . '&action=endorse" class="commentButton">Endorse</a>';
+      //Print endorsement
+      if($endorsedID) {
+        echo 'Endorsed!';
+      }
+
       //create the hidden comment box.
       echo '<div id="childComment' . $id . '" class="hidden">
             <div class="content3">';
