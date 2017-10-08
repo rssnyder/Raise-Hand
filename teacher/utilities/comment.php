@@ -25,6 +25,8 @@
   //Connect to database
   $db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 
+  $thread = $_GET['thread'];
+  
   if(!strcmp($_GET['action'], "comment")) {
     $comment = $_POST['comment'];
 
@@ -35,7 +37,7 @@
     }
 
     //Get the values
-    $thread = $_GET['thread'];
+
     $parentID = $_POST['parentID'];
     //$comment = $_POST['comment'];
     $userID = $_SESSION['id'];
