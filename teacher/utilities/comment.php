@@ -25,37 +25,61 @@
   //Connect to database
   $db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 
-  $comment = $_POST['comment'];
+  if(!strcmp($_GET['action'], "comment")) {
+    $comment = $_POST['comment'];
 
-  //Check for empty comment
-  if("" == trim($comment)) {
-    header("Location: ../posts.php?class=" . $_GET['class'] . "&thread=" . $_GET['thread'] . "&post=failure");
-    die("No comment");
+    //Check for empty comment
+    if("" == trim($comment)) {
+      header("Location: ../posts.php?class=" . $_GET['class'] . "&thread=" . $_GET['thread']);
+      die("No comment");
+    }
+
+    //Get the values
+    $thread = $_GET['thread'];
+    $parentID = $_POST['parentID'];
+    //$comment = $_POST['comment'];
+    $userID = $_SESSION['id'];
+    $username = $_SESSION['username'];
+
+    $query = "INSERT INTO replies
+              (thread_id,
+              owner_id,
+              txt,
+              user_name,
+              parent)
+              VALUES
+              ($thread,
+                $userID,
+                '$comment',
+                '$username',
+                $parentID)";
+
+    //Submit the comment
+    $result = $db->query($query) or die($query);
+    header("Location: ../posts.php?class=" . $_GET['class'] . "&thread=" . $thread);
+    die("Comment posted.");
   }
-  
-  //Get the values
-  $thread = $_GET['thread'];
-  $parentID = $_POST['parentID'];
-  //$comment = $_POST['comment'];
-  $userID = $_SESSION['id'];
-  $username = $_SESSION['username'];
+  else if(!strcmp($_GET['action'], "flag")) {
+    $comment = $_GET['comment'];
+    $query = "UPDATE replies
+                SET
+                flagged = 1
+                WHERE ID = $comment";
 
-  $query = "INSERT INTO replies
-            (thread_id,
-            owner_id,
-            txt,
-            user_name,
-            parent)
-            VALUES
-            ($thread,
-              $userID,
-              '$comment',
-              '$username',
-              $parentID)";
+    $result = $db->query($query) or die($query);
+    header("Location: ../posts.php?class=" . $_GET['class'] . "&thread=" . $thread);
+    die("Flag submitted.");
+  }
+  else if(!strcmp($_GET['action'], "endorse")) {
+    $id = $_SESSION['id'];
+    $comment = $_GET['comment'];
+    $query = "UPDATE replies
+                SET
+                endorsed_user_id = $id
+                WHERE ID = $comment";
 
-  //Submit the comment
-  $result = $db->query($query) or die($query);
-  header("Location: ../posts.php?class=" . $_GET['class'] . "&thread=" . $thread . "&post=success");
-  die("Comment posted.");
-
+    $result = $db->query($query) or die($query);
+    header("Location: ../posts.php?class=" . $_GET['class'] . "&thread=" . $thread);
+    die("Endorsed.");
+  }
 ?>
