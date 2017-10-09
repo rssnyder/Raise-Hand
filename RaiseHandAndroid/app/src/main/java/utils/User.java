@@ -30,21 +30,21 @@ public class User {
         else
             return true;
     }
-    public String getId(User u) {
-        return u.id;
+    public String getId() {
+        return this.id;
     }
-    public String getUsername(User u) {
-        return u.username;
+    public String getUsername() {
+        return this.username;
     }
-    public String getRoleId(User u) {
-        return u.role_id;
+    public String getRoleId() {
+        return this.role_id;
     }
-    public String getFirst_name(User u){
-        return u.first_name;
+    public String getFirst_name(){
+        return this.first_name;
     }
-    public String get_last_name(User u){ return last_name;}
-    public boolean is_logged_in(User u){return logged_in;}
-    public void logout(User u){logged_in=false;}
-    public ArrayList<String> get_classes(User u){return u.classes;}
+    public String get_last_name(){ return this.last_name;}
+    public boolean is_logged_in(){return this.logged_in;}
+    public void logout(){this.logged_in=false;}
+    public ArrayList<String> get_classes(){return this.classes;}
 
 }
