@@ -37,13 +37,11 @@ import utils.URLS;
 import utils.User;
 
 public class TeacherClasses extends AppCompatActivity {
-    private String TAG = TeacherClasses.class.getSimpleName();
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<Classes> listItems;
     private Field mDragger;
     private SharedPreferences mPreferences;
-
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;

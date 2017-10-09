@@ -1,6 +1,7 @@
 package com.example.sae1.raisehand;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -19,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
+import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -26,20 +28,24 @@ import java.util.List;
 
 import RecyclerViews.ListItemTeacherTopics;
 import RecyclerViews.MyAdapterTopics;
+import RecyclerViews.MyAdapterTopicsStudent;
 import app.TeacherHomePage;
 import app.TeacherNotifications;
 import app.TeacherSettings;
 import app.TeacherStudents;
 import app.TeacherTopics;
 import utils.LoginActivity;
+import utils.Topics;
 import utils.URLS;
+import utils.User;
 
 public class student_topics extends AppCompatActivity {
-    private String TAG = TeacherTopics.class.getSimpleName();
+    private String TAG = student_classes.class.getSimpleName();
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private List<ListItemTeacherTopics> listItems;
+    private List<Topics> listItems;
     private Field mDragger;
+    private SharedPreferences mPreferences;
 
 
     private DrawerLayout mDrawerLayout;
@@ -52,24 +58,23 @@ public class student_topics extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_topics);
 
+        mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
+
         // Set up recycler view
-        recyclerView = (RecyclerView) findViewById(R.id.topicsRecyclerView);
+        recyclerView = (RecyclerView) findViewById(R.id.topicsRecyclerViewStudent);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // list to hold items for recycler view.
-        // i.e. The topics in the class
         listItems = new ArrayList<>();
 
-        makeStringReq();
+        Gson gson = new Gson();
+        String json = mPreferences.getString("currentUser", "");
+        User currentUser = gson.fromJson(json, User.class);
+        //TODO figure out what topic was clicked
+        listItems = currentUser.get_classes().get(0).getTopics();
 
-        for(int i = 0; i < 10; i++){
-            ListItemTeacherTopics listItem = new ListItemTeacherTopics("Topic " + (i + 1),
-                    "Dummy text. This is a topic!");
-            listItems.add(listItem);
-        }
-//        adapter = new MyAdapterTopics(listItems, this);
 
+        adapter = new MyAdapterTopicsStudent(listItems, this);
         recyclerView.setAdapter(adapter);
 
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
@@ -82,6 +87,7 @@ public class student_topics extends AppCompatActivity {
         mToggle.syncState();
 
         slideOutMenu();
+        mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -118,28 +124,6 @@ public class student_topics extends AppCompatActivity {
 
     }
 
-    private void makeStringReq(){
-
-        StringRequest strReq = new StringRequest(Request.Method.GET,
-                URLS.URL_STUDENT_HOME,
-                new Response.Listener<String>() {
-
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d(TAG, response.toString());
-                        String phpResponse = response.toString();
-                        System.out.println("YOU ARE HERE");
-                        System.out.println("RESPONSE: \n"+phpResponse);
-                        System.out.println("THE END");
-                    }
-                }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-            }
-        });
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

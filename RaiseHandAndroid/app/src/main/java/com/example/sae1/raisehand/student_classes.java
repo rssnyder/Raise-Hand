@@ -1,6 +1,7 @@
 package com.example.sae1.raisehand;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -8,29 +9,59 @@ import android.support.v4.widget.ViewDragHelper;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import java.lang.reflect.Field;
+import com.google.gson.Gson;
 
-import app.TeacherHomePage;
-import app.TeacherNotifications;
-import app.TeacherSettings;
-import app.TeacherStudents;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+
+import RecyclerViews.MyAdapterClassesStudent;
+import app.TeacherClasses;
+import utils.Classes;
 import utils.LoginActivity;
+import utils.User;
 
 public class student_classes extends AppCompatActivity {
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private List<Classes> listItems;
+    private Field mDragger;
+    private SharedPreferences mPreferences;
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView nv;
     private Toolbar mToolbar;
-    private Field mDragger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_classes);
+
+        mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
+
+        // Set up recycler view
+        recyclerView = (RecyclerView) findViewById(R.id.classesRecyclerViewStudent);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // list to hold items for recycler view.
+        // i.e. The classes the teacher is in
+        listItems = new ArrayList<>();
+
+        Gson gson = new Gson();
+        String json = mPreferences.getString("currentUser", "");
+        User currentUser = gson.fromJson(json, User.class);
+        listItems = currentUser.get_classes();
+
+        adapter = new MyAdapterClassesStudent(listItems, this);
+
+        recyclerView.setAdapter(adapter);
 
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
@@ -42,7 +73,6 @@ public class student_classes extends AppCompatActivity {
         mToggle.syncState();
 
         slideOutMenu();
-        mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
