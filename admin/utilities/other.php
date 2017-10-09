@@ -43,8 +43,17 @@
     }
   }
 
-  if($_GET['type'] == 'thisThing') {
+  if($_GET['type'] == 'removeComment') {
+    $comment = $_GET['comment'];
+    $query = "UPDATE replies
+                SET
+                txt = 'REMOVED',
+                flagged = 0
+                WHERE ID = $comment";
 
+    $result = $db->query($query) or die($query);
+    header("Location: ../viewReports.php");
+    die("comment removed.");
   }
 
 ?>

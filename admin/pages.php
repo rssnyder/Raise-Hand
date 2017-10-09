@@ -108,11 +108,12 @@
           $query = 'SELECT * FROM replies WHERE flagged = 1';
           $result = $db->query($query) or die($db->error);
           echo '<table style="width:100%">';
-          while($omment = $result->fetch_assoc()) {
+          while($comment = $result->fetch_assoc()) {
             echo' <tr>
                <th>' . $comment['user_name'] . '</th>
                <th>' . $comment['txt'] . '</th>
                <th>' . $comment['creation'] . '</th>
+               <th><a href="utilities/other.php?type=removeComment&comment=' . $comment['ID'] . '" class="commentButton">Remove Comment</a></th>
              </tr>';
           }
           echo '</table>';
