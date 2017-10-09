@@ -43,10 +43,10 @@ public class MyAdapterClasses extends RecyclerView.Adapter<MyAdapterClasses.View
 
         holder.textViewHead.setText(listItem.getTitle());
         holder.textViewDesc.setText(listItem.getClassID());
+
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO go to the class' Topics
                 Intent teacherTopics = new Intent(context.getApplicationContext(), TeacherTopics.class);
                 context.getApplicationContext().startActivity(teacherTopics);
             }
