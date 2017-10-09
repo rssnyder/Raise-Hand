@@ -18,19 +18,19 @@
 
 	//If correct password
 	if(password_verify($pass, $password)) {
-		Echo '"logged_in": true';
+		Echo '"logged_in": "true"';
 		Echo ', "reset":';
-		Echo ' '.$response['reset'].' ';
+		Echo ' "'.$response['reset'].'" ';
 		Echo ',"id":';
-		Echo ' '.$response['ID'].' ';
+		Echo ' "'.$response['ID'].'" ';
 		Echo ', "role_id":';
-	    Echo ' '.$response['role_id'].' ';
+	    Echo ' "'.$response['role_id'].'" ';
 	    Echo ',"username":';
-	    Echo ' '.$response['username'].' ';
+	    Echo ' "'.$response['username'].'" ';
 	    Echo ', "first_name":';
-	    Echo ' '.$response['first_name'].' ';
+	    Echo ' "'.$response['first_name'].'" ';
 	    Echo ', "last_name":';
-	    Echo ' '.$response['last_name'].' ';
+	    Echo ' "'.$response['last_name'].'" ';
 	    Echo ', "class_id":';
 		$response['error'] = false;
 		$response['message'] = 'Login successfull';
@@ -38,12 +38,14 @@
 	    $stmt = "SELECT class_id FROM userClasses WHERE user_id = '$tempID' ";
 	    $stmt = $db->query($stmt) or die($db->error);
 	    if(mysqli_num_rows($stmt)>0){
+	        Echo '"';
 	        while($row = $stmt->fetch_array()){
 	            Echo ''.$row.', ';
 	        }
+	        Echo '"';
 	    }
 	    else{
-	        Echo '0';
+	        Echo '"'.' 0'.'"';
 	    }
 	}
 	else{
