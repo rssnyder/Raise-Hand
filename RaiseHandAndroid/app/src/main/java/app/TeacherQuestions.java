@@ -31,7 +31,7 @@ import utils.Reply;
 public class TeacherQuestions extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private List<Question> listItems;
+    private List<ListItemTeacherClasses> listItems;
     private Field mDragger;
 
 
@@ -51,6 +51,13 @@ public class TeacherQuestions extends AppCompatActivity {
 
         listItems = new ArrayList<>();
         List<Reply> replyList = new ArrayList<>();
+
+        for(int i = 0; i < 100; i++){
+            ListItemTeacherClasses listItem = new ListItemTeacherClasses("Class " + (i + 1),
+                                                                         "Dummy text. This is a class you're teaching!");
+            listItems.add(listItem);
+        }
+        adapter = new MyAdapterClasses(listItems, this);
 /*
         Question questionItem = new Question("I have no clue what to do.",
                                              5,

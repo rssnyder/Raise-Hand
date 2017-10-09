@@ -58,7 +58,7 @@ public class TeacherClasses extends AppCompatActivity {
         // i.e. The classes the teacher is in
         listItems = new ArrayList<>();
 
-        makeStringReq();
+//        makeStringReq();
 
         for(int i = 0; i < 10; i++){
             ListItemTeacherClasses listItem = new ListItemTeacherClasses("Class " + (i + 1),
