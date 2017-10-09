@@ -21,6 +21,8 @@
         Echo ''.$row['creation_time'].' ';
         Echo 'TOPICNAME ';
         Echo ''.$row['topic_name'].' ';
+        Echo 'ID ';
+        Echo ''.$row['ID'].' ';
         Echo 'DESCRIPTION ';
         Echo ''.$row['description'].' ';
         $quest= "SELECT * FROM threads WHERE topic_id= '$row[ID]'";
