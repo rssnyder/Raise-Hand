@@ -52,7 +52,7 @@
                 WHERE ID = $comment";
 
     $result = $db->query($query) or die($query);
-    header("Location: ../viewReports.php");
+    header("Location: ../pages.php?page=viewReports");
     die("comment removed.");
   }
   else if($_GET['type'] == 'dismissComment') {
@@ -63,7 +63,7 @@
                 WHERE ID = $comment";
 
     $result = $db->query($query) or die($query);
-    header("Location: ../viewReports.php");
+    header("Location: ../pages.php?page=viewReports");
     die("flag dismissed.");
   }
 ?>
