@@ -22,6 +22,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.sae1.raisehand.R;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * A login screen that offers login via email/password.
@@ -133,9 +134,16 @@ public class LoginActivity extends Activity {
                                 String class_ids = seperated[8];
                                 ArrayList<String> classes=new ArrayList<String>();
                                 class_ids = class_ids.substring(1, class_ids.length() - 2);
-                                //In the php file, if someone is not in a class, I made it return 0 (meaning no classes for this user)
-                                if (class_ids == "0") {
-                                    class_ids = "None available";
+                                Scanner s= new Scanner(class_ids);
+                                s.useDelimiter(",");
+                                while(s.hasNext()) {
+                                    String clas = s.next();
+                                    if(clas.equals("0")){
+                                        //do nothing, this is not a class, just a place holder
+                                    }
+                                    else{
+                                        classes.add(clas);
+                                    }
                                 }
                                 Toast.makeText(MainActivity.getInstance(), "Welcome back, " + first + "!", Toast.LENGTH_LONG).show();
                                 currentUser = new User(reset, unique_id, roleID, usern, first, last, classes, true);
