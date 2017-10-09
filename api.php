@@ -45,7 +45,7 @@
 	    $stmt = $db->query($stmt) or die($db->error);
 	    $res = $stmt->fetch_assoc();
 	    if(empty($res)){
-	        $res['class_id']="0";
+	        $res['ID']="0";
 	    }
 	}
 	$final = array_merge($user, $res);
