@@ -134,12 +134,11 @@ public class Topics {
                                         //cannot be a new topic or new question starting (maybe need to add in new reply too)?
                                         while(!(current.equals("NEWTOPIC")) && !(current.equals("NEWQUESTION"))){
                                             //Add new question to the array list for the topic
-
-                                            //Get all of the replies
                                             if(current.equals("NEWREPLY")) {
+                                                //Get all of the replies
                                                 Reply tempR=null;
                                                 while(!current.equals("NEWREPLY")){
-
+                                                //Build a new reply
                                                 }
                                                 replies.add(tempR);
                                             }
@@ -155,7 +154,7 @@ public class Topics {
                                 temp.add(tempTopic);
                             }
                         }
-                        //TODO:HOW CAN I DO THIS
+                        //TODO:HOW CAN I DO THIS BELOW
                         //t=temp;
                     }}, new Response.ErrorListener() {
             @Override
