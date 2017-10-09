@@ -1,70 +1,32 @@
-package app;
+package com.example.sae1.raisehand;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.ViewDragHelper;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.example.sae1.raisehand.R;
-
 import java.lang.reflect.Field;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
-import RecyclerViews.ListItemTeacherClasses;
-import RecyclerViews.MyAdapterClasses;
-import RecyclerViews.MyAdapterQuestions;
-import utils.Question;
-import utils.Reply;
+import utils.LoginActivity;
 
-public class TeacherQuestions extends AppCompatActivity {
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
-    private List<Question> listItems;
-    private Field mDragger;
-
+public class student_home_page extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView nv;
     private Toolbar mToolbar;
+    private Field mDragger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teacher_questions);
-
-        recyclerView = (RecyclerView) findViewById(R.id.questionsRecyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        listItems = new ArrayList<>();
-        List<Reply> replyList = new ArrayList<>();
-
-        Question questionItem = new Question("I have no clue what to do.",
-                                             5,
-                                             "How do I do number 3?",
-                                             new Date(),
-                                             replyList,
-                                             "20",
-                                             "10",
-                                             "1");
-        listItems.add(questionItem);
-
-        //adapter = new MyAdapterQuestions(listItems, this);
-
-        recyclerView.setAdapter(adapter);
+        setContentView(R.layout.activity_student_home_page);
 
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
@@ -76,6 +38,7 @@ public class TeacherQuestions extends AppCompatActivity {
         mToggle.syncState();
 
         slideOutMenu();
+        mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -84,31 +47,31 @@ public class TeacherQuestions extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case(R.id.nav_home):
-                        Intent teacherHome = new Intent(getApplicationContext(), TeacherHomePage.class);
-                        startActivity(teacherHome);
-                        break;
-                    case (R.id.nav_classes):
+                    case(R.id.nav_home_student):
                         mDrawerLayout.closeDrawers();
                         break;
-                    case (R.id.nav_notifications):
-                        Intent teacherNotifications = new Intent(getApplicationContext(), TeacherNotifications.class);
-                        startActivity(teacherNotifications);
+                    case (R.id.nav_classes):
+
+                        Intent studentClasses = new Intent(getApplicationContext(), student_classes.class);
+                        startActivity(studentClasses);
                         break;
-                    case (R.id.nav_students):
-                        Intent teacherStudents = new Intent(getApplicationContext(), TeacherStudents.class);
-                        startActivity(teacherStudents);
+                    case (R.id.nav_notifications):
+                        Intent studentNotifications = new Intent(getApplicationContext(), student_notifications.class);
+                        startActivity(studentNotifications);
                         break;
                     case (R.id.nav_settings):
-                        Intent teacherSettings = new Intent(getApplicationContext(), TeacherSettings.class);
-                        startActivity(teacherSettings);
+                        Intent studentSettings = new Intent(getApplicationContext(), student_settings.class);
+                        startActivity(studentSettings);
+                        break;
+                    case (R.id.nav_logout):
+                        Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(loginPage);
+                        finish();
                         break;
                 }
                 return true;
             }
         });
-
-
     }
 
     @Override
@@ -159,6 +122,4 @@ public class TeacherQuestions extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-
 }
