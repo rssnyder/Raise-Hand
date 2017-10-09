@@ -31,6 +31,10 @@ public class MainActivity extends Application {
     private static MainActivity mInstance;
     ArrayList<Topics> t = new ArrayList<Topics>();
 
+    public static void main(String[] args){
+        ArrayList<Topics> temp= get_topics(5);
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
