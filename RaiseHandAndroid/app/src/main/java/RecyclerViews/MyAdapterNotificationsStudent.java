@@ -19,12 +19,14 @@ import com.example.sae1.raisehand.R;
 
 import java.util.List;
 
+import utils.Question;
+
 public class MyAdapterNotificationsStudent extends RecyclerView.Adapter<MyAdapterNotificationsStudent.ViewHolder>{
 
-    private List<ListItemStudentNotifications> listItems;
+    private List<Question> listItems;
     private Context context;
 
-    public MyAdapterNotificationsStudent(List<ListItemStudentNotifications> listItems, Context context) {
+    public MyAdapterNotificationsStudent(List<Question> listItems, Context context) {
         this.listItems = listItems;
         this.context = context;
     }
@@ -38,10 +40,10 @@ public class MyAdapterNotificationsStudent extends RecyclerView.Adapter<MyAdapte
 
     @Override
     public void onBindViewHolder(MyAdapterNotificationsStudent.ViewHolder holder, int position) {
-        ListItemStudentNotifications listItem = listItems.get(position);
+        Question listItem = listItems.get(position);
 
-        holder.textViewHead.setText(listItem.getHead());
-        holder.textViewDesc.setText(listItem.getDesc());
+        holder.textViewHead.setText(listItem.getQuestionTitle());
+        holder.textViewDesc.setText(listItem.getQuestionDescription());
     }
 
     @Override

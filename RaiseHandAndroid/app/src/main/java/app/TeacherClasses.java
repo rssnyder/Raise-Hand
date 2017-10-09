@@ -37,13 +37,11 @@ import utils.URLS;
 import utils.User;
 
 public class TeacherClasses extends AppCompatActivity {
-    private String TAG = TeacherClasses.class.getSimpleName();
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<Classes> listItems;
     private Field mDragger;
     private SharedPreferences mPreferences;
-
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
@@ -65,8 +63,6 @@ public class TeacherClasses extends AppCompatActivity {
         // list to hold items for recycler view.
         // i.e. The classes the teacher is in
         listItems = new ArrayList<>();
-
-//        makeStringReq();
 
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
@@ -120,29 +116,6 @@ public class TeacherClasses extends AppCompatActivity {
         });
 
 
-    }
-
-    private void makeStringReq(){
-
-        StringRequest strReq = new StringRequest(Request.Method.GET,
-                                                 URLS.URL_TEACHER_HOME,
-                                                 new Response.Listener<String>() {
-
-             @Override
-             public void onResponse(String response) {
-                 Log.d(TAG, response.toString());
-                 String phpResponse = response.toString();
-                 System.out.println("YOU ARE HERE");
-                 System.out.println("RESPONSE: \n"+phpResponse);
-                 System.out.println("THE END");
-             }
-         }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-            }
-        });
     }
 
     @Override

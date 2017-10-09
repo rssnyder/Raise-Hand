@@ -24,7 +24,7 @@ import utils.Classes;
 
 
 public class MyAdapterClassesStudent extends RecyclerView.Adapter<MyAdapterClassesStudent.ViewHolder>{
-    private List<ListItemStudentClasses> listItems;
+    private List<Classes> listItems;
     private Context context;
 
     public MyAdapterClassesStudent(List<Classes> listItems, Context context) {
@@ -33,18 +33,19 @@ public class MyAdapterClassesStudent extends RecyclerView.Adapter<MyAdapterClass
     }
 
     @Override
-    public MyAdapterClassesStudent.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_student_classes, parent, false);
-        return new MyAdapterClassesStudent.ViewHolder(v);
+        return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(MyAdapterClassesStudent.ViewHolder holder, int position) {
-        ListItemStudentClasses listItem = listItems.get(position);
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        Classes listItem = listItems.get(position);
 
-        holder.textViewHead.setText(listItem.getHead());
-        holder.textViewDesc.setText(listItem.getDesc());
+        holder.textViewHead.setText(listItem.getTitle());
+        holder.textViewDesc.setText(listItem.getClassID());
+
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

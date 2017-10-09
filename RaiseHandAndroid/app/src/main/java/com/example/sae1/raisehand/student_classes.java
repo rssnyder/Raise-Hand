@@ -27,8 +27,6 @@ import utils.LoginActivity;
 import utils.User;
 
 public class student_classes extends AppCompatActivity {
-
-    private String TAG = TeacherClasses.class.getSimpleName();
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<Classes> listItems;
@@ -47,10 +45,13 @@ public class student_classes extends AppCompatActivity {
 
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
 
+        // Set up recycler view
         recyclerView = (RecyclerView) findViewById(R.id.classesRecyclerViewStudent);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        // list to hold items for recycler view.
+        // i.e. The classes the teacher is in
         listItems = new ArrayList<>();
 
         Gson gson = new Gson();
@@ -59,6 +60,7 @@ public class student_classes extends AppCompatActivity {
         listItems = currentUser.get_classes();
 
         adapter = new MyAdapterClassesStudent(listItems, this);
+
         recyclerView.setAdapter(adapter);
 
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
@@ -71,7 +73,6 @@ public class student_classes extends AppCompatActivity {
         mToggle.syncState();
 
         slideOutMenu();
-        mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

@@ -67,7 +67,7 @@ public class TeacherTopics extends AppCompatActivity {
 
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
-        User currentUser = gson.fromJson(json, Topics.class);
+        User currentUser = gson.fromJson(json, User.class);
         listItems = currentUser.get_classes().get(0).get_topics();
 
         adapter = new MyAdapterTopics(listItems, this);
