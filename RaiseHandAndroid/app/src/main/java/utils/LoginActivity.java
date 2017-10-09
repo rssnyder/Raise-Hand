@@ -198,4 +198,8 @@ public class LoginActivity extends Activity {
         MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
 
     }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
 }
