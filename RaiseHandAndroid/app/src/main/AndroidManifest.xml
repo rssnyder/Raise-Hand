@@ -33,6 +33,7 @@
         <activity android:name="app.TeacherSettings"></activity>
         <activity android:name="app.TeacherStudents"></activity>
         <activity android:name="app.TeacherQuestions"></activity>
+        <activity android:name="app.TeacherTopics"></activity>
         <activity android:name="utils.SignupActivity"></activity>
         <activity android:name="com.example.sae1.raisehand.student_notifications"></activity>
         <activity android:name="com.example.sae1.raisehand.student_settings"></activity>
