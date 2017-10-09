@@ -94,18 +94,18 @@
     $name = $_POST['className'];
     $id = $_POST['id'];
     $user = $_POST['teachUsername'];
-    echo $password = $_POST['password'];
-    $usernmae = $_SESSION['username'];
+    $password = $_POST['password'];
+    $username = $_SESSION['username'];
     //Lets make sure this is really an Administrator
     $query = "SELECT pass FROM users WHERE username = '$username' ";
     $result = $db->query($query) or die($db->error);
     $pass = $result->fetch_assoc();
-    echo $passs = $pass["pass"];
+    $passs = $pass["pass"];
     if(password_verify($password, $passs)) {
       //This is the admin
 
       //Get all topics so I can get all threads so I can get all Replies
-      echo $query = "SELECT * FROM topics WHERE class_id = $id";
+      $query = "SELECT * FROM topics WHERE class_id = $id";
       $topics = $db->query($query) or die($db->error);
       //Get all threads
       while($topic = $topics->fetch_assoc()) {
@@ -127,18 +127,16 @@
       $query = "DELETE FROM topics WHERE class_id = $id";
       $result = $db->query($query) or die($db->error);
 
-      //Now delete class
-      $query = "DELETE FROM classes WHERE ID = $id";
-      $result = $db->query($query) or die($db->error);
-
       //Remove TAs/students/teachers
       $query = "DELETE FROM userClasses WHERE class_id = $id";
+      $result = $db->query($query) or die($db->error);
+
+      //Now delete class
+      $query = "DELETE FROM classes WHERE ID = $id";
       $result = $db->query($query) or die($db->error);
 
       header("Location: ../pages.php?page=deleteClass");
       die("goodbye my lover.");
     }
-    echo 'fuck me';
-
   }
 ?>
