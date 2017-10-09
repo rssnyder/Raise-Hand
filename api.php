@@ -41,11 +41,11 @@
 	}
 	if($user['logged_in']){
 	    $tempID= $response['ID'];
-	    $stmt = "SELECT c.ID FROM classes c WHERE c.teacher_id ='$tempID' ";
+	    $stmt = "SELECT class_id FROM userClasses WHERE user_id = '$tempID' ";
 	    $stmt = $db->query($stmt) or die($db->error);
 	    $res = $stmt->fetch_assoc();
 	    if(empty($res)){
-	        $res['ID']="0";
+	        $res['class_id']="0";
 	    }
 	}
 	$final = array_merge($user, $res);
