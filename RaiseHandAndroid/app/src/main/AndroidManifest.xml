@@ -33,13 +33,10 @@
         <activity android:name="app.TeacherSettings"></activity>
         <activity android:name="app.TeacherStudents"></activity>
         <activity android:name="utils.SignupActivity"></activity>
-<<<<<<< HEAD
-=======
         <activity android:name="com.example.sae1.raisehand.student_notifications"></activity>
         <activity android:name="com.example.sae1.raisehand.student_settings"></activity>
         <activity android:name="com.example.sae1.raisehand.student_classes"></activity>
         <activity android:name="com.example.sae1.raisehand.student_home_page"></activity>
-        <activity android:name="utils.QuestionActivity"></activity>
->>>>>>> db2af0ad660b924df12b5a293df295d9db4d1ddb
+        <!--<activity android:name="utils.QuestionActivity"></activity>-->
     </application>
 </manifest>

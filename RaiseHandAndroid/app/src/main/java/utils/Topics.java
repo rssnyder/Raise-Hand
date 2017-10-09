@@ -24,6 +24,8 @@ import app.TeacherNotifications;
  */
 
 public class Topics {
+    private ArrayList<Topics> t = new ArrayList<Topics>();
+
     //Needed to help track errors with android volley
     private String tag_string_req= "topics_req";
     private String TAG= Topics.class.getSimpleName();
@@ -80,7 +82,7 @@ public class Topics {
     }
     //Given a class, this method will return the questions from the database that have to do with that class
     public ArrayList<Topics> get_topics(int classID) {
-        ArrayList<Topics> t= new ArrayList<Topics>();
+        t.clear();
 
         int existsQuestions;
         int existsTopics;
