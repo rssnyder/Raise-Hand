@@ -19,10 +19,10 @@ import app.MainActivity;
 
 public class Classes {
     private ArrayList<Topics> topics;
-    //TODO: Change this, class info auto made for now
+    //need to add in the title thing
     private String title;
     private String classID;
-    private String tag_string_req;
+    private String tag_string_req="class_req";
     public static final String TAG= Classes.class.getSimpleName();
 
     public Classes(String title, String classID){
@@ -233,5 +233,29 @@ public class Classes {
         // Adding request to request queue
         MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
         return topics;
+    }
+
+    public ArrayList<Topics> getTopics() {
+        return topics;
+    }
+
+    public void setTopics(ArrayList<Topics> topics) {
+        this.topics = topics;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getClassID() {
+        return classID;
+    }
+
+    public void setClassID(String classID) {
+        this.classID = classID;
     }
 }

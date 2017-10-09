@@ -1,6 +1,7 @@
 package app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -20,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.example.sae1.raisehand.R;
+import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -29,14 +31,18 @@ import java.util.List;
 import RecyclerViews.ListItemTeacherClasses;
 import RecyclerViews.MyAdapterClasses;
 import RecyclerViews.MyAdapterNotifications;
+import utils.Classes;
+import utils.LoginActivity;
 import utils.URLS;
+import utils.User;
 
 public class TeacherClasses extends AppCompatActivity {
     private String TAG = TeacherClasses.class.getSimpleName();
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private List<ListItemTeacherClasses> listItems;
+    private List<Classes> listItems;
     private Field mDragger;
+    private SharedPreferences mPreferences;
 
 
     private DrawerLayout mDrawerLayout;
@@ -49,6 +55,8 @@ public class TeacherClasses extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_classes);
 
+        mPreferences = getPreferences(MODE_PRIVATE);
+
         // Set up recycler view
         recyclerView = (RecyclerView) findViewById(R.id.classesRecyclerView);
         recyclerView.setHasFixedSize(true);
@@ -60,11 +68,11 @@ public class TeacherClasses extends AppCompatActivity {
 
 //        makeStringReq();
 
-        for(int i = 0; i < 10; i++){
-            ListItemTeacherClasses listItem = new ListItemTeacherClasses("Class " + (i + 1),
-                                                                         "Dummy text. This is a class you're teaching!");
-            listItems.add(listItem);
-        }
+        Gson gson = new Gson();
+        String json = mPreferences.getString("currentUser", "");
+        User currentUser = gson.fromJson(json, User.class);
+        listItems = currentUser.get_classes();
+
         adapter = new MyAdapterClasses(listItems, this);
 
         recyclerView.setAdapter(adapter);

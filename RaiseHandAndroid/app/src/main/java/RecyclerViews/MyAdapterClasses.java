@@ -18,13 +18,14 @@ import java.util.List;
 
 import app.TeacherQuestions;
 import app.TeacherTopics;
+import utils.Classes;
 
 public class MyAdapterClasses extends RecyclerView.Adapter<MyAdapterClasses.ViewHolder> {
 
-    private List<ListItemTeacherClasses> listItems;
+    private List<Classes> listItems;
     private Context context;
 
-    public MyAdapterClasses(List<ListItemTeacherClasses> listItems, Context context) {
+    public MyAdapterClasses(List<Classes> listItems, Context context) {
         this.listItems = listItems;
         this.context = context;
     }
@@ -38,10 +39,10 @@ public class MyAdapterClasses extends RecyclerView.Adapter<MyAdapterClasses.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        ListItemTeacherClasses listItem = listItems.get(position);
+        Classes listItem = listItems.get(position);
 
-        holder.textViewHead.setText(listItem.getHead());
-        holder.textViewDesc.setText(listItem.getDesc());
+        holder.textViewHead.setText(listItem.getTitle());
+        holder.textViewDesc.setText(listItem.getClassID());
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
