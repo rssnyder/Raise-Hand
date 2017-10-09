@@ -51,7 +51,7 @@ public class TeacherQuestions extends AppCompatActivity {
 
         listItems = new ArrayList<>();
         List<Reply> replyList = new ArrayList<>();
-
+/*
         Question questionItem = new Question("I have no clue what to do.",
                                              5,
                                              "How do I do number 3?",
@@ -61,8 +61,8 @@ public class TeacherQuestions extends AppCompatActivity {
                                              "10",
                                              "1");
         listItems.add(questionItem);
-
-        adapter = new MyAdapterQuestions(listItems, this);
+*/
+        //adapter = new MyAdapterQuestions(listItems, this);
 
         recyclerView.setAdapter(adapter);
 
