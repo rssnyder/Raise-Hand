@@ -19,6 +19,7 @@ import app.MainActivity;
 
 public class Classes {
     private ArrayList<Topics> topics;
+    //TODO: Change this, class info auto made for now
     private String title="Math 276";
     private String classID="5";
     private String tag_string_req= "topics_req";
