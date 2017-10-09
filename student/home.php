@@ -77,7 +77,8 @@
       <?php
       //Get all the classes that this student is a part of and build the homepage
       //Get the classes that the teacher is a teacher of
-      $query = "SELECT class_id FROM userClasses WHERE user_id = " . $_SESSION['id'];
+      $myID = $_SESSION['id'];
+      $query = "SELECT class_id FROM userClasses WHERE user_id = $myID";
       $result = $db->query($query) or die($db->error);
         while ($class = $result->fetch_assoc()) {
           $id = $class['class_id'];

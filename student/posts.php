@@ -63,7 +63,7 @@
       //create the hidden comment box.
       echo '<div id="childComment' . $id . '" class="hidden">
             <div class="content3">';
-      echo '<form action="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '" method="post">';
+      echo '<form action="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '&action=comment" method="post">';
       echo '<input type="hidden" name="parentID" value="' . $id . '" size="35">
             <input type="text" name="comment" value="" size="35"><br>
             <input name="signup' . $id . '" type="submit" value="Submit">
@@ -149,7 +149,7 @@
         //create the hidden comment box.
         echo '<div id="childComment0" class="hidden">
               <div class="content3">';
-        echo '<form action="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $_GET['thread'] . '" method="post">';
+        echo '<form action="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $_GET['thread'] . '&action=comment" method="post">';
         echo '<input type="hidden" name="parentID" value="0" size="35">
               <input type="text" name="comment" value="" size="35"><br>
               <input name="signup" type="submit" value="Submit">

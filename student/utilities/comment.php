@@ -73,4 +73,6 @@
     header("Location: ../posts.php?class=" . $_GET['class'] . "&thread=" . $thread);
     die("Flag submitted.");
   }
+  header("Location: ../posts.php?class=" . $_GET['class'] . "&thread=" . $thread);
+  die("Flag submitted.");
 ?>

@@ -71,7 +71,7 @@
     $result = $db->query($insert) or die($db->error);
     //We need his ID so we should query his name
     //Create sql command
-    $insert = "SELECT ID FROM users WHERE username = '$username' ";
+    $insert = "SELECT * FROM users WHERE username = '$username' ";
     //Excecute
     $result = $db->query($insert) or die($db->error);
     //Get the data of the username they specified
@@ -79,7 +79,7 @@
 
     $_SESSION['loggedin'] = true;
     $_SESSION['username'] = $username;
-    $_SESSION['id'] = $id['id'];
+    $_SESSION['id'] = $id['ID'];
     $_SESSION['name'] = $first;
     $_SESSION['error']  = false;
     $_SESSION['role'] = 4;
