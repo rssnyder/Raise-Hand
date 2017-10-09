@@ -43,37 +43,37 @@ public class Reply {
         this.userID=null;
     }
 
-    public String get_up_votes(Reply r){
-        return r.student_rating;
+    public String get_reply_up_votes(){
+        return student_rating;
     }
 
-    public String get_reply(Reply r){ return r.reply; }
+    public String get_reply(){ return reply; }
 
-    public String get_userID(Reply r){ return r.userID;}
+    public String get_reply_userID(){ return userID;}
 
-    public String get_username(Reply r){ return r.username;}
+    public String get_reply_username(){ return username;}
 
-    public boolean get_endorsed(Reply r){
-        return r.endorsed;
+    public boolean get_reply_endorsed(){
+        return endorsed;
     }
 
-    public String get_time_stamp(Reply r){
-        return r.time_stamp;
+    public String get_reply_time_stamp(){
+        return time_stamp;
     }
 
-    public void set_time(Reply r, String time){ r.time_stamp=time; }
+    public void set_reply_time(String time){ this.time_stamp=time; }
 
-    public void set_reply(Reply r, String reply){ r.reply=reply; }
+    public void set_reply(String reply){ this.reply=reply; }
 
-    public void set_rating(Reply r, String rating){ r.student_rating=rating; }
+    public void set_reply_rating(String rating){ this.student_rating=rating; }
 
-    public void set_userID(Reply r, String userID){ r.userID=userID; }
+    public void set_reply_userID(String userID){ this.userID=userID; }
 
-    public void set_username(Reply r, String username){ r.username=username; }
+    public void set_reply_username(String username){ this.username=username; }
 
-    public void set_endorsed(Reply r, Boolean endorsed){r.endorsed=endorsed;}
+    public void set_reply_endorsed(Boolean endorsed){this.endorsed=endorsed;}
 
-    public void add_to_database(Reply r, Question q){
+    public void add_to_database(Question q){
      //TODO: add a method to push information to the database on a new reply written in the app
     }
 }

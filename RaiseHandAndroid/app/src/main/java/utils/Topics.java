@@ -183,12 +183,14 @@ public class Topics {
                                                             reply=reply+current+" ";
                                                             current=s.next();
                                                         }
-                                                        //TODO: Figure this out
-                                                        //Reply.set_reply(tempR, reply);
+                                                        tempR.set_reply(reply);
 
                                                     }
                                                     if(current.equals("REPLYUSER")){
                                                         //username of author
+                                                        current=s.next();
+                                                        tempR.set_reply_username(current);
+
                                                     }
                                                     if(current.equals("REPLYUSERID")){
                                                         //id of user
