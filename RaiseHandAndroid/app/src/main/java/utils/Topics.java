@@ -14,6 +14,7 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 import app.MainActivity;
 import app.TeacherNotifications;
@@ -33,13 +34,15 @@ public class Topics {
     // Title of question
     private String title;
 
+    private String time;
     //Array list of the questions in this topic
     private ArrayList<Question> questions;
 
-    public Topics(String description, String title, String class_id, ArrayList<Question> questions) {
+    public Topics(String description, String title, String class_id,String time, ArrayList<Question> questions) {
         this.description=description;
         this.title = title;
         this.questions=questions;
+        this.time=time;
     }
 
     public String get_description(Topics t){
@@ -49,6 +52,8 @@ public class Topics {
     public String get_title(Topics t){
         return title;
     }
+
+    public String get_time(Topics t){ return time;}
 
     public ArrayList<Question> get_questions(Topics t){
         return questions;
@@ -62,14 +67,15 @@ public class Topics {
         this.title=title;
     }
 
-    public void get_questions(Topics t, ArrayList<Question> q){
+    public void set_time(Topics t, String time){this.time=time;}
+
+    public void set_questions(Topics t, ArrayList<Question> q){
         this.questions=q;
     }
     //Given a class, this method will return the questions from the database that have to do with that class
     public ArrayList<Topics> get_topics(int classID) {
         ArrayList<Topics> t= new ArrayList<Topics>();
-        ArrayList<Question> q= new ArrayList<Question>();
-        ArrayList<Reply> replies= new ArrayList<Reply>();
+
         int existsQuestions;
         int existsTopics;
         String urlSuffix= "?classId="+classID;
@@ -80,13 +86,69 @@ public class Topics {
                     public void onResponse(String response) {
                         Log.d(TAG, response.toString());
                         String phpResponse=response.toString();
+                        Scanner s= new Scanner(phpResponse);
+                        String current;
                         //The string can contain multiple parts to indicate when we start reading new information
+                        while(s.hasNext()) {
+                            current=s.next();
+                            if(current.equals("NEWTOPIC")) {
+                                //NEWTOPIC indicates the start of a new topic, make a new topic object
+                                Topics tempTopic=null;
+                                ArrayList<Question> q= new ArrayList<Question>();
 
-                        //NEWTOPIC indicates the start of a new topic, make a new topic object
+                                current=s.next();
+                                while(!(current.equals("NEWTOPIC"))) {
+                                    if(current.equals("CREATETIME")){
+                                        current=s.next();
+                                        String Time="";
+                                        while(!(current.equals("TOPICNAME"))){
+                                            //I'm not sure if we need to add a space here or not
+                                            Time=Time+" "+current;
+                                            current=s.next();
+                                        }
+                                        set_time(tempTopic,Time);
+                                    }
+                                    if(current.equals("TOPICNAME")){
+                                        current=s.next();
+                                        String Topic="";
+                                        while(!(current.equals("DESCRIPTION"))){
+                                            Topic=Topic+" "+current;
+                                            current=s.next();
+                                        }
+                                        set_title(tempTopic,Topic);
+                                    }
+                                    if(current.equals("DESCRIPTION")){
+                                        current=s.next();
+                                        String Description="";
+                                        while(!(current.equals("NEWQUESTION"))){
+                                            Description=Description+" "+current;
+                                            current=s.next();
+                                        }
+                                        set_description(tempTopic,Description);
+                                    }
+                                    if(current.equals("NEWQUESTION")) {
+                                        //NEWQUESTION means the start of the new question within this topic, add to array list
+                                        Question tempQuestion=null;
+                                        ArrayList<Reply> replies= new ArrayList<Reply>();
+                                        current=s.next();
+                                        //cannot be a new topic or new question starting (maybe need to add in new reply too)?
+                                        while(!(current.equals("NEWTOPIC")) && !(current.equals("NEWQUESTION"))){
 
-                            //NEWQUESTION means the start of the new question within this topic, add to array list
+                                            //Add new question to the array list for the topic
 
-                                //NEWREPLY means the start of a new reply within this question, add to the question's array list
+                                            //Get all of the replies somehow
+                                            tempQuestion.setReplies(replies);
+                                            q.add(tempQuestion);
+                                        }
+                                    //NEWREPLY means the start of a new reply within this question, add to the question's array list
+                                }
+
+                            }
+                            //add the temp topic to the array list that will be returned in the end
+                                set_questions(tempTopic, q);
+                            t.add(tempTopic);
+                        }
+                        }
                     }}, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
