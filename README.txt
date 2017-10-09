@@ -28,4 +28,4 @@ Joel: Teacher App mockup
 Stephanie: Connecting android & the database
 
 Bugs found:
-
+Created a new class, but it didn't show up in userClasses. (class ID 11, jwest)
