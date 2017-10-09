@@ -39,14 +39,18 @@
 	    $stmt = $db->query($stmt) or die($db->error);
 	    if(mysqli_num_rows($stmt)>1){
 	        Echo ' "';
+	        
 	        while($row = $stmt->fetch_array()){
-	            Echo ''.$row['class_id'].', ';
+	             if(mysqli_num_rows($stmt)==1){
+	                Echo ' "'.$row['class_id'].'';
+	            }
+	            else{
+	                Echo ''.$row['class_id'].', ';
+	            }
 	        }
 	        Echo '"}';
 	    }
-	    else if(mysqli_num_rows($stmt)==1){
-	        Echo ' "'.$stmt['class_id'].'"}';
-	    }
+	   
 	    else{
 	        Echo ' "'.'0'.'"}';
 	    }
