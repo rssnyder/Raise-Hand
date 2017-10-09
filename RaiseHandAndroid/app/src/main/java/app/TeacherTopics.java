@@ -58,7 +58,6 @@ public class TeacherTopics extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         String classID = bundle.getString("classID");
-        Toast.makeText(MainActivity.getInstance(), classID, Toast.LENGTH_LONG).show();
 
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
 

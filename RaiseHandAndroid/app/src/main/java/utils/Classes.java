@@ -18,7 +18,7 @@ import app.MainActivity;
  */
 
 public class Classes {
-    private ArrayList<Topics> topics;
+    private ArrayList<Topics> topics = new ArrayList<>();
     //need to add in the title thing
     private String title;
     private String classID;
@@ -40,9 +40,6 @@ public class Classes {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if(topics == null){
-                            return;
-                        }
                         Log.d(TAG, response.toString());
                         String phpResponse=response.toString();
                         Scanner s= new Scanner(phpResponse);
