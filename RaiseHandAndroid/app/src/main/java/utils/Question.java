@@ -59,7 +59,7 @@ public class Question {
     private String TAG= Question.class.getSimpleName();
     private String tag_string_req= "question_req";
 
-    public Question(String questionDescription, String topicID, String studentRating, String questionTitle, String creationTime, List<Reply> replies, String ownerID, String username, String classID, String universityID, Boolean endorsed, Topics parent) {
+    public Question(String questionDescription, String studentRating, String questionTitle, String creationTime, List<Reply> replies, String ownerID, String username, String classID, String universityID, Boolean endorsed, Topics parent) {
         this.questionDescription = questionDescription;
         this.studentRating = studentRating;
         this.questionTitle = questionTitle;
@@ -68,7 +68,7 @@ public class Question {
         this.ownerID = ownerID;
         this.classID = classID;
         this.universityID = universityID;
-        this.topicID=topicID;
+        this.topicID=parent.get_ID();
         this.username=username;
         this.endorsed=endorsed;
         this.parent=parent;

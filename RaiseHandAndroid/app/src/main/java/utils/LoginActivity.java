@@ -147,6 +147,7 @@ public class LoginActivity extends Activity {
                                 s.useDelimiter(",");
                                 while(s.hasNext()) {
                                     String id = s.next();
+                                    id=id.trim();
                                     if(id.equals("0")){
                                         //do nothing, this is not a class, just a place holder
                                     }
