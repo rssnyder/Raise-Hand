@@ -54,6 +54,7 @@
     <button class="button" onclick="window.location='pages.php?page=createClass';">Create class</button>
     <button class="button" onclick="window.location='pages.php?page=viewReports';">View reports</button>
     <button class="button" onclick="window.location='pages.php?page=createUser';">Create user</button>
+    <button class="button" onclick="window.location='pages.php?page=deleteClass';">Delete Class</button>
     <button class="button" onclick="window.location='pages.php?page=other';">Other</button>
   </div>
 
