@@ -20,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.example.sae1.raisehand.R;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -50,7 +51,7 @@ public class LoginActivity extends Activity {
         editTextUsername = (EditText) findViewById(R.id.editTextUsername);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
 
-        mPreferences = getSharedPreferences("User", MODE_PRIVATE);
+        mPreferences = getPreferences(MODE_PRIVATE);
         //if the username is already stored, stay logged in.
       /*  if(mPreferences.contains("username")){
             Intent teacherNotifications = new Intent(getApplicationContext(), TeacherNotifications.class);
@@ -159,6 +160,10 @@ public class LoginActivity extends Activity {
 
                                 //store the username on login
                                 SharedPreferences.Editor editor = mPreferences.edit();
+                                Gson gson = new Gson();
+                                String json = gson.toJson(currentUser);
+                                editor.putString("currentUser", json);
+
                                 editor.putString("reset", reset);
                                 editor.putString("username", usern);
                                 editor.putString("role", roleID);

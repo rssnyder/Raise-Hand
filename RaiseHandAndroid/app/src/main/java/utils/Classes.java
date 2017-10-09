@@ -234,4 +234,28 @@ public class Classes {
         MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
         return topics;
     }
+
+    public ArrayList<Topics> getTopics() {
+        return topics;
+    }
+
+    public void setTopics(ArrayList<Topics> topics) {
+        this.topics = topics;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getClassID() {
+        return classID;
+    }
+
+    public void setClassID(String classID) {
+        this.classID = classID;
+    }
 }

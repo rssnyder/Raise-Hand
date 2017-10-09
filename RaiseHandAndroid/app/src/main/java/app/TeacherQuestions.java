@@ -53,8 +53,8 @@ public class TeacherQuestions extends AppCompatActivity {
         List<Reply> replyList = new ArrayList<>();
 
         for(int i = 0; i < 100; i++){
-            ListItemTeacherClasses listItem = new ListItemTeacherClasses("Class " + (i + 1),
-                                                                         "Dummy text. This is a class you're teaching!");
+            ListItemTeacherClasses listItem = new ListItemTeacherClasses("Question " + (i + 1),
+                                                                         "I have a question?");
             listItems.add(listItem);
         }
         adapter = new MyAdapterClasses(listItems, this);
