@@ -48,6 +48,9 @@ public class Question {
     //Topic ID
     private String topicID;
 
+    //For inserting into the database these are needed
+    private String TAG= Question.class.getSimpleName();
+    private String tag_string_req= "question_req";
 
     public Question(String questionDescription, String topicID, int studentRating, String questionTitle, Date creationTime, List<Reply> replies, String ownerID, String classID, String universityID) {
         this.questionDescription = questionDescription;
@@ -133,7 +136,6 @@ public class Question {
 
     //Given a question, it will push this question to the database
     public void add_question_to_database(Question q){
-        //TODO: add this question to the database
         //Description
         String desc=q.getQuestionDescription();
         //Title
@@ -147,8 +149,31 @@ public class Question {
         //Topic ID
         String TID=q.getTopicID();
 
+        //TODO: HOW TO DO THIS WITH SPACES IN THE URL?!?
         String url=URLS.URL_QUESTIONS+"?desc="+desc+"&title="+title+"&OID="+OID+"&CID="+CID+"&UID="+UID+"&TID="+TID;
+        StringRequest req = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
 
+                        Log.d(TAG, response.toString());
+                        String phpResponse = response.toString();
+                        //in the php file, the user information is stored in an array with : as a delimiter between the variable name and actual value
+                        if (phpResponse.contains("Done")) {
+                            Toast.makeText(MainActivity.getInstance(), "Success: question added", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(MainActivity.getInstance(), "Error", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+            }
+        }
+        );
+        // Adding request to request queue
+        MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
 
     }
 }
