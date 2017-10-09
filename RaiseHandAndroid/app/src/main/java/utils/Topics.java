@@ -38,15 +38,18 @@ public class Topics {
     // Title of question
     private String title;
 
+    private String ID;
+
     private String time;
     //Array list of the questions in this topic
     private ArrayList<Question> questions;
 
-    public Topics(String description, String title, String class_id,String time, ArrayList<Question> questions) {
+    public Topics(String description, String title, String id, String time, ArrayList<Question> questions) {
         this.description=description;
         this.title = title;
         this.questions=questions;
         this.time=time;
+        this.ID=id;
     }
 
     public Topics(){
@@ -54,6 +57,7 @@ public class Topics {
         this.title=null;
         this.time=null;
         this.description=null;
+        this.ID=null;
     }
 
 
@@ -66,6 +70,8 @@ public class Topics {
     }
 
     public String get_time(){ return time;}
+
+    public String get_ID(){return ID;}
 
     public ArrayList<Question> get_questions(){
         return questions;
@@ -80,6 +86,8 @@ public class Topics {
     }
 
     public void set_time(String time){this.time=time;}
+
+    public void set_ID(String classID){ this.ID=classID; }
 
     public void set_questions(ArrayList<Question> q){
         this.questions=q;

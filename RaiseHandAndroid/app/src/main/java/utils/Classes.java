@@ -72,6 +72,12 @@ public class Classes {
                                         }
                                         tempTopic.set_title(Topic);
                                     }
+                                    if(current.equals("ID")){
+                                        //id of the topics
+                                        current=s.next();
+                                        tempTopic.set_ID(current);
+                                        s.next();
+                                    }
                                     if(current.equals("DESCRIPTION")){
                                         current=s.next();
                                         String Description="";
