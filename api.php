@@ -37,8 +37,13 @@
 		$tempID= $response['ID'];
 	    $stmt = "SELECT class_id FROM userClasses WHERE user_id = '$tempID' ";
 	    $stmt = $db->query($stmt) or die($db->error);
-	    while($row = $stmt->fetch_array()){
-	        Echo ''.$row.', ';
+	    if(mysqli_num_rows($stmt)>0){
+	        while($row = $stmt->fetch_array()){
+	            Echo ''.$row.', ';
+	        }
+	    }
+	    else{
+	        Echo '0';
 	    }
 	}
 	else{
