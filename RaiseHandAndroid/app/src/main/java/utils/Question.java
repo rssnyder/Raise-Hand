@@ -53,11 +53,13 @@ public class Question {
 
     //if question has been endorsed
     private Boolean endorsed;
+
+    private Topics parent;
     //For inserting into the database these are needed
     private String TAG= Question.class.getSimpleName();
     private String tag_string_req= "question_req";
 
-    public Question(String questionDescription, String topicID, String studentRating, String questionTitle, String creationTime, List<Reply> replies, String ownerID, String username, String classID, String universityID, Boolean endorsed) {
+    public Question(String questionDescription, String topicID, String studentRating, String questionTitle, String creationTime, List<Reply> replies, String ownerID, String username, String classID, String universityID, Boolean endorsed, Topics parent) {
         this.questionDescription = questionDescription;
         this.studentRating = studentRating;
         this.questionTitle = questionTitle;
@@ -69,6 +71,7 @@ public class Question {
         this.topicID=topicID;
         this.username=username;
         this.endorsed=endorsed;
+        this.parent=parent;
     }
 
     public Question(){
@@ -178,7 +181,7 @@ public class Question {
         //Username
         String username=this.username;
 
-        String url=URLS.URL_QUESTIONS+"?desc="+desc+"&title="+title+"&OID="+OID+"&CID="+CID+"&UID="+UID+"&TID="+TID+"&username="+username;
+        String url=URLS.URL_QUESTIONS+"?desc="+desc+"&title="+title+"&OID="+OID+"&CID="+CID+"&UID="+UID+"&TID="+TID+"&username="+username+"&parent"+parent.get_ID();
         StringRequest req = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
