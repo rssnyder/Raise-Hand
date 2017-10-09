@@ -51,14 +51,14 @@
                 <div class="jumbotron well">';
       echo '<p>' . $text . '</p>  -' . $author . ' @ ' . $creation . '<br><br>';
       //Print the buttons
-      echo '<button class="commentButton" onclick="unhide(this,\'childComment' . $id . '\')">Reply</button><a href="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '&comment=' . $id . '&action=endorse" class="commentButton">Endorse</a>';
+      echo '<button class="commentButton" onclick="unhide(this,\'childComment' . $id . '\')">Reply</button>';
       //if not already flagged, give option to flagged
       if(!($flagged == 0)) {
         echo '<a href="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '&comment=' . $id . '&action=flag" class="commentButton">Flag</a>';
       }
       //Print endorsement
       if($endorsedID) {
-        echo ' Endorsed!';
+        echo ' This comment has been endorsed!';
       }
       //create the hidden comment box.
       echo '<div id="childComment' . $id . '" class="hidden">
