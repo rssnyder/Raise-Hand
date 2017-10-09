@@ -26,7 +26,6 @@ import utils.URLS;
 
 public class MainActivity extends Application {
     public static final String TAG= MainActivity.class.getSimpleName();
-
     private RequestQueue mRequestQueue;
     private static MainActivity mInstance;
     ArrayList<Topics> t = new ArrayList<Topics>();

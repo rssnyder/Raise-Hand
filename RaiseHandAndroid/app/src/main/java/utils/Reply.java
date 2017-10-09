@@ -38,6 +38,9 @@ public class Reply {
 
     private Question parent;
 
+    private String tag_string_req="reply_req";
+    public static final String TAG= Reply.class.getSimpleName();
+
     public Reply(String reply, String rating, boolean endorsed, String time_stamp, String username, String userID, Question q){
         this.reply=reply;
         this.student_rating=rating;
@@ -87,22 +90,18 @@ public class Reply {
 
     public void set_reply_endorsed(Boolean endorsed){this.endorsed=endorsed;}
 
-    public void get_parent_question(){
-
-    }
+    public Question get_parent_question(){return this.parent;}
 
     public void add_to_database(){
-     //TODO: add a method to push information to the database on a new reply written in the app
         //Description
         String reply2=this.reply;
         //encoding spaces with a + sign for the url
         reply2=reply2.replaceAll(" ","+");
-        String url=URLS.URL_REPLY+"?txt="+reply2+"&user_name="+this.username+"&parent="+parent.getOwnerID();
+        String url=URLS.URL_REPLY+"?txt="+reply2+"&user_name="+this.username+"&parent="+parent.getTopicID();
         StringRequest req = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                         Log.d(TAG, response.toString());
                         String phpResponse = response.toString();
                         //in the php file, the user information is stored in an array with : as a delimiter between the variable name and actual value

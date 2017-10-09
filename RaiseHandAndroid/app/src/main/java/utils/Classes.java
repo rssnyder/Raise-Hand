@@ -19,10 +19,10 @@ import app.MainActivity;
 
 public class Classes {
     private ArrayList<Topics> topics;
-    //TODO: Change this, class info auto made for now
+    //need to add in the title thing
     private String title;
     private String classID;
-    private String tag_string_req;
+    private String tag_string_req="class_req";
     public static final String TAG= Classes.class.getSimpleName();
 
     public Classes(String title, String classID){
