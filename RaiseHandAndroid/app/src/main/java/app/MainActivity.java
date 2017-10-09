@@ -32,7 +32,7 @@ public class MainActivity extends Application {
     ArrayList<Topics> t = new ArrayList<Topics>();
 
     public static void main(String[] args){
-        ArrayList<Topics> temp= get_topics(5);
+//        ArrayList<Topics> temp= get_topics(5);
     }
 
     @Override
