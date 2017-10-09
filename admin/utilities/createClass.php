@@ -113,6 +113,23 @@
       $universityID,
       'A class')";
     $result = $db->query($create) or die($db->error);
+
+    //Get class
+    $query = "SELECT * FROM classes WHERE access_code = $accessCode";
+    $result = $db->query($query) or die($db->error);
+    $thisClass = $result->fetch_assoc();
+    //Add into teacher table
+    $addClass = "INSERT INTO userClasses
+                  (relationship,
+                  user_id,
+                  class_id)
+                  VALUES
+                  (2,
+                  " . $_SESSION['id'] . ",
+                  " . $thisClass['ID'] . ");
+                  ";
+
+    $result = $db->query($addClass) or die($db->error);
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Class Created";
     header("Location: ../pages.php?page=createClass");

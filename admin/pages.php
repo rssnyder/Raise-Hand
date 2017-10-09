@@ -135,6 +135,23 @@
             <input name="signup" type="submit" value="Make Administrator"><br><br>
           </form>';
         }
+        else if($_GET['page'] == 'deleteClass') {
+          echo '<form id="removeclass-form" action="utilities/other.php?type=deleteClass" method="post">';
+          if($_SESSION['error']){
+              echo '<font color="red">' . $_SESSION['errorCode'] . "</font><br><br>";
+              $_SESSION['error'] = false;
+          }
+          echo 'Class Name: <br>
+            <input type="text" name="className" value="" size="35"><br><br>
+            Class Access Code: <br>
+            <input type="text" name="accessCode" value="" size="35"><br><br>
+            Teacher Username: <br>
+            <input type="text" name="teachUsername" value="" size="35"><br><br>
+            Your Password: <br>
+            <input type="password" name="password" value="" size="35"><br><br>
+            <input name="signup" type="submit" value="Remove Class"><br><br>
+          </form>';
+        }
       ?>
     </div>
   </div>
