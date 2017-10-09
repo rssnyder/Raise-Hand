@@ -19,14 +19,15 @@ import app.MainActivity;
 
 public class Classes {
     private ArrayList<Topics> topics;
-    private String title;
-    private String classID;
+    private String title="Math 276";
+    private String classID="5";
     private String tag_string_req= "topics_req";
     public static final String TAG= Classes.class.getSimpleName();
 
     public Classes(){
 
     }
+
     public ArrayList<Topics> get_topics() {
         int existsQuestions;
         int existsTopics;
@@ -222,6 +223,6 @@ public class Classes {
         );
         // Adding request to request queue
         MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
-        return t;
+        return topics;
     }
 }
