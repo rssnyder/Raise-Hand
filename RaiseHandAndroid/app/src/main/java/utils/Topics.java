@@ -92,7 +92,6 @@ public class Topics {
                     public void onResponse(String response) {
                         Log.d(TAG, response.toString());
                         String phpResponse=response.toString();
-                        ArrayList<Topics> temp= new ArrayList<Topics>();
                         Scanner s= new Scanner(phpResponse);
                         String current;
                         //The string can contain multiple parts to indicate when we start reading new information
@@ -265,10 +264,9 @@ public class Topics {
                                 }
                                 //add the temp topic to the array list that will be returned in the end
                                 set_questions(tempTopic, q);
-                                temp.add(tempTopic);
+                                t.add(tempTopic);
                             }
                         }
-                        t=temp;
                     }}, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
