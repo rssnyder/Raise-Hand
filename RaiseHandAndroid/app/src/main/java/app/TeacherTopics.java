@@ -1,6 +1,7 @@
 package app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -20,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.example.sae1.raisehand.R;
+import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -29,15 +31,18 @@ import RecyclerViews.ListItemTeacherClasses;
 import RecyclerViews.ListItemTeacherTopics;
 import RecyclerViews.MyAdapterClasses;
 import RecyclerViews.MyAdapterTopics;
+import utils.Topics;
 import utils.URLS;
+import utils.User;
 
 public class TeacherTopics extends AppCompatActivity {
     private String TAG = TeacherTopics.class.getSimpleName();
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private List<ListItemTeacherTopics> listItems;
+    private List<Topics> listItems;
     private Field mDragger;
 
+    private SharedPreferences mPreferences;
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
@@ -49,6 +54,8 @@ public class TeacherTopics extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_topics);
 
+        mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
+
         // Set up recycler view
         recyclerView = (RecyclerView) findViewById(R.id.topicsRecyclerView);
         recyclerView.setHasFixedSize(true);
@@ -58,13 +65,11 @@ public class TeacherTopics extends AppCompatActivity {
         // i.e. The topics in the class
         listItems = new ArrayList<>();
 
-        makeStringReq();
+        Gson gson = new Gson();
+        String json = mPreferences.getString("currentUser", "");
+        User currentUser = gson.fromJson(json, Topics.class);
+        listItems = currentUser.get_classes().get(0).get_topics();
 
-        for(int i = 0; i < 10; i++){
-            ListItemTeacherTopics listItem = new ListItemTeacherTopics("Topic " + (i + 1),
-                                                                         "Dummy text. This is a topic!");
-            listItems.add(listItem);
-        }
         adapter = new MyAdapterTopics(listItems, this);
 
         recyclerView.setAdapter(adapter);

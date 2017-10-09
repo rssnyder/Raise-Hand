@@ -15,13 +15,14 @@ import com.example.sae1.raisehand.R;
 import java.util.List;
 
 import app.TeacherQuestions;
+import utils.Topics;
 
 public class MyAdapterTopics extends RecyclerView.Adapter<MyAdapterTopics.ViewHolder> {
 
-    private List<ListItemTeacherTopics> listItems;
+    private List<Topics> listItems;
     private Context context;
 
-    public MyAdapterTopics(List<ListItemTeacherTopics> listItems, Context context) {
+    public MyAdapterTopics(List<Topics> listItems, Context context) {
         this.listItems = listItems;
         this.context = context;
     }
@@ -35,14 +36,14 @@ public class MyAdapterTopics extends RecyclerView.Adapter<MyAdapterTopics.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        ListItemTeacherTopics listItem = listItems.get(position);
+        Topics listItem = listItems.get(position);
 
-        holder.textViewHead.setText(listItem.getHead());
-        holder.textViewDesc.setText(listItem.getDesc());
+        holder.textViewHead.setText(listItem.get_title());
+        holder.textViewDesc.setText(listItem.get_description());
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO go to the topics' questions
+                // go to the topics' questions
                 Intent teacherQuestions = new Intent(context.getApplicationContext(), TeacherQuestions.class);
                 context.getApplicationContext().startActivity(teacherQuestions);
             }
