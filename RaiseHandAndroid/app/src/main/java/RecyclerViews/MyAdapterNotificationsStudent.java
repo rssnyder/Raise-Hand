@@ -1,0 +1,66 @@
+package RecyclerViews;
+
+/**
+ * Created by jaggarwal on 10/9/17.
+ */
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.sae1.raisehand.R;
+
+import java.util.List;
+
+public class MyAdapterNotificationsStudent extends RecyclerView.Adapter<MyAdapterNotificationsStudent.ViewHolder>{
+
+    private List<ListItemStudentNotifications> listItems;
+    private Context context;
+
+    public MyAdapterNotificationsStudent(List<ListItemStudentNotifications> listItems, Context context) {
+        this.listItems = listItems;
+        this.context = context;
+    }
+
+    @Override
+    public MyAdapterNotificationsStudent.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.list_item_student_notifications, parent, false);
+        return new MyAdapterNotificationsStudent.ViewHolder(v);
+    }
+
+    @Override
+    public void onBindViewHolder(MyAdapterNotificationsStudent.ViewHolder holder, int position) {
+        ListItemStudentNotifications listItem = listItems.get(position);
+
+        holder.textViewHead.setText(listItem.getHead());
+        holder.textViewDesc.setText(listItem.getDesc());
+    }
+
+    @Override
+    public int getItemCount() {
+        return listItems.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder{
+
+        public TextView textViewHead;
+        public TextView textViewDesc;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+
+            textViewHead = (TextView) itemView.findViewById(R.id.textViewHead);
+            textViewDesc = (TextView) itemView.findViewById(R.id.textViewDesc);
+        }
+    }
+
+
+}
