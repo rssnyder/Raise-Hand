@@ -45,6 +45,12 @@ public class Topics {
         this.time=time;
     }
 
+    public Topics(){
+        this.questions=new ArrayList<Question>();
+        this.title=null;
+        this.time=null;
+        this.description=null;
+    }
     public String get_description(Topics t){
         return description;
     }
@@ -134,11 +140,67 @@ public class Topics {
                                         //cannot be a new topic or new question starting (maybe need to add in new reply too)?
                                         while(!(current.equals("NEWTOPIC")) && !(current.equals("NEWQUESTION"))){
                                             //Add new question to the array list for the topic
+                                            if(current.equals("QUESTIONTITLE")){
+                                                //header for question
+
+                                            }
+                                            if(current.equals("QUESTIONDESCRIPTION")){
+                                                //question
+
+                                            }
+                                            if(current.equals("QUESTIONUSER")){
+                                                //username who created it
+
+                                            }
+                                            if(current.equals("QUESTIONUSERID")){
+                                                //user id who created it
+                                            }
+                                            if(current.equals("POINTS")){
+                                                //upvotes
+
+                                            }
+                                            if(current.equals("ENDORSED")){
+                                                //if it is endorsed or not
+                                                current=s.next();
+                                                if(current.equals("Yes")){
+                                                    //this question is endorsed
+                                                }
+                                            }
+                                            if(current.equals("CREATION")){
+                                                //timestamp
+                                            }
+
                                             if(current.equals("NEWREPLY")) {
                                                 //Get all of the replies
-                                                Reply tempR=null;
+                                                Reply tempR=new Reply();
+                                                current=s.next();
                                                 while(!current.equals("NEWREPLY")){
-                                                //Build a new reply
+                                                    //Build a new reply
+                                                    if(current.equals("REPLYTXT")){
+                                                        current=s.next();
+                                                        String reply="";
+                                                        while(!(current.equals("REPLYUSER"))){
+                                                            reply=reply+current+" ";
+                                                            current=s.next();
+                                                        }
+                                                        //TODO: Figure this out
+                                                        //Reply.set_reply(tempR, reply);
+
+                                                    }
+                                                    if(current.equals("REPLYUSER")){
+                                                        //username of author
+                                                    }
+                                                    if(current.equals("REPLYUSERID")){
+                                                        //id of user
+                                                    }
+                                                    if(current.equals("POINTS")){
+
+                                                    }
+                                                    if(current.equals("ENDORSED")){
+
+                                                    }
+
+
                                                 }
                                                 replies.add(tempR);
                                             }

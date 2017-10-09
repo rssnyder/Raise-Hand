@@ -25,13 +25,13 @@ public class Question {
     private String questionDescription;
 
     // votes on questions
-    private int studentRating;
+    private String studentRating;
 
     // Title of question
     private String questionTitle;
 
     // Time question was created
-    private Date creationTime;
+    private String creationTime;
 
     // Array of replies to the
     private List<Reply> replies;
@@ -48,11 +48,16 @@ public class Question {
     //Topic ID
     private String topicID;
 
+    //username of creator
+    private String username;
+
+    //if question has been endorsed
+    private Boolean endorsed;
     //For inserting into the database these are needed
     private String TAG= Question.class.getSimpleName();
     private String tag_string_req= "question_req";
 
-    public Question(String questionDescription, String topicID, int studentRating, String questionTitle, Date creationTime, List<Reply> replies, String ownerID, String classID, String universityID) {
+    public Question(String questionDescription, String topicID, String studentRating, String questionTitle, String creationTime, List<Reply> replies, String ownerID, String username, String classID, String universityID, Boolean endorsed) {
         this.questionDescription = questionDescription;
         this.studentRating = studentRating;
         this.questionTitle = questionTitle;
@@ -62,14 +67,32 @@ public class Question {
         this.classID = classID;
         this.universityID = universityID;
         this.topicID=topicID;
+        this.username=username;
+        this.endorsed=endorsed;
     }
 
+    public Question(){
+        this.questionDescription = null;
+        this.studentRating = "0";
+        this.questionTitle = null;
+        this.creationTime = null;
+        this.replies = new ArrayList<Reply>();
+        this.ownerID = null;
+        this.classID = null;
+        this.universityID = null;
+        this.topicID=null;
+        this.username=null;
+        this.endorsed=false;
+    }
+    public Boolean questionEndorsemenet(){ return endorsed; }
+
+    public String getQuestionUsername(){ return username; }
 
     public String getQuestionDescription() {
         return questionDescription;
     }
 
-    public int getStudentRating() {
+    public String getStudentRating() {
         return studentRating;
     }
 
@@ -77,7 +100,7 @@ public class Question {
         return questionTitle;
     }
 
-    public Date getCreationTime() {
+    public String getCreationTime() {
         return creationTime;
     }
 
@@ -91,16 +114,17 @@ public class Question {
         this.questionDescription = questionDescription;
     }
 
-    public void setStudentRating(int studentRating) {
-        this.studentRating = studentRating;
+    public void setStudentRating(Question q, String studentRating) { q.studentRating = studentRating; }
 
-    }
+    public void setQuestionUsername(String username){this.username=username;}
+
+    public void setEndorsed(Boolean endorsed){this.endorsed=endorsed; }
 
     public void setQuestionTitle(String questionTitle) {
         this.questionTitle = questionTitle;
     }
 
-    public void setCreationTime(Date creationTime) {
+    public void setCreationTime(String creationTime) {
         this.creationTime = creationTime;
     }
 
@@ -116,7 +140,7 @@ public class Question {
         this.ownerID = ownerID;
     }
 
-    public String setTopicID(){ return topicID;}
+    public void setTopicID(String topicID){ this.topicID=topicID; }
 
     public String getClassID() {
         return classID;
