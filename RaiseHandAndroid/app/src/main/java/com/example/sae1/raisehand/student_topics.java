@@ -68,7 +68,7 @@ public class student_topics extends AppCompatActivity {
                     "Dummy text. This is a topic!");
             listItems.add(listItem);
         }
-        adapter = new MyAdapterTopics(listItems, this);
+//        adapter = new MyAdapterTopics(listItems, this);
 
         recyclerView.setAdapter(adapter);
 

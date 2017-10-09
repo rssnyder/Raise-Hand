@@ -4,6 +4,7 @@ package RecyclerViews;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +40,7 @@ public class MyAdapterClasses extends RecyclerView.Adapter<MyAdapterClasses.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Classes listItem = listItems.get(position);
+        final Classes listItem = listItems.get(position);
 
         holder.textViewHead.setText(listItem.getTitle());
         holder.textViewDesc.setText(listItem.getClassID());
@@ -48,6 +49,9 @@ public class MyAdapterClasses extends RecyclerView.Adapter<MyAdapterClasses.View
             @Override
             public void onClick(View view) {
                 Intent teacherTopics = new Intent(context.getApplicationContext(), TeacherTopics.class);
+                teacherTopics.putExtra("classID", listItem.getClassID());
+                Bundle bundle = new Bundle();
+                bundle.putString("classID", listItem.getClassID());
                 context.getApplicationContext().startActivity(teacherTopics);
             }
         });

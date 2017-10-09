@@ -66,8 +66,6 @@ public class TeacherClasses extends AppCompatActivity {
         // i.e. The classes the teacher is in
         listItems = new ArrayList<>();
 
-//        makeStringReq();
-
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
         User currentUser = gson.fromJson(json, User.class);
@@ -120,29 +118,6 @@ public class TeacherClasses extends AppCompatActivity {
         });
 
 
-    }
-
-    private void makeStringReq(){
-
-        StringRequest strReq = new StringRequest(Request.Method.GET,
-                                                 URLS.URL_TEACHER_HOME,
-                                                 new Response.Listener<String>() {
-
-             @Override
-             public void onResponse(String response) {
-                 Log.d(TAG, response.toString());
-                 String phpResponse = response.toString();
-                 System.out.println("YOU ARE HERE");
-                 System.out.println("RESPONSE: \n"+phpResponse);
-                 System.out.println("THE END");
-             }
-         }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-            }
-        });
     }
 
     @Override

@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -31,6 +32,7 @@ import RecyclerViews.ListItemTeacherClasses;
 import RecyclerViews.ListItemTeacherTopics;
 import RecyclerViews.MyAdapterClasses;
 import RecyclerViews.MyAdapterTopics;
+import utils.Classes;
 import utils.Topics;
 import utils.URLS;
 import utils.User;
@@ -54,6 +56,10 @@ public class TeacherTopics extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_topics);
 
+        Bundle bundle = getIntent().getExtras();
+        String classID = bundle.getString("classID");
+        Toast.makeText(MainActivity.getInstance(), classID, Toast.LENGTH_LONG).show();
+
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
 
         // Set up recycler view
@@ -67,8 +73,13 @@ public class TeacherTopics extends AppCompatActivity {
 
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
-        User currentUser = gson.fromJson(json, Topics.class);
-        listItems = currentUser.get_classes().get(0).get_topics();
+        User currentUser = gson.fromJson(json, User.class);
+
+        for(Classes c : currentUser.get_classes()){
+            if(c.getClassID().equals("6")){
+                listItems = c.get_topics();
+            }
+        }
 
         adapter = new MyAdapterTopics(listItems, this);
 
