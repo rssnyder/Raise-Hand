@@ -1,6 +1,17 @@
 package utils;
 
+import android.util.Log;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.StringRequest;
+
 import java.sql.Time;
+
+import app.MainActivity;
 
 /**
  * Created by sae1 on 10/4/17.
@@ -73,7 +84,35 @@ public class Reply {
 
     public void set_reply_endorsed(Boolean endorsed){this.endorsed=endorsed;}
 
-    public void add_to_database(Question q){
+    public void add_to_database(){
      //TODO: add a method to push information to the database on a new reply written in the app
+        //Description
+        String reply2=this.reply;
+        //encoding spaces with a + sign for the url
+        reply2=reply2.replaceAll(" ","+");
+        String url=URLS.URL_REPLY+"?desc="+desc+"&title="+title+"&OID="+OID+"&CID="+CID+"&UID="+UID+"&TID="+TID+"&username="+username;
+        StringRequest req = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        Log.d(TAG, response.toString());
+                        String phpResponse = response.toString();
+                        //in the php file, the user information is stored in an array with : as a delimiter between the variable name and actual value
+                        if (phpResponse.contains("Done")) {
+                            Toast.makeText(MainActivity.getInstance(), "Success: question added", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(MainActivity.getInstance(), "Error", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+            }
+        }
+        );
+        // Adding request to request queue
+        MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
     }
 }

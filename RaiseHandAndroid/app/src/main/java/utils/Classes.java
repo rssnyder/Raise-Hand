@@ -20,13 +20,15 @@ import app.MainActivity;
 public class Classes {
     private ArrayList<Topics> topics;
     //TODO: Change this, class info auto made for now
-    private String title="Math 276";
-    private String classID="5";
-    private String tag_string_req= "topics_req";
+    private String title;
+    private String classID;
+    private String tag_string_req;
     public static final String TAG= Classes.class.getSimpleName();
 
-    public Classes(){
-
+    public Classes(String title, String classID){
+        this.title=title;
+        this.classID=classID;
+        this.topics=this.get_topics();
     }
 
     public ArrayList<Topics> get_topics() {

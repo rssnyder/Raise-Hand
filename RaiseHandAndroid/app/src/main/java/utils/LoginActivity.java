@@ -140,17 +140,18 @@ public class LoginActivity extends Activity {
                                 String last = seperated[7];
                                 last = last.substring(1, last.indexOf(",") - 1);
                                 String class_ids = seperated[8];
-                                ArrayList<String> classes=new ArrayList<String>();
+                                ArrayList<Classes> classes=new ArrayList<Classes>();
                                 class_ids = class_ids.substring(1, class_ids.length() - 2);
                                 Scanner s= new Scanner(class_ids);
                                 s.useDelimiter(",");
                                 while(s.hasNext()) {
-                                    String clas = s.next();
-                                    if(clas.equals("0")){
+                                    String id = s.next();
+                                    if(id.equals("0")){
                                         //do nothing, this is not a class, just a place holder
                                     }
                                     else{
-                                        classes.add(clas);
+                                       Classes c=new Classes("Class", id);
+                                        classes.add(c);
                                     }
                                 }
                                 Toast.makeText(MainActivity.getInstance(), "Welcome back, " + first + "!", Toast.LENGTH_LONG).show();

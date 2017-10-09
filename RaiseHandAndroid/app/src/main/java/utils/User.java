@@ -10,9 +10,9 @@ import java.util.ArrayList;
 
 public class User {
     private String id, role_id, username, first_name, last_name, reset;
-    ArrayList<String> classes;
+    ArrayList<Classes> classes;
     private boolean logged_in;
-    public User(String reset, String id, String role_id, String username, String first_name, String last_name, ArrayList<String> classes, boolean logged_in) {
+    public User(String reset, String id, String role_id, String username, String first_name, String last_name, ArrayList<Classes> classes, boolean logged_in) {
         this.id = id;
         this.reset=reset;
         this.role_id = role_id;
@@ -45,6 +45,6 @@ public class User {
     public String get_last_name(){ return this.last_name;}
     public boolean is_logged_in(){return this.logged_in;}
     public void logout(){this.logged_in=false;}
-    public ArrayList<String> get_classes(){return this.classes;}
+    public ArrayList<Classes> get_classes(){return this.classes;}
 
 }
