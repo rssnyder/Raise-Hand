@@ -13,7 +13,9 @@
 	//start to read from the url
 	//all spaces are encoded as "+"
 	$description=$_GET['desc'];
+	$description=str_replace("+"," ", $description);
 	$title=$_GET['title'];
+	$title=str_replace("+"," ", $title);
 	$ownerID= $_GET['OID'];
 	$classID= $_GET['CID'];
 	$universityID=$_GET['UID'];
