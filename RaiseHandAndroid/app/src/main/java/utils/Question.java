@@ -162,8 +162,11 @@ public class Question {
     public void add_question_to_database(){
         //Description
         String desc=this.getQuestionDescription();
+        //encoding spaces with a + sign for the url
+        desc=desc.replaceAll(" ","+");
         //Title
         String title=this.getQuestionTitle();
+        title=title.replaceAll(" ","+");
         //Owner ID
         String OID=this.getOwnerID();
         //Class ID
@@ -172,9 +175,10 @@ public class Question {
         String UID=this.getUniversityID();
         //Topic ID
         String TID=this.getTopicID();
+        //Username
+        String username=this.username;
 
-        //TODO: HOW TO DO THIS WITH SPACES IN THE URL?!?
-        String url=URLS.URL_QUESTIONS+"?desc="+desc+"&title="+title+"&OID="+OID+"&CID="+CID+"&UID="+UID+"&TID="+TID;
+        String url=URLS.URL_QUESTIONS+"?desc="+desc+"&title="+title+"&OID="+OID+"&CID="+CID+"&UID="+UID+"&TID="+TID+"&username="+username;
         StringRequest req = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
