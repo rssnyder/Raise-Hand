@@ -37,6 +37,7 @@ public class LoginActivity extends Activity {
     public User currentUser;
     private SharedPreferences mPreferences;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -194,8 +195,6 @@ public class LoginActivity extends Activity {
         );
         // Adding request to request queue
         MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
-
-
 
     }
 }
