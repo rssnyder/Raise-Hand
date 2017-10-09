@@ -18,36 +18,47 @@
 
 	//If correct password
 	if(password_verify($pass, $password)) {
-		$user = array(
-		    'logged_in'=>"true",
-		    'reset'=>$response['reset'],
-		    'id'=>$response['ID'],
-		    'role_id'=> $response['role_id'],
-		    'username'=>$response['username'],
-		    'first_name'=>$response['first_name'],
-		    'last_name'=>$response['last_name']
-		);
+		Echo '{"logged_in": true';
+		Echo ', "reset":';
+		Echo ' '.$response['reset'].' ';
+		Echo ',"id":';
+		Echo ' '.$response['ID'].' ';
+		Echo ', "role_id":';
+	    Echo ' '.$response['role_id'].' ';
+	    Echo ',"username":';
+	    Echo ' '.$response['username'].' ';
+	    Echo ', "first_name":';
+	    Echo ' '.$response['first_name'].' ';
+	    Echo ', "last_name":';
+	    Echo ' '.$response['last_name'].' ';
+	    Echo ', "class_id":';
 		$response['error'] = false;
 		$response['message'] = 'Login successfull';
-		$response['user'] = $user;
+		$tempID= $response['ID'];
+	    $stmt = "SELECT class_id FROM userClasses WHERE user_id = '$tempID' ";
+	    $stmt = $db->query($stmt) or die($db->error);
+	    if(mysqli_num_rows($stmt)>0){
+	        Echo ' ';
+	        
+	        while($row = $stmt->fetch_array()){
+	             if(mysqli_num_rows($stmt)==1){
+	                Echo ' '.$row['class_id'].'';
+	            }
+	            else{
+	                Echo ''.$row['class_id'].', ';
+	            }
+	        }
+	        Echo '}';
+	    }
+	   
+	    else{
+	        Echo ' '.'0'.'}';
+	    }
 	}
 	else{
-	    $user=array(
-	        'logged_in'=>"false"
-	   );
+	    Echo '"logged_in ": false';
 		$response['error'] = false;
 		$response['message'] = 'Invalid username or password';
 		$res['class_id']="0";
 	}
-	if($user['logged_in']){
-	    $tempID= $response['ID'];
-	    $stmt = "SELECT c.ID FROM classes c WHERE c.teacher_id ='$tempID' ";
-	    $stmt = $db->query($stmt) or die($db->error);
-	    $res = $stmt->fetch_assoc();
-	    if(empty($res)){
-	        $res['class_id']="0";
-	    }
-	}
-	$final = array_merge($user, $res);
-	die(json_encode($final));
 ?>
