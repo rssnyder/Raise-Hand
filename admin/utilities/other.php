@@ -42,12 +42,12 @@
       header("Location: ../pages.php?page=other");
     }
   }
-
-  if($_GET['type'] == 'removeComment') {
+  else if($_GET['type'] == 'removeComment') {
     $comment = $_GET['comment'];
     $query = "UPDATE replies
                 SET
                 txt = 'REMOVED',
+                user_id = ' ',
                 flagged = 0
                 WHERE ID = $comment";
 
@@ -55,5 +55,15 @@
     header("Location: ../viewReports.php");
     die("comment removed.");
   }
+  else if($_GET['type'] == 'dismissComment') {
+    $comment = $_GET['comment'];
+    $query = "UPDATE replies
+                SET
+                flagged = 0
+                WHERE ID = $comment";
 
+    $result = $db->query($query) or die($query);
+    header("Location: ../viewReports.php");
+    die("flag dismissed.");
+  }
 ?>

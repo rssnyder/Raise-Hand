@@ -104,16 +104,22 @@
           </form>';
         }
         else if($_GET['page'] == 'viewReports') {
+          echo' <tr>
+             <th>Username</th>
+             <th>Comment</th>
+             <th>Time Posted</th>
+           </tr>';
           //Get all the flagged posts
           $query = 'SELECT * FROM replies WHERE flagged = 1';
           $result = $db->query($query) or die($db->error);
           echo '<table style="width:100%">';
           while($comment = $result->fetch_assoc()) {
             echo' <tr>
-               <th>' . $comment['user_name'] . '</th>
-               <th>' . $comment['txt'] . '</th>
-               <th>' . $comment['creation'] . '</th>
-               <th><a href="utilities/other.php?type=removeComment&comment=' . $comment['ID'] . '" class="commentButton">Remove Comment</a></th>
+               <td>' . $comment['user_name'] . '</td>
+               <td>' . $comment['txt'] . '</td>
+               <td>' . $comment['creation'] . '</td>
+               <td><a href="utilities/other.php?type=removeComment&comment=' . $comment['ID'] . '" class="commentButton">Remove Comment</a></td>
+               <td><a href="utilities/other.php?type=dismissComment&comment=' . $comment['ID'] . '" class="commentButton">Dismiss Flag</a></td>
              </tr>';
           }
           echo '</table>';
