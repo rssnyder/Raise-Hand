@@ -13,13 +13,15 @@
 	//start to read from the url
 	$description=$_GET['desc'];
 	$title=$_GET['title'];
-	$username = $_GET['username'];
 	$ownerID= $_GET['OID'];
+	//TODO: given the owner ID, you'll need to find the user ID
+	$statement="SELECT username FROM users WHERE ID='$ownerID";
+	$user_name= $statement->query($statement) or die ($db->error);
 	$classID= $_GET['CID'];
 	$universityID=$_GET['UID'];
     $topicID=$_GET['TID'];
     //finally, insert into the database
-	$stmt = "INSERT INTO threads(topic_id, owner_id, title, description, points, user_name) VALUES ('$topicID', '$ownerID', '$title', '$description', '$username')";
+	$stmt = "INSERT INTO threads(topic_id, owner_id, title, description, points, user_name) VALUES ('$topicID', '$ownerID', '$title', '$description', '$user_name')";
 	$stmt = $db->query($stmt) or die($db->error);
 	die("Done");
 
