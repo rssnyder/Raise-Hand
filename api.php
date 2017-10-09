@@ -19,19 +19,19 @@
 	//If correct password
 	if(password_verify($pass, $password)) {
 		Echo '"logged_in": true';
-		Echo '", reset":';
-		Echo ''.$response['reset'].' ';
-		Echo ',"id": ';
-		Echo ''.$response['ID'].' ';
-		Echo ', "role_id": ';
-	    Echo ''.$response['role_id'].' ';
+		Echo ', "reset":';
+		Echo ' '.$response['reset'].' ';
+		Echo ',"id":';
+		Echo ' '.$response['ID'].' ';
+		Echo ', "role_id":';
+	    Echo ' '.$response['role_id'].' ';
 	    Echo ',"username":';
-	    Echo ''.$response['username'].' ';
-	    Echo ', "first_name": ';
-	    Echo ''.$response['first_name'].' ';
-	    Echo ', "last_name": ';
-	    Echo ''.$response['last_name'].' ';
-	    Echo ', "class_id": ';
+	    Echo ' '.$response['username'].' ';
+	    Echo ', "first_name":';
+	    Echo ' '.$response['first_name'].' ';
+	    Echo ', "last_name":';
+	    Echo ' '.$response['last_name'].' ';
+	    Echo ', "class_id":';
 		$response['error'] = false;
 		$response['message'] = 'Login successfull';
 		$tempID= $response['ID'];
