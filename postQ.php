@@ -11,6 +11,7 @@
 	$db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 	
 	//start to read from the url
+	//all spaces are encoded as "+"
 	$description=$_GET['desc'];
 	$title=$_GET['title'];
 	$ownerID= $_GET['OID'];
