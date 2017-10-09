@@ -10,5 +10,6 @@ public class URLS {
     public static final String URL_STRING_LOGIN= ROOT_URL+"api.php";
     public static final String URL_TOPICS= ROOT_URL+"topics.php";
     public static final String URL_QUESTIONS=ROOT_URL+"postQ.php";
+    public static final String URL_REPLY=ROOT_URL+"postR.php";
     public static final String URL_TEACHER_HOME = ROOT_URL + "teacher/home.php";
 }

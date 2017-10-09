@@ -159,19 +159,19 @@ public class Question {
     }
 
     //Given a question, it will push this question to the database
-    public void add_question_to_database(Question q){
+    public void add_question_to_database(){
         //Description
-        String desc=q.getQuestionDescription();
+        String desc=this.getQuestionDescription();
         //Title
-        String title=q.getQuestionTitle();
+        String title=this.getQuestionTitle();
         //Owner ID
-        String OID=q.getOwnerID();
+        String OID=this.getOwnerID();
         //Class ID
-        String CID=q.getClassID();
+        String CID=this.getClassID();
         //University ID
-        String UID=q.getUniversityID();
+        String UID=this.getUniversityID();
         //Topic ID
-        String TID=q.getTopicID();
+        String TID=this.getTopicID();
 
         //TODO: HOW TO DO THIS WITH SPACES IN THE URL?!?
         String url=URLS.URL_QUESTIONS+"?desc="+desc+"&title="+title+"&OID="+OID+"&CID="+CID+"&UID="+UID+"&TID="+TID;
