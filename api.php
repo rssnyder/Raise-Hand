@@ -40,7 +40,7 @@
 	    if(mysqli_num_rows($stmt)>0){
 	        Echo '"';
 	        while($row = $stmt->fetch_array()){
-	            Echo ''.$row.', ';
+	            Echo ''.$row['class_id'].', ';
 	        }
 	        Echo '"}';
 	    }
