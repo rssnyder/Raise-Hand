@@ -47,11 +47,11 @@
     $query = "UPDATE replies
                 SET
                 txt = 'REMOVED',
-                user_id = ' ',
+                user_name = ' ',
                 flagged = 0
                 WHERE ID = $comment";
 
-    $result = $db->query($query) or die($query);
+    $result = $db->query($query) or die($db->error);
     header("Location: ../pages.php?page=viewReports");
     die("comment removed.");
   }
@@ -62,7 +62,7 @@
                 flagged = 0
                 WHERE ID = $comment";
 
-    $result = $db->query($query) or die($query);
+    $result = $db->query($query) or die($db->error);
     header("Location: ../pages.php?page=viewReports");
     die("flag dismissed.");
   }
