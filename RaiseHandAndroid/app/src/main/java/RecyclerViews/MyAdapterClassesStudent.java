@@ -20,12 +20,14 @@ import com.example.sae1.raisehand.R;
 
 import java.util.List;
 
+import utils.Classes;
+
 
 public class MyAdapterClassesStudent extends RecyclerView.Adapter<MyAdapterClassesStudent.ViewHolder>{
     private List<ListItemStudentClasses> listItems;
     private Context context;
 
-    public MyAdapterClassesStudent(List<ListItemStudentClasses> listItems, Context context) {
+    public MyAdapterClassesStudent(List<Classes> listItems, Context context) {
         this.listItems = listItems;
         this.context = context;
     }

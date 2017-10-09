@@ -57,7 +57,7 @@ public class TeacherQuestions extends AppCompatActivity {
                                                                          "I have a question?");
             listItems.add(listItem);
         }
-        adapter = new MyAdapterClasses(listItems, this);
+//        adapter = new MyAdapterClasses(listItems, this);
 /*
         Question questionItem = new Question("I have no clue what to do.",
                                              5,
