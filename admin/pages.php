@@ -145,7 +145,7 @@
           echo 'Class Name: <br>
             <input type="text" name="className" value="" size="35"><br><br>
             Class Access Code: <br>
-            <input type="text" name="accessCode" value="" size="35"><br><br>
+            <input type="text" name="id" value="" size="35"><br><br>
             Teacher Username: <br>
             <input type="text" name="teachUsername" value="" size="35"><br><br>
             Your Password: <br>

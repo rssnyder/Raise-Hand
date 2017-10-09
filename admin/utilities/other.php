@@ -94,22 +94,22 @@
     $name = $_POST['className'];
     $id = $_POST['id'];
     $user = $_POST['teachUsername'];
-    $password = $_POST['password'];
+    echo $password = $_POST['password'];
     $usernmae = $_SESSION['username'];
     //Lets make sure this is really an Administrator
     $query = "SELECT pass FROM users WHERE username = '$username' ";
     $result = $db->query($query) or die($db->error);
     $pass = $result->fetch_assoc();
-    $passs = $pass["pass"];
+    echo $passs = $pass["pass"];
     if(password_verify($password, $passs)) {
       //This is the admin
 
       //Get all topics so I can get all threads so I can get all Replies
-      $query = "SELECT * FROM topics WHERE class_id = " . $id;
+      echo $query = "SELECT * FROM topics WHERE class_id = $id";
       $topics = $db->query($query) or die($db->error);
       //Get all threads
       while($topic = $topics->fetch_assoc()) {
-        $tid = $topic['ID']
+        $tid = $topic['ID'];
         //Get all threads
         $query = "SELECT ID FROM threads WHERE topic_id = $tid";
         $threads = $db->query($query) or die($db->error);
@@ -138,7 +138,7 @@
       header("Location: ../pages.php?page=deleteClass");
       die("goodbye my lover.");
     }
-
+    echo 'fuck me';
 
   }
 ?>
