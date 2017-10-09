@@ -66,7 +66,7 @@ public class Classes {
                                     if(current.equals("TOPICNAME") && s.hasNext()){
                                         current=s.next();
                                         String Topic="";
-                                        while(!(current.equals("DESCRIPTION")) && s.hasNext()){
+                                        while(!(current.equals("ID")) && s.hasNext()){
                                             Topic=Topic+" "+current;
                                             current=s.next();
                                         }
@@ -76,7 +76,7 @@ public class Classes {
                                         //id of the topics
                                         current=s.next();
                                         tempTopic.set_ID(current);
-                                        s.next();
+                                        current=s.next();
                                     }
                                     if(current.equals("DESCRIPTION") && s.hasNext()){
                                         current=s.next();
@@ -84,6 +84,9 @@ public class Classes {
                                         while(!(current.equals("NEWQUESTION")) && s.hasNext()){
                                             Description=Description+" "+current;
                                             current=s.next();
+                                        }
+                                        if(!s.hasNext()){
+                                            Description = Description + " " + current;
                                         }
                                         tempTopic.set_description(Description);
                                     }
