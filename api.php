@@ -18,7 +18,7 @@
 
 	//If correct password
 	if(password_verify($pass, $password)) {
-		Echo '"logged_in": "true"';
+		Echo '{"logged_in": "true"';
 		Echo ', "reset":';
 		Echo ' "'.$response['reset'].'" ';
 		Echo ',"id":';
@@ -42,10 +42,10 @@
 	        while($row = $stmt->fetch_array()){
 	            Echo ''.$row.', ';
 	        }
-	        Echo '"';
+	        Echo '"}';
 	    }
 	    else{
-	        Echo ' "'.'0'.'"';
+	        Echo ' "'.'0'.'"}';
 	    }
 	}
 	else{
