@@ -142,21 +142,43 @@ public class Topics {
                                             //Add new question to the array list for the topic
                                             if(current.equals("QUESTIONTITLE")){
                                                 //header for question
+                                                current=s.next();
+                                                String title="";
+                                                while(!(current.equals("QUESTIONDESCRIPTION"))){
+                                                    title=title+current+ " ";
+                                                    current=s.next();
+                                                }
+                                                tempQuestion.setQuestionTitle(title);
 
                                             }
                                             if(current.equals("QUESTIONDESCRIPTION")){
                                                 //question
+                                                current=s.next();
+                                                String desc="";
+                                                while(!(current.equals("QUESTIONDESCRIPTION"))){
+                                                    desc=desc+current+ " ";
+                                                    current=s.next();
+                                                }
+                                                tempQuestion.setQuestionDescription(desc);
 
                                             }
                                             if(current.equals("QUESTIONUSER")){
                                                 //username who created it
-
+                                                current=s.next();
+                                                tempQuestion.setQuestionUsername(current);
+                                                s.next();
                                             }
                                             if(current.equals("QUESTIONUSERID")){
                                                 //user id who created it
+                                                current=s.next();
+                                                tempQuestion.setOwnerID(current);
+                                                current=s.next();
                                             }
                                             if(current.equals("POINTS")){
                                                 //upvotes
+                                                current=s.next();
+                                                tempQuestion.setStudentRating(current);
+                                                current=s.next();
 
                                             }
                                             if(current.equals("ENDORSED")){
@@ -164,10 +186,20 @@ public class Topics {
                                                 current=s.next();
                                                 if(current.equals("Yes")){
                                                     //this question is endorsed
+                                                    tempQuestion.setEndorsed(true);
                                                 }
+                                                current=s.next();
                                             }
                                             if(current.equals("CREATION")){
                                                 //timestamp
+                                                current=s.next();
+                                                String time="";
+                                                while(!(current.equals("NEWREPLY"))&& !(current.equals("NEWQUESTION")) && !(current.equals("NEWTOPIC"))){
+                                                    time=time+current+ " ";
+                                                    current=s.next();
+                                                }
+                                                tempQuestion.setCreationTime(time);
+
                                             }
 
                                             if(current.equals("NEWREPLY")) {
@@ -210,13 +242,24 @@ public class Topics {
                                                             tempR.set_reply_endorsed(true);
                                                         }
                                                     }
+                                                    if(current.equals("CREATION")){
+                                                        //timestamp
+                                                        current=s.next();
+                                                        String time="";
+                                                        while(!(current.equals("NEWREPLY"))&& !(current.equals("NEWQUESTION")) && !(current.equals("NEWTOPIC"))){
+                                                            time=time+current+ " ";
+                                                            current=s.next();
+                                                        }
+                                                        tempR.set_reply_time(time);
+                                                    }
                                                 }
+                                                //NEWREPLY means the start of a new reply within this question, add to the question's array list
                                                 replies.add(tempR);
                                             }
                                             q.add(tempQuestion);
                                         }
                                         tempQuestion.setReplies(replies);
-                                    //NEWREPLY means the start of a new reply within this question, add to the question's array list
+
                                     }
 
                                 }
@@ -225,8 +268,7 @@ public class Topics {
                                 temp.add(tempTopic);
                             }
                         }
-                        //TODO:HOW CAN I DO THIS BELOW
-                        //t=temp;
+                        t=temp;
                     }}, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
