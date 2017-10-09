@@ -12,4 +12,5 @@ public class URLS {
     public static final String URL_QUESTIONS=ROOT_URL+"postQ.php";
     public static final String URL_REPLY=ROOT_URL+"postR.php";
     public static final String URL_TEACHER_HOME = ROOT_URL + "teacher/home.php";
+    public static final String URL_STUDENT_HOME = ROOT_URL + "student/home.php";
 }
