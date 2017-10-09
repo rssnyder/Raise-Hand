@@ -24,6 +24,13 @@ import app.TeacherNotifications;
  */
 
 public class Topics {
+
+    public static void main(String args[]){
+        Topics t=new Topics();
+        ArrayList<Topics> c=t.get_topics(5);
+        System.out.println(c.get(0).description);
+
+    }
     private ArrayList<Topics> t = new ArrayList<Topics>();
 
     //Needed to help track errors with android volley

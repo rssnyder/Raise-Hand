@@ -21,6 +21,8 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.example.sae1.raisehand.R;
 
+import java.util.ArrayList;
+
 /**
  * A login screen that offers login via email/password.
  */
@@ -129,13 +131,14 @@ public class LoginActivity extends Activity {
                                 String last = seperated[7];
                                 last = last.substring(1, last.indexOf(",") - 1);
                                 String class_ids = seperated[8];
+                                ArrayList<String> classes=new ArrayList<String>();
                                 class_ids = class_ids.substring(1, class_ids.length() - 2);
                                 //In the php file, if someone is not in a class, I made it return 0 (meaning no classes for this user)
                                 if (class_ids == "0") {
                                     class_ids = "None available";
                                 }
                                 Toast.makeText(MainActivity.getInstance(), "Welcome back, " + first + "!", Toast.LENGTH_LONG).show();
-                                currentUser = new User(reset, unique_id, roleID, usern, first, last, class_ids, true);
+                                currentUser = new User(reset, unique_id, roleID, usern, first, last, classes, true);
 
                                 //store the username on login
                                 SharedPreferences.Editor editor = mPreferences.edit();
