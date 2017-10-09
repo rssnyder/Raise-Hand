@@ -97,6 +97,8 @@ public class Reply {
         String reply2=this.reply;
         //encoding spaces with a + sign for the url
         reply2=reply2.replaceAll(" ","+");
+
+        //TODO add a quesiton ID??
         String url=URLS.URL_REPLY+"?txt="+reply2+"&user_name="+this.username+"&parent="+parent.getTopicID();
         StringRequest req = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
