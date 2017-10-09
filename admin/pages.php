@@ -104,6 +104,7 @@
           </form>';
         }
         else if($_GET['page'] == 'viewReports') {
+          echo '<table style="width:100%">';
           echo' <tr>
              <th>Username</th>
              <th>Comment</th>
@@ -112,7 +113,6 @@
           //Get all the flagged posts
           $query = 'SELECT * FROM replies WHERE flagged = 1';
           $result = $db->query($query) or die($db->error);
-          echo '<table style="width:100%">';
           while($comment = $result->fetch_assoc()) {
             echo' <tr>
                <td>' . $comment['user_name'] . '</td>
