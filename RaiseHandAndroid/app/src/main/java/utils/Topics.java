@@ -190,19 +190,26 @@ public class Topics {
                                                         //username of author
                                                         current=s.next();
                                                         tempR.set_reply_username(current);
+                                                        current=s.next();
 
                                                     }
                                                     if(current.equals("REPLYUSERID")){
                                                         //id of user
+                                                        current=s.next();
+                                                        tempR.set_reply_userID(current);
+                                                        current=s.next();
                                                     }
                                                     if(current.equals("POINTS")){
-
+                                                        current=s.next();
+                                                        tempR.set_reply_rating(current);
+                                                        current=s.next();
                                                     }
                                                     if(current.equals("ENDORSED")){
-
+                                                        current=s.next();
+                                                        if(current.equals("Yes")){
+                                                            tempR.set_reply_endorsed(true);
+                                                        }
                                                     }
-
-
                                                 }
                                                 replies.add(tempR);
                                             }

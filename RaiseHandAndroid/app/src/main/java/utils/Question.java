@@ -114,7 +114,7 @@ public class Question {
         this.questionDescription = questionDescription;
     }
 
-    public void setStudentRating(Question q, String studentRating) { q.studentRating = studentRating; }
+    public void setStudentRating(String studentRating) { q.studentRating = studentRating; }
 
     public void setQuestionUsername(String username){this.username=username;}
 
