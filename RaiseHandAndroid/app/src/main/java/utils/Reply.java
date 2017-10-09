@@ -90,12 +90,9 @@ public class Reply {
 
     public void set_reply_endorsed(Boolean endorsed){this.endorsed=endorsed;}
 
-    public void get_parent_question(){
-
-    }
+    public Question get_parent_question(){return this.parent;}
 
     public void add_to_database(){
-     //TODO: add a method to push information to the database on a new reply written in the app
         //Description
         String reply2=this.reply;
         //encoding spaces with a + sign for the url
