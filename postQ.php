@@ -17,10 +17,9 @@
 	$ownerID= $_GET['OID'];
 	$classID= $_GET['CID'];
 	$universityID=$_GET['UID'];
-    $ucheck = "SELECT username FROM users WHERE username = '$username' ";
-    
+    $topicID=$_GET['TID'];
     //finally, insert into the database
-	$stmt = "INSERT INTO threads(topic_id, owner_id, title, description, endorsed_user_id, flagged,points, user_name) VALUES (4,'$first', '$last', '$password', '$username', '$university', '$email')";
+	$stmt = "INSERT INTO threads(topic_id, owner_id, title, description, points, user_name) VALUES ('$topicID', '$ownerID', '$title', '$description', '$username')";
 	$stmt = $db->query($stmt) or die($db->error);
 	die("Done");
 
