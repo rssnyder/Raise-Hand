@@ -9,9 +9,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-
         android:name="app.MainActivity"
-
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -27,18 +25,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="app.TeacherClasses"></activity>
-        <activity android:name="app.TeacherHomePage"></activity>
-        <activity android:name="app.TeacherNotifications"></activity>
-        <activity android:name="app.TeacherSettings"></activity>
-        <activity android:name="app.TeacherStudents"></activity>
-        <activity android:name="app.TeacherQuestions"></activity>
-        <activity android:name="app.TeacherTopics"></activity>
-        <activity android:name="utils.SignupActivity"></activity>
-        <activity android:name="com.example.sae1.raisehand.student_notifications"></activity>
-        <activity android:name="com.example.sae1.raisehand.student_settings"></activity>
-        <activity android:name="com.example.sae1.raisehand.student_classes"></activity>
-        <activity android:name="com.example.sae1.raisehand.student_home_page"></activity>
-        <!--<activity android:name="utils.QuestionActivity"></activity>-->
+        <activity android:name="app.TeacherClasses" />
+        <activity android:name="app.TeacherHomePage" />
+        <activity android:name="app.TeacherNotifications" />
+        <activity android:name="app.TeacherSettings" />
+        <activity android:name="app.TeacherStudents" />
+        <activity android:name="app.TeacherQuestions" />
+        <activity android:name="app.TeacherTopics" />
+        <activity android:name="utils.SignupActivity" />
+        <activity android:name=".student_notifications" />
+        <activity android:name=".student_settings" />
+        <activity android:name=".student_classes" />
+        <activity android:name=".student_home_page" />
+        <!-- <activity android:name="utils.QuestionActivity"></activity> -->
+        <activity android:name=".student_topics" />
+        <activity android:name=".student_questions"></activity>
     </application>
+
 </manifest>

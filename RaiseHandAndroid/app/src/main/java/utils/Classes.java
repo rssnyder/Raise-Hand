@@ -222,6 +222,6 @@ public class Classes {
         );
         // Adding request to request queue
         MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
-        return t;
+        return topics;
     }
 }
