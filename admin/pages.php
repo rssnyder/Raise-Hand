@@ -13,6 +13,17 @@
     $_SESSION['errorCode'] = "Session Expired";
     header("Location: ../login.php?event=logout");
   }
+
+  //TODO Grab all this from a file
+  //Define sql database information
+  $host="mysql.cs.iastate.edu";
+  $port=3306;
+  $socket="";
+  $user="dbu309sab3";
+  $password="SD0wFGqd";
+  $dbname="db309sab3";
+  //Connect to database
+  $db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 ?>
 
 <html lang="en">
@@ -93,7 +104,18 @@
           </form>';
         }
         else if($_GET['page'] == 'viewReports') {
-
+          //Get all the flagged posts
+          $query = 'SELECT * FROM replies WHERE flagged = 1';
+          $result = $db->query($query) or die($db->error);
+          echo '<table style="width:100%">'
+          while($omment = $result->fetch_assoc()) {
+            echo' <tr>
+               <th>' . $comment['user_name'] . '</th>
+               <th>' . $comment['txt'] . '</th>
+               <th>' . $comment['creation'] . '</th>
+             </tr>';
+          }
+          echo '</table>';
         }
         else if($_GET['page'] == 'other') {
           echo '<form id="singup-form" action="utilities/other.php?type=makeAdmin" method="post">';
