@@ -35,7 +35,7 @@
             Echo ''.$r['description'].' ';
             Echo 'QUESTIONUSER ';
             Echo ''.$r['user_name'].' ';
-            Echo 'QUESTIONUSERID';
+            Echo 'QUESTIONUSERID ';
             Echo ''.$r['owner_id'];
             Echo 'POINTS ';
             Echo ''.$r['points'].' ';
@@ -57,7 +57,7 @@
                 Echo ''.$ro['txt'].' ';
                 Echo 'REPLYUSER ';
                 Echo ''.$ro['user_name'].' ';
-                Echo 'REPLYUSERID';
+                Echo 'REPLYUSERID ';
                 Echo ''.$ro['owner_id'].' ';
                 Echo 'POINTS ';
                 Echo ''.$ro['points'].' ';
