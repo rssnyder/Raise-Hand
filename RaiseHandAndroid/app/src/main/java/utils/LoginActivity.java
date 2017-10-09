@@ -21,6 +21,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
+import com.google.gson.annotations.Expose;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -35,7 +36,8 @@ public class LoginActivity extends Activity {
     private ProgressDialog pDialog;
     private String tag_string_req= "string_req";
     EditText editTextUsername, editTextPassword;
-    public User currentUser;
+    @Expose
+    private User currentUser;
     private SharedPreferences mPreferences;
 
 
@@ -51,7 +53,7 @@ public class LoginActivity extends Activity {
         editTextUsername = (EditText) findViewById(R.id.editTextUsername);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
 
-        mPreferences = getPreferences(MODE_PRIVATE);
+        mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
         //if the username is already stored, stay logged in.
       /*  if(mPreferences.contains("username")){
             Intent teacherNotifications = new Intent(getApplicationContext(), TeacherNotifications.class);

@@ -55,7 +55,7 @@ public class TeacherClasses extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_classes);
 
-        mPreferences = getPreferences(MODE_PRIVATE);
+        mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
 
         // Set up recycler view
         recyclerView = (RecyclerView) findViewById(R.id.classesRecyclerView);
