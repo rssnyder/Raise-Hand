@@ -49,7 +49,7 @@ public class Classes {
                             current=s.next();
                             if(current.equals("NEWTOPIC")) {
                                 //NEWTOPIC indicates the start of a new topic, make a new topic object
-                                Topics tempTopic=null;
+                                Topics tempTopic=new Topics();
                                 ArrayList<Question> q= new ArrayList<Question>();
                                 current=s.next();
                                 while(!(current.equals("NEWTOPIC"))) {
@@ -89,7 +89,7 @@ public class Classes {
                                     }
                                     if(current.equals("NEWQUESTION")) {
                                         //NEWQUESTION means the start of the new question within this topic, add to array list
-                                        Question tempQuestion=null;
+                                        Question tempQuestion=new Question();
                                         ArrayList<Reply> replies= new ArrayList<Reply>();
                                         current=s.next();
                                         //cannot be a new topic or new question starting (maybe need to add in new reply too)?
