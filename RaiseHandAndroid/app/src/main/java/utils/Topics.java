@@ -86,6 +86,7 @@ public class Topics {
                     public void onResponse(String response) {
                         Log.d(TAG, response.toString());
                         String phpResponse=response.toString();
+                        ArrayList<Topics> temp= new ArrayList<Topics>();
                         Scanner s= new Scanner(phpResponse);
                         String current;
                         //The string can contain multiple parts to indicate when we start reading new information
@@ -95,7 +96,6 @@ public class Topics {
                                 //NEWTOPIC indicates the start of a new topic, make a new topic object
                                 Topics tempTopic=null;
                                 ArrayList<Question> q= new ArrayList<Question>();
-
                                 current=s.next();
                                 while(!(current.equals("NEWTOPIC"))) {
                                     if(current.equals("CREATETIME")){
@@ -133,22 +133,30 @@ public class Topics {
                                         current=s.next();
                                         //cannot be a new topic or new question starting (maybe need to add in new reply too)?
                                         while(!(current.equals("NEWTOPIC")) && !(current.equals("NEWQUESTION"))){
-
                                             //Add new question to the array list for the topic
 
-                                            //Get all of the replies somehow
-                                            tempQuestion.setReplies(replies);
+                                            //Get all of the replies
+                                            if(current.equals("NEWREPLY")) {
+                                                Reply tempR=null;
+                                                while(!current.equals("NEWREPLY")){
+
+                                                }
+                                                replies.add(tempR);
+                                            }
                                             q.add(tempQuestion);
                                         }
+                                        tempQuestion.setReplies(replies);
                                     //NEWREPLY means the start of a new reply within this question, add to the question's array list
-                                }
+                                    }
 
-                            }
-                            //add the temp topic to the array list that will be returned in the end
+                                }
+                                //add the temp topic to the array list that will be returned in the end
                                 set_questions(tempTopic, q);
-                            t.add(tempTopic);
+                                temp.add(tempTopic);
+                            }
                         }
-                        }
+                        //TODO:HOW CAN I DO THIS
+                        //t=temp;
                     }}, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {

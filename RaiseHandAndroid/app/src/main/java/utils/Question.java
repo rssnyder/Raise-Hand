@@ -45,8 +45,11 @@ public class Question {
     // University ID
     private String universityID;
 
+    //Topic ID
+    private String topicID;
 
-    public Question(String questionDescription, int studentRating, String questionTitle, Date creationTime, List<Reply> replies, String ownerID, String classID, String universityID) {
+
+    public Question(String questionDescription, String topicID, int studentRating, String questionTitle, Date creationTime, List<Reply> replies, String ownerID, String classID, String universityID) {
         this.questionDescription = questionDescription;
         this.studentRating = studentRating;
         this.questionTitle = questionTitle;
@@ -55,6 +58,7 @@ public class Question {
         this.ownerID = ownerID;
         this.classID = classID;
         this.universityID = universityID;
+        this.topicID=topicID;
     }
 
 
@@ -73,6 +77,8 @@ public class Question {
     public Date getCreationTime() {
         return creationTime;
     }
+
+    public String getTopicID(){ return topicID;}
 
     public List<Reply> getReplies() {
         return replies;
@@ -107,6 +113,8 @@ public class Question {
         this.ownerID = ownerID;
     }
 
+    public String setTopicID(){ return topicID;}
+
     public String getClassID() {
         return classID;
     }
@@ -126,5 +134,21 @@ public class Question {
     //Given a question, it will push this question to the database
     public void add_question_to_database(Question q){
         //TODO: add this question to the database
+        //Description
+        String desc=q.getQuestionDescription();
+        //Title
+        String title=q.getQuestionTitle();
+        //Owner ID
+        String OID=q.getOwnerID();
+        //Class ID
+        String CID=q.getClassID();
+        //University ID
+        String UID=q.getUniversityID();
+        //Topic ID
+        String TID=q.getTopicID();
+
+        String url=URLS.URL_QUESTIONS+"?desc="+desc+"&title="+title+"&OID="+OID+"&CID="+CID+"&UID="+UID+"&TID="+TID;
+
+
     }
 }
