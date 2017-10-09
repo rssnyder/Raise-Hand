@@ -111,6 +111,13 @@ public class LoginActivity extends Activity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                       // TODO used for testing teacher app. Remove before deployment!
+                        if(username.equals("teacher") && password.equals("teacher")){
+                            Intent teacherNotifications =
+                                    new Intent(getApplicationContext(), TeacherNotifications.class);
+                            startActivity(teacherNotifications);
+                            finish();
+                        }
 
                         Log.d(TAG, response.toString());
                         String phpResponse=response.toString();
