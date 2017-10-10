@@ -38,7 +38,7 @@
             Echo 'QUESTIONUSER ';
             Echo ''.$r['user_name'].' ';
             Echo 'QUESTIONUSERID ';
-            Echo ''.$r['owner_id'];
+            Echo ''.$r['owner_id'].' ';
             Echo 'POINTS ';
             Echo ''.$r['points'].' ';
             Echo 'ENDORSED ';
