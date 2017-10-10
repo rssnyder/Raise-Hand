@@ -155,7 +155,6 @@ public class LoginActivity extends Activity {
                                     }
                                     else{
                                        Classes c=new Classes("Class", id);
-                                        c.setTopics(c.get_topics());
                                         classes.add(c);
                                     }
                                 }

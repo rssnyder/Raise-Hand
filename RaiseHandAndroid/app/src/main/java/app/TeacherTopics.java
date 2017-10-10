@@ -41,7 +41,7 @@ public class TeacherTopics extends AppCompatActivity {
     private String TAG = TeacherTopics.class.getSimpleName();
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private List<Topics> listItems;
+    private ArrayList<Topics> listItems;
     private Field mDragger;
 
     private SharedPreferences mPreferences;
@@ -68,7 +68,7 @@ public class TeacherTopics extends AppCompatActivity {
 
         // list to hold items for recycler view.
         // i.e. The topics in the class
-        listItems = new ArrayList<>();
+        listItems = new ArrayList<Topics>();
 
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
@@ -77,7 +77,11 @@ public class TeacherTopics extends AppCompatActivity {
         // loop until you find the Topics from the class you clicked on in TeacherClasses
         for(Classes c : currentUser.get_classes()){
             if(c.getClassID().equals(classID)){
-                listItems = c.getTopics();
+
+                ArrayList<Topics> temp=c.get_topics();
+                for (Topics t: temp) {
+                    listItems.add(t);
+                }
                 break;
             }
         }

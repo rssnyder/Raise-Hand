@@ -18,7 +18,7 @@ import app.MainActivity;
  */
 
 public class Classes {
-    static ArrayList<Topics> topics = new ArrayList<>();
+    static ArrayList<Topics> topics;
     //need to add in the title thing
     private String title;
     private String classID;
@@ -28,7 +28,7 @@ public class Classes {
     public Classes(String title, String classID){
         this.title=title;
         this.classID=classID;
-        //this.topics = this.get_topics();
+        this.topics = new ArrayList<Topics>();
     }
 
     public ArrayList<Topics> get_topics() {
