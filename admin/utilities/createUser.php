@@ -75,7 +75,7 @@
   //Function to enter new user into database
   function signUp($username, $first, $last, $password, $db) {
     //Create sql command
-    $insert = "INSERT INTO users(role_id, first_name, last_name, pass, username) VALUES (4, '$first', '$last', '$password', '$username')";
+    $insert = "INSERT INTO users(role_id, first_name, last_name, pass, username, reset) VALUES (4, '$first', '$last', '$password', '$username', 1)";
     //Excecute
     $result = $db->query($insert) or die($db->error);
     $_SESSION['error'] = true;
