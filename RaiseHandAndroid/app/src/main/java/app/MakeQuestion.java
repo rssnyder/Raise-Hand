@@ -2,11 +2,14 @@ package app;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.sae1.raisehand.R;
+
+import utils.URLS;
 
 public class MakeQuestion extends AppCompatActivity {
 
@@ -22,10 +25,27 @@ public class MakeQuestion extends AppCompatActivity {
         titleQuestion = (EditText) findViewById(R.id.titleQuestion);
         textQuestion = (EditText) findViewById(R.id.enterQuestion);
 
-        String inputTitle = titleQuestion.getText().toString(); //question title
-        String inputDetails = textQuestion.getText().toString(); //question details
+        final String inputTitle = titleQuestion.getText().toString(); //question title
+        final String inputDetails = textQuestion.getText().toString(); //question details
 
+        // Click the submit button
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                submitQuestionstoDB(inputTitle, inputDetails);
+            }
+        });
 
+    }
+
+    /**
+     * Submit the question to the database
+     * @param title Title of question
+     * @param desc Extra details of question
+     */
+    private void submitQuestionstoDB(String title, String desc){
+
+        String url_final = URLS.URL_QUESTIONS;
 
     }
 }
