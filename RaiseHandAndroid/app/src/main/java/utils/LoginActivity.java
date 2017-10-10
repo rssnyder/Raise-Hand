@@ -144,7 +144,7 @@ public class LoginActivity extends Activity {
                                 last = last.substring(1, last.indexOf(",") - 1);
                                 String class_ids = seperated[8];
                                 ArrayList<Classes> classes=new ArrayList<Classes>();
-                                class_ids = class_ids.substring(1, class_ids.length() - 2);
+                                class_ids = class_ids.substring(1, class_ids.indexOf("}"));
                                 Scanner s= new Scanner(class_ids);
                                 s.useDelimiter(",");
                                 while(s.hasNext()) {
@@ -155,6 +155,7 @@ public class LoginActivity extends Activity {
                                     }
                                     else{
                                        Classes c=new Classes("Class", id);
+                                        c.setTopics(c.get_topics());
                                         classes.add(c);
                                     }
                                 }

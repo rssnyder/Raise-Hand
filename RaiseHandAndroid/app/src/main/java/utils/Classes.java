@@ -28,7 +28,7 @@ public class Classes {
     public Classes(String title, String classID){
         this.title=title;
         this.classID=classID;
-        this.topics = this.get_topics();
+        //this.topics = this.get_topics();
     }
 
     public ArrayList<Topics> get_topics() {
