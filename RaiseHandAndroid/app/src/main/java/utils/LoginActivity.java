@@ -175,19 +175,7 @@ public class LoginActivity extends Activity {
                                 editor.putString("last_name", last);
                                 editor.commit();
 
-                                //TODO make it go to the student or teacher page depending on what kind of user logged in
-                                //Go to the teacher notification page
-                                if (roleID.equals(Roles.TEACHER.toString())) {
-                                    Intent teacherNotifications =
-                                            new Intent(getApplicationContext(), TeacherNotifications.class);
-                                    startActivity(teacherNotifications);
-                                    finish(); //finsih this activity so you can't press back to go to the login screen after already logging in
-                                } else if (roleID.equals(Roles.STUDENT.toString())) {
-                                    Intent studentNotifications =
-                                            new Intent(getApplicationContext(), com.example.sae1.raisehand.student_notifications.class);
-                                    startActivity(studentNotifications);
-                                    finish(); //finsih this activity so you can't press back to go to the login screen after already logging in
-                                }
+
                             }
                         else {
                             Toast.makeText(MainActivity.getInstance(), "Logged In Failed", Toast.LENGTH_LONG).show();
@@ -204,9 +192,24 @@ public class LoginActivity extends Activity {
         // Adding request to request queue
         MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
 
+        String roleID = mPreferences.getString("role", "");
+        //TODO make it go to the student or teacher page depending on what kind of user logged in
+        //Go to the teacher notification page
+        if (roleID.equals(Roles.TEACHER.toString())) {
+            Intent teacherNotifications =
+                    new Intent(getApplicationContext(), TeacherNotifications.class);
+            startActivity(teacherNotifications);
+            finish(); //finsih this activity so you can't press back to go to the login screen after already logging in
+        } else if (roleID.equals(Roles.STUDENT.toString())) {
+            Intent studentNotifications =
+                    new Intent(getApplicationContext(), com.example.sae1.raisehand.student_notifications.class);
+            startActivity(studentNotifications);
+            finish(); //finsih this activity so you can't press back to go to the login screen after already logging in
+        }
     }
 
     public User getCurrentUser() {
         return currentUser;
     }
 }
+
