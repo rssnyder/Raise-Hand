@@ -23,6 +23,7 @@
     $user_name= $_GET['username'];
     
     //finally, insert into the database
+    // is the VALUES supposed to have 'points' like the insert into does?
 	$stmt = "INSERT INTO threads(topic_id, owner_id, title, description, points, user_name) VALUES ('$topicID', '$ownerID', '$title', '$description', '$user_name')";
 	$stmt = $db->query($stmt) or die($db->error);
 	die("Done");
