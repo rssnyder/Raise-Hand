@@ -89,6 +89,10 @@ public class TeacherStudents extends AppCompatActivity {
                         Intent teacherSettings = new Intent(getApplicationContext(), TeacherSettings.class);
                         startActivity(teacherSettings);
                         break;
+                    case (R.id.nav_question):
+                        Intent teacherQuestion = new Intent(getApplicationContext(), MakeQuestion.class);
+                        startActivity(teacherQuestion);
+                        break;
                 }
                 return true;
             }

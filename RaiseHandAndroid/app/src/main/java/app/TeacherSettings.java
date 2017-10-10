@@ -59,6 +59,10 @@ public class TeacherSettings extends AppCompatActivity {
                     case (R.id.nav_settings):
                         mDrawerLayout.closeDrawers();
                         break;
+                    case (R.id.nav_question):
+                        Intent teacherQuestion = new Intent(getApplicationContext(), MakeQuestion.class);
+                        startActivity(teacherQuestion);
+                        break;
                 }
                 return true;
             }

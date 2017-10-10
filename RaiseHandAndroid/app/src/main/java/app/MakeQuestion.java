@@ -22,10 +22,10 @@ public class MakeQuestion extends AppCompatActivity {
         titleQuestion = (EditText) findViewById(R.id.titleQuestion);
         textQuestion = (EditText) findViewById(R.id.enterQuestion);
 
-        String inputTitle = titleQuestion.getText().toString();
-        String inputDetails = textQuestion.getText().toString();
+        String inputTitle = titleQuestion.getText().toString(); //question title
+        String inputDetails = textQuestion.getText().toString(); //question details
 
-        
+
 
     }
 }

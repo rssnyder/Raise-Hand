@@ -97,6 +97,10 @@ public class TeacherNotifications extends AppCompatActivity {
                         startActivity(loginPage);
                         finish();
                         break;
+                    case (R.id.nav_question):
+                        Intent teacherQuestion = new Intent(getApplicationContext(), MakeQuestion.class);
+                        startActivity(teacherQuestion);
+                        break;
                 }
                 return true;
             }

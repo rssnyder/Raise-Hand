@@ -112,7 +112,8 @@ public class TeacherTopics extends AppCompatActivity {
                         startActivity(teacherHome);
                         break;
                     case (R.id.nav_classes):
-                        mDrawerLayout.closeDrawers();
+                        Intent teacherClasses = new Intent(getApplicationContext(), TeacherClasses.class);
+                        startActivity(teacherClasses);
                         break;
                     case (R.id.nav_notifications):
                         Intent teacherNotifications = new Intent(getApplicationContext(), TeacherNotifications.class);
@@ -125,6 +126,10 @@ public class TeacherTopics extends AppCompatActivity {
                     case (R.id.nav_settings):
                         Intent teacherSettings = new Intent(getApplicationContext(), TeacherSettings.class);
                         startActivity(teacherSettings);
+                        break;
+                    case (R.id.nav_question):
+                        Intent teacherQuestion = new Intent(getApplicationContext(), MakeQuestion.class);
+                        startActivity(teacherQuestion);
                         break;
                 }
                 return true;
