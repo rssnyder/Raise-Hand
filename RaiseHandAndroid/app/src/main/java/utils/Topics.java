@@ -24,12 +24,7 @@ import app.TeacherNotifications;
  */
 
 public class Topics {
-
-
-
-
     //Needed to help track errors with android volley
-
     private String TAG= Topics.class.getSimpleName();
 
     // description of question

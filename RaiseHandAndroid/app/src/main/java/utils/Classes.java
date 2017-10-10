@@ -75,8 +75,13 @@ public class Classes {
                                     if(current.equals("ID") && s.hasNext()){
                                         //id of the topics
                                         current=s.next();
-                                        tempTopic.set_ID(current);
-                                        current=s.next();
+                                        if(current.equals("DESCRIPTION")){
+                                            //do nothing
+                                        }
+                                        else {
+                                            tempTopic.set_ID(current);
+                                            current = s.next();
+                                        }
                                     }
                                     if(current.equals("DESCRIPTION") && s.hasNext()){
                                         current=s.next();
@@ -123,21 +128,35 @@ public class Classes {
                                             if(current.equals("QUESTIONUSER") && s.hasNext()){
                                                 //username who created it
                                                 current=s.next();
-                                                tempQuestion.setQuestionUsername(current);
-                                                s.next();
+                                                if(current.equals("QUESTIONUSERID")) {
+                                                    //do nothing
+                                                }
+                                                else{
+                                                    tempQuestion.setQuestionUsername(current);
+                                                    s.next();
+                                                }
                                             }
                                             if(current.equals("QUESTIONUSERID") && s.hasNext()){
                                                 //user id who created it
                                                 current=s.next();
-                                                tempQuestion.setOwnerID(current);
-                                                current=s.next();
+                                                if(current.equals("POINTS")){
+                                                    //do nothing
+                                                }
+                                                else {
+                                                    tempQuestion.setOwnerID(current);
+                                                    current = s.next();
+                                                }
                                             }
                                             if(current.equals("POINTS") && s.hasNext()){
                                                 //upvotes
                                                 current=s.next();
-                                                tempQuestion.setStudentRating(current);
-                                                current=s.next();
-
+                                                if(current.equals("ENDORSED")){
+                                                    //do nothing
+                                                }
+                                                else {
+                                                    tempQuestion.setStudentRating(current);
+                                                    current = s.next();
+                                                }
                                             }
                                             if(current.equals("ENDORSED") && s.hasNext()){
                                                 //if it is endorsed or not
@@ -145,8 +164,14 @@ public class Classes {
                                                 if(current.equals("Yes")){
                                                     //this question is endorsed
                                                     tempQuestion.setEndorsed(true);
+                                                    current=s.next();
                                                 }
-                                                current=s.next();
+                                                else if(current.equals("No")){
+                                                    current=s.next();
+                                                }
+                                                else{
+                                                    //do nothing
+                                                }
                                             }
                                             if(current.equals("CREATION") && s.hasNext()){
                                                 //timestamp
@@ -179,25 +204,47 @@ public class Classes {
                                                     if(current.equals("REPLYUSER") && s.hasNext()){
                                                         //username of author
                                                         current=s.next();
-                                                        tempR.set_reply_username(current);
-                                                        current=s.next();
+                                                        if(current.equals("REPLYUSERID")){
+                                                            //do nothing
+                                                        }
+                                                        else {
+                                                            tempR.set_reply_username(current);
+                                                            current = s.next();
+                                                        }
 
                                                     }
                                                     if(current.equals("REPLYUSERID") && s.hasNext()){
                                                         //id of user
                                                         current=s.next();
-                                                        tempR.set_reply_userID(current);
-                                                        current=s.next();
+                                                        if(current.equals("POINTS")) {
+                                                            //do nothing
+                                                        }
+                                                        else{
+                                                            tempR.set_reply_userID(current);
+                                                            current=s.next();
+                                                        }
                                                     }
                                                     if(current.equals("POINTS") && s.hasNext()){
                                                         current=s.next();
-                                                        tempR.set_reply_rating(current);
-                                                        current=s.next();
+                                                        if(current.equals("ENDORSED")){
+                                                            //do nothing
+                                                        }
+                                                        else {
+                                                            tempR.set_reply_rating(current);
+                                                            current = s.next();
+                                                        }
                                                     }
                                                     if(current.equals("ENDORSED") && s.hasNext()){
                                                         current=s.next();
                                                         if(current.equals("Yes")){
                                                             tempR.set_reply_endorsed(true);
+                                                            current=s.next();
+                                                        }
+                                                        else if(current.equals("No")){
+                                                            current=s.next();
+                                                        }
+                                                        else{
+                                                            //do nothing
                                                         }
                                                     }
                                                     if(current.equals("CREATION") && s.hasNext()){
