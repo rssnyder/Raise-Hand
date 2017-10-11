@@ -20,7 +20,7 @@
     
     //finally, insert into the database
     // is the VALUES supposed to have 'points' like the insert into does?
-	$stmt = "INSERT INTO threads(thread_id, owner_id, txt, user_name, parent) VALUES ('$threadID', '$ownerID', '$txt', '$user_name', 0)";
+	$stmt = "INSERT INTO replies(thread_id, owner_id, txt, user_name, parent) VALUES ('$threadID', '$ownerID', '$txt', '$user_name', 0)";
 	$stmt = $db->query($stmt) or die($db->error);
 	die("Done");
 
