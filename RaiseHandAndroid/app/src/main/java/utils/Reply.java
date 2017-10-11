@@ -97,7 +97,7 @@ public class Reply {
         String reply2=this.reply;
         //encoding spaces with a + sign for the url
         reply2=reply2.replaceAll(" ","+");
-        String url=URLS.URL_REPLY+"?txt="+reply2+"&user_name="+this.username+"&parent="+parent.getQuestionID();
+        String url=URLS.URL_REPLY+"?txt="+reply2+"&username="+this.username+"&OID="+this.userID+"&TID="+parent.getQuestionID();
         StringRequest req = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
