@@ -111,6 +111,8 @@ public class Question {
 
     public Topics getParent(){ return parent; }
 
+    public String getQuestionId(){return questionID; }
+
     public void setQuestionDescription(String questionDescription) { this.questionDescription = questionDescription; }
 
     public void setStudentRating(String studentRating) { this.studentRating = studentRating; }
