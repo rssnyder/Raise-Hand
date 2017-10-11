@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.sae1.raisehand.R;
 
+import utils.Question;
 import utils.URLS;
 
 public class MakeQuestion extends AppCompatActivity {
@@ -32,7 +33,16 @@ public class MakeQuestion extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                submitQuestionstoDB(inputTitle, inputDetails);
+                Question temp=new Question();
+                //current user's id
+                temp.setOwnerID();
+                //current username
+                temp.setQuestionUsername();
+                //topic this should fall under
+                temp.setParent();
+                temp.setQuestionTitle(inputTitle);
+                temp.setQuestionDescription(inputDetails);
+                temp.add_question_to_database();
             }
         });
 

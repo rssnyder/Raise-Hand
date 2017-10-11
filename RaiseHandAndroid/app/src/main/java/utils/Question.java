@@ -39,39 +39,33 @@ public class Question {
     // Owner ID
     private String ownerID;
 
-    // Class ID that this question belongs to.
-    private String classID;
-
-    // University ID
-    private String universityID;
-
-    //Topic ID
-    private String topicID;
-
     //username of creator
     private String username;
 
     //if question has been endorsed
     private Boolean endorsed;
 
+    //Topic the quesiton falls into
     private Topics parent;
+
+    //ID set by the database- never set this yourself
+    private String questionID;
     //For inserting into the database these are needed
     private String TAG= Question.class.getSimpleName();
     private String tag_string_req= "question_req";
 
-    public Question(String questionDescription, String studentRating, String questionTitle, String creationTime, List<Reply> replies, String ownerID, String username, String classID, String universityID, Boolean endorsed, Topics parent) {
+    public Question(String questionDescription, String studentRating, String questionTitle, String creationTime,
+                    List<Reply> replies, String ownerID, String username, Boolean endorsed, Topics parent, String questionID) {
         this.questionDescription = questionDescription;
         this.studentRating = studentRating;
         this.questionTitle = questionTitle;
         this.creationTime = creationTime;
         this.replies = replies;
         this.ownerID = ownerID;
-        this.classID = classID;
-        this.universityID = universityID;
-        this.topicID=parent.get_ID();
         this.username=username;
         this.endorsed=endorsed;
         this.parent=parent;
+        this.questionID=questionID;
     }
 
     public Question(){
@@ -81,12 +75,12 @@ public class Question {
         this.creationTime = null;
         this.replies = new ArrayList<Reply>();
         this.ownerID = null;
-        this.classID = null;
-        this.universityID = null;
-        this.topicID=null;
         this.username=null;
         this.endorsed=false;
     }
+
+    public String getQuestionID(){ return questionID; }
+
     public Boolean questionEndorsemenet(){ return endorsed; }
 
     public String getQuestionUsername(){ return username; }
@@ -107,15 +101,17 @@ public class Question {
         return creationTime;
     }
 
-    public String getTopicID(){ return topicID;}
-
     public List<Reply> getReplies() {
         return replies;
     }
 
-    public void setQuestionDescription(String questionDescription) {
-        this.questionDescription = questionDescription;
+    public String getOwnerID() {
+        return ownerID;
     }
+
+    public Topics getParent(){ return parent; }
+
+    public void setQuestionDescription(String questionDescription) { this.questionDescription = questionDescription; }
 
     public void setStudentRating(String studentRating) { this.studentRating = studentRating; }
 
@@ -135,31 +131,12 @@ public class Question {
         this.replies = replies;
     }
 
-    public String getOwnerID() {
-        return ownerID;
-    }
-
     public void setOwnerID(String ownerID) {
         this.ownerID = ownerID;
     }
 
-    public void setTopicID(String topicID){ this.topicID=topicID; }
+    public void setParent(Topics t){this.parent=t;}
 
-    public String getClassID() {
-        return classID;
-    }
-
-    public void setClassID(String classID) {
-        this.classID = classID;
-    }
-
-    public String getUniversityID() {
-        return universityID;
-    }
-
-    public void setUniversityID(String universityID) {
-        this.universityID = universityID;
-    }
 
     //Given a question, it will push this question to the database
     public void add_question_to_database(){
@@ -172,16 +149,11 @@ public class Question {
         title=title.replaceAll(" ","+");
         //Owner ID
         String OID=this.getOwnerID();
-        //Class ID
-        String CID=this.getClassID();
-        //University ID
-        String UID=this.getUniversityID();
-        //Topic ID
-        String TID=this.getTopicID();
+
         //Username
         String username=this.username;
 
-        String url=URLS.URL_QUESTIONS+"?desc="+desc+"&title="+title+"&OID="+OID+"&CID="+CID+"&UID="+UID+"&TID="+TID+"&username="+username+"&parent"+parent.get_ID();
+        String url=URLS.URL_QUESTIONS+"?desc="+desc+"&title="+title+"&OID="+OID+"&username="+username+"&parent"+parent.get_ID();
         StringRequest req = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
