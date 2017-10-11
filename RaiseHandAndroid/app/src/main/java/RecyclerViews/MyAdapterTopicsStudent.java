@@ -33,12 +33,12 @@ public class MyAdapterTopicsStudent extends RecyclerView.Adapter<MyAdapterTopics
     @Override
     public MyAdapterTopicsStudent.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_teacher_topics, parent, false);
+                .inflate(R.layout.list_item_student_topics, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(MyAdapterTopicsStudent.ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         Topics listItem = listItems.get(position);
 
         holder.textViewHead.setText(listItem.get_title());

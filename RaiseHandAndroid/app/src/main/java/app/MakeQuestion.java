@@ -51,7 +51,7 @@ public class MakeQuestion extends AppCompatActivity {
                 //current username
                 temp.setQuestionUsername(currentUser.getUsername());
                 //topic this should fall under
-                temp.setParent();
+                //temp.setParent();
                 temp.setQuestionTitle(inputTitle);
                 temp.setQuestionDescription(inputDetails);
                 temp.add_question_to_database();
