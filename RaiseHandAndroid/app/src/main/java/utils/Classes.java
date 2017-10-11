@@ -184,6 +184,13 @@ public class Classes {
                                                 tempQuestion.setCreationTime(time);
 
                                             }
+                                            if(current.equals("QUESITONID") && s.hasNext()){
+                                                //ID for the question
+                                                String questionid="";
+                                                current=s.next();
+                                                tempQuestion.setQuestionID(current);
+                                                current=s.next();
+                                            }
 
                                             if(current.equals("NEWREPLY") && s.hasNext()) {
                                                 //Get all of the replies

@@ -137,6 +137,8 @@ public class Question {
 
     public void setParent(Topics t){this.parent=t;}
 
+    public void setQuestionID(String s){this.questionID=s;}
+
 
     //Given a question, it will push this question to the database
     public void add_question_to_database(){

@@ -82,7 +82,8 @@ public class Topics {
 
     public void set_time(String time){this.time=time;}
 
-    public void set_ID(String classID){ this.ID=classID; }
+    //DO NOT USE THIS- only to be used when important data
+    public void set_ID(String ID){ this.ID=ID; }
 
     public void set_questions(ArrayList<Question> q){
         this.questions=q;
