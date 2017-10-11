@@ -50,6 +50,8 @@
             }
             Echo 'CREATION ';
             Echo ''.$r['creation'].' ';
+            Echo 'QUESTIONID ';
+            Echo ''.$r['ID'].' ';
             $que= "SELECT * FROM replies WHERE thread_id= '$r[ID]'";
             $resp= $db->query($que) or die($db->error);
             //For each question within this topic, get all of the replies to that question
