@@ -12,17 +12,15 @@
 	
 	//start to read from the url
 	//all spaces are encoded as "+"
-	$description=$_GET['desc'];
-	$description=str_replace("+"," ", $description);
-	$title=$_GET['title'];
-	$title=str_replace("+"," ", $title);
+	$txt=$_GET['txt'];
+	$txt=str_replace("+"," ", $description);
 	$ownerID= $_GET['OID'];
-    $topicID=$_GET['TID'];
+    $threadID=$_GET['TID'];
     $user_name= $_GET['username'];
     
     //finally, insert into the database
     // is the VALUES supposed to have 'points' like the insert into does?
-	$stmt = "INSERT INTO threads(topic_id, owner_id, title, description, user_name) VALUES ('$topicID', '$ownerID', '$title', '$description', '$user_name')";
+	$stmt = "INSERT INTO threads(thread_id, owner_id, txt, user_name, parent) VALUES ('$threadID', '$ownerID', '$txt', '$user_name', 0)";
 	$stmt = $db->query($stmt) or die($db->error);
 	die("Done");
 
