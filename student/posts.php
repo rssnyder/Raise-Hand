@@ -53,7 +53,7 @@
       //Print the buttons
       echo '<button class="commentButton" onclick="unhide(this,\'childComment' . $id . '\')">Reply</button>';
       //if not already flagged, give option to flagged
-      if(!($flagged == 0)) {
+      if($text != 'REMOVED') {
         echo '<a href="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '&comment=' . $id . '&action=flag" class="commentButton">Flag</a>';
       }
       //Print endorsement
