@@ -47,15 +47,4 @@ public class MakeQuestion extends AppCompatActivity {
         });
 
     }
-
-    /**
-     * Submit the question to the database
-     * @param title Title of question
-     * @param desc Extra details of question
-     */
-    private void submitQuestionstoDB(String title, String desc){
-
-        String url_final = URLS.URL_QUESTIONS;
-
-    }
 }
