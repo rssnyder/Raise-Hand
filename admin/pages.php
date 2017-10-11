@@ -108,7 +108,8 @@
           echo '<table style="width:100%">';
           echo' <tr>
              <th>Username</th>
-             <th>Comment</th>
+             <th>Title</th>
+             <th>Description</th>
              <th>Time Posted</th>
            </tr>';
           //Get all the flagged posts
@@ -117,10 +118,24 @@
           while($comment = $result->fetch_assoc()) {
             echo' <tr>
                <td>' . $comment['user_name'] . '</td>
+               <td>Comment</td>
                <td>' . $comment['txt'] . '</td>
                <td>' . $comment['creation'] . '</td>
                <td><a href="utilities/other.php?type=removeComment&comment=' . $comment['ID'] . '" class="commentButton">Remove Comment</a></td>
                <td><a href="utilities/other.php?type=dismissComment&comment=' . $comment['ID'] . '" class="commentButton">Dismiss Flag</a></td>
+             </tr>';
+          }
+          //Get all the flagged threads
+          $query = 'SELECT * FROM threads WHERE flagged = 1';
+          $result = $db->query($query) or die($db->error);
+          while($thread = $result->fetch_assoc()) {
+            echo' <tr>
+               <td>' . $thread['owner_id'] . '</td>
+               <td>' . $thread['title'] . '</td>
+               <td>' . $thread['description'] . '</td>
+               <td>' . $thread['creation'] . '</td>
+               <td><a href="utilities/other.php?type=removeThread&thread=' . $thread['ID'] . '" class="commentButton">Remove Comment</a></td>
+               <td><a href="utilities/other.php?type=dismissThread&thread=' . $thread['ID'] . '" class="commentButton">Dismiss Flag</a></td>
              </tr>';
           }
           echo '</table>';

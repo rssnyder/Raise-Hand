@@ -66,6 +66,28 @@
     header("Location: ../pages.php?page=viewReports");
     die("flag dismissed.");
   }
+  else if($_GET['type'] == 'removeThread') {
+    $thread = $_GET['thread'];
+    $query = "DELETE FROM replies WHERE thread_id = $thread";
+    $delete = $db->query($query) or die($db->error);
+    $query = "DELETE FROM threads
+                WHERE ID = $thread";
+
+    $result = $db->query($query) or die($db->error);
+    header("Location: ../pages.php?page=viewReports");
+    die("comment removed.");
+  }
+  else if($_GET['type'] == 'dismissThread') {
+    $thread = $_GET['thread'];
+    $query = "UPDATE threads
+                SET
+                flagged = 0
+                WHERE ID = $thread";
+
+    $result = $db->query($query) or die($db->error);
+    header("Location: ../pages.php?page=viewReports");
+    die("flag dismissed.");
+  }
   else if($_GET['type'] == 'deleteClass') {
     if("" == trim($_POST['className'])) {
       $_SESSION['error'] = true;

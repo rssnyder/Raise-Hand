@@ -152,7 +152,7 @@
                 <div class="col-md-12">
                   <div class="jumbotron well">';
         echo '<h5>' . $mainThread['title'] . '</h5><br>' . $mainThread['description'] . '<br><br>';
-        echo '<button class="commentButton" onclick="unhide(this,\'childComment0\')">Reply</button><a href="#" class="commentButton">Flag</a><a href="#" class="commentButton">Endorse</a>';
+        echo '<button class="commentButton" onclick="unhide(this,\'childComment0\')">Reply</button><a href="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '&action=flagThread" class="commentButton">Flag</a>';
         //create the hidden comment box.
         echo '<div id="childComment0" class="hidden">
               <div class="content3">';

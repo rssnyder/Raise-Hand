@@ -72,6 +72,16 @@
     header("Location: ../posts.php?class=" . $_GET['class'] . "&thread=" . $thread);
     die("Flag submitted.");
   }
+  else if($_GET['action'] == 'flagThread') {
+    $query = "UPDATE threads
+                SET
+                flagged = 1
+                WHERE ID = $thread";
+
+    $result = $db->query($query) or die($query);
+    header("Location: ../posts.php?class=" . $_GET['class'] . "&thread=" . $thread);
+    die("Flag submitted.");
+  }
   else if($_GET['action'] == 'endorse') {
     $id = $_SESSION['id'];
     $comment = $_GET['comment'];
