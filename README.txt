@@ -24,8 +24,10 @@ other students. There will be a system to make sure that the more correct
 answers appear toward the top of the discussion board.
 
 Currently working on:
-Joel: Teacher App mockup
-Stephanie: Connecting android & the database
+Joel: Android
+Stephanie: Connecting android to database and database stuff
+Jevay: Android
+Riley: Website stuff
 
 Bugs found:
 Created a new class, but it didn't show up in userClasses. (class ID 11, jwest)
