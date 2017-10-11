@@ -34,6 +34,7 @@ import app.TeacherNotifications;
 import app.TeacherSettings;
 import app.TeacherStudents;
 import app.TeacherTopics;
+import utils.Classes;
 import utils.LoginActivity;
 import utils.Topics;
 import utils.URLS;
@@ -58,6 +59,9 @@ public class student_topics extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_topics);
 
+        Bundle bundle = getIntent().getExtras();
+        String classID = bundle.getString("classID");
+
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
 
         // Set up recycler view
@@ -70,6 +74,17 @@ public class student_topics extends AppCompatActivity {
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
         User currentUser = gson.fromJson(json, User.class);
+
+        // loop until you find the Topics from the class you clicked on in TeacherClasses
+        for(Classes c : currentUser.get_classes()){
+            if(c.getClassID().equals(classID)){
+                ArrayList<Topics> temp=c.get_topics();
+                for (Topics t: temp) {
+                    listItems.add(t);
+                }
+                break;
+            }
+        }
         //TODO figure out what topic was clicked
         listItems = currentUser.get_classes().get(0).getTopics();
 

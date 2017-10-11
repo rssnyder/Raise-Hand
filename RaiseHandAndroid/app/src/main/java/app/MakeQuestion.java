@@ -20,6 +20,7 @@ public class MakeQuestion extends AppCompatActivity {
     private Button submit;
     EditText textQuestion, titleQuestion;
     private SharedPreferences mPreferences;
+    private User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,15 +36,15 @@ public class MakeQuestion extends AppCompatActivity {
 
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
 
+        Gson gson = new Gson();
+        String json = mPreferences.getString("currentUser", "");
+        currentUser = gson.fromJson(json, User.class);
+
         // Click the submit button
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Question temp=new Question();
-
-                Gson gson = new Gson();
-                String json = mPreferences.getString("currentUser", "");
-                User currentUser = gson.fromJson(json, User.class);
 
                 //current user's id
                 temp.setOwnerID(currentUser.getId());

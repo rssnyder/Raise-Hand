@@ -8,6 +8,7 @@ package RecyclerViews;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.example.sae1.raisehand.R;
 import java.util.List;
 
 import utils.Classes;
+import utils.Topics;
 
 
 public class MyAdapterClassesStudent extends RecyclerView.Adapter<MyAdapterClassesStudent.ViewHolder>{
@@ -41,7 +43,8 @@ public class MyAdapterClassesStudent extends RecyclerView.Adapter<MyAdapterClass
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Classes listItem = listItems.get(position);
+        final Classes listItem = listItems.get(position);
+
 
         holder.textViewHead.setText(listItem.getTitle());
         holder.textViewDesc.setText(listItem.getClassID());
@@ -51,6 +54,9 @@ public class MyAdapterClassesStudent extends RecyclerView.Adapter<MyAdapterClass
             public void onClick(View view) {
                 // TODO go to the class' Topics
                 Intent studentTopics = new Intent(context.getApplicationContext(), com.example.sae1.raisehand.student_topics.class);
+                studentTopics.putExtra("classID", listItem.getClassID());
+                Bundle bundle = new Bundle();
+                bundle.putString("classID", listItem.getClassID());
                 context.getApplicationContext().startActivity(studentTopics);
             }
         });
