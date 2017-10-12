@@ -44,7 +44,7 @@ public class student_topics extends AppCompatActivity {
     private String TAG = student_classes.class.getSimpleName();
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private List<Topics> listItems;
+    private ArrayList<Topics> listItems;
     private Field mDragger;
     private SharedPreferences mPreferences;
 
@@ -69,7 +69,7 @@ public class student_topics extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        listItems = new ArrayList<>();
+        listItems = new ArrayList<Topics>();
 
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
@@ -85,9 +85,6 @@ public class student_topics extends AppCompatActivity {
                 break;
             }
         }
-        //TODO figure out what topic was clicked
-        listItems = currentUser.get_classes().get(0).getTopics();
-
 
         adapter = new MyAdapterTopicsStudent(listItems, this);
         recyclerView.setAdapter(adapter);

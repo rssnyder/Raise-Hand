@@ -45,7 +45,6 @@ public class MyAdapterClassesStudent extends RecyclerView.Adapter<MyAdapterClass
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Classes listItem = listItems.get(position);
 
-
         holder.textViewHead.setText(listItem.getTitle());
         holder.textViewDesc.setText(listItem.getClassID());
 
