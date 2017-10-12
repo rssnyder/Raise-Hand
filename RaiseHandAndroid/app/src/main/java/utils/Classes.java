@@ -18,7 +18,7 @@ import app.MainActivity;
  */
 
 public class Classes {
-    static ArrayList<Topics> topics;
+    private ArrayList<Topics> topics;
     //need to add in the title thing
     private String title;
     private String classID;
@@ -118,7 +118,7 @@ public class Classes {
                                                 //question
                                                 current=s.next();
                                                 String desc="";
-                                                while(!(current.equals("QUESTIONDESCRIPTION")) && s.hasNext()){
+                                                while(!(current.equals("QUESTIONUSER")) && s.hasNext()){
                                                     desc=desc+current+ " ";
                                                     current=s.next();
                                                 }

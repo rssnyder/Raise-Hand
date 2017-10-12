@@ -154,7 +154,7 @@ public class LoginActivity extends Activity {
                                         //do nothing, this is not a class, just a place holder
                                     }
                                     else{
-                                       Classes c=new Classes("Class", id);
+                                       Classes c =new Classes("Class", id);
                                         classes.add(c);
                                     }
                                 }
