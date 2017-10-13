@@ -51,6 +51,7 @@ public class Classes {
                                 //NEWTOPIC indicates the start of a new topic, make a new topic object
                                 Topics tempTopic= new Topics();
                                 ArrayList<Question> q= new ArrayList<Question>();
+                                tempTopic.set_questions(q);
                                 current=s.next();
                                 while(!(current.equals("NEWTOPIC")) && s.hasNext()) {
                                     if(current.equals("CREATETIME") && s.hasNext()){
@@ -95,10 +96,12 @@ public class Classes {
                                         }
                                         tempTopic.set_description(Description);
                                     }
+                                    topics.add(tempTopic);
                                     if(current.equals("NEWQUESTION") && s.hasNext()) {
                                         //NEWQUESTION means the start of the new question within this topic, add to array list
                                         Question tempQuestion= new Question();
                                         ArrayList<Reply> replies= new ArrayList<Reply>();
+                                        tempQuestion.setReplies(replies);
                                         current=s.next();
                                         //cannot be a new topic or new question starting (maybe need to add in new reply too)?
                                         while(!(current.equals("NEWTOPIC")) && !(current.equals("NEWQUESTION")) && s.hasNext()){
@@ -191,7 +194,7 @@ public class Classes {
                                                 tempQuestion.setQuestionID(current);
                                                 current=s.next();
                                             }
-
+                                            q.add(tempQuestion);
                                             if(current.equals("NEWREPLY") && s.hasNext()) {
                                                 //Get all of the replies
                                                 Reply tempR=new Reply();
@@ -268,22 +271,15 @@ public class Classes {
                                                 //NEWREPLY means the start of a new reply within this question, add to the question's array list
                                                 replies.add(tempR);
                                             }
-                                            q.add(tempQuestion);
                                         }
-                                        tempQuestion.setReplies(replies);
-
                                     }
-
                                 }
-                                //add the temp topic to the array list that will be returned in the end
-                                tempTopic.set_questions(q);
-                                topics.add(tempTopic);
                             }
                         }
                     }}, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                //VolleyLog.d(TAG, "Error: " + error.getMessage());
             }
         }
         );
