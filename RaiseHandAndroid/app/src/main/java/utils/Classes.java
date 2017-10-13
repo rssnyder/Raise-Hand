@@ -56,7 +56,7 @@ public class Classes {
         this.classID = classID;
     }
 
-    public ArrayList<Topics> get_topics() {
+    public void get_topics() {
         topics=new ArrayList<Topics>();
         String urlSuffix= "?classId="+classID;
         String url_final= URLS.URL_TOPICS+urlSuffix;
@@ -71,14 +71,14 @@ public class Classes {
                         int i=0;
                         //The string can contain multiple parts to indicate when we start reading new information
                         while(i<max) {
-                            if(seperated[i].equals("NEWTOPIC") && i<max) {
+                            if(i<max && seperated[i].equals("NEWTOPIC")) {
                                 //NEWTOPIC indicates the start of a new topic, make a new topic object
                                 Topics tempTopic= new Topics();
                                 ArrayList<Question> q= new ArrayList<Question>();
                                 tempTopic.set_questions(q);
                                 i++;
-                                while(!(seperated[i].equals("NEWTOPIC")) && i<max) {
-                                    if(seperated[i].equals("CREATETIME") && i<max){
+                                while(i<max && !(seperated[i].equals("NEWTOPIC"))) {
+                                    if(i<max && seperated[i].equals("CREATETIME")){
                                         i++;
                                         String Time="";
                                         while(!(seperated[i].equals("TOPICNAME")) && i<max){
@@ -88,16 +88,16 @@ public class Classes {
                                         }
                                         tempTopic.set_time(Time);
                                     }
-                                    if(seperated[i].equals("TOPICNAME") && i<max){
+                                    if(i<max && seperated[i].equals("TOPICNAME")){
                                         i++;
                                         String Topic="";
-                                        while(!(seperated[i].equals("ID")) && i<max){
+                                        while(i<max && !(seperated[i].equals("ID"))){
                                             Topic=Topic+" "+seperated[i];
                                             i++;
                                         }
                                         tempTopic.set_title(Topic);
                                     }
-                                    if(seperated[i].equals("ID") && i<max){
+                                    if(i<max && seperated[i].equals("ID")){
                                         //id of the topics
                                         i++;
                                         if(seperated[i].equals("DESCRIPTION")){
@@ -108,48 +108,48 @@ public class Classes {
                                             i++;
                                         }
                                     }
-                                    if(seperated[i].equals("DESCRIPTION") && i<max){
+                                    if(i<max && seperated[i].equals("DESCRIPTION")){
                                         i++;
                                         String Description="";
-                                        while(!(seperated[i].equals("NEWQUESTION")) && !(seperated[i].equals("NEWTOPIC")) && i<max){
+                                        while(i<max && !(seperated[i].equals("NEWQUESTION")) && !(seperated[i].equals("NEWTOPIC"))){
                                             Description=Description+" "+seperated[i];
                                             i++;
                                         }
                                         tempTopic.set_description(Description);
                                     }
                                     topics.add(tempTopic);
-                                    if(seperated[i].equals("NEWQUESTION") && i<max) {
+                                    if(i<max && seperated[i].equals("NEWQUESTION")) {
                                         //NEWQUESTION means the start of the new question within this topic, add to array list
                                         Question tempQuestion= new Question();
                                         ArrayList<Reply> replies= new ArrayList<Reply>();
                                         tempQuestion.setReplies(replies);
                                         i++;
                                         //cannot be a new topic or new question starting (maybe need to add in new reply too)?
-                                        while(!(seperated[i].equals("NEWTOPIC")) && !(seperated[i].equals("NEWQUESTION")) && i<max){
+                                        while(i<max && !(seperated[i].equals("NEWTOPIC")) && !(seperated[i].equals("NEWQUESTION"))){
                                             //Add new question to the array list for the topic
-                                            if(seperated[i].equals("QUESTIONTITLE") && i<max){
+                                            if(i<max && seperated[i].equals("QUESTIONTITLE")){
                                                 //header for question
                                                 i++;
                                                 String title="";
-                                                while(!(seperated[i].equals("QUESTIONDESCRIPTION")) && i<max){
+                                                while(i<max && !(seperated[i].equals("QUESTIONDESCRIPTION"))){
                                                     title=title+seperated[i]+ " ";
                                                     i++;
                                                 }
                                                 tempQuestion.setQuestionTitle(title);
 
                                             }
-                                            if(seperated[i].equals("QUESTIONDESCRIPTION") && i<max){
+                                            if(i<max && seperated[i].equals("QUESTIONDESCRIPTION")){
                                                 //question
                                                 i++;
                                                 String desc="";
-                                                while(!(seperated[i].equals("QUESTIONUSER")) && i<max){
+                                                while(i<max && !(seperated[i].equals("QUESTIONUSER"))){
                                                     desc=desc+seperated[i]+ " ";
                                                     i++;
                                                 }
                                                 tempQuestion.setQuestionDescription(desc);
 
                                             }
-                                            if(seperated[i].equals("QUESTIONUSER") && i<max){
+                                            if(i<max && seperated[i].equals("QUESTIONUSER")){
                                                 //username who created it
                                                 i++;
                                                 if(seperated[i].equals("QUESTIONUSERID")) {
@@ -160,7 +160,7 @@ public class Classes {
                                                     i++;
                                                 }
                                             }
-                                            if(seperated[i].equals("QUESTIONUSERID") && i<max){
+                                            if(i<max && seperated[i].equals("QUESTIONUSERID")){
                                                 //user id who created it
                                                 i++;
                                                 if(seperated[i].equals("POINTS")){
@@ -171,7 +171,7 @@ public class Classes {
                                                     i++;
                                                 }
                                             }
-                                            if(seperated[i].equals("POINTS") && i<max){
+                                            if(i<max && seperated[i].equals("POINTS")){
                                                 //upvotes
                                                 i++;
                                                 if(seperated[i].equals("ENDORSED")){
@@ -182,7 +182,7 @@ public class Classes {
                                                     i++;
                                                 }
                                             }
-                                            if(seperated[i].equals("ENDORSED") && i<max){
+                                            if(i<max && seperated[i].equals("ENDORSED")){
                                                 //if it is endorsed or not
                                                 i++;
                                                 if(seperated[i].equals("Yes")){
@@ -197,18 +197,18 @@ public class Classes {
                                                     //do nothing
                                                 }
                                             }
-                                            if(seperated[i].equals("CREATION") && i<max){
+                                            if(i<max && seperated[i].equals("CREATION")){
                                                 //timestamp
                                                 i++;
                                                 String time="";
-                                                while(!(seperated[i].equals("NEWREPLY"))&& !(seperated[i].equals("NEWQUESTION")) && !(seperated[i].equals("NEWTOPIC")) && i<max){
+                                                while(i<max && !(seperated[i].equals("NEWREPLY"))&& !(seperated[i].equals("NEWQUESTION")) && !(seperated[i].equals("NEWTOPIC"))){
                                                     time=time+seperated[i]+ " ";
                                                     i++;
                                                 }
                                                 tempQuestion.setCreationTime(time);
 
                                             }
-                                            if(seperated[i].equals("QUESITONID") && i<max){
+                                            if(i<max && seperated[i].equals("QUESITONID")){
                                                 //ID for the question
                                                 String questionid="";
                                                 i++;
@@ -216,23 +216,23 @@ public class Classes {
                                                 i++;
                                             }
                                             q.add(tempQuestion);
-                                            if(seperated[i].equals("NEWREPLY") && i<max) {
+                                            if(i<max && seperated[i].equals("NEWREPLY")) {
                                                 //Get all of the replies
                                                 Reply tempR=new Reply();
                                                 i++;
-                                                while(!(seperated[i].equals("NEWREPLY")) && !(seperated[i].equals("NEWTOPIC")) && !(seperated[i].equals("NEWQUESTION")) && i<max){
+                                                while(i<max && !(seperated[i].equals("NEWREPLY")) && !(seperated[i].equals("NEWTOPIC")) && !(seperated[i].equals("NEWQUESTION"))){
                                                     //Build a new reply
-                                                    if(seperated[i].equals("REPLYTXT") && i<max){
+                                                    if(i<max && seperated[i].equals("REPLYTXT")){
                                                         i++;
                                                         String reply="";
-                                                        while(!(seperated[i].equals("REPLYUSER")) && i<max){
+                                                        while(i<max && !(seperated[i].equals("REPLYUSER"))){
                                                             reply=reply+seperated[i]+" ";
                                                             i++;
                                                         }
                                                         tempR.set_reply(reply);
 
                                                     }
-                                                    if(seperated[i].equals("REPLYUSER") && i<max){
+                                                    if(i<max && seperated[i].equals("REPLYUSER")){
                                                         //username of author
                                                         i++;
                                                         if(seperated[i].equals("REPLYUSERID")){
@@ -244,7 +244,7 @@ public class Classes {
                                                         }
 
                                                     }
-                                                    if(seperated[i].equals("REPLYUSERID") && i<max){
+                                                    if(i<max && seperated[i].equals("REPLYUSERID")){
                                                         //id of user
                                                         i++;
                                                         if(seperated[i].equals("POINTS")) {
@@ -255,7 +255,7 @@ public class Classes {
                                                             i++;
                                                         }
                                                     }
-                                                    if(seperated[i].equals("POINTS") && i<max){
+                                                    if(i<max && seperated[i].equals("POINTS")){
                                                         i++;
                                                         if(seperated[i].equals("ENDORSED")){
                                                             //do nothing
@@ -265,7 +265,7 @@ public class Classes {
                                                             i++;
                                                         }
                                                     }
-                                                    if(seperated[i].equals("ENDORSED") && i<max){
+                                                    if(i<max && seperated[i].equals("ENDORSED")){
                                                         i++;
                                                         if(seperated[i].equals("Yes")){
                                                             tempR.set_reply_endorsed(true);
@@ -278,11 +278,11 @@ public class Classes {
                                                             //do nothing
                                                         }
                                                     }
-                                                    if(seperated[i].equals("CREATION") && i<max){
+                                                    if(i<max && seperated[i].equals("CREATION")){
                                                         //timestamp
                                                         i++;
                                                         String time="";
-                                                        while(!(seperated[i].equals("NEWREPLY"))&& !(seperated[i].equals("NEWQUESTION")) && !(seperated[i].equals("NEWTOPIC")) && i<max){
+                                                        while(i<max && !(seperated[i].equals("NEWREPLY"))&& !(seperated[i].equals("NEWQUESTION")) && !(seperated[i].equals("NEWTOPIC"))){
                                                             time=time+seperated[i]+ " ";
                                                             i++;
                                                         }
@@ -297,18 +297,19 @@ public class Classes {
                                 }
                             }
                         }
+
+                        setTopics(topics);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
-
             }
         }
         );
         // Adding request to request queue
         MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
-        setTopics(topics);
-        return topics;
+
+        //return topics;
     }
 }
