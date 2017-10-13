@@ -111,7 +111,7 @@ public class Classes {
                                     if(seperated[i].equals("DESCRIPTION") && i<max){
                                         i++;
                                         String Description="";
-                                        while(!(seperated[i].equals("NEWQUESTION")) && i<max){
+                                        while(!(seperated[i].equals("NEWQUESTION")) && !(seperated[i].equals("NEWTOPIC")) && i<max){
                                             Description=Description+" "+seperated[i];
                                             i++;
                                         }
@@ -220,7 +220,7 @@ public class Classes {
                                                 //Get all of the replies
                                                 Reply tempR=new Reply();
                                                 i++;
-                                                while(!seperated[i].equals("NEWREPLY") && i<max){
+                                                while(!(seperated[i].equals("NEWREPLY")) && !(seperated[i].equals("NEWTOPIC")) && !(seperated[i].equals("NEWQUESTION")) && i<max){
                                                     //Build a new reply
                                                     if(seperated[i].equals("REPLYTXT") && i<max){
                                                         i++;
