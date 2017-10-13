@@ -31,6 +31,11 @@ public class Classes {
         this.topics = new ArrayList<Topics>();
     }
 
+    public static void main(String[] args){
+        Classes c=new Classes("Math 167", "7");
+        c.setTopics(c.get_topics());
+        System.out.println(c.getTopics().get(0));
+    }
     public ArrayList<Topics> get_topics() {
         int existsQuestions;
         int existsTopics;
@@ -42,228 +47,229 @@ public class Classes {
                     public void onResponse(String response) {
                         Log.d(TAG, response.toString());
                         String phpResponse=response.toString();
-                        Scanner s= new Scanner(phpResponse);
-                        String current;
+                        String[] seperated=phpResponse.split(" ");
+                        int i=0;
                         //The string can contain multiple parts to indicate when we start reading new information
-                        while(s.hasNext()) {
-                            current=s.next();
-                            if(current.equals("NEWTOPIC") && s.hasNext()) {
+                        while(i<seperated.length) {
+                            if(seperated[i].equals("NEWTOPIC") && i<seperated.length) {
                                 //NEWTOPIC indicates the start of a new topic, make a new topic object
                                 Topics tempTopic= new Topics();
                                 ArrayList<Question> q= new ArrayList<Question>();
                                 tempTopic.set_questions(q);
-                                current=s.next();
-                                while(!(current.equals("NEWTOPIC")) && s.hasNext()) {
-                                    if(current.equals("CREATETIME") && s.hasNext()){
-                                        current=s.next();
+                                i++;
+                                while(!(seperated[i].equals("NEWTOPIC")) && i<seperated.length) {
+                                    if(seperated[i].equals("CREATETIME") && i<seperated.length){
+                                        i++;
                                         String Time="";
-                                        while(!(current.equals("TOPICNAME")) && s.hasNext()){
+                                        while(!(seperated[i].equals("TOPICNAME")) && i<seperated.length){
                                             //I'm not sure if we need to add a space here or not
-                                            Time=Time+" "+current;
-                                            current=s.next();
+                                            Time=Time+" "+seperated[i];
+                                            i++;
                                         }
                                         tempTopic.set_time(Time);
                                     }
-                                    if(current.equals("TOPICNAME") && s.hasNext()){
-                                        current=s.next();
+                                    if(seperated[i].equals("TOPICNAME") && i<seperated.length){
+                                        i++;
                                         String Topic="";
-                                        while(!(current.equals("ID")) && s.hasNext()){
-                                            Topic=Topic+" "+current;
-                                            current=s.next();
+                                        while(!(seperated[i].equals("ID")) && i<seperated.length){
+                                            Topic=Topic+" "+seperated[i];
+                                            i++;
                                         }
                                         tempTopic.set_title(Topic);
                                     }
-                                    if(current.equals("ID") && s.hasNext()){
+                                    if(seperated[i].equals("ID") && i<seperated.length){
                                         //id of the topics
-                                        current=s.next();
-                                        if(current.equals("DESCRIPTION")){
+                                        i++;
+                                        if(seperated[i].equals("DESCRIPTION")){
                                             //do nothing
                                         }
                                         else {
-                                            tempTopic.set_ID(current);
-                                            current = s.next();
+                                            tempTopic.set_ID(seperated[i]);
+                                            i++;
                                         }
                                     }
-                                    if(current.equals("DESCRIPTION") && s.hasNext()){
-                                        current=s.next();
+                                    if(seperated[i].equals("DESCRIPTION") && i<seperated.length){
+                                        i++;
                                         String Description="";
-                                        while(!(current.equals("NEWQUESTION")) && s.hasNext()){
-                                            Description=Description+" "+current;
-                                            current=s.next();
+                                        while(!(seperated[i].equals("NEWQUESTION")) && i<seperated.length){
+                                            Description=Description+" "+seperated[i];
+                                            i++;
                                         }
-                                        if(!s.hasNext()){
-                                            Description = Description + " " + current;
+                                        //TODO: is this really correct??
+                                        if(!(i<seperated.length)){
+                                            Description = Description + " " + seperated[i];
                                         }
                                         tempTopic.set_description(Description);
                                     }
                                     topics.add(tempTopic);
-                                    if(current.equals("NEWQUESTION") && s.hasNext()) {
+                                    if(seperated[i].equals("NEWQUESTION") && i<seperated.length) {
                                         //NEWQUESTION means the start of the new question within this topic, add to array list
                                         Question tempQuestion= new Question();
                                         ArrayList<Reply> replies= new ArrayList<Reply>();
                                         tempQuestion.setReplies(replies);
-                                        current=s.next();
+                                        i++;
                                         //cannot be a new topic or new question starting (maybe need to add in new reply too)?
-                                        while(!(current.equals("NEWTOPIC")) && !(current.equals("NEWQUESTION")) && s.hasNext()){
+                                        while(!(seperated[i].equals("NEWTOPIC")) && !(seperated[i].equals("NEWQUESTION")) && i<seperated.length){
                                             //Add new question to the array list for the topic
-                                            if(current.equals("QUESTIONTITLE") && s.hasNext()){
+                                            if(seperated[i].equals("QUESTIONTITLE") && i<seperated.length){
                                                 //header for question
-                                                current=s.next();
+                                                i++;
                                                 String title="";
-                                                while(!(current.equals("QUESTIONDESCRIPTION")) && s.hasNext()){
-                                                    title=title+current+ " ";
-                                                    current=s.next();
+                                                while(!(seperated[i].equals("QUESTIONDESCRIPTION")) && i<seperated.length){
+                                                    title=title+seperated[i]+ " ";
+                                                    i++;
                                                 }
                                                 tempQuestion.setQuestionTitle(title);
 
                                             }
-                                            if(current.equals("QUESTIONDESCRIPTION") && s.hasNext()){
+                                            if(seperated[i].equals("QUESTIONDESCRIPTION") && i<seperated.length){
                                                 //question
-                                                current=s.next();
+                                                i++;
                                                 String desc="";
-                                                while(!(current.equals("QUESTIONUSER")) && s.hasNext()){
-                                                    desc=desc+current+ " ";
-                                                    current=s.next();
+                                                while(!(seperated[i].equals("QUESTIONUSER")) && i<seperated.length){
+                                                    desc=desc+seperated[i]+ " ";
+                                                    i++;
                                                 }
                                                 tempQuestion.setQuestionDescription(desc);
 
                                             }
-                                            if(current.equals("QUESTIONUSER") && s.hasNext()){
+                                            if(seperated[i].equals("QUESTIONUSER") && i<seperated.length){
                                                 //username who created it
-                                                current=s.next();
-                                                if(current.equals("QUESTIONUSERID")) {
+                                                i++;
+                                                if(seperated[i].equals("QUESTIONUSERID")) {
                                                     //do nothing
                                                 }
                                                 else{
-                                                    tempQuestion.setQuestionUsername(current);
-                                                    s.next();
+                                                    tempQuestion.setQuestionUsername(seperated[i]);
+                                                    i++;
                                                 }
                                             }
-                                            if(current.equals("QUESTIONUSERID") && s.hasNext()){
+                                            if(seperated[i].equals("QUESTIONUSERID") && i<seperated.length){
                                                 //user id who created it
-                                                current=s.next();
-                                                if(current.equals("POINTS")){
+                                                i++;
+                                                if(seperated[i].equals("POINTS")){
                                                     //do nothing
                                                 }
                                                 else {
-                                                    tempQuestion.setOwnerID(current);
-                                                    current = s.next();
+                                                    tempQuestion.setOwnerID(seperated[i]);
+                                                   i++;
                                                 }
                                             }
-                                            if(current.equals("POINTS") && s.hasNext()){
+                                            if(seperated[i].equals("POINTS") && i<seperated.length){
                                                 //upvotes
-                                                current=s.next();
-                                                if(current.equals("ENDORSED")){
+                                                i++;
+                                                //TODO: Should I be echoing 0 here instead??
+                                                if(seperated[i].equals("ENDORSED")){
                                                     //do nothing
                                                 }
                                                 else {
-                                                    tempQuestion.setStudentRating(current);
-                                                    current = s.next();
+                                                    tempQuestion.setStudentRating(seperated[i]);
+                                                    i++;
                                                 }
                                             }
-                                            if(current.equals("ENDORSED") && s.hasNext()){
+                                            if(seperated[i].equals("ENDORSED") && i<seperated.length){
                                                 //if it is endorsed or not
-                                                current=s.next();
-                                                if(current.equals("Yes")){
+                                                i++;
+                                                if(seperated[i].equals("Yes")){
                                                     //this question is endorsed
                                                     tempQuestion.setEndorsed(true);
-                                                    current=s.next();
+                                                    i++;
                                                 }
-                                                else if(current.equals("No")){
-                                                    current=s.next();
+                                                else if(seperated[i].equals("No")){
+                                                   i++;
                                                 }
                                                 else{
                                                     //do nothing
                                                 }
                                             }
-                                            if(current.equals("CREATION") && s.hasNext()){
+                                            if(seperated[i].equals("CREATION") && i<seperated.length){
                                                 //timestamp
-                                                current=s.next();
+                                                i++;
                                                 String time="";
-                                                while(!(current.equals("NEWREPLY"))&& !(current.equals("NEWQUESTION")) && !(current.equals("NEWTOPIC")) && s.hasNext()){
-                                                    time=time+current+ " ";
-                                                    current=s.next();
+                                                while(!(seperated[i].equals("NEWREPLY"))&& !(seperated[i].equals("NEWQUESTION")) && !(seperated[i].equals("NEWTOPIC")) && i<seperated.length){
+                                                    time=time+seperated[i]+ " ";
+                                                    i++;
                                                 }
                                                 tempQuestion.setCreationTime(time);
 
                                             }
-                                            if(current.equals("QUESITONID") && s.hasNext()){
+                                            if(seperated[i].equals("QUESITONID") && i<seperated.length){
                                                 //ID for the question
                                                 String questionid="";
-                                                current=s.next();
-                                                tempQuestion.setQuestionID(current);
-                                                current=s.next();
+                                                i++;
+                                                tempQuestion.setQuestionID(seperated[i]);
+                                                i++;
                                             }
                                             q.add(tempQuestion);
-                                            if(current.equals("NEWREPLY") && s.hasNext()) {
+                                            if(seperated[i].equals("NEWREPLY") && i<seperated.length) {
                                                 //Get all of the replies
                                                 Reply tempR=new Reply();
-                                                current=s.next();
-                                                while(!current.equals("NEWREPLY") && s.hasNext()){
+                                                i++;
+                                                while(!seperated[i].equals("NEWREPLY") && i<seperated.length){
                                                     //Build a new reply
-                                                    if(current.equals("REPLYTXT") && s.hasNext()){
-                                                        current=s.next();
+                                                    if(seperated[i].equals("REPLYTXT") && i<seperated.length){
+                                                        i++;
                                                         String reply="";
-                                                        while(!(current.equals("REPLYUSER")) && s.hasNext()){
-                                                            reply=reply+current+" ";
-                                                            current=s.next();
+                                                        while(!(seperated[i].equals("REPLYUSER")) && i<seperated.length){
+                                                            reply=reply+seperated[i]+" ";
+                                                            i++;
                                                         }
                                                         tempR.set_reply(reply);
 
                                                     }
-                                                    if(current.equals("REPLYUSER") && s.hasNext()){
+                                                    if(seperated[i].equals("REPLYUSER") && i<seperated.length){
                                                         //username of author
-                                                        current=s.next();
-                                                        if(current.equals("REPLYUSERID")){
+                                                        i++;
+                                                        if(seperated[i].equals("REPLYUSERID")){
                                                             //do nothing
                                                         }
                                                         else {
-                                                            tempR.set_reply_username(current);
-                                                            current = s.next();
+                                                            tempR.set_reply_username(seperated[i]);
+                                                            i++;
                                                         }
 
                                                     }
-                                                    if(current.equals("REPLYUSERID") && s.hasNext()){
+                                                    if(seperated[i].equals("REPLYUSERID") && i<seperated.length){
                                                         //id of user
-                                                        current=s.next();
-                                                        if(current.equals("POINTS")) {
+                                                        i++;
+                                                        if(seperated[i].equals("POINTS")) {
                                                             //do nothing
                                                         }
                                                         else{
-                                                            tempR.set_reply_userID(current);
-                                                            current=s.next();
+                                                            tempR.set_reply_userID(seperated[i]);
+                                                            i++;
                                                         }
                                                     }
-                                                    if(current.equals("POINTS") && s.hasNext()){
-                                                        current=s.next();
-                                                        if(current.equals("ENDORSED")){
+                                                    if(seperated[i].equals("POINTS") && i<seperated.length){
+                                                        i++;
+                                                        if(seperated[i].equals("ENDORSED")){
                                                             //do nothing
                                                         }
                                                         else {
-                                                            tempR.set_reply_rating(current);
-                                                            current = s.next();
+                                                            tempR.set_reply_rating(seperated[i]);
+                                                            i++;
                                                         }
                                                     }
-                                                    if(current.equals("ENDORSED") && s.hasNext()){
-                                                        current=s.next();
-                                                        if(current.equals("Yes")){
+                                                    if(seperated[i].equals("ENDORSED") && i<seperated.length){
+                                                        i++;
+                                                        if(seperated[i].equals("Yes")){
                                                             tempR.set_reply_endorsed(true);
-                                                            current=s.next();
+                                                            i++;
                                                         }
-                                                        else if(current.equals("No")){
-                                                            current=s.next();
+                                                        else if(seperated[i].equals("No")){
+                                                            i++;
                                                         }
                                                         else{
                                                             //do nothing
                                                         }
                                                     }
-                                                    if(current.equals("CREATION") && s.hasNext()){
+                                                    if(seperated[i].equals("CREATION") && i<seperated.length){
                                                         //timestamp
-                                                        current=s.next();
+                                                        i++;
                                                         String time="";
-                                                        while(!(current.equals("NEWREPLY"))&& !(current.equals("NEWQUESTION")) && !(current.equals("NEWTOPIC")) && s.hasNext()){
-                                                            time=time+current+ " ";
-                                                            current=s.next();
+                                                        while(!(seperated[i].equals("NEWREPLY"))&& !(seperated[i].equals("NEWQUESTION")) && !(seperated[i].equals("NEWTOPIC")) && i<seperated.length){
+                                                            time=time+seperated[i]+ " ";
+                                                            i++;
                                                         }
                                                         tempR.set_reply_time(time);
                                                     }
@@ -279,7 +285,7 @@ public class Classes {
                     }}, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                //VolleyLog.d(TAG, "Error: " + error.getMessage());
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
             }
         }
         );

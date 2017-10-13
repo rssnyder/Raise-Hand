@@ -22,11 +22,7 @@ public class MakeQuestion extends AppCompatActivity {
     EditText textQuestion, titleQuestion;
     private SharedPreferences mPreferences;
     private User currentUser;
-    public static void main(String[] args){
-        Classes c=new Classes("Math 167", "7");
-        c.setTopics(c.get_topics());
-        System.out.println(c.getTopics().get(0));
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
