@@ -29,7 +29,7 @@ public class Classes {
     public Classes(String title, String classID){
         this.title=title;
         this.classID=classID;
-        this.topics = new ArrayList<Topics>();
+        //this.topics = new ArrayList<Topics>();
     }
     
     public ArrayList<Topics> getTopics() {
@@ -117,6 +117,7 @@ public class Classes {
                                         }
                                         tempTopic.set_description(Description);
                                     }
+                                    //TODO: Figure out what this isn't working
                                     topics.add(tempTopic);
                                     if(i<max && seperated[i].equals("NEWQUESTION")) {
                                         //NEWQUESTION means the start of the new question within this topic, add to array list
@@ -297,8 +298,7 @@ public class Classes {
                                 }
                             }
                         }
-
-                        setTopics(topics);
+                        Log.d(TAG, "Size of topics: " + topics.size());
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -309,7 +309,7 @@ public class Classes {
         );
         // Adding request to request queue
         MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
-
+        Log.d(TAG, "Size of topics (outside of volley): " + topics.size());
         //return topics;
     }
 }

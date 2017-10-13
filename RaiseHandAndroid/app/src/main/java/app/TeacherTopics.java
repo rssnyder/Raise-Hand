@@ -78,7 +78,7 @@ public class TeacherTopics extends AppCompatActivity {
         // loop until you find the Topics from the class you clicked on in TeacherClasses
         for(Classes c : currentUser.get_classes()){
             if(c.getClassID().equals(classID)){
-                if(c.getTopics().isEmpty()) {
+                if(c.getTopics()==null || c.getTopics().isEmpty()) {
                     c.get_topics();
                 }
                 for (Topics t: c.getTopics()) {
