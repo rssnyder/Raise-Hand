@@ -31,3 +31,5 @@ Riley: Website stuff
 
 Bugs found:
 Created a new class, but it didn't show up in userClasses. (class ID 11, jwest)
+Menu items gets switched for student and teacher views
+
