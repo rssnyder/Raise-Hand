@@ -78,12 +78,11 @@ public class TeacherTopics extends AppCompatActivity {
         // loop until you find the Topics from the class you clicked on in TeacherClasses
         for(Classes c : currentUser.get_classes()){
             if(c.getClassID().equals(classID)){
-                //TODO: Remove this
-                /**ArrayList<Topics> temp = LoginActivity.get_topics(c);
+                ArrayList<Topics> temp = c.get_topics();
                 for (Topics t: temp) {
                     listItems.add(t);
                 }
-                break; */
+                break;
             }
         }
 
