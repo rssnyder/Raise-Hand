@@ -33,6 +33,7 @@ import RecyclerViews.ListItemTeacherTopics;
 import RecyclerViews.MyAdapterClasses;
 import RecyclerViews.MyAdapterTopics;
 import utils.Classes;
+import utils.LoginActivity;
 import utils.Topics;
 import utils.URLS;
 import utils.User;
@@ -77,11 +78,12 @@ public class TeacherTopics extends AppCompatActivity {
         // loop until you find the Topics from the class you clicked on in TeacherClasses
         for(Classes c : currentUser.get_classes()){
             if(c.getClassID().equals(classID)){
-                ArrayList<Topics> temp = c.get_topics();
+                //TODO: Remove this
+                /**ArrayList<Topics> temp = LoginActivity.get_topics(c);
                 for (Topics t: temp) {
                     listItems.add(t);
                 }
-                break;
+                break; */
             }
         }
 
