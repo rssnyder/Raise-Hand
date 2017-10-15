@@ -25,56 +25,56 @@
         Echo ''.$row['ID'].' ';
         Echo 'DESCRIPTION ';
         Echo ''.$row['description'].' ';
-       // $quest= "SELECT * FROM threads WHERE topic_id= '$row[ID]'";
-        //$res= $db->query($quest) or die($db->error);
+        $quest= "SELECT * FROM threads WHERE topic_id= '$row[ID]'";
+        $res= $db->query($quest) or die($db->error);
         //For each topic in the class, get all of the questions associated with the topic
         //Using echo CAPITALTITLE to help parse the string in android studio
-       // while($r= $res->fetch_array()){
-         //   Echo 'NEWQUESTION ';
-           // Echo 'QUESTIONTITLE ';
-            //Echo ''.$r['title'].' ';
-    //        Echo 'QUESTIONDESCRIPTION ';
-      //      Echo ''.$r['description'].' ';
-        //    Echo 'QUESTIONUSER ';
-          //  Echo ''.$r['user_name'].' ';
-            //Echo 'QUESTIONUSERID ';
-    //        Echo ''.$r['owner_id'].' ';
-      //      Echo 'POINTS ';
-        //    Echo ''.$r['points'].' ';
-          //  Echo 'ENDORSED ';
-            //if($r['endorsed_user_id']==null){
-  //              Echo 'No ';
-    //        }
-      //      else{
-        //        Echo 'Yes ';
-          //  }
-            //Echo 'CREATION ';
-    //        Echo ''.$r['creation'].' ';
-      //      Echo 'QUESTIONID ';
-        //    Echo ''.$r['ID'].' ';
-           // $que= "SELECT * FROM replies WHERE thread_id= '$r[ID]'";
-            //$resp= $db->query($que) or die($db->error);
+       while($r= $res->fetch_array()){
+            Echo 'NEWQUESTION ';
+            Echo 'QUESTIONTITLE ';
+            Echo ''.$r['title'].' ';
+            Echo 'QUESTIONDESCRIPTION ';
+            Echo ''.$r['description'].' ';
+            Echo 'QUESTIONUSER ';
+            Echo ''.$r['user_name'].' ';
+            Echo 'QUESTIONUSERID ';
+            Echo ''.$r['owner_id'].' ';
+            Echo 'POINTS ';
+            Echo ''.$r['points'].' ';
+            Echo 'ENDORSED ';
+            if($r['endorsed_user_id']==null){
+                Echo 'No ';
+            }
+            else{
+                Echo 'Yes ';
+            }
+            Echo 'CREATION ';
+            Echo ''.$r['creation'].' ';
+            Echo 'QUESTIONID ';
+            Echo ''.$r['ID'].' ';
+            $que= "SELECT * FROM replies WHERE thread_id= '$r[ID]'";
+            $resp= $db->query($que) or die($db->error);
             //For each question within this topic, get all of the replies to that question
-    //        while($ro= $resp->fetch_array()){
-      //          Echo 'NEWREPLY ';
-        //        Echo 'REPLYTXT ';
-          //      Echo ''.$ro['txt'].' ';
-            //    Echo 'REPLYUSER ';
-              //  Echo ''.$ro['user_name'].' ';
-                //Echo 'REPLYUSERID ';
-    //            Echo ''.$ro['owner_id'].' ';
-      //          Echo 'POINTS ';
-        //        Echo ''.$ro['points'].' ';
-          //      Echo 'ENDORSED ';
-            //    if($ro['endorsed_user_id']==null){
-              //      Echo 'No ';
-                //}
-                //else{
-     //            Echo 'Yes ';
-       //         }
-         //       Echo 'CREATION ';
-           //     Echo ''.$ro['creation'].' ';
-      //      }
-   //     }
+            while($ro= $resp->fetch_array()){
+                Echo 'NEWREPLY ';
+                Echo 'REPLYTXT ';
+                Echo ''.$ro['txt'].' ';
+                Echo 'REPLYUSER ';
+                Echo ''.$ro['user_name'].' ';
+                Echo 'REPLYUSERID ';
+                Echo ''.$ro['owner_id'].' ';
+                Echo 'POINTS ';
+                Echo ''.$ro['points'].' ';
+                Echo 'ENDORSED ';
+                if($ro['endorsed_user_id']==null){
+                    Echo 'No ';
+                }
+                else{
+                 Echo 'Yes ';
+                }
+                Echo 'CREATION ';
+                Echo ''.$ro['creation'].' ';
+            }
+        }
     }
 ?>
