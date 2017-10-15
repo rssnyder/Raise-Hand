@@ -45,15 +45,15 @@
                     $resu=$db->query($que) or die($db->error);
                      if(mysqli_num_rows($resu)>0){
                         while($roww = $resu->fetch_array()){
-                            Echo 'NEWTOPIC ';
-                            Echo 'CREATETIME ';
-                            Echo ''.$roww['creation_time'].' ';
-                            Echo 'TOPICNAME ';
-                            Echo ''.$roww['topic_name'].' ';
-                            Echo 'ID ';
-                            Echo ''.$roww['ID'].' ';
-                            Echo 'DESCRIPTION ';
-                            Echo ''.$roww['description'].' ';
+                            Echo 'NEWTOPIC, ';
+                            Echo 'CREATETIME, ';
+                            Echo ''.$roww['creation_time'].', ';
+                            Echo 'TOPICNAME, ';
+                            Echo ''.$roww['topic_name'].', ';
+                            Echo 'ID, ';
+                            Echo ''.$roww['ID'].', ';
+                            Echo 'DESCRIPTION, ';
+                            Echo ''.$roww['description'].', ';
                         }
                      }
 
