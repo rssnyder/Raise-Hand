@@ -10,11 +10,15 @@
 	$db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 	$studentID=$_GET['studentId'];
 	$q = "SELECT * FROM users WHERE ID='$studentID'";
-	$res = $db->query($question) or die($db->error);
-    $result = $db->query($question) or die($db->error);
+	$res = $db->query($q) or die($db->error);
+	$question="SELECT * FROM userClasses WHERE user_id=$studentID'";
+	$r = $db->query($question) or die($db->error);
+    
     //Fetch all of the topics for a given class
-    while($row = $result->fetch_array())
+    while($row = $r->fetch_array())
     {
+        $que="SELECT * FROM topics WHERE class_id='$r[class_id]'";
+        $resu=$db->query($que) or die($db->error);
         Echo 'NEWTOPIC ';
         Echo 'CREATETIME ';
         Echo ''.$row['creation_time'].' ';
