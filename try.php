@@ -40,7 +40,7 @@
 	        Echo ' ';
 	        while($row = $stmt->fetch_array()){
 	             if(mysqli_num_rows($stmt)==1){
-	                Echo ' '.$row['class_id'].' ';
+	                Echo 'CLASSID '.$row['class_id'].' ';
 	                $que="SELECT * FROM topics WHERE class_id='$row[class_id]'";
                     $resu=$db->query($que) or die($db->error);
                      if(mysqli_num_rows($resu)>0){
