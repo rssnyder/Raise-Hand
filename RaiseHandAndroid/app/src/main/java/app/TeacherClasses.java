@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.ViewDragHelper;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -68,6 +69,7 @@ public class TeacherClasses extends AppCompatActivity {
         String json = mPreferences.getString("currentUser", "");
         User currentUser = gson.fromJson(json, User.class);
         listItems = currentUser.get_classes();
+
 
         adapter = new MyAdapterClasses(listItems, this);
 

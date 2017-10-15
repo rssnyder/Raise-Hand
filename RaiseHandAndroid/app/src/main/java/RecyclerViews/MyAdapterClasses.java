@@ -4,7 +4,9 @@ package RecyclerViews;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,12 +16,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sae1.raisehand.R;
+import com.google.gson.Gson;
 
 import java.util.List;
 
+import app.TeacherClasses;
 import app.TeacherQuestions;
 import app.TeacherTopics;
 import utils.Classes;
+import utils.Topics;
+import utils.User;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class MyAdapterClasses extends RecyclerView.Adapter<MyAdapterClasses.ViewHolder> {
 
@@ -54,10 +62,13 @@ public class MyAdapterClasses extends RecyclerView.Adapter<MyAdapterClasses.View
                 teacherTopics.putExtra("classID", listItem.getClassID());
                 Bundle bundle = new Bundle();
                 bundle.putString("classID", listItem.getClassID());
+                listItem.get_topics();
+                context.getApplicationContext().
                 context.getApplicationContext().startActivity(teacherTopics);
             }
         });
     }
+
 
     @Override
     public int getItemCount() {
