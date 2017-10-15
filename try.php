@@ -63,6 +63,7 @@
 	                Echo ''.$row['class_id'].', ';
 	            }
 	        }
+	        Echo ' }';
 	    }
 	   
 	    else{
