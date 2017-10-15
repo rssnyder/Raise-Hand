@@ -31,30 +31,43 @@
 	    Echo ' '.$response['first_name'].' ';
 	    Echo ', "last_name":';
 	    Echo ' '.$response['last_name'].' ';
-	    Echo ', "class_id":';
-		$response['error'] = false;
-		$response['message'] = 'Login successfull';
+	    $response['error'] = true;
+		$response['message'] = 'Done';
 		$tempID= $response['ID'];
-	    $stmt = "SELECT class_id FROM userClasses WHERE user_id = '$tempID' ";
+	    $stmt = "SELECT * FROM userClasses WHERE user_id = '$tempID' ";
 	    $stmt = $db->query($stmt) or die($db->error);
 	    if(mysqli_num_rows($stmt)>0){
 	        Echo ' ';
-	        
 	        while($row = $stmt->fetch_array()){
 	             if(mysqli_num_rows($stmt)==1){
-	                Echo ' '.$row['class_id'].'';
+	                Echo 'CLASSID, '.$row['class_id'].', ';
+	                $que="SELECT * FROM topics WHERE class_id='$row[class_id]'";
+                    $resu=$db->query($que) or die($db->error);
+                     if(mysqli_num_rows($resu)>0){
+                        while($roww = $resu->fetch_array()){
+                            Echo 'NEWTOPIC, ';
+                            Echo 'CREATETIME, ';
+                            Echo ''.$roww['creation_time'].', ';
+                            Echo 'TOPICNAME, ';
+                            Echo ''.$roww['topic_name'].', ';
+                            Echo 'ID, ';
+                            Echo ''.$roww['ID'].', ';
+                            Echo 'DESCRIPTION, ';
+                            Echo ''.$roww['description'].', ';
+                        }
+                     }
+
                   
 	            }
 	            else{
 	                Echo ''.$row['class_id'].', ';
-	               
 	            }
 	        }
-	        Echo '}';
+	        Echo ' }';
 	    }
 	   
 	    else{
-	        Echo ' '.'0'.'}';
+	        Echo ' '.'0';
 	    }
 	}
 	else{
@@ -63,4 +76,5 @@
 		$response['message'] = 'Invalid username or password';
 		$res['class_id']="0";
 	}
+
 ?>

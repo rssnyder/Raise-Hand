@@ -29,7 +29,7 @@
         $res= $db->query($quest) or die($db->error);
         //For each topic in the class, get all of the questions associated with the topic
         //Using echo CAPITALTITLE to help parse the string in android studio
-        while($r= $res->fetch_array()){
+       while($r= $res->fetch_array()){
             Echo 'NEWQUESTION ';
             Echo 'QUESTIONTITLE ';
             Echo ''.$r['title'].' ';
