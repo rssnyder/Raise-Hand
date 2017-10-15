@@ -1,5 +1,4 @@
 <?php
-<?php
 
 	//require_once 'sql.php';
 	$host="mysql.cs.iastate.edu";
@@ -32,15 +31,10 @@
 	    Echo ' '.$response['first_name'].' ';
 	    Echo ', "last_name":';
 	    Echo ' '.$response['last_name'].' ';
-	    Echo ', "class_id":';
-		$response['error'] = false;
-		$response['message'] = 'Login successfull';
-		$tempID= $response['ID'];
 	    $stmt = "SELECT * FROM userClasses WHERE user_id = '$tempID' ";
 	    $stmt = $db->query($stmt) or die($db->error);
 	    if(mysqli_num_rows($stmt)>0){
 	        Echo ' ';
-	        
 	        while($row = $stmt->fetch_array()){
 	             if(mysqli_num_rows($stmt)==1){
 	                Echo ' '.$row['class_id'].'';
