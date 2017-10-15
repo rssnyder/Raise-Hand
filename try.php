@@ -13,12 +13,12 @@
 	$res = $db->query($q) or die($db->error);
 	$question="SELECT * FROM userClasses WHERE user_id=$studentID'";
 	$r = $db->query($question) or die($db->error);
-    
     //Fetch all of the topics for a given class
     while($row = $r->fetch_array())
     {
-        $que="SELECT * FROM topics WHERE class_id='$r[class_id]'";
+        $que="SELECT * FROM topics WHERE class_id='$row[class_id]'";
         $resu=$db->query($que) or die($db->error);
+        
         Echo 'NEWTOPIC ';
         Echo 'CREATETIME ';
         Echo ''.$row['creation_time'].' ';
