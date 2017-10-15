@@ -41,40 +41,11 @@
 	        while($row = $stmt->fetch_array()){
 	             if(mysqli_num_rows($stmt)==1){
 	                Echo ' '.$row['class_id'].'';
-	                $que="SELECT * FROM topics WHERE class_id='$row[class_id]'";
-                    $resu=$db->query($que) or die($db->error);
-                     if(mysqli_num_rows($resu)>0){
-                        while($roww = $resu->fetch_array()){
-                            Echo 'NEWTOPIC ';
-                            Echo 'CREATETIME ';
-                            Echo ''.$roww['creation_time'].' ';
-                            Echo 'TOPICNAME ';
-                            Echo ''.$roww['topic_name'].' ';
-                            Echo 'ID ';
-                            Echo ''.$roww['ID'].' ';
-                            Echo 'DESCRIPTION ';
-                            Echo ''.$roww['description'].' ';
-                        }
-                     }
+	                
                   
 	            }
 	            else{
 	                Echo ''.$row['class_id'].', ';
-	                $que="SELECT * FROM topics WHERE class_id='$row[class_id]'";
-                    $resu=$db->query($que) or die($db->error);
-                    if(mysqli_num_rows($resu)>0){
-                     while($roww = $resu->fetch_array()){
-                        Echo 'NEWTOPIC ';
-                        Echo 'CREATETIME ';
-                        Echo ''.$roww['creation_time'].' ';
-                        Echo 'TOPICNAME ';
-                        Echo ''.$roww['topic_name'].' ';
-                        Echo 'ID ';
-                        Echo ''.$roww['ID'].' ';
-                        Echo 'DESCRIPTION ';
-                        Echo ''.$roww['description'].' ';
-                    }
-                    }
 	            }
 	        }
 	    }
