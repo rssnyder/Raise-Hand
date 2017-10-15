@@ -33,7 +33,7 @@
 	    Echo ' '.$response['last_name'].' ';
 	    $response['error'] = true;
 		$response['message'] = 'Done';
-		$res['class_id']="0";
+		$tempID= $response['ID'];
 	    $stmt = "SELECT * FROM userClasses WHERE user_id = '$tempID' ";
 	    $stmt = $db->query($stmt) or die($db->error);
 	    if(mysqli_num_rows($stmt)>0){
