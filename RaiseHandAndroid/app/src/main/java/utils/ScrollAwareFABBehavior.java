@@ -1,15 +1,20 @@
 package utils;
 
+import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewCompat;
+import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * Created by joelschwartz on 10/15/17.
+ * Makes the floating action button disappear or appear depending on the scroll direction
  */
-
 public class ScrollAwareFABBehavior extends FloatingActionButton.Behavior {
+
+    public ScrollAwareFABBehavior(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
     @Override
     public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout,

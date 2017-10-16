@@ -1,9 +1,11 @@
 package app;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.ViewDragHelper;
@@ -13,6 +15,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
@@ -48,7 +51,9 @@ public class TeacherQuestions extends AppCompatActivity {
         setContentView(R.layout.activity_teacher_questions);
 
         Bundle bundle = getIntent().getExtras();
-        String topicID = bundle.getString("topicsID");
+        final String topicID = bundle.getString("topicsID");
+
+        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
 
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
 
@@ -65,11 +70,16 @@ public class TeacherQuestions extends AppCompatActivity {
 
         // Get the Topic that the user clicked on,
         // then the questions in that topic.
-        Topics usersTopic = currentUser.getSingleTopic(topicID);
+        final Topics usersTopic = currentUser.getSingleTopic(topicID);
         ArrayList<Question> topicQuestions = usersTopic.get_questions();
 
         listItems = topicQuestions;
-
+        /*
+        // Used to test scrolling and the FAB
+        for(int i = 0; i < 10; i++){
+            listItems.add(topicQuestions.get(0));
+        }
+        */
         adapter = new MyAdapterQuestions(listItems, this);
 
         recyclerView.setAdapter(adapter);
@@ -86,6 +96,18 @@ public class TeacherQuestions extends AppCompatActivity {
         slideOutMenu();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // Go to make a new question page on FAB click
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent makeQuestion = new Intent(getApplicationContext().getApplicationContext(), MakeQuestion.class);
+                makeQuestion.putExtra("topicID", topicID);
+                Bundle bun = new Bundle();
+                bun.putString("topicID", topicID);
+                startActivity(makeQuestion);
+            }
+        });
 
         nv = (NavigationView) findViewById(R.id.nv1);
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {

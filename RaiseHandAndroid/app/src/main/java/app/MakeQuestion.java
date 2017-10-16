@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 
 import utils.Classes;
 import utils.Question;
+import utils.Topics;
 import utils.URLS;
 import utils.User;
 
@@ -42,6 +43,10 @@ public class MakeQuestion extends AppCompatActivity {
         String json = mPreferences.getString("currentUser", "");
         currentUser = gson.fromJson(json, User.class);
 
+        Bundle bundle = getIntent().getExtras();
+        final String topicID = bundle.getString("topicsID");
+        final Topics topic = currentUser.getSingleTopic(topicID);
+
         // Click the submit button
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +58,7 @@ public class MakeQuestion extends AppCompatActivity {
                 //current username
                 temp.setQuestionUsername(currentUser.getUsername());
                 //topic this should fall under
-                //temp.setParent();
+                temp.setParent(topic);
                 temp.setQuestionTitle(inputTitle);
                 temp.setQuestionDescription(inputDetails);
                 temp.add_question_to_database();
