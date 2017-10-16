@@ -60,6 +60,7 @@ public class MyAdapterClasses extends RecyclerView.Adapter<MyAdapterClasses.View
             public void onClick(View view) {
                 Intent teacherTopics = new Intent(context.getApplicationContext(), TeacherTopics.class);
                 teacherTopics.putExtra("classID", listItem.getClassID());
+                // pass the classID to the next activity
                 Bundle bundle = new Bundle();
                 bundle.putString("classID", listItem.getClassID());
                 listItem.get_topics();

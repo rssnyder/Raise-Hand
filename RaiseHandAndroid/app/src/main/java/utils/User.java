@@ -47,4 +47,34 @@ public class User {
     public void logout(){this.logged_in=false;}
     public ArrayList<Classes> get_classes(){return this.classes;}
 
+    /**
+     * returns the class matching the classID.
+     * @param classID String of class ID
+     * @return a class (Classes object), null otherwise
+     */
+    public Classes getSingleClass(String classID){
+        for(Classes c : classes){
+            if(c.getClassID().equals(classID)){
+                return c;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * returns the topic matching the topic ID
+     * @param topicID Strings of topic ID
+     * @return Topics, null otherwise
+     */
+    public Topics getSingleTopic(String topicID){
+        for(Classes c : classes){
+            for(Topics t : c.getTopics()){
+                if(t.get_ID().equals(topicID)){
+                    return t;
+                }
+            }
+        }
+        return null;
+    }
+
 }

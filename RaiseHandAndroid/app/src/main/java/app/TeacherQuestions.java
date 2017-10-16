@@ -1,6 +1,7 @@
 package app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -14,25 +15,26 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.example.sae1.raisehand.R;
+import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import RecyclerViews.ListItemTeacherClasses;
-import RecyclerViews.MyAdapterClasses;
 import RecyclerViews.MyAdapterQuestions;
 import utils.Question;
 import utils.Reply;
+import utils.Topics;
+import utils.User;
 
 public class TeacherQuestions extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private List<ListItemTeacherClasses> listItems;
+    private List<Question> listItems;
     private Field mDragger;
+
+    private SharedPreferences mPreferences;
 
 
     private DrawerLayout mDrawerLayout;
@@ -45,6 +47,11 @@ public class TeacherQuestions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_questions);
 
+        Bundle bundle = getIntent().getExtras();
+        String topicID = bundle.getString("topicsID");
+
+        mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
+
         recyclerView = (RecyclerView) findViewById(R.id.questionsRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -52,24 +59,18 @@ public class TeacherQuestions extends AppCompatActivity {
         listItems = new ArrayList<>();
         List<Reply> replyList = new ArrayList<>();
 
-        for(int i = 0; i < 100; i++){
-            ListItemTeacherClasses listItem = new ListItemTeacherClasses("Question " + (i + 1),
-                                                                         "I have a question?");
-            listItems.add(listItem);
-        }
-//        adapter = new MyAdapterClasses(listItems, this);
-/*
-        Question questionItem = new Question("I have no clue what to do.",
-                                             5,
-                                             "How do I do number 3?",
-                                             new Date(),
-                                             replyList,
-                                             "20",
-                                             "10",
-                                             "1");
-        listItems.add(questionItem);
-*/
-        //adapter = new MyAdapterQuestions(listItems, this);
+        Gson gson = new Gson();
+        String json = mPreferences.getString("currentUser", "");
+        User currentUser = gson.fromJson(json, User.class);
+
+        // Get the Topic that the user clicked on,
+        // then the questions in that topic.
+        Topics usersTopic = currentUser.getSingleTopic(topicID);
+        ArrayList<Question> topicQuestions = usersTopic.get_questions();
+
+        listItems = topicQuestions;
+
+        adapter = new MyAdapterQuestions(listItems, this);
 
         recyclerView.setAdapter(adapter);
 

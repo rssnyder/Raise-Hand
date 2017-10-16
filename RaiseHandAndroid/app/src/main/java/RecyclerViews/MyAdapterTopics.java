@@ -3,6 +3,7 @@ package RecyclerViews;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,15 +37,21 @@ public class MyAdapterTopics extends RecyclerView.Adapter<MyAdapterTopics.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Topics listItem = listItems.get(position);
+        final Topics listItem = listItems.get(position);
 
         holder.textViewHead.setText(listItem.get_title());
         holder.textViewDesc.setText(listItem.get_description());
+
+
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // go to the topics' questions
                 Intent teacherQuestions = new Intent(context.getApplicationContext(), TeacherQuestions.class);
+                teacherQuestions.putExtra("topicsID", listItem.get_ID());
+                // pass topic ID to the question activity
+                Bundle bundle = new Bundle();
+                bundle.putString("topicsID", listItem.get_ID());
                 context.getApplicationContext().startActivity(teacherQuestions);
             }
         });
