@@ -63,6 +63,7 @@
 	      miner.start();
 
       //Script to get questions
+      var counter = 0;
       function showUser(str) {
         if (str == "") {
             document.getElementById("txtHint").innerHTML = "";
@@ -83,15 +84,34 @@
             xmlhttp.open("GET","getQuestions.php?class="+str,true);
             xmlhttp.send();
         }
+      }
 
       function createQ() {
         var div = document.createElement("div");
-        div.innerHTML = "hey there.";
-
+        div.innerHTML = "hey there." + counter;
+        counter++;
         //Set this question to where it belongs
         document.getElementById('questions').appendChild(div);
       }
+
+      </script>
+      <script>
+      function getQ() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("test").innerHTML = this.responseText;
+            }
+            else {
+              document.getElementById("test").innerHTML = "Shit.";
+            }
+        };
+        xmlhttp.open("GET", "liveSession.php?class=" + class, true);
+        xmlhttp.send();
+        document.getElementById("test").innerHTML = "Shit.";
+
     }
+
     </script>
     <!-- End questionable content -->
 
@@ -119,8 +139,11 @@
   <!-- Main content of the webpage -->
   <div class="main">
     <div id="questions" class="container-fluid" style="overflow-y: auto;max-height: 90vh;">
-      <div class="row">
-        <button onclick="createQ()">Click Here</button>
+      <div id="text" class="row">
+        <button onclick="getQ()">Click Here</button>
+      </div>
+      <div id="test">
+        Before
       </div>
     </div>
   </div>
