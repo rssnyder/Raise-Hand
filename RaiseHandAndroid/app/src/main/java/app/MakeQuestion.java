@@ -3,6 +3,7 @@ package app;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,17 +42,24 @@ public class MakeQuestion extends AppCompatActivity {
 
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
+        String topic1 = mPreferences.getString("topic", "");
         currentUser = gson.fromJson(json, User.class);
+        final Topics parentTopic = gson.fromJson(topic1, Topics.class);
+
+        String topicParentAsString = getIntent().getStringExtra("topic");
+        final Topics topic = gson.fromJson(topicParentAsString, Topics.class);
 
         Bundle bundle = getIntent().getExtras();
         final String topicID = bundle.getString("topicsID");
-        final Topics topic = currentUser.getSingleTopic(topicID);
 
         // Click the submit button
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Question temp=new Question();
+                System.out.println(inputTitle);
+                System.out.println(inputDetails);
+
+                Question temp = new Question();
 
                 //current user's id
                 temp.setOwnerID(currentUser.getId());

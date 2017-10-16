@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.sae1.raisehand.R;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -41,6 +42,8 @@ public class MyAdapterTopics extends RecyclerView.Adapter<MyAdapterTopics.ViewHo
 
         holder.textViewHead.setText(listItem.get_title());
         holder.textViewDesc.setText(listItem.get_description());
+        Gson gson2 = new Gson();
+        final String topic = gson2.toJson(listItem);
 
 
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
@@ -49,9 +52,11 @@ public class MyAdapterTopics extends RecyclerView.Adapter<MyAdapterTopics.ViewHo
                 // go to the topics' questions
                 Intent teacherQuestions = new Intent(context.getApplicationContext(), TeacherQuestions.class);
                 teacherQuestions.putExtra("topicsID", listItem.get_ID());
+                teacherQuestions.putExtra("topic", topic);
                 // pass topic ID to the question activity
                 Bundle bundle = new Bundle();
                 bundle.putString("topicsID", listItem.get_ID());
+                bundle.putString("topic", topic);
                 context.getApplicationContext().startActivity(teacherQuestions);
             }
         });

@@ -97,14 +97,18 @@ public class TeacherQuestions extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        final String topic = gson.toJson(usersTopic);
+
         // Go to make a new question page on FAB click
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent makeQuestion = new Intent(getApplicationContext().getApplicationContext(), MakeQuestion.class);
                 makeQuestion.putExtra("topicID", topicID);
+                makeQuestion.putExtra("topic", topic);
                 Bundle bun = new Bundle();
                 bun.putString("topicID", topicID);
+                bun.putString("topic", topic);
                 startActivity(makeQuestion);
             }
         });
