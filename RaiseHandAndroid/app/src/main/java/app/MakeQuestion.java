@@ -32,13 +32,11 @@ public class MakeQuestion extends AppCompatActivity {
         setContentView(R.layout.activity_make_question);
 
         submit = (Button) findViewById(R.id.submitQuestion);
+
+        mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
         titleQuestion = (EditText) findViewById(R.id.titleQuestion);
         textQuestion = (EditText) findViewById(R.id.enterQuestion);
 
-        final String inputTitle = titleQuestion.getText().toString(); //question title
-        final String inputDetails = textQuestion.getText().toString(); //question details
-
-        mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
 
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
@@ -54,10 +52,13 @@ public class MakeQuestion extends AppCompatActivity {
 
         // Click the submit button
         submit.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View view) {
-                System.out.println(inputTitle);
-                System.out.println(inputDetails);
+
+                final String inputTitle = titleQuestion.getText().toString(); //question title
+                final String inputDetails = textQuestion.getText().toString(); //question details
 
                 Question temp = new Question();
 
@@ -74,4 +75,5 @@ public class MakeQuestion extends AppCompatActivity {
         });
 
     }
+
 }
