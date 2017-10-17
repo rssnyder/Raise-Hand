@@ -14,6 +14,6 @@
   //Make sure everything is there and then create the class
 
   //$class = $_REQUEST["class"];
-  $q = "Hello";
-  echo $q;
+  $cars = array("Volvo", "BMW", "Toyota");
+  echo json_encode($cars);
 ?>
