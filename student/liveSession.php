@@ -77,18 +77,31 @@
       </script>
       <script id="source" language="javascript" type="text/javascript">
          function getData(){
+           //Get the GET variables
+           var $_GET=[];
+           window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(a,name,value){$_GET[name]=value;});
+           //Send reuest to php page for information
            $.ajax({
                  type: "GET",
                  url: 'utilities/liveSession.php',
                  dataType: "json",
-                 data: {name: 'Wayne', age: 27, country: 'Ireland'},
+                 data: {class: $_GET['class']},
                  success: function(data){
-                     alert(data);
+                   var div = document.createElement("div");
+                   div.setAttribute('class', 'row');
+                   div.setAttribute('order', data['creation']);
+                   div.innerHTML = "<div class=\"col-md-12\"><div class=\"jumbotron well\">" + data['ID'] + data['class_name'] + "</div></div>";
+                   document.getElementById('questions').appendChild(div);
                  },
                  error: function() {
                    alert("Error.");
                  }
              });
+
+             var out = document.getElementById("main");
+             var isScrolledToBottom = out.scrollHeight - out.clientHeight <= out.scrollTop + 1;
+             if(isScrolledToBottom)
+                    out.scrollTop = out.scrollHeight - out.clientHeight;
            };
        </script>
     <!-- End questionable content -->
@@ -115,13 +128,10 @@
   </div>
 
   <!-- Main content of the webpage -->
-  <div class="main">
+  <div id="main" class="main">
     <div id="questions" class="container-fluid" style="overflow-y: auto;max-height: 90vh;">
      <div id="text" class="row">
        <button onclick="getData();">Click Here</button>
-     </div>
-     <div id="test">
-       Before
      </div>
    </div>
   </div>

@@ -13,7 +13,10 @@
   //echo $db->host_info;
   //Make sure everything is there and then create the class
 
-  //$class = $_REQUEST["class"];
-  $cars = array("Volvo", "BMW", "Toyota");
-  echo json_encode($cars);
+  //Get this class
+  $query = "SELECT * FROM classes WHERE ID = " . $_GET['class'];
+  $result = $db->query($query) or die($db->error);
+  $class = $result->fetch_assoc();
+
+  echo json_encode($class);
 ?>
