@@ -327,6 +327,7 @@ public class Classes {
                                         }
                                         tempR.set_replyParent(replyParent);
                                     }
+
                                 }
                                 //NEWREPLY means the start of a new reply within this question, add to the question's array list
                                 replies.add(tempR);

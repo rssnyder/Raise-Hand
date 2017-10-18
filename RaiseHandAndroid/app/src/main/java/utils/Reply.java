@@ -141,7 +141,7 @@ public class Reply {
     }
 
     public void upVote(){
-        String url=URLS.URL_UPVOTER+"?QID="+this.replyID;
+        String url=URLS.URL_UPVOTER+"?RID="+this.replyID;
         StringRequest req = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
