@@ -316,16 +316,19 @@ public class Classes {
                                     if(i<max && seperated[i].equals("PARENT")){
                                         //timestamp
                                         i++;
-                                        String replyParent="";
-                                        while(i<max && !(seperated[i].equals("NEWREPLY"))&& !(seperated[i].equals("NEWQUESTION")) && !(seperated[i].equals("NEWTOPIC"))){
-                                            replyParent=replyParent+seperated[i]+ " ";
-                                            i++;
-                                        }
+                                        String replyParent=seperated[i];
+                                        i++;
                                         if(replyParent.equals("0")){
                                             //this is not a reply but a place holder
                                             replyParent=null;
                                         }
                                         tempR.set_replyParent(replyParent);
+                                    }
+                                    if(i<max && seperated[i].equals("REPLYID")) {
+                                        i++;
+                                        String replyID=seperated[i];
+                                        i++;
+                                        tempR.set_replyID(replyID);
                                     }
 
                                 }
