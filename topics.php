@@ -75,7 +75,7 @@
                 Echo 'CREATION ';
                 Echo ''.$ro['creation'].' ';
                 Echo 'PARENT ';
-                Echo ''.$row['parent'].' ';
+                Echo ''.$ro['parent'].' ';
             }
         }
     }
