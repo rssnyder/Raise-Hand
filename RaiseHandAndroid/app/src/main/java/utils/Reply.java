@@ -39,6 +39,8 @@ public class Reply {
     //Question this reply falls under
     private Question parent;
 
+    public String replyID;
+
     //Reply id if this a reply of a reply
     private String replyParent;
     private String tag_string_req="reply_req";
@@ -63,6 +65,7 @@ public class Reply {
         this.username=null;
         this.userID=null;
         this.replyParent=null;
+        this.replyID=null;
     }
 
     public String get_reply_up_votes(){
@@ -87,6 +90,8 @@ public class Reply {
 
     public String getReplyParent(){ return this.replyParent; }
 
+    public String get_replyID(){ return this.replyID; }
+
     public void set_reply_time(String time){ this.time_stamp=time; }
 
     public void set_reply(String reply){ this.reply=reply; }
@@ -100,6 +105,9 @@ public class Reply {
     public void set_reply_endorsed(Boolean endorsed){this.endorsed=endorsed;}
 
     public void set_replyParent(String replyParent){ this.replyParent=replyParent; }
+
+    public void set_replyID(String replyID){ this.replyID=replyID; }
+
 
     //TODO: Update to enable the reply to be a reply
     public void add_to_database(){
@@ -117,6 +125,33 @@ public class Reply {
                         //in the php file, the user information is stored in an array with : as a delimiter between the variable name and actual value
                         if (phpResponse.contains("Done")) {
                             Toast.makeText(MainActivity.getInstance(), "Success: reply added", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(MainActivity.getInstance(), "Error", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+            }
+        }
+        );
+        // Adding request to request queue
+        MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
+    }
+
+    public void upVote(){
+        String url=URLS.URL_UPVOTER+"?QID="+this.replyID;
+        StringRequest req = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        Log.d(TAG, response.toString());
+                        String phpResponse = response.toString();
+                        //in the php file, the user information is stored in an array with : as a delimiter between the variable name and actual value
+                        if (phpResponse.contains("Done")) {
+                            Toast.makeText(MainActivity.getInstance(), "Success: upvote completed", Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(MainActivity.getInstance(), "Error", Toast.LENGTH_LONG).show();
                         }

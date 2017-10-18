@@ -182,4 +182,31 @@ public class Question {
         MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
 
     }
+
+    public void upVote(){
+        String url=URLS.URL_UPVOTE+"?QID="+this.questionID;
+        StringRequest req = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        Log.d(TAG, response.toString());
+                        String phpResponse = response.toString();
+                        //in the php file, the user information is stored in an array with : as a delimiter between the variable name and actual value
+                        if (phpResponse.contains("Done")) {
+                            Toast.makeText(MainActivity.getInstance(), "Success: upvote completed", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(MainActivity.getInstance(), "Error", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+            }
+        }
+        );
+        // Adding request to request queue
+        MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
+    }
 }

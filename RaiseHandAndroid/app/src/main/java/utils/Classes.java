@@ -313,7 +313,7 @@ public class Classes {
                                         }
                                         tempR.set_reply_time(time);
                                     }
-                                    if(i<max && seperated[i].equals("CREATION")){
+                                    if(i<max && seperated[i].equals("PARENT")){
                                         //timestamp
                                         i++;
                                         String replyParent="";
