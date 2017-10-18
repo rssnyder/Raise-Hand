@@ -76,6 +76,9 @@
                 Echo ''.$ro['creation'].' ';
                 Echo 'PARENT ';
                 Echo ''.$ro['parent'].' ';
+                Echo 'REPLYID ';
+                Echo ''.$ro['ID'].' ';
+                
             }
         }
     }
