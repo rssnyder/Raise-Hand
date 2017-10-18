@@ -307,11 +307,25 @@ public class Classes {
                                         //timestamp
                                         i++;
                                         String time="";
-                                        while(i<max && !(seperated[i].equals("NEWREPLY"))&& !(seperated[i].equals("NEWQUESTION")) && !(seperated[i].equals("NEWTOPIC"))){
+                                        while(i<max && !(seperated[i].equals("PARENT"))){
                                             time=time+seperated[i]+ " ";
                                             i++;
                                         }
                                         tempR.set_reply_time(time);
+                                    }
+                                    if(i<max && seperated[i].equals("CREATION")){
+                                        //timestamp
+                                        i++;
+                                        String replyParent="";
+                                        while(i<max && !(seperated[i].equals("NEWREPLY"))&& !(seperated[i].equals("NEWQUESTION")) && !(seperated[i].equals("NEWTOPIC"))){
+                                            replyParent=replyParent+seperated[i]+ " ";
+                                            i++;
+                                        }
+                                        if(replyParent.equals("0")){
+                                            //this is not a reply but a place holder
+                                            replyParent=null;
+                                        }
+                                        tempR.set_replyParent(replyParent);
                                     }
                                 }
                                 //NEWREPLY means the start of a new reply within this question, add to the question's array list

@@ -36,12 +36,15 @@ public class Reply {
     //authors user ID
     private String userID;
 
+    //Question this reply falls under
     private Question parent;
 
+    //Reply id if this a reply of a reply
+    private String replyParent;
     private String tag_string_req="reply_req";
     public static final String TAG= Reply.class.getSimpleName();
 
-    public Reply(String reply, String rating, boolean endorsed, String time_stamp, String username, String userID, Question q){
+    public Reply(String reply, String rating, boolean endorsed, String time_stamp, String username, String userID, Question q, String replyParent){
         this.reply=reply;
         this.student_rating=rating;
         this.endorsed=endorsed;
@@ -49,6 +52,7 @@ public class Reply {
         this.username=username;
         this.userID=userID;
         this.parent=q;
+        this.replyParent=replyParent;
     }
 
     public Reply(){
@@ -58,6 +62,7 @@ public class Reply {
         this.time_stamp=null;
         this.username=null;
         this.userID=null;
+        this.replyParent=null;
     }
 
     public String get_reply_up_votes(){
@@ -78,6 +83,10 @@ public class Reply {
         return time_stamp;
     }
 
+    public Question get_parent_question(){return this.parent;}
+
+    public String getReplyParent(){ return this.replyParent; }
+
     public void set_reply_time(String time){ this.time_stamp=time; }
 
     public void set_reply(String reply){ this.reply=reply; }
@@ -90,7 +99,7 @@ public class Reply {
 
     public void set_reply_endorsed(Boolean endorsed){this.endorsed=endorsed;}
 
-    public Question get_parent_question(){return this.parent;}
+    public void set_replyParent(String replyParent){ this.replyParent=replyParent; }
 
     public void add_to_database(){
         //Description
