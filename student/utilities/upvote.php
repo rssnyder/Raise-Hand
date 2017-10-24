@@ -27,9 +27,9 @@
   //echo $db->host_info;
   //Make sure everything is there and then create the class
 
-  //$points = $_GET['points'] + 1;
-  $points = 3;
-  $comment= $_GET['comment'];
+  $points = $_GET['points'] + 1;
+  
+  $comment= substr($_GET['comment'], 4);
 
   $query = "UPDATE replies
     SET
@@ -38,6 +38,6 @@
 
   $result = $db->query($query) or die($db->error);
 
-  echo "Done";
+  echo json_encode(substr($_GET['comment'], 4));
 
 ?>

