@@ -37,7 +37,7 @@ public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.
 
         holder.textViewHead.setText(listItem.getQuestionTitle());
         holder.textViewDesc.setText(listItem.getQuestionDescription());
-        holder.textViewPoints.setText(listItem.getStudentRating());
+        holder.textViewPoints.setText("Points: "+ listItem.getStudentRating());
     }
 
     @Override
