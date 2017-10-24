@@ -37,6 +37,7 @@ public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.
 
         holder.textViewHead.setText(listItem.getQuestionTitle());
         holder.textViewDesc.setText(listItem.getQuestionDescription());
+        holder.textViewPoints.setText(listItem.getStudentRating());
     }
 
     @Override
@@ -48,12 +49,14 @@ public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.
 
         public TextView textViewHead;
         public TextView textViewDesc;
+        public TextView textViewPoints;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             textViewHead = (TextView) itemView.findViewById(R.id.textViewHead);
             textViewDesc = (TextView) itemView.findViewById(R.id.textViewDesc);
+            textViewPoints= (TextView) itemView.findViewById(R.id.textViewPoints);
         }
     }
 

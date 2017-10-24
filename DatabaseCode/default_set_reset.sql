@@ -1,1 +1,2 @@
-ALTER TABLE users ALTER reset SET DEFAULT 0;
+SELECT * FROM topics;
+SELECT * FROM threads;
