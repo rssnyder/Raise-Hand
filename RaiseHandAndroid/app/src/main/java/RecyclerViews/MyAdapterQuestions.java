@@ -34,10 +34,10 @@ public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Question listItem = listItems.get(position);
-
         holder.textViewHead.setText(listItem.getQuestionTitle());
         holder.textViewDesc.setText(listItem.getQuestionDescription());
         holder.textViewPoints.setText("Points: "+ listItem.getStudentRating());
+        holder.textViewEndorsed.setText("Endorsed?" + listItem.questionEndorsemenet());
     }
 
     @Override
@@ -50,6 +50,7 @@ public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.
         public TextView textViewHead;
         public TextView textViewDesc;
         public TextView textViewPoints;
+        public TextView textViewEndorsed;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -57,6 +58,7 @@ public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.
             textViewHead = (TextView) itemView.findViewById(R.id.textViewHead);
             textViewDesc = (TextView) itemView.findViewById(R.id.textViewDesc);
             textViewPoints= (TextView) itemView.findViewById(R.id.textViewPoints);
+            textViewEndorsed= (TextView) itemView.findViewById(R.id.textViewEndorsed);
         }
     }
 
