@@ -14,7 +14,7 @@
   //Make sure everything is there and then create the class
 
   //Get this class
-  $query = "SELECT * FROM liveQueue WHERE class_id = " . $_GET['class'];
+  $query = "SELECT * FROM liveQueue" . $_GET['class'] . " WHERE class_id = " . $_GET['class'];
   $result = $db->query($query) or die($db->error);
 
   $arr = array();
