@@ -14,4 +14,5 @@ public class URLS {
     public static final String URL_UPVOTE=ROOT_URL+"upvoteQ.php";
     public static final String URL_UPVOTER=ROOT_URL+"upvoteR.php";
     public static final String URL_ENDORSEMENT= ROOT_URL+"endorseR.php";
+    public static final String URL_ENDORSEMENTQ= ROOT_URL+"endorseQ.php";
 }

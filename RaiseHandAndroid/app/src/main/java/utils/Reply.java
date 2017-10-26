@@ -167,7 +167,7 @@ public class Reply {
         MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
     }
     public void endorse(){
-        String url=URLS.URL_ENDORSEMENT+"?ENDORSED="+this.replyID;
+        String url=URLS.URL_ENDORSEMENT+"?RID="+this.replyID;
         StringRequest req = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
