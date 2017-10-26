@@ -74,7 +74,7 @@
 
       </script>
       <script id="source" language="javascript" type="text/javascript">
-         function getData(){
+         window.setInterval(function getData(){
            //Get the GET variables
            var $_GET=[];
            window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(a,name,value){$_GET[name]=value;});
@@ -85,7 +85,7 @@
                  dataType: "json",
                  data: {class: $_GET['class']},
                  success: function(data){
-                   var counter = 0;
+                   var counter = feed;
                    while(data[counter]) {
                      var div = document.createElement("div");
                      div.setAttribute('class', 'row');
@@ -93,6 +93,7 @@
                      feed = data[counter];
                      div.innerHTML = "<div class=\"col-md-12\"><div class=\"jumbotron well\">" + data[counter + 1] + ": " + data[counter + 2] + "</div></div>";
                      counter += 3;
+                     feed = counter;
                      document.getElementById('questions').appendChild(div);
                    }
                  },
@@ -105,7 +106,7 @@
              var isScrolledToBottom = out.scrollHeight - out.clientHeight <= out.scrollTop + 1;
              if(isScrolledToBottom)
                     out.scrollTop = out.scrollHeight - out.clientHeight;
-           };
+           }, 1000);
        </script>
     <!-- End questionable content -->
 
@@ -134,7 +135,6 @@
   <div id="main" class="main">
     <div id="questions" class="container-fluid" style="overflow-y: auto;max-height: 90vh;">
      <div id="text" class="row">
-       <button onclick="getData();">Click Here</button>
      </div>
    </div>
   </div>
