@@ -30,6 +30,7 @@ Jevay: Android
 Riley: Website stuff
 
 Bugs found:
-Created a new class, but it didn't show up in userClasses. (class ID 11, jwest)
-Menu items gets switched for student and teacher views
+Takes two clicks to get all of the topics to show up for a class
+Logout doesn't work
+
 
