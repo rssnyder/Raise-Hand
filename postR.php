@@ -20,8 +20,12 @@
     $parent= $_GET['replyParent'];
     
     //finally, insert into the database
-    // is the VALUES supposed to have 'points' like the insert into does?
-	$stmt = "INSERT INTO replies(thread_id, owner_id, txt, user_name, parent) VALUES ('$threadID', '$ownerID', '$txt', '$user_name', '$parent')";
+    if($parent == 0){
+       $stmt = "INSERT INTO replies(thread_id, owner_id, txt, user_name, parent) VALUES ('$threadID', '$ownerID', '$txt', '$user_name', 0)";
+    }
+    else{
+	    $stmt = "INSERT INTO replies(thread_id, owner_id, txt, user_name, parent) VALUES ('$threadID', '$ownerID', '$txt', '$user_name', '$parent')";
+    }
 	$stmt = $db->query($stmt) or die($db->error);
 	die("Done");
 
