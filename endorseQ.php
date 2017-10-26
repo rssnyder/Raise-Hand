@@ -9,7 +9,7 @@
 	//Connect to database
 	$db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 	$question_id=$_GET['QID'];
-	$stmt = "UPDATE replies SET endorsed=1 WHERE ID='$question_id'";
+	$stmt = "UPDATE threads SET endorsed=1 WHERE ID='$question_id'";
 	$stmt = $db->query($stmt) or die($db->error);
 	die("Done");
 ?>
