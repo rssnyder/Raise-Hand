@@ -42,11 +42,11 @@
             Echo 'POINTS ';
             Echo ''.$r['points'].' ';
             Echo 'ENDORSED ';
-            if($r['endorsed_user_id']==null){
-                Echo 'No ';
+            if($r['endorsed']==1){
+                Echo 'Yes ';
             }
             else{
-                Echo 'Yes ';
+                Echo 'No ';
             }
             Echo 'CREATION ';
             Echo ''.$r['creation'].' ';
