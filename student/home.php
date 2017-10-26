@@ -66,7 +66,7 @@
                 <div class="home">
                   <center>
                     <br>
-                    <button class="button" onclick="window.location='pages.php?page=joinClass';">Join a Class</button>
+                    <button class="button" onclick="window.location='joinClass.php';">Join a Class</button>
                     <p>
                       Use an access code to join a new class
                     </p>

@@ -34,6 +34,17 @@
   $check = "SELECT 1 FROM liveQueue" . $_GET['class'] . " LIMIT 1";
   $result = $db->query($check) or startSession($_GET['class']);
 
+  //Get this class
+  $query = "SELECT * FROM classes WHERE ID = " . $_GET['class'];
+  $result = $db->query($query) or die($db->error);
+  $class = $result->fetch_assoc();
+
+  //Check to see if this teacher actaully owns this classes
+  if($class['teacher_id'] != $_SESSION['id']) {
+    header("Location: home.php");
+    die("oops");
+  }
+
 
 ?>
 

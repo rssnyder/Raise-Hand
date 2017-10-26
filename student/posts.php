@@ -40,7 +40,7 @@
       $id = $comment['ID'];
       $text = $comment['txt'];
       $author = $comment['user_name'];
-      $endorsedID = $comment['endorsed_user_id'];
+      $endorsedID = $comment['endorsed'];
       $flagged = $comment['flagged'];
       $creation = $comment['creation'];
       $points = $comment['points'];

@@ -57,7 +57,7 @@
                 $parentID)";
 
     //Submit the comment
-    $result = $db->query($query) or die($query);
+    $result = $db->query($query) or die($db->error);
     header("Location: ../posts.php?class=" . $_GET['class'] . "&thread=" . $thread);
     die("Comment posted.");
   }
@@ -87,7 +87,7 @@
     $comment = $_GET['comment'];
     $query = "UPDATE replies
                 SET
-                endorsed_user_id = $id
+                endorsed = 1
                 WHERE ID = $comment";
 
     $result = $db->query($query) or die($query);

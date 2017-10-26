@@ -58,7 +58,7 @@
                 $parentID)";
 
     //Submit the comment
-    $result = $db->query($query) or die($query);
+    $result = $db->query($query) or die($db->error);
     header("Location: ../posts.php?class=" . $_GET['class'] . "&thread=" . $thread . "&post=success");
     die("Comment posted.");
   }

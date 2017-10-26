@@ -25,17 +25,24 @@
   //Connect to database
   $db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 
-  //Get this class
-  $query = "SELECT * FROM classes WHERE ID = " . $_GET['class'];
-  $result = $db->query($query) or die($db->error);
-  $class = $result->fetch_assoc();
+
+  //See if session is avalible
+  function startSession($class){
+    header("Location: pages.php?class=$class");
+    die("Go create session");
+  }
+  //Check to see if live session is currently in session
+  $check = "SELECT 1 FROM liveQueue" . $_GET['class'] . " LIMIT 1";
+  $result = $db->query($check) or startSession($_GET['class']);
+
+
 
   //Check to see if student is actually in this class
   $belongs = false;
   $query = "SELECT class_id FROM userClasses WHERE user_id = " . $_SESSION['id'];
   $result = $db->query($query) or die($db->error);
-  while ($class = $result->fetch_assoc()) {
-    if($_GET['class'] == $class['class_id']) {
+  while ($oclass = $result->fetch_assoc()) {
+    if($_GET['class'] == $oclass['class_id']) {
       //user is in this class
       $belongs = true;
       break;
@@ -91,10 +98,20 @@
                      div.setAttribute('class', 'row');
                      div.setAttribute('id', data[counter]);
                      feed = data[counter];
-                     div.innerHTML = "<div class=\"col-md-12\"><div class=\"jumbotron well\">" + data[counter + 1] + ": " + data[counter + 2] + "</div></div>";
+                     //start
+                     var colDiv = document.createElement("div");
+                     colDiv.setAttribute('class', 'col-md-12');
+                     var jumDiv = document.createElement("div");
+                     jumDiv.setAttribute('class', 'jumbotron well');
+                     jumDiv.setAttribute('id', data[counter]);
+                     jumDiv.innerHTML = data[counter + 1] + ': ' + data[counter + 2];
+                     //colDiv.appendChild(jumDiv);
+                     //div.appendChild(colDiv);
+
+                     //div.innerHTML = '<div class=\"col-md-12\"><div class=\"jumbotron well\">' + data[counter + 1] + ': ' + data[counter + 2] + '</div></div>';
                      counter += 3;
                      feed = counter;
-                     document.getElementById('questions').appendChild(div);
+                     document.getElementById('questions').appendChild(jumDiv);
                    }
                  },
                  error: function() {
@@ -102,10 +119,13 @@
                  }
              });
 
-             var out = document.getElementById("main");
-             var isScrolledToBottom = out.scrollHeight - out.clientHeight <= out.scrollTop + 1;
-             if(isScrolledToBottom)
-                    out.scrollTop = out.scrollHeight - out.clientHeight;
+             $("#questions div").sort(function(a, b) {
+                return parseInt(b.id) - parseInt(a.id);
+              }).each(function() {
+                var elem = $(this);
+                elem.remove();
+                $(elem).appendTo("#questions");
+              });
            }, 1000);
        </script>
     <!-- End questionable content -->
@@ -115,7 +135,7 @@
         <font size="-5"><a class="logout" href="../login.php?event=logout">Logout</a></font>
         <center>
           <?php
-            echo '<h1>' . $class['class_name'] . '</h1>';
+            echo '<h1>' . $class['class_name'] . ' Live Session</h1>';
           ?>
         </center>
     </div>
@@ -134,8 +154,6 @@
   <!-- Main content of the webpage -->
   <div id="main" class="main">
     <div id="questions" class="container-fluid" style="overflow-y: auto;max-height: 90vh;">
-     <div id="text" class="row">
-     </div>
    </div>
   </div>
 </html>
