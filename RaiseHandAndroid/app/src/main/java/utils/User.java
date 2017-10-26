@@ -77,4 +77,17 @@ public class User {
         return null;
     }
 
+    public Question getSingleQuestion(String questionID) {
+        for (Classes c : classes) {
+            for (Topics t : c.getTopics()) {
+                for (Question q : t.get_questions()) {
+                    if(q.getQuestionID().equals(questionID)){
+                        return q;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
 }

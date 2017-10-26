@@ -42,6 +42,8 @@
         <activity android:name=".student_questions"/>
         <activity android:name="app.MakeQuestion">
         </activity>
+        <activity android:name="app.TeacherReplies">
+        </activity>
     </application>
 
 </manifest>
