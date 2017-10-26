@@ -81,6 +81,7 @@ public class Question {
 
     public String getQuestionID(){ return questionID; }
 
+    //if this returns false then it isn't endorsed
     public Boolean questionEndorsemenet(){ return endorsed; }
 
     public String getQuestionUsername(){ return username; }

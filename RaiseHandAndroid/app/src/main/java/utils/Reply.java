@@ -78,6 +78,7 @@ public class Reply {
 
     public String get_reply_username(){ return username;}
 
+    //if this returns false then it isn't endorsed
     public boolean get_reply_endorsed(){
         return endorsed;
     }
@@ -88,6 +89,7 @@ public class Reply {
 
     public Question get_parent_question(){return this.parent;}
 
+    //if this returns null then it isn't a reply of a reply
     public String getReplyParent(){ return this.replyParent; }
 
     public String get_replyID(){ return this.replyID; }
