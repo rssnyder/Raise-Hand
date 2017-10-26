@@ -31,6 +31,7 @@ Riley: Website stuff
 
 Bugs found:
 Takes two clicks to get all of the topics to show up for a class
-Logout doesn't work
+Logout doesn't work (teacher and student menu items get switched upon logout)
+Some buttons don't work when you are in a question
 
 
