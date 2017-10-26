@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import RecyclerViews.MyAdapterClassesStudent;
+import app.MakeQuestion;
 import app.TeacherClasses;
 import utils.Classes;
 import utils.LoginActivity;
@@ -91,6 +92,10 @@ public class student_classes extends AppCompatActivity {
                     case (R.id.nav_notifications):
                         Intent studentNotifications = new Intent(getApplicationContext(), student_notifications.class);
                         startActivity(studentNotifications);
+                        break;
+                    case (R.id.nav_question):
+                        Intent studentQuestion = new Intent(getApplicationContext(), MakeQuestion.class);
+                        startActivity(studentQuestion);
                         break;
                     case (R.id.nav_settings):
                         Intent studentSettings = new Intent(getApplicationContext(), student_settings.class);

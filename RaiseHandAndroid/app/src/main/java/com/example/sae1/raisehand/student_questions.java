@@ -1,19 +1,34 @@
 package com.example.sae1.raisehand;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.ViewDragHelper;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
+import RecyclerViews.MyAdapterQuestionsStudent;
+import app.MakeQuestion;
 import utils.LoginActivity;
+import utils.Question;
+import utils.Reply;
+import utils.Topics;
+import utils.User;
 
 public class student_questions extends AppCompatActivity {
 
@@ -23,10 +38,48 @@ public class student_questions extends AppCompatActivity {
     private Toolbar mToolbar;
     private Field mDragger;
 
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private List<Question> listItems;
+    private SharedPreferences mPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_questions);
+
+        Bundle bundle = getIntent().getExtras();
+        final String topicID = bundle.getString("topicsID");
+
+        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButtonStudent);
+
+        mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
+        recyclerView = (RecyclerView) findViewById(R.id.questionsRecyclerViewStudent);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        listItems = new ArrayList<>();
+        List<Reply> replyList = new ArrayList<>();
+
+        Gson gson = new Gson();
+        String json = mPreferences.getString("currentUser", "");
+        User currentUser = gson.fromJson(json, User.class);
+
+        // Get the Topic that the user clicked on,
+        // then the questions in that topic.
+        final Topics usersTopic = currentUser.getSingleTopic(topicID);
+        ArrayList<Question> topicQuestions = usersTopic.get_questions();
+
+        listItems = topicQuestions;
+        /*
+        // Used to test scrolling and the FAB
+        for(int i = 0; i < 10; i++){
+            listItems.add(topicQuestions.get(0));
+        }
+        */
+
+        adapter = new MyAdapterQuestionsStudent(listItems, this);
+        recyclerView.setAdapter(adapter);
 
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
@@ -41,6 +94,22 @@ public class student_questions extends AppCompatActivity {
         mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        final String topic = gson.toJson(usersTopic);
+
+        // Go to make a new question page on FAB click
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent makeQuestion = new Intent(getApplicationContext().getApplicationContext(), MakeQuestion.class);
+                makeQuestion.putExtra("topicID", topicID);
+                makeQuestion.putExtra("topic", topic);
+                Bundle bun = new Bundle();
+                bun.putString("topicID", topicID);
+                bun.putString("topic", topic);
+                startActivity(makeQuestion);
+            }
+        });
 
         nv = (NavigationView) findViewById(R.id.nv1);
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -66,6 +135,10 @@ public class student_questions extends AppCompatActivity {
                         Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(loginPage);
                         finish();
+                        break;
+                    case (R.id.nav_question):
+                        Intent questionStudent = new Intent(getApplicationContext(), MakeQuestion.class);
+                        startActivity(questionStudent);
                         break;
                 }
                 return true;

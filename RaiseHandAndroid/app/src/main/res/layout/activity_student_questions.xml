@@ -1,9 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.sae1.raisehand.student_questions">
+    tools:context="com.example.sae1.raisehand.student_questions"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp"
+    android:id="@+id/drawerLayout">
 
-</android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:textAlignment="center">
+
+        <include
+            layout="@layout/navigation_action"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        <android.support.design.widget.CoordinatorLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/questionsRecyclerViewStudent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/floatingActionButtonStudent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_margin="16dp"
+                android:src="@mipmap/ic_add_black_24dp"
+                app:layout_anchor="@id/questionsRecyclerViewStudent"
+                app:layout_anchorGravity="bottom|right|end"/>
+            <!--app:layout_behavior="utils.ScrollAwareFABBehavior"/> This isn't reappearing after scrolling. Figure out later-->
+        </android.support.design.widget.CoordinatorLayout>
+    </LinearLayout>
+
+
+    <android.support.design.widget.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:menu="@menu/navigation_menu"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/naviagation_header"
+        android:id="@+id/nv1">
+
+    </android.support.design.widget.NavigationView>
+
+</android.support.v4.widget.DrawerLayout>

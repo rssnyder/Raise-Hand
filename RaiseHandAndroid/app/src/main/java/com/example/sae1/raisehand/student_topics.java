@@ -29,6 +29,7 @@ import java.util.List;
 import RecyclerViews.ListItemTeacherTopics;
 import RecyclerViews.MyAdapterTopics;
 import RecyclerViews.MyAdapterTopicsStudent;
+import app.MakeQuestion;
 import app.TeacherHomePage;
 import app.TeacherNotifications;
 import app.TeacherSettings;
@@ -46,8 +47,8 @@ public class student_topics extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private ArrayList<Topics> listItems;
     private Field mDragger;
-    private SharedPreferences mPreferences;
 
+    private SharedPreferences mPreferences;
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
@@ -78,15 +79,15 @@ public class student_topics extends AppCompatActivity {
         // loop until you find the Topics from the class you clicked on in TeacherClasses
         for(Classes c : currentUser.get_classes()){
             if(c.getClassID().equals(classID)){
-                /*ArrayList<Topics> temp=c.get_topics();
-                for (Topics t: temp) {
+                for (Topics t: c.getTopics()) {
                     listItems.add(t);
                 }
-                break;*/
+                break;
             }
         }
 
         adapter = new MyAdapterTopicsStudent(listItems, this);
+
         recyclerView.setAdapter(adapter);
 
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
@@ -127,6 +128,10 @@ public class student_topics extends AppCompatActivity {
                         Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(loginPage);
                         finish();
+                        break;
+                    case (R.id.nav_question):
+                        Intent studentQuestion = new Intent(getApplicationContext(), MakeQuestion.class);
+                        startActivity(studentQuestion);
                         break;
                 }
                 return true;

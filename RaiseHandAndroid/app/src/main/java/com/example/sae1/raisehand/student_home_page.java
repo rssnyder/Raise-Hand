@@ -13,6 +13,7 @@ import android.view.MenuItem;
 
 import java.lang.reflect.Field;
 
+import app.MakeQuestion;
 import utils.LoginActivity;
 
 public class student_home_page extends AppCompatActivity {
@@ -67,6 +68,10 @@ public class student_home_page extends AppCompatActivity {
                         Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(loginPage);
                         finish();
+                        break;
+                    case (R.id.nav_question):
+                        Intent questionPage = new Intent(getApplicationContext(), MakeQuestion.class);
+                        startActivity(questionPage);
                         break;
                 }
                 return true;
