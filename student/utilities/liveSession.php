@@ -14,9 +14,15 @@
   //Make sure everything is there and then create the class
 
   //Get this class
-  $query = "SELECT * FROM classes WHERE ID = " . $_GET['class'];
+  $query = "SELECT * FROM liveQueue WHERE class_id = " . $_GET['class'];
   $result = $db->query($query) or die($db->error);
-  $class = $result->fetch_assoc();
 
-  echo json_encode($class);
+  $arr = array();
+  while($class = $result->fetch_assoc()) {
+    array_push($arr, $class['ID']);
+    array_push($arr, $class['username']);
+    array_push($arr, $class['txt']);
+  }
+
+  echo json_encode($arr);
 ?>
