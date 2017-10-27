@@ -52,7 +52,7 @@
 
     $_SESSION['error'] = true;
     $_SESSION['errorCode'] = "Class Joined";
-    header("Location: ../pages.php?page=joinClass");
+    header("Location: ../home.php");
     die("done");
   }
 ?>
