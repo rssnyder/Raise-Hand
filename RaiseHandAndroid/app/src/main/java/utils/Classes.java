@@ -226,16 +226,15 @@ public class Classes {
                                 //timestamp
                                 i++;
                                 String time="";
-                                while(i<max && !(seperated[i].equals("NEWREPLY"))&& !(seperated[i].equals("NEWQUESTION")) && !(seperated[i].equals("NEWTOPIC"))){
+                                while(i<max && !(seperated[i].equals("QUESTIONID"))){
                                     time=time+seperated[i]+ " ";
                                     i++;
                                 }
                                 tempQuestion.setCreationTime(time);
 
                             }
-                            if(i<max && seperated[i].equals("QUESITONID")){
+                            if(i<max && seperated[i].equals("QUESTIONID")){
                                 //ID for the question
-                                String questionid="";
                                 i++;
                                 tempQuestion.setQuestionID(seperated[i]);
                                 i++;
