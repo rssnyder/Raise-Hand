@@ -12,9 +12,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.sae1.raisehand.R;
+import com.google.gson.Gson;
 
 import java.util.List;
 
+import app.TeacherReplies;
 import app.TeacherTopics;
 import utils.Classes;
 import utils.Question;
@@ -42,7 +44,8 @@ public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.View
         final Reply listItem = listItems.get(position);
 
         holder.textViewHead.setText(listItem.get_reply());
-
+        Gson gson = new Gson();
+        final String question = gson.toJson(listItem);
     }
 
 

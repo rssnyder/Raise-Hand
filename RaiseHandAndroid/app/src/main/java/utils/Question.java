@@ -34,7 +34,7 @@ public class Question {
     private String creationTime;
 
     // Array of replies to the
-    private List<Reply> replies;
+    private ArrayList<Reply> replies;
 
     // Owner ID
     private String ownerID;
@@ -55,7 +55,7 @@ public class Question {
     private String tag_string_req= "question_req";
 
     public Question(String questionDescription, String studentRating, String questionTitle, String creationTime,
-                    List<Reply> replies, String ownerID, String username, Boolean endorsed, Topics parent, String questionID) {
+                    ArrayList<Reply> replies, String ownerID, String username, Boolean endorsed, Topics parent, String questionID) {
         this.questionDescription = questionDescription;
         this.studentRating = studentRating;
         this.questionTitle = questionTitle;
@@ -102,7 +102,7 @@ public class Question {
         return creationTime;
     }
 
-    public List<Reply> getReplies() {
+    public ArrayList<Reply> getReplies() {
         return replies;
     }
 
@@ -128,7 +128,7 @@ public class Question {
         this.creationTime = creationTime;
     }
 
-    public void setReplies(List<Reply> replies) {
+    public void setReplies(ArrayList<Reply> replies) {
         this.replies = replies;
     }
 

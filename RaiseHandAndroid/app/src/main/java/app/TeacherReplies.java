@@ -18,6 +18,8 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+import RecyclerViews.MyAdapterQuestions;
+import RecyclerViews.MyAdapterReplies;
 import utils.Question;
 import utils.Reply;
 import utils.User;
@@ -25,7 +27,7 @@ import utils.User;
 public class TeacherReplies extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private List<Reply> listItems;
+    private ArrayList<Reply> listItems;
     private Field mDragger;
 
     private SharedPreferences mPreferences;
@@ -54,8 +56,6 @@ public class TeacherReplies extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        listItems = new ArrayList<>();
-
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
         User currentUser = gson.fromJson(json, User.class);
@@ -63,10 +63,21 @@ public class TeacherReplies extends AppCompatActivity {
         // Get the question the user clicked on,
         // then the replies in that question.
         final Question userQuestion = currentUser.getSingleQuestion(questionID);
-        ArrayList<Reply> questionReplies = new ArrayList(userQuestion.getReplies());
+        listItems=userQuestion.getReplies();
 
-        listItems = questionReplies;
+        adapter = new MyAdapterReplies(listItems, this);
 
+        recyclerView.setAdapter(adapter);
 
+        mToolbar = (Toolbar) findViewById(R.id.nav_action);
+        setSupportActionBar(mToolbar);
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }
