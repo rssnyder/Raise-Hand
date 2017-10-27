@@ -52,8 +52,9 @@ public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.
             public void onClick(View view) {
                 // go to the questions' replies
                 Intent teacherReplies = new Intent(context.getApplicationContext(), TeacherReplies.class);
+                //TODO: this getQuestionID() is returning null
                 teacherReplies.putExtra("questionID", listItem.getQuestionID());
-                teacherReplies.putExtra("questions", question);
+                teacherReplies.putExtra("question", question);
 
                 //pass question ID to the replies activity
                 //Do I need this?

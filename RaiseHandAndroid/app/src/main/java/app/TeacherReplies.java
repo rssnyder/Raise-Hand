@@ -52,7 +52,7 @@ public class TeacherReplies extends AppCompatActivity {
 
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
 
-        recyclerView = (RecyclerView) findViewById(R.id.topicsRecyclerView);
+        recyclerView = (RecyclerView) findViewById(R.id.repliesRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

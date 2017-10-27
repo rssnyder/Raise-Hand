@@ -72,7 +72,7 @@ public class Classes {
                         Log.d(TAG, response.toString());
                         String phpResponse=response.toString();
                         parsePHP(phpResponse);
-
+                        setTopics(topics);
                         Log.d(TAG, "Size of topics: " + topics.size());
                     }
                 }, new Response.ErrorListener() {

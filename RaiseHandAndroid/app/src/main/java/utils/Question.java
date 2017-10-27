@@ -77,6 +77,7 @@ public class Question {
         this.ownerID = null;
         this.username=null;
         this.endorsed=false;
+        this.questionID=null;
     }
 
     public String getQuestionID(){ return questionID; }
