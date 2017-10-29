@@ -128,6 +128,31 @@
               });
            }, 1000);
        </script>
+       <script>
+         function submitQ() {
+           //Get the GET variables
+           var $_GET=[];
+           window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(a,name,value){$_GET[name]=value;});
+            var comment=document.getElementById( "comment" );
+            var username=document.getElementById( "username" );
+
+            $.ajax({
+            type: 'post',
+            url: 'lfQuestion.php',
+            data: {
+             class: $_GET['class'],
+             comment: comment,
+             username: username
+            },
+            success: function () {
+             alert("done");
+            }
+            });
+
+            return false;
+        }
+       </script>
+
     <!-- End questionable content -->
 
     <!-- The top banner of the webpage -->
@@ -153,7 +178,14 @@
 
   <!-- Main content of the webpage -->
   <div id="main" class="main">
+    <div id="commentBox" class="container-fluid" style="overflow-y: auto;max-height: 90vh;">
+      <form method="POST" onsubmit="return submitQ();">
+       <input type="text" name="question" id="question">
+       <?php echo '<input type="hidden" name="username" id="username" value="' . $_SESSION['username'] . '">';?>
+       <input type="submit" name="submit_form" value="Ask">
+      </form>
+    </div>
     <div id="questions" class="container-fluid" style="overflow-y: auto;max-height: 90vh;">
-   </div>
+    </div>
   </div>
 </html>

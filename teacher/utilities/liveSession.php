@@ -13,10 +13,11 @@
   //echo $db->host_info;
   //Make sure everything is there and then create the class
 
-  //Get this class
+  //Get this live feed
   $query = "SELECT * FROM liveQueue" . $_GET['class'] . " WHERE class_id = " . $_GET['class'];
   $result = $db->query($query) or die($db->error);
 
+  //Pass the question as JSON to the webpage
   $arr = array();
   while($class = $result->fetch_assoc()) {
     array_push($arr, $class['ID']);
