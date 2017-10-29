@@ -110,6 +110,8 @@ public class Reply {
 
     public void set_replyID(String replyID){ this.replyID=replyID; }
 
+    public void set_replyQ_parent(Question q){this.parent=q;}
+
     public void add_to_database(){
         //Description
         String reply2=this.reply;

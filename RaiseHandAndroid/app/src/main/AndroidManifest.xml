@@ -40,7 +40,8 @@
         <!-- <activity android:name="utils.QuestionActivity"></activity> -->
         <activity android:name=".student_topics"/>
         <activity android:name=".student_questions"/>
-        <activity android:name="app.MakeQuestion">
+        <activity android:name="app.MakeQuestion"/>
+        <activity android:name="app.MakeReply">
         </activity>
         <activity android:name="app.TeacherReplies">
         </activity>
