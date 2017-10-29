@@ -33,7 +33,7 @@ public class MakeReply extends AppCompatActivity {
         submit = (Button) findViewById(R.id.submitReply);
 
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
-        textReply = (EditText) findViewById(R.id.enterQuestion);
+        textReply = (EditText) findViewById(R.id.textReply);
 
 
         Gson gson = new Gson();
