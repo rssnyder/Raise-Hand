@@ -10,6 +10,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/linearLayoutTeacherReplies"
             android:padding="@dimen/activity_horizontal_margin"
             android:orientation="vertical"
             android:layout_width="match_parent"

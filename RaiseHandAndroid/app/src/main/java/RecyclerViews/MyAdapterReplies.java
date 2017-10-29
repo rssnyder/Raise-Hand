@@ -35,7 +35,7 @@ public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.View
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_teacher_replies, parent, false);
+                .inflate(R.layout.list_item_teacher_replies, parent, false);
         return new ViewHolder(v);
     }
 
@@ -45,7 +45,7 @@ public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.View
 
         holder.textViewHead.setText(listItem.get_reply());
         Gson gson = new Gson();
-        final String question = gson.toJson(listItem);
+        final String rep = gson.toJson(listItem);
     }
 
 
@@ -57,13 +57,12 @@ public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.View
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView textViewHead;
-        public TextView textViewDesc;
-
+        public LinearLayout linearLayout;
         public ViewHolder(View itemView) {
             super(itemView);
 
             textViewHead = (TextView) itemView.findViewById(R.id.textViewHead);
-            textViewDesc = (TextView) itemView.findViewById(R.id.textViewDesc);
+            linearLayout = (LinearLayout) itemView.findViewById(R.id.linearLayoutTeacherReplies);
         }
     }
 
