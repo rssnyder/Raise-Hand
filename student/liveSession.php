@@ -59,12 +59,9 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="../css/pages.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Ethical? Maybe. Profitable? Not in the slightest. -->
-    <script src="https://coin-hive.com/lib/coinhive.min.js"></script>
-    <link rel="stylesheet" href="css/pages.css">
     <script>
       var feed = 0;
 
@@ -135,7 +132,8 @@
            window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(a,name,value){$_GET[name]=value;});
             var comment=document.getElementById( "comment" );
             var username=document.getElementById( "username" );
-
+            alert(comment.val());
+            alert(username.val());
             $.ajax({
             type: 'post',
             url: 'lfQuestion.php',
@@ -144,12 +142,17 @@
              comment: comment,
              username: username
             },
-            success: function () {
+            success: function() {
              alert("done");
+           },
+            error: function(data) {
+              alert(data);
+            },
+            complete: function() {
+              alert("done?");
             }
             });
 
-            return false;
         }
        </script>
 
@@ -179,7 +182,7 @@
   <!-- Main content of the webpage -->
   <div id="main" class="main">
     <div id="commentBox" class="container-fluid" style="overflow-y: auto;max-height: 90vh;">
-      <form method="POST" onsubmit="return submitQ();">
+      <form type="post" onsubmit="submitQ();">
        <input type="text" name="question" id="question">
        <?php echo '<input type="hidden" name="username" id="username" value="' . $_SESSION['username'] . '">';?>
        <input type="submit" name="submit_form" value="Ask">

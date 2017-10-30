@@ -13,7 +13,7 @@
   //echo $db->host_info;
   //Make sure everything is there and then create the class
 
-  $question = "INSERT INTO liveQueue7
+  $question = "INSERT INTO liveQueue" . $_GET['class'] . "
     (username,
     class_id,
     txt)
@@ -22,7 +22,7 @@
     " . $_GET['class'] . ",
     " . $_GET['question'] . ")";
 
-  $result = $db->query($question) or die($db->error);
+  $result = $db->query($question) or echo json_encode($db->error);
 
   echo json_encode("Done.");
 
