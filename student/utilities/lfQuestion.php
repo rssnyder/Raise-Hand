@@ -13,17 +13,25 @@
   //echo $db->host_info;
   //Make sure everything is there and then create the class
 
+
+  $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+
+  if("" == trim($_GET['comment'])) {
+    die("Comment field is empty");
+  }
+
   $question = "INSERT INTO liveQueue" . $_GET['class'] . "
     (username,
     class_id,
     txt)
     VALUES
-    (" . $_GET['username'] . ",
+    ('" . $_GET['username'] . "',
     " . $_GET['class'] . ",
-    " . $_GET['question'] . ")";
+    '" . $_GET['comment'] . "')";
 
-  $result = $db->query($question) or echo json_encode($db->error);
+  $result = $db->query($question) or die($actual_link);
 
-  echo json_encode("Done.");
+  echo json_encode($db->error);
 
 ?>
