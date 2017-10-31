@@ -6,6 +6,7 @@ package RecyclerViews;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.sae1.raisehand.R;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -39,15 +41,22 @@ public class MyAdapterTopicsStudent extends RecyclerView.Adapter<MyAdapterTopics
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Topics listItem = listItems.get(position);
+        final Topics listItem = listItems.get(position);
 
         holder.textViewHead.setText(listItem.get_title());
         holder.textViewDesc.setText(listItem.get_description());
+        Gson gson = new Gson();
+        final String topic = gson.toJson(listItem);
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // TODO go to the topics' questions
                 Intent studentQuestions = new Intent(context.getApplicationContext(), com.example.sae1.raisehand.student_questions.class);
+                studentQuestions.putExtra("topicsID", listItem.get_ID());
+                studentQuestions.putExtra("topic", topic);
+                Bundle bundle = new Bundle();
+                bundle.putString("topicsID", listItem.get_ID());
+                bundle.putString("topic", topic);
                 context.getApplicationContext().startActivity(studentQuestions);
             }
         });

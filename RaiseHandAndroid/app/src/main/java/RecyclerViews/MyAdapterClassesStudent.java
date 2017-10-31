@@ -56,6 +56,7 @@ public class MyAdapterClassesStudent extends RecyclerView.Adapter<MyAdapterClass
                 studentTopics.putExtra("classID", listItem.getClassID());
                 Bundle bundle = new Bundle();
                 bundle.putString("classID", listItem.getClassID());
+                listItem.get_topics();
                 context.getApplicationContext().startActivity(studentTopics);
             }
         });

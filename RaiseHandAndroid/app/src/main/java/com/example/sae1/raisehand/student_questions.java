@@ -91,7 +91,6 @@ public class student_questions extends AppCompatActivity {
         mToggle.syncState();
 
         slideOutMenu();
-        mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
