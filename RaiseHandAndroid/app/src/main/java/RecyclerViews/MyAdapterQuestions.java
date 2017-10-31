@@ -63,9 +63,6 @@ public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.
                 Intent teacherReplies = new Intent(context.getApplicationContext(), TeacherReplies.class);
                 teacherReplies.putExtra("questionID", listItem.getQuestionID());
                 teacherReplies.putExtra("question", question);
-
-                //pass question ID to the replies activity
-                //Do I need this?
                 Bundle bundle = new Bundle();
                 bundle.putString("questionID", listItem.getQuestionID());
                 bundle.putString("question", question);

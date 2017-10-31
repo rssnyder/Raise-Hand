@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -48,6 +49,12 @@ public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.View
         holder.textViewE.setText("Endorsed? " + listItem.get_reply_endorsed());
         Gson gson = new Gson();
         final String rep = gson.toJson(listItem);
+        holder.endorseR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listItem.endorse();
+            }
+        });
     }
 
 
@@ -60,9 +67,10 @@ public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.View
 
         public TextView textViewH, textViewE, textViewP, textViewTime;
         public LinearLayout linearLayout;
+        public Button endorseR;
         public ViewHolder(View itemView) {
             super(itemView);
-
+            endorseR= (Button) itemView.findViewById(R.id.endorseR);
             textViewH = (TextView) itemView.findViewById(R.id.textViewH);
             textViewE= (TextView) itemView.findViewById(R.id.textViewE);
             textViewP= (TextView) itemView.findViewById(R.id.textViewP);
