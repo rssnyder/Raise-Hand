@@ -68,6 +68,7 @@ public class MyAdapterRepliesStudent  extends RecyclerView.Adapter<MyAdapterRepl
 
         public TextView textViewHe, textViewEn, textViewPo, textViewTim;
         public Button upvoteR;
+        public LinearLayout linearLayout;
         public ViewHolder(View itemView) {
             super(itemView);
             upvoteR= (Button) itemView.findViewById(R.id.upvoteR);
@@ -75,6 +76,7 @@ public class MyAdapterRepliesStudent  extends RecyclerView.Adapter<MyAdapterRepl
             textViewEn= (TextView) itemView.findViewById(R.id.textViewEn);
             textViewPo= (TextView) itemView.findViewById(R.id.textViewPo);
             textViewTim= (TextView) itemView.findViewById(R.id.textViewTim);
+            linearLayout = (LinearLayout) itemView.findViewById(R.id.linearLayoutStudentReplies);
 
         }
     }
