@@ -26,6 +26,7 @@ import java.util.List;
 
 import RecyclerViews.ListItemTeacherClasses;
 import RecyclerViews.MyAdapterQuestions;
+import utils.LoginActivity;
 import utils.Question;
 import utils.Reply;
 import utils.Topics;
@@ -137,6 +138,12 @@ public class TeacherQuestions extends AppCompatActivity {
                     case (R.id.nav_settings):
                         Intent teacherSettings = new Intent(getApplicationContext(), TeacherSettings.class);
                         startActivity(teacherSettings);
+                        break;
+
+                    case (R.id.nav_logout):
+                        Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(loginPage);
+                        finish();
                         break;
                 }
                 return true;

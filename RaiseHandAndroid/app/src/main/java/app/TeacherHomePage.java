@@ -11,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import com.example.sae1.raisehand.R;
 
+import utils.LoginActivity;
+
 
 public class TeacherHomePage extends AppCompatActivity {
 
@@ -58,6 +60,12 @@ public class TeacherHomePage extends AppCompatActivity {
                     case (R.id.nav_settings):
                         Intent teacherSettings = new Intent(getApplicationContext(), TeacherSettings.class);
                         startActivity(teacherSettings);
+                        break;
+
+                    case (R.id.nav_logout):
+                        Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(loginPage);
+                        finish();
                         break;
                 }
                 return true;

@@ -21,6 +21,7 @@ import java.util.List;
 
 import RecyclerViews.ListItemTeacherStudents;
 import RecyclerViews.MyAdapterStudents;
+import utils.LoginActivity;
 
 public class TeacherStudents extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -92,6 +93,12 @@ public class TeacherStudents extends AppCompatActivity {
                     case (R.id.nav_question):
                         Intent teacherQuestion = new Intent(getApplicationContext(), MakeQuestion.class);
                         startActivity(teacherQuestion);
+                        break;
+
+                    case (R.id.nav_logout):
+                        Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(loginPage);
+                        finish();
                         break;
                 }
                 return true;

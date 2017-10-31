@@ -116,6 +116,12 @@ public class TeacherClasses extends AppCompatActivity {
                         Intent teacherQuestion = new Intent(getApplicationContext(), MakeQuestion.class);
                         startActivity(teacherQuestion);
                         break;
+
+                    case (R.id.nav_logout):
+                        Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(loginPage);
+                        finish();
+                        break;
                 }
                 return true;
             }

@@ -12,6 +12,8 @@ import android.view.MenuItem;
 
 import com.example.sae1.raisehand.R;
 
+import utils.LoginActivity;
+
 public class TeacherSettings extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
@@ -62,6 +64,12 @@ public class TeacherSettings extends AppCompatActivity {
                     case (R.id.nav_question):
                         Intent teacherQuestion = new Intent(getApplicationContext(), MakeQuestion.class);
                         startActivity(teacherQuestion);
+                        break;
+
+                    case (R.id.nav_logout):
+                        Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(loginPage);
+                        finish();
                         break;
                 }
                 return true;
