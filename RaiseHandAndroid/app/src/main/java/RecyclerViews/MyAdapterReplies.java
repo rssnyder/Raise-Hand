@@ -42,7 +42,7 @@ public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Reply listItem = listItems.get(position);
-
+        holder.textViewTime.setText(listItem.get_reply_time_stamp());
         holder.textViewH.setText(listItem.get_reply());
         holder.textViewP.setText("Points: "+ listItem.get_reply_up_votes());
         holder.textViewE.setText("Endorsed? " + listItem.get_reply_endorsed());
@@ -58,7 +58,7 @@ public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.View
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView textViewH, textViewE, textViewP;
+        public TextView textViewH, textViewE, textViewP, textViewTime;
         public LinearLayout linearLayout;
         public ViewHolder(View itemView) {
             super(itemView);
@@ -66,6 +66,7 @@ public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.View
             textViewH = (TextView) itemView.findViewById(R.id.textViewH);
             textViewE= (TextView) itemView.findViewById(R.id.textViewE);
             textViewP= (TextView) itemView.findViewById(R.id.textViewP);
+            textViewTime= (TextView) itemView.findViewById(R.id.textViewTime);
             linearLayout = (LinearLayout) itemView.findViewById(R.id.linearLayoutTeacherReplies);
         }
     }

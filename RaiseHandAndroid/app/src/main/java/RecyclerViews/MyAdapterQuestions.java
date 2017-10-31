@@ -39,6 +39,7 @@ public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Question listItem = listItems.get(position);
+        holder.textViewTimestamp.setText(listItem.getCreationTime());
         holder.textViewHead.setText(listItem.getQuestionTitle());
         holder.textViewDesc.setText(listItem.getQuestionDescription());
         holder.textViewPoints.setText("Points: "+ listItem.getStudentRating());
@@ -52,7 +53,6 @@ public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.
             public void onClick(View view) {
                 // go to the questions' replies
                 Intent teacherReplies = new Intent(context.getApplicationContext(), TeacherReplies.class);
-                //TODO: this getQuestionID() is returning null
                 teacherReplies.putExtra("questionID", listItem.getQuestionID());
                 teacherReplies.putExtra("question", question);
 
@@ -77,12 +77,13 @@ public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.
         public TextView textViewDesc;
         public TextView textViewPoints;
         public TextView textViewEndorsed;
+        public TextView textViewTimestamp;
         public LinearLayout linearLayout;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
-
+            textViewTimestamp= (TextView) itemView.findViewById(R.id.textViewTimestamp);
             textViewHead = (TextView) itemView.findViewById(R.id.textViewHead);
             textViewDesc = (TextView) itemView.findViewById(R.id.textViewDesc);
             textViewPoints= (TextView) itemView.findViewById(R.id.textViewPoints);
