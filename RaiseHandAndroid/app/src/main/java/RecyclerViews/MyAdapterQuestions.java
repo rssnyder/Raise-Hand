@@ -4,6 +4,7 @@ package RecyclerViews;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -85,13 +86,13 @@ public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.
         public TextView textViewPoints;
         public TextView textViewEndorsed;
         public TextView textViewTimestamp;
-        public Button endorseQ;
+        public FloatingActionButton endorseQ;
         public LinearLayout linearLayout;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
-            endorseQ= (Button) itemView.findViewById(R.id.endorseQ);
+            endorseQ= (FloatingActionButton) itemView.findViewById(R.id.endorseQ);
             textViewTimestamp= (TextView) itemView.findViewById(R.id.textViewTimestamp);
             textViewHead = (TextView) itemView.findViewById(R.id.textViewHead);
             textViewDesc = (TextView) itemView.findViewById(R.id.textViewDesc);
