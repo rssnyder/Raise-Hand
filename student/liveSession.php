@@ -101,7 +101,7 @@
                      var jumDiv = document.createElement("div");
                      jumDiv.setAttribute('class', 'jumbotron well');
                      jumDiv.setAttribute('id', data[counter]);
-                     jumDiv.innerHTML = data[counter + 1] + ': ' + data[counter + 2];
+                     jumDiv.innerHTML = data[counter + 2] + '       - ' + data[counter + 1];
                      //colDiv.appendChild(jumDiv);
                      //div.appendChild(colDiv);
 
@@ -130,26 +130,22 @@
            //Get the GET variables
            var $_GET=[];
            window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(a,name,value){$_GET[name]=value;});
-            var comment=document.getElementById( "comment" );
-            var username=document.getElementById( "username" );
-            alert(comment.val());
-            alert(username.val());
+            //var comment = $('#main').find('#commentbox').find('#comment');
+            var comment=document.getElementById( "question" ).value;
+            var username=document.getElementById( "username" ).value;
             $.ajax({
-            type: 'post',
-            url: 'lfQuestion.php',
+            type: 'get',
+            url: 'utilities/lfQuestion.php',
             data: {
              class: $_GET['class'],
              comment: comment,
              username: username
             },
-            success: function() {
-             alert("done");
+            success: function(data) {
+             //Dont do anything
            },
             error: function(data) {
               alert(data);
-            },
-            complete: function() {
-              alert("done?");
             }
             });
 
@@ -181,12 +177,11 @@
 
   <!-- Main content of the webpage -->
   <div id="main" class="main">
+    <br>
     <div id="commentBox" class="container-fluid" style="overflow-y: auto;max-height: 90vh;">
-      <form type="post" onsubmit="submitQ();">
-       <input type="text" name="question" id="question">
-       <?php echo '<input type="hidden" name="username" id="username" value="' . $_SESSION['username'] . '">';?>
-       <input type="submit" name="submit_form" value="Ask">
-      </form>
+       <input type="text" id="question" value="">
+       <?php echo '<input type="hidden" id="username" value="' . $_SESSION['username'] . '">';?>
+       <button id="submitComment" type="button" onclick="submitQ();">Ask</button>
     </div>
     <div id="questions" class="container-fluid" style="overflow-y: auto;max-height: 90vh;">
     </div>

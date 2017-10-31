@@ -90,10 +90,20 @@
                      div.setAttribute('class', 'row');
                      div.setAttribute('id', data[counter]);
                      feed = data[counter];
-                     div.innerHTML = "<div class=\"col-md-12\"><div class=\"jumbotron well\">" + data[counter + 1] + ": " + data[counter + 2] + "</div></div>";
+                     //start
+                     var colDiv = document.createElement("div");
+                     colDiv.setAttribute('class', 'col-md-12');
+                     var jumDiv = document.createElement("div");
+                     jumDiv.setAttribute('class', 'jumbotron well');
+                     jumDiv.setAttribute('id', data[counter]);
+                     jumDiv.innerHTML = data[counter + 2] + '       - ' + data[counter + 1];
+                     //colDiv.appendChild(jumDiv);
+                     //div.appendChild(colDiv);
+
+                     //div.innerHTML = '<div class=\"col-md-12\"><div class=\"jumbotron well\">' + data[counter + 1] + ': ' + data[counter + 2] + '</div></div>';
                      counter += 3;
                      feed = counter;
-                     document.getElementById('questions').appendChild(div);
+                     document.getElementById('questions').appendChild(jumDiv);
                    }
                  },
                  error: function() {
