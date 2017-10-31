@@ -16,11 +16,33 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/textViewHead"
+                android:id="@+id/textViewTim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/textViewHe"
                 android:text="Heading"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/textViewPo"
+                android:text="Description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/textViewEn"
+                android:text="Description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/upvoteR"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Upvote" />
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
