@@ -27,6 +27,24 @@
                 android:text="Description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/textViewPoints"
+                android:text="Description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/textViewEndorsed"
+                android:text="Description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/upvoteQ"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Upvote" />
+
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
