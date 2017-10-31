@@ -43,7 +43,9 @@ public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.View
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Reply listItem = listItems.get(position);
 
-        holder.textViewHead.setText(listItem.get_reply());
+        holder.textViewH.setText(listItem.get_reply());
+        holder.textViewP.setText("Points: "+ listItem.get_reply_up_votes());
+        holder.textViewE.setText("Endorsed? " + listItem.get_reply_endorsed());
         Gson gson = new Gson();
         final String rep = gson.toJson(listItem);
     }
@@ -56,12 +58,14 @@ public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.View
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView textViewHead;
+        public TextView textViewH, textViewE, textViewP;
         public LinearLayout linearLayout;
         public ViewHolder(View itemView) {
             super(itemView);
 
-            textViewHead = (TextView) itemView.findViewById(R.id.textViewHead);
+            textViewH = (TextView) itemView.findViewById(R.id.textViewH);
+            textViewE= (TextView) itemView.findViewById(R.id.textViewE);
+            textViewP= (TextView) itemView.findViewById(R.id.textViewP);
             linearLayout = (LinearLayout) itemView.findViewById(R.id.linearLayoutTeacherReplies);
         }
     }
