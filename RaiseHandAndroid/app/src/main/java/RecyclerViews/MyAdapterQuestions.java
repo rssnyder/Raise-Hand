@@ -4,10 +4,12 @@ package RecyclerViews;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -39,6 +41,7 @@ public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Question listItem = listItems.get(position);
+        holder.textViewTimestamp.setText(listItem.getCreationTime());
         holder.textViewHead.setText(listItem.getQuestionTitle());
         holder.textViewDesc.setText(listItem.getQuestionDescription());
         holder.textViewPoints.setText("Points: "+ listItem.getStudentRating());
@@ -46,18 +49,20 @@ public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.
 
         Gson gson = new Gson();
         final String question = gson.toJson(listItem);
+        holder.endorseQ.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listItem.endorse();
+            }
+        });
 
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // go to the questions' replies
                 Intent teacherReplies = new Intent(context.getApplicationContext(), TeacherReplies.class);
-                //TODO: this getQuestionID() is returning null
                 teacherReplies.putExtra("questionID", listItem.getQuestionID());
                 teacherReplies.putExtra("question", question);
-
-                //pass question ID to the replies activity
-                //Do I need this?
                 Bundle bundle = new Bundle();
                 bundle.putString("questionID", listItem.getQuestionID());
                 bundle.putString("question", question);
@@ -77,12 +82,15 @@ public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.
         public TextView textViewDesc;
         public TextView textViewPoints;
         public TextView textViewEndorsed;
+        public TextView textViewTimestamp;
+        public FloatingActionButton endorseQ;
         public LinearLayout linearLayout;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
-
+            endorseQ= (FloatingActionButton) itemView.findViewById(R.id.endorseQ);
+            textViewTimestamp= (TextView) itemView.findViewById(R.id.textViewTimestamp);
             textViewHead = (TextView) itemView.findViewById(R.id.textViewHead);
             textViewDesc = (TextView) itemView.findViewById(R.id.textViewDesc);
             textViewPoints= (TextView) itemView.findViewById(R.id.textViewPoints);

@@ -45,8 +45,8 @@ public class MyAdapterTopicsStudent extends RecyclerView.Adapter<MyAdapterTopics
 
         holder.textViewHead.setText(listItem.get_title());
         holder.textViewDesc.setText(listItem.get_description());
-        Gson gson = new Gson();
-        final String topic = gson.toJson(listItem);
+        Gson gson2 = new Gson();
+        final String topic = gson2.toJson(listItem);
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,6 +54,7 @@ public class MyAdapterTopicsStudent extends RecyclerView.Adapter<MyAdapterTopics
                 Intent studentQuestions = new Intent(context.getApplicationContext(), com.example.sae1.raisehand.student_questions.class);
                 studentQuestions.putExtra("topicsID", listItem.get_ID());
                 studentQuestions.putExtra("topic", topic);
+                // pass topic ID to the question activity
                 Bundle bundle = new Bundle();
                 bundle.putString("topicsID", listItem.get_ID());
                 bundle.putString("topic", topic);

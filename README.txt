@@ -33,5 +33,6 @@ Bugs found:
 Takes two clicks to get all of the topics to show up for a class
 Logout doesn't work (teacher and student menu items get switched upon logout)
 Some buttons don't work when you are in a question
+With wrong password it still goes to the home page, the Toast shows up though
 
 
