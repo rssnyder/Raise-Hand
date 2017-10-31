@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -47,6 +48,12 @@ public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.
 
         Gson gson = new Gson();
         final String question = gson.toJson(listItem);
+        holder.endorseQ.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listItem.endorse();
+            }
+        });
 
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,11 +85,13 @@ public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.
         public TextView textViewPoints;
         public TextView textViewEndorsed;
         public TextView textViewTimestamp;
+        public Button endorseQ;
         public LinearLayout linearLayout;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
+            endorseQ= (Button) itemView.findViewById(R.id.endorseQ);
             textViewTimestamp= (TextView) itemView.findViewById(R.id.textViewTimestamp);
             textViewHead = (TextView) itemView.findViewById(R.id.textViewHead);
             textViewDesc = (TextView) itemView.findViewById(R.id.textViewDesc);
