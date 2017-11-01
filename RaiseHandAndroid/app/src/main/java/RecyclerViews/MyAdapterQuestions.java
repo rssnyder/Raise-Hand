@@ -45,16 +45,12 @@ public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.
         holder.textViewHead.setText(listItem.getQuestionTitle());
         holder.textViewDesc.setText(listItem.getQuestionDescription());
         holder.textViewPoints.setText("Points: "+ listItem.getStudentRating());
-        holder.textViewEndorsed.setText("Endorsed? " + listItem.questionEndorsemenet());
+        if(listItem.questionEndorsemenet()){
+            holder.textViewEndorsed.setText("Endorsed!");
+        }
 
         Gson gson = new Gson();
         final String question = gson.toJson(listItem);
-        holder.endorseQ.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listItem.endorse();
-            }
-        });
 
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +85,6 @@ public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.
 
         public ViewHolder(View itemView) {
             super(itemView);
-            endorseQ= (FloatingActionButton) itemView.findViewById(R.id.endorseQ);
             textViewTimestamp= (TextView) itemView.findViewById(R.id.textViewTimestamp);
             textViewHead = (TextView) itemView.findViewById(R.id.textViewHead);
             textViewDesc = (TextView) itemView.findViewById(R.id.textViewDesc);

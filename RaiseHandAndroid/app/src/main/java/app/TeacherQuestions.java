@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
@@ -159,7 +160,11 @@ public class TeacherQuestions extends AppCompatActivity {
             @Override
             public void onRightClicked(int position) {
                 //Upboat here
-                listItems.get(position).upVote();
+                    listItems.get(position).upVote();
+            }
+            @Override
+            public void onLeftClicked(int position){
+                listItems.get(position).endorse();
             }
         });
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);

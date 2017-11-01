@@ -54,6 +54,7 @@ public class Question {
     private String TAG= Question.class.getSimpleName();
     private String tag_string_req= "question_req";
 
+
     public Question(String questionDescription, String studentRating, String questionTitle, String creationTime,
                     ArrayList<Reply> replies, String ownerID, String username, Boolean endorsed, Topics parent, String questionID) {
         this.questionDescription = questionDescription;
