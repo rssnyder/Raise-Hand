@@ -22,9 +22,6 @@ import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.List;
-
-import RecyclerViews.MyAdapterQuestions;
 import RecyclerViews.MyAdapterReplies;
 import utils.LoginActivity;
 import utils.Question;
@@ -96,8 +93,8 @@ public class TeacherReplies extends AppCompatActivity {
                 makeReply.putExtra("questionID", questionID);
                 makeReply.putExtra("question", question);
                 Bundle bun = new Bundle();
-                bun.putString("topicID", questionID);
-                bun.putString("topic", question);
+                bun.putString("questionID", questionID);
+                bun.putString("question", question);
                 startActivity(makeReply);
             }
         });

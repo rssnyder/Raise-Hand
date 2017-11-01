@@ -16,14 +16,9 @@ import android.widget.TextView;
 
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
-
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 import utils.Question;
-
-import static com.example.sae1.raisehand.R.layout.question;
 
 public class MyAdapterQuestionsStudent extends RecyclerView.Adapter<MyAdapterQuestionsStudent.ViewHolder> {
 
