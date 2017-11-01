@@ -71,7 +71,7 @@ public class MakeQuestion extends AppCompatActivity {
                 temp.setParent(topic);
                 temp.setQuestionTitle(inputTitle);
                 temp.setQuestionDescription(inputDetails);
-                temp.add_question_to_database();
+                temp.addQuestionToDatabase();
             }
         });
 

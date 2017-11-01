@@ -144,7 +144,7 @@ public class Question {
 
 
     //Given a question, it will push this question to the database
-    public void add_question_to_database(){
+    public void addQuestionToDatabase(){
         //Description
         String desc=this.getQuestionDescription();
         //encoding spaces with a + sign for the url
