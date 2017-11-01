@@ -9,14 +9,17 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 
-import java.sql.Array;
-import java.sql.Time;
 import java.util.ArrayList;
 
 import app.MainActivity;
 
 /**
  * Created by sae1 on 10/4/17.
+ * This is an object, reply
+ * It has the text that it contains, an amount of points, if it is endorsed or not,
+ * a timestamp, a creation username, a userid, an id, a reply parent (for if it is a reply of a reply)
+ * and a question that it was a reply to
+ *
  */
 
 public class Reply {

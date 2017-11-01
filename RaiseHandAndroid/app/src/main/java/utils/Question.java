@@ -1,8 +1,5 @@
 package utils;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -13,11 +10,14 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import app.MainActivity;
-import app.TeacherNotifications;
+
+/**
+ * Created by sae1 on 10/4/17.
+ * This is an object, question
+ * It has the text that it contains, an amount of points, if it is endorsed or not,
+ * a timestamp, a creation username, a userid, an id, the topic it belongs to
+ */
 
 public class Question {
 

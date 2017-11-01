@@ -36,7 +36,6 @@ public class LoginActivity extends Activity {
     private ProgressDialog pDialog;
     private String tag_string_req= "string_req";
     EditText editTextUsername, editTextPassword;
-    private ArrayList<Topics> topics;
     @Expose
     private User currentUser;
     private SharedPreferences mPreferences;
@@ -55,12 +54,6 @@ public class LoginActivity extends Activity {
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
 
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
-        //if the username is already stored, stay logged in.
-      /*  if(mPreferences.contains("username")){
-            Intent teacherNotifications = new Intent(getApplicationContext(), TeacherNotifications.class);
-            startActivity(teacherNotifications);
-            finish();
-        }*/
 
         buttonLogin.setOnClickListener(new View.OnClickListener(){
             @Override

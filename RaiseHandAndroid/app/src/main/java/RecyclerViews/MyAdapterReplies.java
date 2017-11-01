@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,10 +17,6 @@ import com.google.gson.Gson;
 import java.util.List;
 
 import app.RepliesReply;
-import app.TeacherReplies;
-import app.TeacherTopics;
-import utils.Classes;
-import utils.Question;
 import utils.Reply;
 
 public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.ViewHolder> {
