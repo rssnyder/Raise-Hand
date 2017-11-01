@@ -1,19 +1,19 @@
 package app;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.ViewDragHelper;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -24,19 +24,21 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-import RecyclerViews.ListItemTeacherClasses;
 import RecyclerViews.MyAdapterQuestions;
 import utils.LoginActivity;
 import utils.Question;
 import utils.Reply;
+import utils.SwipeControllerActions;
 import utils.Topics;
 import utils.User;
+import utils.SwipeController;
 
 public class TeacherQuestions extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<Question> listItems;
     private Field mDragger;
+    SwipeController swipeController = null;
 
     private SharedPreferences mPreferences;
 
@@ -58,9 +60,6 @@ public class TeacherQuestions extends AppCompatActivity {
 
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
 
-        recyclerView = (RecyclerView) findViewById(R.id.questionsRecyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         listItems = new ArrayList<>();
         List<Reply> replyList = new ArrayList<>();
@@ -69,18 +68,15 @@ public class TeacherQuestions extends AppCompatActivity {
         String json = mPreferences.getString("currentUser", "");
         User currentUser = gson.fromJson(json, User.class);
 
+        setUpRecyclerView();
+
         // Get the Topic that the user clicked on,
         // then the questions in that topic.
         final Topics usersTopic = currentUser.getSingleTopic(topicID);
         ArrayList<Question> topicQuestions = usersTopic.get_questions();
 
         listItems = topicQuestions;
-        /*
-        // Used to test scrolling and the FAB
-        for(int i = 0; i < 10; i++){
-            listItems.add(topicQuestions.get(0));
-        }
-        */
+
         adapter = new MyAdapterQuestions(listItems, this);
 
         recyclerView.setAdapter(adapter);
@@ -94,7 +90,7 @@ public class TeacherQuestions extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
 
-        slideOutMenu();
+//        slideOutMenu();
         mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -153,6 +149,29 @@ public class TeacherQuestions extends AppCompatActivity {
 
     }
 
+    private void setUpRecyclerView(){
+
+        recyclerView = (RecyclerView) findViewById(R.id.questionsRecyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        swipeController = new SwipeController(new SwipeControllerActions() {
+            @Override
+            public void onRightClicked(int position) {
+                //Upboat here
+            }
+        });
+        ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
+        itemTouchhelper.attachToRecyclerView(recyclerView);
+
+        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+                swipeController.onDraw(c);
+            }
+        });
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -163,6 +182,7 @@ public class TeacherQuestions extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /*
     private void slideOutMenu(){
 
         try {
@@ -200,7 +220,7 @@ public class TeacherQuestions extends AppCompatActivity {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
 
 }
