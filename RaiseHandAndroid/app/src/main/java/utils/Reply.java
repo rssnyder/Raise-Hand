@@ -73,7 +73,7 @@ public class Reply {
         this.userID=null;
         this.replyParent=null;
         this.replyID=null;
-        this.replies = null;
+        this.replies = new ArrayList<>();
     }
 
     public String get_reply_up_votes(){

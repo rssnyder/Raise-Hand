@@ -71,6 +71,8 @@ public class RepliesReply extends AppCompatActivity{
         User currentUser = gson.fromJson(json, User.class);
 
         final Reply userReply = currentUser.getSingleReply(replyID);
+
+        // TODO: figure how to get this
         listItems = userReply.getReplies();
 
         adapter = new MyAdapterRepliesReply(listItems, this);
@@ -89,7 +91,7 @@ public class RepliesReply extends AppCompatActivity{
 
         final String reply = gson.toJson(userReply);
 
-        // Go to make a new reply fage on FAB click
+        // Go to make a new reply page on FAB click
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override

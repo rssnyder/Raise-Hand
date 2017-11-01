@@ -88,7 +88,7 @@ public class TeacherReplies extends AppCompatActivity {
 
         final String question = gson.toJson(userQuestion);
 
-        // Go to make a new question page on FAB click
+        // Go to make a new reply page on FAB click
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,8 +96,8 @@ public class TeacherReplies extends AppCompatActivity {
                 makeReply.putExtra("questionID", questionID);
                 makeReply.putExtra("question", question);
                 Bundle bun = new Bundle();
-                bun.putString("topicID", questionID);
-                bun.putString("topic", question);
+                bun.putString("questionID", questionID);
+                bun.putString("question", question);
                 startActivity(makeReply);
             }
         });
