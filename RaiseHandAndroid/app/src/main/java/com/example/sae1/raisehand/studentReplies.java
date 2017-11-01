@@ -56,7 +56,7 @@ public class studentReplies extends AppCompatActivity {
 
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
 
-        recyclerView = (RecyclerView) findViewById(R.id.repliesRecyclerView);
+        recyclerView = (RecyclerView) findViewById(R.id.repliesRecyclerViewStudent);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

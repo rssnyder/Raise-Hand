@@ -90,4 +90,19 @@ public class User {
         return null;
     }
 
+    public Reply getSingleReply(String replyID) {
+        for (Classes c : classes) {
+            for (Topics t : c.getTopics()) {
+                for (Question q : t.get_questions()){
+                    for (Reply r : q.getReplies()) {
+                        if (r.get_replyID().equals(replyID)){
+                            return r;
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
 }

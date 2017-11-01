@@ -39,6 +39,11 @@ public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.
     }
 
     @Override
+    public int getItemCount() {
+        return listItems.size();
+    }
+
+    @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Question listItem = listItems.get(position);
         holder.textViewTimestamp.setText(listItem.getCreationTime());
@@ -65,11 +70,6 @@ public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.
                 context.getApplicationContext().startActivity(teacherReplies);
             }
         });
-    }
-
-    @Override
-    public int getItemCount() {
-        return listItems.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

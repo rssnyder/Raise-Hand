@@ -9,7 +9,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 
+import java.sql.Array;
 import java.sql.Time;
+import java.util.ArrayList;
 
 import app.MainActivity;
 
@@ -43,10 +45,14 @@ public class Reply {
 
     //Reply id if this a reply of a reply
     private String replyParent;
+
+    //Array of replies to the reply
+    private ArrayList<Reply> replies;
+
     private String tag_string_req="reply_req";
     public static final String TAG= Reply.class.getSimpleName();
 
-    public Reply(String reply, String rating, boolean endorsed, String time_stamp, String username, String userID, Question q, String replyParent){
+    public Reply(String reply, String rating, boolean endorsed, String time_stamp, String username, String userID, Question q, String replyParent, ArrayList<Reply> replies){
         this.reply=reply;
         this.student_rating=rating;
         this.endorsed=endorsed;
@@ -55,6 +61,7 @@ public class Reply {
         this.userID=userID;
         this.parent=q;
         this.replyParent=replyParent;
+        this.replies = replies;
     }
 
     public Reply(){
@@ -66,6 +73,7 @@ public class Reply {
         this.userID=null;
         this.replyParent=null;
         this.replyID=null;
+        this.replies = null;
     }
 
     public String get_reply_up_votes(){
@@ -94,6 +102,10 @@ public class Reply {
 
     public String get_replyID(){ return this.replyID; }
 
+    public ArrayList<Reply> getReplies() {
+        return replies;
+    }
+
     public void set_reply_time(String time){ this.time_stamp=time; }
 
     public void set_reply(String reply){ this.reply=reply; }
@@ -111,6 +123,10 @@ public class Reply {
     public void set_replyID(String replyID){ this.replyID=replyID; }
 
     public void set_replyQ_parent(Question q){this.parent=q;}
+
+    public void setReplies(ArrayList<Reply> replies) {
+        this.replies = replies;
+    }
 
     public void add_to_database(){
         //Description
