@@ -142,7 +142,6 @@ public class Classes {
                         tempTopic.set_description(Description);
                     }
                     //TODO: Figure out what this isn't working
-                    topics.add(tempTopic);
                     if(i<max && seperated[i].equals("NEWQUESTION")) {
                         //NEWQUESTION means the start of the new question within this topic, add to array list
                         Question tempQuestion= new Question();
@@ -335,9 +334,10 @@ public class Classes {
                             }
                         }
                         q.add(tempQuestion);
-
                     }
+
                 }
+                topics.add(tempTopic);
             }
         }
     }
