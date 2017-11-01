@@ -68,7 +68,6 @@ public class TeacherQuestions extends AppCompatActivity {
         String json = mPreferences.getString("currentUser", "");
         User currentUser = gson.fromJson(json, User.class);
 
-        setUpRecyclerView();
 
         // Get the Topic that the user clicked on,
         // then the questions in that topic.
@@ -79,7 +78,7 @@ public class TeacherQuestions extends AppCompatActivity {
 
         adapter = new MyAdapterQuestions(listItems, this);
 
-        recyclerView.setAdapter(adapter);
+        setUpRecyclerView();
 
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
@@ -154,11 +153,13 @@ public class TeacherQuestions extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.questionsRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
 
         swipeController = new SwipeController(new SwipeControllerActions() {
             @Override
             public void onRightClicked(int position) {
                 //Upboat here
+                listItems.get(position).upVote();
             }
         });
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
