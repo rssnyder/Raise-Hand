@@ -27,13 +27,13 @@ public class Reply {
     private String reply;
 
     //How many people upvoted this reply
-    private String student_rating;
+    private String studentRating;
 
     //If the teacher endorsed the answer
     private boolean endorsed;
 
     //Time this reply was made
-    private String time_stamp;
+    private String timestamp;
 
     //authors username
     private String username;
@@ -57,9 +57,9 @@ public class Reply {
 
     public Reply(String reply, String rating, boolean endorsed, String time_stamp, String username, String userID, Question q, String replyParent, ArrayList<Reply> replies){
         this.reply=reply;
-        this.student_rating=rating;
+        this.studentRating =rating;
         this.endorsed=endorsed;
-        this.time_stamp=time_stamp;
+        this.timestamp =time_stamp;
         this.username=username;
         this.userID=userID;
         this.parent=q;
@@ -69,9 +69,9 @@ public class Reply {
 
     public Reply(){
         this.reply=null;
-        this.student_rating="0";
+        this.studentRating ="0";
         this.endorsed=false;
-        this.time_stamp=null;
+        this.timestamp =null;
         this.username=null;
         this.userID=null;
         this.replyParent=null;
@@ -80,7 +80,7 @@ public class Reply {
     }
 
     public String getReplyUpvotes(){
-        return student_rating;
+        return studentRating;
     }
 
     public String getReply(){ return reply; }
@@ -95,7 +95,7 @@ public class Reply {
     }
 
     public String getReplyTimestamp(){
-        return time_stamp;
+        return timestamp;
     }
 
     public Question getParentQuestion(){return this.parent;}
@@ -109,11 +109,11 @@ public class Reply {
         return replies;
     }
 
-    public void setReplyTimestamp(String time){ this.time_stamp=time; }
+    public void setReplyTimestamp(String time){ this.timestamp =time; }
 
     public void setReply(String reply){ this.reply=reply; }
 
-    public void setReplyRating(String rating){ this.student_rating=rating; }
+    public void setReplyRating(String rating){ this.studentRating =rating; }
 
     public void setReplyUserID(String userID){ this.userID=userID; }
 
