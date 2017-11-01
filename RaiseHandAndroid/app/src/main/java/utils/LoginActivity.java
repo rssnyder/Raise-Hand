@@ -36,7 +36,6 @@ public class LoginActivity extends Activity {
     private ProgressDialog pDialog;
     private String tag_string_req= "string_req";
     EditText editTextUsername, editTextPassword;
-    private ArrayList<Topics> topics;
     @Expose
     private User currentUser;
     private SharedPreferences mPreferences;

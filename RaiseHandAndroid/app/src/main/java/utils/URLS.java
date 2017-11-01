@@ -2,6 +2,7 @@ package utils;
 
 /**
  * Created by sae1 on 9/17/17.
+ * This is the class that helps with android volley calls by making final urls
  */
 
 public class URLS {

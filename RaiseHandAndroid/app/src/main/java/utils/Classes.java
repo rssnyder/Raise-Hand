@@ -1,21 +1,18 @@
 package utils;
 
-import android.app.ProgressDialog;
 import android.util.Log;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
-
 import java.util.ArrayList;
-import java.util.Scanner;
-
 import app.MainActivity;
 
 /**
- * Created by sae1 on 10/9/17.
+ * Created by sae1 on 10/9/17
+ * This is an object, class
+ * Each class has an array list of topics, a class id, and a title
  */
 
 public class Classes {
