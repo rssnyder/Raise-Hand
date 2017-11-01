@@ -2,6 +2,7 @@ package app;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Canvas;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -27,6 +29,8 @@ import RecyclerViews.MyAdapterReplies;
 import utils.LoginActivity;
 import utils.Question;
 import utils.Reply;
+import utils.SwipeController;
+import utils.SwipeControllerActions;
 import utils.User;
 
 public class TeacherReplies extends AppCompatActivity {
@@ -34,6 +38,8 @@ public class TeacherReplies extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private ArrayList<Reply> listItems;
     private Field mDragger;
+    SwipeController swipeController = null;
+
 
     private SharedPreferences mPreferences;
 
@@ -57,10 +63,6 @@ public class TeacherReplies extends AppCompatActivity {
 
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
 
-        recyclerView = (RecyclerView) findViewById(R.id.repliesRecyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
         User currentUser = gson.fromJson(json, User.class);
@@ -72,7 +74,7 @@ public class TeacherReplies extends AppCompatActivity {
 
         adapter = new MyAdapterReplies(listItems, this);
 
-        recyclerView.setAdapter(adapter);
+        setUpRecyclerView();
 
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
@@ -132,6 +134,35 @@ public class TeacherReplies extends AppCompatActivity {
                         break;
                 }
                 return true;
+            }
+        });
+    }
+
+    private void setUpRecyclerView(){
+
+        recyclerView = (RecyclerView) findViewById(R.id.repliesRecyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+
+        swipeController = new SwipeController(new SwipeControllerActions() {
+            @Override
+            public void onRightClicked(int position) {
+                //Upboat here
+                listItems.get(position).upVote();
+            }
+            @Override
+            public void onLeftClicked(int position){
+                listItems.get(position).endorse();
+            }
+        });
+        ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
+        itemTouchhelper.attachToRecyclerView(recyclerView);
+
+        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+                swipeController.onDraw(c);
             }
         });
     }
