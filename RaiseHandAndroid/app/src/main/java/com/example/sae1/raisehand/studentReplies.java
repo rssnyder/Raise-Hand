@@ -21,7 +21,7 @@ import com.google.gson.Gson;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-import RecyclerViews.MyAdapterReplies;
+import RecyclerViews.MyAdapterRepliesStudent;
 import app.MakeQuestion;
 import app.MakeReply;
 import app.TeacherHomePage;
@@ -73,7 +73,7 @@ public class studentReplies extends AppCompatActivity {
         final Question userQuestion = currentUser.getSingleQuestion(questionID);
         listItems=userQuestion.getReplies();
 
-        adapter = new MyAdapterReplies(listItems, this);
+        adapter = new MyAdapterRepliesStudent(listItems, this);
 
         recyclerView.setAdapter(adapter);
 

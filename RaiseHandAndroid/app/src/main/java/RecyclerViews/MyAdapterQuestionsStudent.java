@@ -17,6 +17,8 @@ import android.widget.TextView;
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 import utils.Question;
@@ -45,8 +47,14 @@ public class MyAdapterQuestionsStudent extends RecyclerView.Adapter<MyAdapterQue
 
         final Question listItem = listItems.get(position);
 
+        holder.textViewTimestamp.setText(listItem.getCreationTime());
         holder.textViewHead.setText(listItem.getQuestionTitle());
         holder.textViewDesc.setText(listItem.getQuestionDescription());
+        holder.textViewPoints.setText("Points: " + listItem.getStudentRating());
+        if (listItem.questionEndorsemenet()){
+            holder.textViewEndorsed.setText("Endorsed!");
+        }
+
 
         Gson gson = new Gson();
         final String question = gson.toJson(listItem);
@@ -75,13 +83,19 @@ public class MyAdapterQuestionsStudent extends RecyclerView.Adapter<MyAdapterQue
 
         public TextView textViewHead;
         public TextView textViewDesc;
+        public TextView textViewPoints;
+        public TextView textViewEndorsed;
+        public TextView textViewTimestamp;
         public LinearLayout linearLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
+            textViewTimestamp = (TextView) itemView.findViewById(R.id.textViewTimestamp);
             textViewHead = (TextView) itemView.findViewById(R.id.textViewHead);
             textViewDesc = (TextView) itemView.findViewById(R.id.textViewDesc);
+            textViewPoints = (TextView) itemView.findViewById(R.id.textViewPoints);
+            textViewEndorsed = (TextView) itemView.findViewById(R.id.textViewEndorsed);
             linearLayout = (LinearLayout) itemView.findViewById(R.id.linearLayoutStudentQuestions);
         }
     }

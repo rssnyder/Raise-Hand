@@ -79,7 +79,6 @@ public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.
         public TextView textViewPoints;
         public TextView textViewEndorsed;
         public TextView textViewTimestamp;
-        public FloatingActionButton endorseQ;
         public LinearLayout linearLayout;
 
 

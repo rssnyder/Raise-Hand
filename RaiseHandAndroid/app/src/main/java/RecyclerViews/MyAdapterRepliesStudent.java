@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 import app.TeacherReplies;
@@ -43,7 +45,13 @@ public class MyAdapterRepliesStudent extends RecyclerView.Adapter<MyAdapterRepli
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Reply listItem = listItems.get(position);
 
+        holder.textViewTimestamp.setText(listItem.get_reply_time_stamp());
         holder.textViewHead.setText(listItem.get_reply());
+        holder.textViewPoints.setText("Points: "+ listItem.get_reply_up_votes());
+        if(listItem.get_reply_endorsed()){
+            holder.textViewEndorsed.setText("Endorsed!");
+        }
+
         Gson gson = new Gson();
         final String rep = gson.toJson(listItem);
     }
@@ -57,11 +65,17 @@ public class MyAdapterRepliesStudent extends RecyclerView.Adapter<MyAdapterRepli
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView textViewHead;
+        public TextView textViewEndorsed;
+        public TextView textViewPoints;
+        public TextView textViewTimestamp;
         public LinearLayout linearLayout;
         public ViewHolder(View itemView) {
             super(itemView);
 
-            textViewHead = (TextView) itemView.findViewById(R.id.textViewHead);
+            textViewHead = (TextView) itemView.findViewById(R.id.textViewHe);
+            textViewEndorsed = (TextView) itemView.findViewById(R.id.textViewEn);
+            textViewPoints = (TextView) itemView.findViewById(R.id.textViewPo);
+            textViewTimestamp = (TextView) itemView.findViewById(R.id.textViewTim);
             linearLayout = (LinearLayout) itemView.findViewById(R.id.linearLayoutStudentReplies);
         }
     }
