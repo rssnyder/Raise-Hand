@@ -3,21 +3,22 @@ package app;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
 
-import utils.Classes;
 import utils.Question;
 import utils.Topics;
-import utils.URLS;
 import utils.User;
 
+
+/**
+ * This a method that enables the user to make a question, you can
+ * only get to this through a topic so that we have a topic ID for the question to
+ * be put underneath
+ */
 public class MakeQuestion extends AppCompatActivity {
 
     private Button submit;
