@@ -187,6 +187,3 @@ public class studentReplies extends AppCompatActivity {
         }
     }
 }
-
-
-
