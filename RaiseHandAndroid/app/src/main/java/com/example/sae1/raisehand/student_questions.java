@@ -2,6 +2,7 @@ package com.example.sae1.raisehand;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Canvas;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -27,6 +29,8 @@ import app.MakeQuestion;
 import utils.LoginActivity;
 import utils.Question;
 import utils.Reply;
+import utils.SwipeController;
+import utils.SwipeControllerActions;
 import utils.Topics;
 import utils.User;
 
@@ -43,6 +47,8 @@ public class student_questions extends AppCompatActivity {
     private List<Question> listItems;
     private SharedPreferences mPreferences;
 
+    private SwipeController swipeController = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,9 +60,6 @@ public class student_questions extends AppCompatActivity {
         FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButtonStudent);
 
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
-        recyclerView = (RecyclerView) findViewById(R.id.questionsRecyclerViewStudent);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         listItems = new ArrayList<>();
         List<Reply> replyList = new ArrayList<>();
@@ -79,7 +82,8 @@ public class student_questions extends AppCompatActivity {
         */
 
         adapter = new MyAdapterQuestionsStudent(listItems, this);
-        recyclerView.setAdapter(adapter);
+
+        setUpRecyclerView();
 
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
@@ -90,7 +94,8 @@ public class student_questions extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
 
-        slideOutMenu();
+        //slideOutMenu();
+        mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -155,6 +160,38 @@ public class student_questions extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void setUpRecyclerView(){
+
+        recyclerView = (RecyclerView) findViewById(R.id.questionsRecyclerViewStudent);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+
+        swipeController = new SwipeController(new SwipeControllerActions() {
+            @Override
+            public void onRightClicked(int position) {
+                listItems.get(position).upVote();
+            }
+
+            @Override
+            public void onLeftClicked(int position){
+                // Think of what needs to be done maybe go to reply or just do
+                // nothing
+
+            }
+        });
+        ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
+        itemTouchhelper.attachToRecyclerView(recyclerView);
+
+        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+                swipeController.onDraw(c);
+            }
+        });
+
+    }
+    /*
     private void slideOutMenu(){
 
         try {
@@ -193,4 +230,5 @@ public class student_questions extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+    */
 }
