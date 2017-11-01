@@ -239,7 +239,6 @@ public class Classes {
                                 tempQuestion.setQuestionID(seperated[i]);
                                 i++;
                             }
-                            q.add(tempQuestion);
                             if(i<max && seperated[i].equals("NEWREPLY")) {
                                 //Get all of the replies
                                 Reply tempR=new Reply();
@@ -335,6 +334,8 @@ public class Classes {
                                 replies.add(tempR);
                             }
                         }
+                        q.add(tempQuestion);
+
                     }
                 }
             }
