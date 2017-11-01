@@ -61,7 +61,6 @@ public class TeacherQuestions extends AppCompatActivity {
 
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
 
-
         listItems = new ArrayList<>();
         List<Reply> replyList = new ArrayList<>();
 
