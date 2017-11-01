@@ -61,13 +61,13 @@ public class MakeReply extends AppCompatActivity {
                 final String inputDetails = textReply.getText().toString(); //question details
                 Reply temp = new Reply();
                 //current user's id
-                temp.set_reply_userID(currentUser.getId());
+                temp.setReplyUserID(currentUser.getId());
                 //current username
-                temp.set_reply_username(currentUser.getUsername());
+                temp.setReplyUsername(currentUser.getUsername());
                 //topic this should fall under
-                temp.set_replyQ_parent(question);
-                temp.set_reply(inputDetails);
-                temp.add_to_database();
+                temp.setReplyQParent(question);
+                temp.setReply(inputDetails);
+                temp.addToDatabase();
             }
         });
 

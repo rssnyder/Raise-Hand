@@ -2,8 +2,6 @@ package RecyclerViews;
 
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,14 +12,8 @@ import android.widget.TextView;
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
-import app.TeacherReplies;
-import app.TeacherTopics;
-import utils.Classes;
-import utils.Question;
 import utils.Reply;
 
 public class MyAdapterRepliesStudent extends RecyclerView.Adapter<MyAdapterRepliesStudent.ViewHolder> {
@@ -45,10 +37,10 @@ public class MyAdapterRepliesStudent extends RecyclerView.Adapter<MyAdapterRepli
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Reply listItem = listItems.get(position);
 
-        holder.textViewTimestamp.setText(listItem.get_reply_time_stamp());
-        holder.textViewHead.setText(listItem.get_reply());
-        holder.textViewPoints.setText("Points: "+ listItem.get_reply_up_votes());
-        if(listItem.get_reply_endorsed()){
+        holder.textViewTimestamp.setText(listItem.getReplyTimestamp());
+        holder.textViewHead.setText(listItem.getReply());
+        holder.textViewPoints.setText("Points: "+ listItem.getReplyUpvotes());
+        if(listItem.getReplyEndorsed()){
             holder.textViewEndorsed.setText("Endorsed!");
         }
 

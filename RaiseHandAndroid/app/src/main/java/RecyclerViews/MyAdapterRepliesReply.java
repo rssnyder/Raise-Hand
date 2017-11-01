@@ -47,10 +47,10 @@ public class MyAdapterRepliesReply extends RecyclerView.Adapter<MyAdapterReplies
     @Override
     public void onBindViewHolder(ViewHolder holder, int position){
         final Reply listItem = listItems.get(position);
-        holder.textViewTimestamp.setText(listItem.get_reply_time_stamp());
-        holder.textViewHead.setText(listItem.get_reply());
-        holder.textViewPoints.setText("Points: " + listItem.get_reply_up_votes());
-        if (listItem.get_reply_endorsed()){
+        holder.textViewTimestamp.setText(listItem.getReplyTimestamp());
+        holder.textViewHead.setText(listItem.getReply());
+        holder.textViewPoints.setText("Points: " + listItem.getReplyUpvotes());
+        if (listItem.getReplyEndorsed()){
             holder.textViewEndorsed.setText("Endorsed!");
         }
 
@@ -61,10 +61,10 @@ public class MyAdapterRepliesReply extends RecyclerView.Adapter<MyAdapterReplies
             @Override
             public void onClick(View view) {
                 Intent reply = new Intent(context.getApplicationContext(), RepliesReply.class);
-                reply.putExtra("replyID", listItem.get_replyID());
+                reply.putExtra("replyID", listItem.getReplyID());
                 reply.putExtra("reply", rep);
                 Bundle bundle = new Bundle();
-                bundle.putString("replyID", listItem.get_replyID());
+                bundle.putString("replyID", listItem.getReplyID());
                 bundle.putString("reply", rep);
                 context.getApplicationContext().startActivity(reply);
             }

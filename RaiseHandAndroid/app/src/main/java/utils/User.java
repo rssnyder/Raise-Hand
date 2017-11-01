@@ -94,7 +94,7 @@ public class User {
             for (Topics t : c.getTopics()) {
                 for (Question q : t.get_questions()){
                     for (Reply r : q.getReplies()) {
-                        if (r.get_replyID().equals(replyID)){
+                        if (r.getReplyID().equals(replyID)){
                             return r;
                         }
                     }

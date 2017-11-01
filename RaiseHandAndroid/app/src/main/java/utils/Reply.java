@@ -79,59 +79,59 @@ public class Reply {
         this.replies = new ArrayList<>();
     }
 
-    public String get_reply_up_votes(){
+    public String getReplyUpvotes(){
         return student_rating;
     }
 
-    public String get_reply(){ return reply; }
+    public String getReply(){ return reply; }
 
-    public String get_reply_userID(){ return userID;}
+    public String getReplyUserID(){ return userID;}
 
-    public String get_reply_username(){ return username;}
+    public String getReplyUsername(){ return username;}
 
     //if this returns false then it isn't endorsed
-    public boolean get_reply_endorsed(){
+    public boolean getReplyEndorsed(){
         return endorsed;
     }
 
-    public String get_reply_time_stamp(){
+    public String getReplyTimestamp(){
         return time_stamp;
     }
 
-    public Question get_parent_question(){return this.parent;}
+    public Question getParentQuestion(){return this.parent;}
 
     //if this returns null then it isn't a reply of a reply
     public String getReplyParent(){ return this.replyParent; }
 
-    public String get_replyID(){ return this.replyID; }
+    public String getReplyID(){ return this.replyID; }
 
     public ArrayList<Reply> getReplies() {
         return replies;
     }
 
-    public void set_reply_time(String time){ this.time_stamp=time; }
+    public void setReplyTimestamp(String time){ this.time_stamp=time; }
 
-    public void set_reply(String reply){ this.reply=reply; }
+    public void setReply(String reply){ this.reply=reply; }
 
-    public void set_reply_rating(String rating){ this.student_rating=rating; }
+    public void setReplyRating(String rating){ this.student_rating=rating; }
 
-    public void set_reply_userID(String userID){ this.userID=userID; }
+    public void setReplyUserID(String userID){ this.userID=userID; }
 
-    public void set_reply_username(String username){ this.username=username; }
+    public void setReplyUsername(String username){ this.username=username; }
 
-    public void set_reply_endorsed(Boolean endorsed){this.endorsed=endorsed;}
+    public void setReplyEndorsed(Boolean endorsed){this.endorsed=endorsed;}
 
-    public void set_replyParent(String replyParent){ this.replyParent=replyParent; }
+    public void setReplyParent(String replyParent){ this.replyParent=replyParent; }
 
-    public void set_replyID(String replyID){ this.replyID=replyID; }
+    public void setReplyID(String replyID){ this.replyID=replyID; }
 
-    public void set_replyQ_parent(Question q){this.parent=q;}
+    public void setReplyQParent(Question q){this.parent=q;}
 
     public void setReplies(ArrayList<Reply> replies) {
         this.replies = replies;
     }
 
-    public void add_to_database(){
+    public void addToDatabase(){
         //Description
         String reply2=this.reply;
         //encoding spaces with a + sign for the url

@@ -248,7 +248,7 @@ public class Classes {
                                             reply=reply+seperated[i]+" ";
                                             i++;
                                         }
-                                        tempR.set_reply(reply);
+                                        tempR.setReply(reply);
 
                                     }
                                     if(i<max && seperated[i].equals("REPLYUSER")){
@@ -258,7 +258,7 @@ public class Classes {
                                             //do nothing
                                         }
                                         else {
-                                            tempR.set_reply_username(seperated[i]);
+                                            tempR.setReplyUsername(seperated[i]);
                                             i++;
                                         }
 
@@ -270,7 +270,7 @@ public class Classes {
                                             //do nothing
                                         }
                                         else{
-                                            tempR.set_reply_userID(seperated[i]);
+                                            tempR.setReplyUserID(seperated[i]);
                                             i++;
                                         }
                                     }
@@ -280,14 +280,14 @@ public class Classes {
                                             //do nothing
                                         }
                                         else {
-                                            tempR.set_reply_rating(seperated[i]);
+                                            tempR.setReplyRating(seperated[i]);
                                             i++;
                                         }
                                     }
                                     if(i<max && seperated[i].equals("ENDORSED")){
                                         i++;
                                         if(seperated[i].equals("Yes")){
-                                            tempR.set_reply_endorsed(true);
+                                            tempR.setReplyEndorsed(true);
                                             i++;
                                         }
                                         else if(seperated[i].equals("No")){
@@ -305,7 +305,7 @@ public class Classes {
                                             time=time+seperated[i]+ " ";
                                             i++;
                                         }
-                                        tempR.set_reply_time(time);
+                                        tempR.setReplyTimestamp(time);
                                     }
                                     if(i<max && seperated[i].equals("PARENT")){
                                         //timestamp
@@ -316,13 +316,13 @@ public class Classes {
                                             //this is not a reply but a place holder
                                             replyParent=null;
                                         }
-                                        tempR.set_replyParent(replyParent);
+                                        tempR.setReplyParent(replyParent);
                                     }
                                     if(i<max && seperated[i].equals("REPLYID")) {
                                         i++;
                                         String replyID=seperated[i];
                                         i++;
-                                        tempR.set_replyID(replyID);
+                                        tempR.setReplyID(replyID);
                                     }
 
                                 }

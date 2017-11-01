@@ -39,10 +39,10 @@ public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Reply listItem = listItems.get(position);
-        holder.textViewTime.setText(listItem.get_reply_time_stamp());
-        holder.textViewH.setText(listItem.get_reply());
-        holder.textViewP.setText("Points: "+ listItem.get_reply_up_votes());
-        if(listItem.get_reply_endorsed()){
+        holder.textViewTime.setText(listItem.getReplyTimestamp());
+        holder.textViewH.setText(listItem.getReply());
+        holder.textViewP.setText("Points: "+ listItem.getReplyUpvotes());
+        if(listItem.getReplyEndorsed()){
             holder.textViewE.setText("Endorsed!");
         }
         Gson gson = new Gson();
@@ -52,10 +52,10 @@ public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.View
             @Override
             public void onClick(View view) {
                 Intent reply = new Intent(context.getApplicationContext(), RepliesReply.class);
-                reply.putExtra("replyID", listItem.get_replyID());
+                reply.putExtra("replyID", listItem.getReplyID());
                 reply.putExtra("reply", rep);
                 Bundle bundle = new Bundle();
-                bundle.putString("replyID", listItem.get_replyID());
+                bundle.putString("replyID", listItem.getReplyID());
                 bundle.putString("reply", rep);
                 context.getApplicationContext().startActivity(reply);
             }
