@@ -45,6 +45,7 @@
         <activity android:name="app.TeacherReplies"></activity>
         <activity android:name=".studentReplies"></activity>
         <activity android:name="app.RepliesReply"></activity>
+        <activity android:name="app.MakeReplyReply"></activity>
     </application>
 
 </manifest>
