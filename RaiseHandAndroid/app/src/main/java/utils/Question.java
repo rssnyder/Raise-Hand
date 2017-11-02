@@ -108,6 +108,16 @@ public class Question {
         return replies;
     }
 
+    public ArrayList<Reply> getParentRepliesOnly() {
+        ArrayList<Reply> result= new ArrayList<Reply>();
+        for(Reply r: replies){
+            if (r.getReplyParent()==null){
+                result.add(r);
+            }
+        }
+        return result;
+    }
+
     public String getOwnerID() {
         return ownerID;
     }

@@ -42,6 +42,7 @@ public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.View
         holder.textViewTime.setText(listItem.getReplyTimestamp());
         holder.textViewH.setText(listItem.getReply());
         holder.textViewP.setText("Points: "+ listItem.getReplyUpvotes());
+        holder.textViewReplies.setText("This reply has "+listItem.getReplies().size()+" replies to it. Click to view");
         if(listItem.getReplyEndorsed()){
             holder.textViewE.setText("Endorsed!");
         }
@@ -70,7 +71,7 @@ public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.View
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView textViewH, textViewE, textViewP, textViewTime;
+        public TextView textViewH, textViewE, textViewP, textViewTime, textViewReplies;
         public LinearLayout linearLayout;
         public ViewHolder(View itemView) {
             super(itemView);
@@ -78,6 +79,7 @@ public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.View
             textViewE= (TextView) itemView.findViewById(R.id.textViewE);
             textViewP= (TextView) itemView.findViewById(R.id.textViewP);
             textViewTime= (TextView) itemView.findViewById(R.id.textViewTime);
+            textViewReplies= (TextView) itemView.findViewById(R.id.textViewReplies);
             linearLayout = (LinearLayout) itemView.findViewById(R.id.linearLayoutTeacherReplies);
         }
     }

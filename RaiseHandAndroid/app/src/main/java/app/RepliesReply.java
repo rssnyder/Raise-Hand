@@ -22,13 +22,8 @@ import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.List;
-
-import RecyclerViews.MyAdapterQuestions;
-import RecyclerViews.MyAdapterReplies;
 import RecyclerViews.MyAdapterRepliesReply;
 import utils.LoginActivity;
-import utils.Question;
 import utils.Reply;
 import utils.SwipeController;
 import utils.SwipeControllerActions;

@@ -67,7 +67,7 @@ public class TeacherReplies extends AppCompatActivity {
         // Get the question the user clicked on,
         // then the replies in that question.
         final Question userQuestion = currentUser.getSingleQuestion(questionID);
-        listItems=userQuestion.getReplies();
+        listItems=userQuestion.getParentRepliesOnly();
 
         adapter = new MyAdapterReplies(listItems, this);
 
@@ -136,7 +136,6 @@ public class TeacherReplies extends AppCompatActivity {
     }
 
     private void setUpRecyclerView(){
-
         recyclerView = (RecyclerView) findViewById(R.id.repliesRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
