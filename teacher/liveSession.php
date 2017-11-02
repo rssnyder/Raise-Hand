@@ -146,9 +146,12 @@
 
   <!-- Main content of the webpage -->
   <div id="main" class="main">
+    <div id="commentBox" class="container-fluid" style="overflow-y: auto;max-height: 90vh;">
+       <?php echo '<form action="utilities/endLive.php?class=' . $_GET['class'] . '" method="post">'; ?>
+         <input name="end" type="submit" value="End">
+       </form>
+    </div>
     <div id="questions" class="container-fluid" style="overflow-y: auto;max-height: 90vh;">
-     <div id="text" class="row">
-     </div>
    </div>
   </div>
 </html>
