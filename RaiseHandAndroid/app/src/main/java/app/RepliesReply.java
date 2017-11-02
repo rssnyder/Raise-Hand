@@ -96,7 +96,7 @@ public class RepliesReply extends AppCompatActivity{
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent replyReply = new Intent(getApplicationContext().getApplicationContext(), MakeReply.class);
+                Intent replyReply = new Intent(getApplicationContext().getApplicationContext(), MakeReplyReply.class);
                 replyReply.putExtra("replyID", replyID);
                 replyReply.putExtra("reply", reply);
                 Bundle bundle = new Bundle();
