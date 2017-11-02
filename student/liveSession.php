@@ -116,6 +116,7 @@
                  }
              });
 
+             //Sorts the questions, newest ones first
              $("#questions div").sort(function(a, b) {
                 return parseInt(b.id) - parseInt(a.id);
               }).each(function() {
@@ -131,8 +132,10 @@
            var $_GET=[];
            window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(a,name,value){$_GET[name]=value;});
             //var comment = $('#main').find('#commentbox').find('#comment');
+            //Get the value of the comment box
             var comment=document.getElementById( "question" ).value;
             var username=document.getElementById( "username" ).value;
+            //Send this to the php file via ajax
             $.ajax({
             type: 'get',
             url: 'utilities/lfQuestion.php',

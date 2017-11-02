@@ -111,10 +111,14 @@
                  }
              });
 
-             var out = document.getElementById("main");
-             var isScrolledToBottom = out.scrollHeight - out.clientHeight <= out.scrollTop + 1;
-             if(isScrolledToBottom)
-                    out.scrollTop = out.scrollHeight - out.clientHeight;
+             //Sorts the questions, newest ones first
+             $("#questions div").sort(function(a, b) {
+                return parseInt(b.id) - parseInt(a.id);
+              }).each(function() {
+                var elem = $(this);
+                elem.remove();
+                $(elem).appendTo("#questions");
+              });
            }, 1000);
        </script>
     <!-- End questionable content -->
