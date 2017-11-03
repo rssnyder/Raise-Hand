@@ -43,8 +43,8 @@ public class MakeReplyReply extends AppCompatActivity {
 
         currentUser = gson.fromJson(json, User.class);
 
-        final String replyParentAsString = getIntent().getStringExtra("reply");
-        final Reply reply = gson.fromJson(replyParentAsString, Reply.class);
+        final String replyParentIDAsString = getIntent().getStringExtra("replyID");
+        //final Reply reply = gson.fromJson(replyParentAsString, Reply.class);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,8 +53,7 @@ public class MakeReplyReply extends AppCompatActivity {
                 Reply temp = new Reply();
                 temp.setReplyUserID(currentUser.getId());
                 temp.setReplyUsername(currentUser.getUsername());
-
-                temp.setReplyParent(replyParentAsString);
+                temp.setReplyParent(replyParentIDAsString);
                 temp.setReply(inputDetails);
                 temp.addToDatabase();
             }

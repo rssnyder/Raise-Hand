@@ -143,7 +143,7 @@ public class Reply {
            url=URLS.URL_REPLY+"?txt="+reply2+"&username="+this.username+"&OID="+this.userID+"&TID="+parent.getQuestionID()+"&replyParent=0";
         }
         else {
-            url = URLS.URL_REPLY + "?txt=" + reply2 + "&username=" + this.username + "&OID=" + this.userID + "&TID=" + parent.getQuestionID() + "&replyParent=" + this.getReplyParent();
+            url = URLS.URL_REPLY + "?txt=" + reply2 + "&username=" + this.username + "&OID=" + this.userID + "&TID=0" + "&replyParent=" + this.getReplyParent();
         }
         StringRequest req = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
