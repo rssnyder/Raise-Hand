@@ -67,7 +67,7 @@ public class TeacherTopics extends AppCompatActivity {
 
         // loop until you find the Topics from the class you clicked on in TeacherClasses
         // Can probably do this with the getSingleClass method
-        for(Classes c : currentUser.get_classes()){
+        for(Classes c : currentUser.getClasses()){
             if(c.getClassID().equals(classID)){
                 for (Topics t: c.getTopics()) {
                     listItems.add(t);

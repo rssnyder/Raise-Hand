@@ -62,7 +62,7 @@ public class StudentTopics extends AppCompatActivity {
         User currentUser = gson.fromJson(json, User.class);
 
         // loop until you find the Topics from the class you clicked on in TeacherClasses
-        for(Classes c : currentUser.get_classes()){
+        for(Classes c : currentUser.getClasses()){
             if(c.getClassID().equals(classID)){
                 for (Topics t: c.getTopics()) {
                     listItems.add(t);

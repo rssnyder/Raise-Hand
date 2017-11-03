@@ -56,7 +56,7 @@ public class TeacherClasses extends AppCompatActivity {
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
         User currentUser = gson.fromJson(json, User.class);
-        listItems = currentUser.get_classes();
+        listItems = currentUser.getClasses();
 
 
         adapter = new MyAdapterClasses(listItems, this);

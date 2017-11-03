@@ -8,18 +8,18 @@ import java.util.ArrayList;
  */
 
 public class User {
-    private String id, role_id, username, first_name, last_name, reset;
+    private String id, roleID, username, firstName, lastName, reset;
     ArrayList<Classes> classes;
-    private boolean logged_in;
-    public User(String reset, String id, String role_id, String username, String first_name, String last_name, ArrayList<Classes> classes, boolean logged_in) {
+    private boolean loggedIn;
+    public User(String reset, String id, String roleID, String username, String firstName, String lastName, ArrayList<Classes> classes, boolean loggedIn) {
         this.id = id;
         this.reset=reset;
-        this.role_id = role_id;
+        this.roleID = roleID;
         this.username = username;
-        this.first_name= first_name;
-        this.last_name = last_name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.classes=classes;
-        this.logged_in=logged_in;
+        this.loggedIn = loggedIn;
 
     }
     public Boolean getReset(User u){
@@ -36,15 +36,15 @@ public class User {
         return this.username;
     }
     public String getRoleId() {
-        return this.role_id;
+        return this.roleID;
     }
-    public String getFirst_name(){
-        return this.first_name;
+    public String getFirstName(){
+        return this.firstName;
     }
-    public String get_last_name(){ return this.last_name;}
-    public boolean is_logged_in(){return this.logged_in;}
-    public void logout(){this.logged_in=false;}
-    public ArrayList<Classes> get_classes(){return this.classes;}
+    public String getLastName(){ return this.lastName;}
+    public boolean isLoggedIn(){return this.loggedIn;}
+    public void logout(){this.loggedIn =false;}
+    public ArrayList<Classes> getClasses(){return this.classes;}
 
     /**
      * returns the class matching the classID.

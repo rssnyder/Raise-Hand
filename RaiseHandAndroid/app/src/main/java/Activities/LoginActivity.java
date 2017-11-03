@@ -116,7 +116,7 @@ public class LoginActivity extends Activity {
                         String phpResponse=response.toString();
                         currentUser = StringParse.parseUserVolley(phpResponse);
                         if(currentUser!=null) {
-                            Toast.makeText(VolleyMainActivityHandler.getInstance(), "Welcome back, " + currentUser.getFirst_name() + "!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(VolleyMainActivityHandler.getInstance(), "Welcome back, " + currentUser.getFirstName() + "!", Toast.LENGTH_LONG).show();
 
                             //store the user info on login
                             SharedPreferences.Editor editor = mPreferences.edit();
