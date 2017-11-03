@@ -15,7 +15,7 @@ import com.example.sae1.raisehand.R;
 
 import java.util.List;
 
-import Utils.Question;
+import Utilities.Question;
 
 public class MyAdapterNotificationsStudent extends RecyclerView.Adapter<MyAdapterNotificationsStudent.ViewHolder>{
 

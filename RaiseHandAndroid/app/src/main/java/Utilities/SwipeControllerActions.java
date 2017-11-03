@@ -1,4 +1,4 @@
-package Utils;
+package Utilities;
 
 public abstract class SwipeControllerActions {
 

@@ -1,4 +1,4 @@
-package Utils;
+package Utilities;
 
 import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;

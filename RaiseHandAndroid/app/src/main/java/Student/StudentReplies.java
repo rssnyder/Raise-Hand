@@ -26,9 +26,9 @@ import RecyclerViews.MyAdapterRepliesStudent;
 import Activities.MakeQuestion;
 import Activities.MakeReply;
 import Activities.LoginActivity;
-import Utils.Question;
-import Utils.Reply;
-import Utils.User;
+import Utilities.Question;
+import Utilities.Reply;
+import Utilities.User;
 
 public class StudentReplies extends AppCompatActivity {
     private RecyclerView recyclerView;

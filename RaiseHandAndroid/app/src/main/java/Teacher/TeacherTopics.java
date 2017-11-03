@@ -22,10 +22,10 @@ import java.util.ArrayList;
 
 import RecyclerViews.MyAdapterTopics;
 import Activities.MakeQuestion;
-import Utils.Classes;
+import Utilities.Classes;
 import Activities.LoginActivity;
-import Utils.Topics;
-import Utils.User;
+import Utilities.Topics;
+import Utilities.User;
 
 public class TeacherTopics extends AppCompatActivity {
     private String TAG = TeacherTopics.class.getSimpleName();

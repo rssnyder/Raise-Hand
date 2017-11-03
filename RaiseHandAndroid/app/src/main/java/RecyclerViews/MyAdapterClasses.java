@@ -16,7 +16,7 @@ import com.example.sae1.raisehand.R;
 import java.util.List;
 
 import Teacher.TeacherTopics;
-import Utils.Classes;
+import Utilities.Classes;
 
 public class MyAdapterClasses extends RecyclerView.Adapter<MyAdapterClasses.ViewHolder> {
 

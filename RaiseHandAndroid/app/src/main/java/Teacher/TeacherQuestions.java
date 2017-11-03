@@ -27,12 +27,12 @@ import java.util.List;
 import RecyclerViews.MyAdapterQuestions;
 import Activities.MakeQuestion;
 import Activities.LoginActivity;
-import Utils.Question;
-import Utils.Reply;
-import Utils.SwipeControllerActions;
-import Utils.Topics;
-import Utils.User;
-import Utils.SwipeController;
+import Utilities.Question;
+import Utilities.Reply;
+import Utilities.SwipeControllerActions;
+import Utilities.Topics;
+import Utilities.User;
+import Utilities.SwipeController;
 
 public class TeacherQuestions extends AppCompatActivity {
     private RecyclerView recyclerView;

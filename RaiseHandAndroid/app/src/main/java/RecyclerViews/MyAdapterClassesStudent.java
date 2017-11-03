@@ -20,7 +20,7 @@ import Student.StudentTopics;
 
 import java.util.List;
 
-import Utils.Classes;
+import Utilities.Classes;
 
 
 public class MyAdapterClassesStudent extends RecyclerView.Adapter<MyAdapterClassesStudent.ViewHolder>{

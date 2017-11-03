@@ -1,4 +1,4 @@
-package Utils;
+package Utilities;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class StringParse {
 
-    /* Method that is called within the Utils -> Classes class
+    /* Method that is called within the Utilities -> Classes class
      * when Volley is used to find all of the topics of a class
      */
     public static ArrayList<Topics> parseTopicsVolley(String phpResponse){

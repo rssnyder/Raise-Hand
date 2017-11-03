@@ -20,7 +20,7 @@ import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import android.view.MenuItem;
 
-import Utils.AppCompatPreferenceActivity;
+import Utilities.AppCompatPreferenceActivity;
 import com.example.sae1.raisehand.R;
 
 import java.util.List;

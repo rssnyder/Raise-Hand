@@ -9,9 +9,9 @@ import android.widget.EditText;
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
 
-import Utils.Question;
-import Utils.Topics;
-import Utils.User;
+import Utilities.Question;
+import Utilities.Topics;
+import Utilities.User;
 
 
 /**
@@ -66,7 +66,7 @@ public class MakeQuestion extends AppCompatActivity {
                 temp.setQuestionTitle(inputTitle);
                 //actual text of question that was entered by the user
                 temp.setQuestionDescription(inputDetails);
-                //calls the method from the Question class (in Utils) that adds the question to the database
+                //calls the method from the Question class (in Utilities) that adds the question to the database
                 temp.addQuestionToDatabase();
             }
         });

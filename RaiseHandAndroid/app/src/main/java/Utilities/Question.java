@@ -1,4 +1,4 @@
-package Utils;
+package Utilities;
 
 import android.util.Log;
 import android.widget.Toast;

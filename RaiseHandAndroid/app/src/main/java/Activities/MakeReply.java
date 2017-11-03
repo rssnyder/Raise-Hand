@@ -10,9 +10,9 @@ import android.widget.EditText;
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
 
-import Utils.Question;
-import Utils.Reply;
-import Utils.User;
+import Utilities.Question;
+import Utilities.Reply;
+import Utilities.User;
 
 /**
  * Created by sae1 on 10/29/17.
@@ -64,7 +64,7 @@ public class MakeReply extends AppCompatActivity {
                 temp.setReplyQParent(question);
                 //what the user inputted for the reply text
                 temp.setReply(inputDetails);
-                //calls the method from the Reply class (in Utils) that adds the reply to the database
+                //calls the method from the Reply class (in Utilities) that adds the reply to the database
                 temp.addToDatabase();
             }
         });

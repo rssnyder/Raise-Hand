@@ -2,11 +2,10 @@ package Activities;
 import android.app.ProgressDialog;
 
 import Teacher.TeacherNotifications;
-import Utils.Classes;
-import Utils.Roles;
-import Utils.StringParse;
-import Utils.URLS;
-import Utils.User;
+import Utilities.Roles;
+import Utilities.StringParse;
+import Utilities.URLS;
+import Utilities.User;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -28,9 +27,6 @@ import com.example.sae1.raisehand.R;
 import Student.StudentNotifications;
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
-
-import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * A login screen that offers login via email/password.

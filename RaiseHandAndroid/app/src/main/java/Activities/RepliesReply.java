@@ -27,10 +27,10 @@ import Teacher.TeacherHomePage;
 import Teacher.TeacherNotifications;
 import Teacher.TeacherSettings;
 import Teacher.TeacherStudents;
-import Utils.Reply;
-import Utils.SwipeController;
-import Utils.SwipeControllerActions;
-import Utils.User;
+import Utilities.Reply;
+import Utilities.SwipeController;
+import Utilities.SwipeControllerActions;
+import Utilities.User;
 
 /**
  * Created by jaggarwal on 11/1/17.

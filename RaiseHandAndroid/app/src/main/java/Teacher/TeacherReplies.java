@@ -25,11 +25,11 @@ import java.util.ArrayList;
 import RecyclerViews.MyAdapterReplies;
 import Activities.MakeReply;
 import Activities.LoginActivity;
-import Utils.Question;
-import Utils.Reply;
-import Utils.SwipeController;
-import Utils.SwipeControllerActions;
-import Utils.User;
+import Utilities.Question;
+import Utilities.Reply;
+import Utilities.SwipeController;
+import Utilities.SwipeControllerActions;
+import Utilities.User;
 
 public class TeacherReplies extends AppCompatActivity {
     private RecyclerView recyclerView;

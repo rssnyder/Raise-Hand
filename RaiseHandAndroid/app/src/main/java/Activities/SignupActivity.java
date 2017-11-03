@@ -17,7 +17,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.example.sae1.raisehand.R;
 
-import Utils.URLS;
+import Utilities.URLS;
 
 /**
  * Created by sae1 on 9/27/17.

@@ -10,8 +10,8 @@ import android.widget.EditText;
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
 
-import Utils.Reply;
-import Utils.User;
+import Utilities.Reply;
+import Utilities.User;
 
 /**
  * Created by jaggarwal on 11/1/17.

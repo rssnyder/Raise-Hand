@@ -1,4 +1,4 @@
-package Utils;
+package Utilities;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

@@ -23,9 +23,9 @@ import java.util.List;
 
 import RecyclerViews.MyAdapterClassesStudent;
 import Activities.MakeQuestion;
-import Utils.Classes;
+import Utilities.Classes;
 import Activities.LoginActivity;
-import Utils.User;
+import Utilities.User;
 
 public class StudentClasses extends AppCompatActivity {
     private RecyclerView recyclerView;

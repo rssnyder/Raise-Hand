@@ -21,10 +21,10 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import RecyclerViews.MyAdapterTopicsStudent;
 import Activities.MakeQuestion;
-import Utils.Classes;
+import Utilities.Classes;
 import Activities.LoginActivity;
-import Utils.Topics;
-import Utils.User;
+import Utilities.Topics;
+import Utilities.User;
 
 public class StudentTopics extends AppCompatActivity {
     private String TAG = StudentClasses.class.getSimpleName();
