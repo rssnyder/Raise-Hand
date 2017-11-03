@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import Teacher.TeacherNotifications;
 import Utils.Classes;
 import Utils.Roles;
+import Utils.StringParse;
 import Utils.URLS;
 import Utils.User;
 
@@ -117,58 +118,17 @@ public class LoginActivity extends Activity {
                     public void onResponse(String response) {
                         Log.d(TAG, response.toString());
                         String phpResponse=response.toString();
-                        //in the php file, the user information is stored in an array with : as a delimiter between the variable name and actual value
-                        String[] seperated=phpResponse.split(":");
+                        currentUser = StringParse.parseUserVolley(phpResponse);
+                        if(currentUser!=null) {
+                            Toast.makeText(VolleyMainActivityHandler.getInstance(), "Welcome back, " + currentUser.getFirst_name() + "!", Toast.LENGTH_LONG).show();
 
-                            if(seperated[1].contains("true")) {
-                                //concat strings to make it so that the array is properly read from the php response
-                                String reset = seperated[2];
-                                reset = reset.substring(1, reset.indexOf(",") - 1);
-                                String unique_id = seperated[3];
-                                unique_id = unique_id.substring(1, unique_id.indexOf(",") - 1);
-                                String roleID = seperated[4];
-                                roleID = roleID.substring(1, roleID.indexOf(",") - 1);
-                                String usern = seperated[5];
-                                usern = usern.substring(1, usern.indexOf(",") - 1);
-                                String first = seperated[6];
-                                first = first.substring(1, first.indexOf(",") - 1);
-                                String last = seperated[7];
-                                last = last.substring(1, last.indexOf(",") - 1);
-                                String class_ids = seperated[8];
-                                ArrayList<Classes> classes=new ArrayList<Classes>();
-                                class_ids = class_ids.substring(1, class_ids.indexOf("}"));
-                                Scanner s= new Scanner(class_ids);
-                                s.useDelimiter(",");
-                                while(s.hasNext()) {
-                                    String id = s.next();
-                                    id=id.trim();
-                                    if(id.equals("0")){
-                                        //do nothing, this is not a class, just a place holder
-                                    }
-                                    else{
-                                       Classes c =new Classes("Class", id);
-                                        classes.add(c);
-                                    }
-                                }
-                                Toast.makeText(VolleyMainActivityHandler.getInstance(), "Welcome back, " + first + "!", Toast.LENGTH_LONG).show();
-                                currentUser = new User(reset, unique_id, roleID, usern, first, last, classes, true);
-
-                                //store the user info on login
-                                SharedPreferences.Editor editor = mPreferences.edit();
-                                Gson gson = new Gson();
-                                String json = gson.toJson(currentUser);
-                                editor.putString("currentUser", json);
-
-                                editor.putString("reset", reset);
-                                editor.putString("username", usern);
-                                editor.putString("role", roleID);
-                                editor.putString("unique_id", unique_id);
-                                editor.putString("first_name", first);
-                                editor.putString("last_name", last);
-                                editor.commit();
-
-
-                            }
+                            //store the user info on login
+                            SharedPreferences.Editor editor = mPreferences.edit();
+                            Gson gson = new Gson();
+                            String json = gson.toJson(currentUser);
+                            editor.putString("currentUser", json);
+                            editor.commit();
+                        }
                         else {
                             Toast.makeText(VolleyMainActivityHandler.getInstance(), "Logged In Failed", Toast.LENGTH_LONG).show();
                         }

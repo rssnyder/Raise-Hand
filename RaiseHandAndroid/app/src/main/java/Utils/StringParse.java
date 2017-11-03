@@ -1,12 +1,19 @@
 package Utils;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
- * Created by sae1 on 11/3/17.
+ * Created by sae1 on 11/3/17 to clean up the code and
+ * make it so that all of the string parsing is handled in this
+ * file instead of making all of the classes messy
  */
 
 public class StringParse {
+
+    /* Method that is called within the Utils -> Classes class
+     * when Volley is used to find all of the topics of a class
+     */
     public static ArrayList<Topics> parseTopicsVolley(String phpResponse){
             ArrayList<Topics> topics=new ArrayList<>();
             String[] seperated=phpResponse.split(" ");
@@ -262,4 +269,42 @@ public class StringParse {
         return topics;
     }
 
+    public static User parseUserVolley(String phpResponse){
+
+        String[] seperated=phpResponse.split(":");
+
+        if(seperated[1].contains("true")) {
+            //concat strings to make it so that the array is properly read from the php response
+            String reset = seperated[2];
+            reset = reset.substring(1, reset.indexOf(",") - 1);
+            String unique_id = seperated[3];
+            unique_id = unique_id.substring(1, unique_id.indexOf(",") - 1);
+            String roleID = seperated[4];
+            roleID = roleID.substring(1, roleID.indexOf(",") - 1);
+            String usern = seperated[5];
+            usern = usern.substring(1, usern.indexOf(",") - 1);
+            String first = seperated[6];
+            first = first.substring(1, first.indexOf(",") - 1);
+            String last = seperated[7];
+            last = last.substring(1, last.indexOf(",") - 1);
+            String class_ids = seperated[8];
+            ArrayList<Classes> classes = new ArrayList<Classes>();
+            class_ids = class_ids.substring(1, class_ids.indexOf("}"));
+            Scanner s = new Scanner(class_ids);
+            s.useDelimiter(",");
+            while (s.hasNext()) {
+                String id = s.next();
+                id = id.trim();
+                if (id.equals("0")) {
+                    //do nothing, this is not a class, just a place holder
+                } else {
+                    Classes c = new Classes("Class", id);
+                    classes.add(c);
+                }
+            }
+            User temp= new User(reset,unique_id,roleID,usern,first,last,classes,true);
+            return temp;
+        }
+       return null;
+    }
 }
