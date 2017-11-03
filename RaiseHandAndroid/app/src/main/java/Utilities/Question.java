@@ -167,7 +167,7 @@ public class Question {
 
         //Username
         String username=this.username;
-        String url=URLS.URL_QUESTIONS+"?desc="+desc+"&title="+title+"&OID="+OID+"&username="+username+"&TID="+parent.get_ID();
+        String url=URLS.URL_QUESTIONS+"?desc="+desc+"&title="+title+"&OID="+OID+"&username="+username+"&TID="+parent.getID();
         StringRequest req = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override

@@ -40,8 +40,8 @@ public class MyAdapterTopics extends RecyclerView.Adapter<MyAdapterTopics.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Topics listItem = listItems.get(position);
 
-        holder.textViewHead.setText(listItem.get_title());
-        holder.textViewDesc.setText(listItem.get_description());
+        holder.textViewHead.setText(listItem.getTitle());
+        holder.textViewDesc.setText(listItem.getDescription());
         Gson gson2 = new Gson();
         final String topic = gson2.toJson(listItem);
 
@@ -51,11 +51,11 @@ public class MyAdapterTopics extends RecyclerView.Adapter<MyAdapterTopics.ViewHo
             public void onClick(View view) {
                 // go to the topics' questions
                 Intent teacherQuestions = new Intent(context.getApplicationContext(), TeacherQuestions.class);
-                teacherQuestions.putExtra("topicsID", listItem.get_ID());
+                teacherQuestions.putExtra("topicsID", listItem.getID());
                 teacherQuestions.putExtra("topic", topic);
                 // pass topic ID to the question activity
                 Bundle bundle = new Bundle();
-                bundle.putString("topicsID", listItem.get_ID());
+                bundle.putString("topicsID", listItem.getID());
                 bundle.putString("topic", topic);
                 context.getApplicationContext().startActivity(teacherQuestions);
             }

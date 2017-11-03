@@ -25,7 +25,7 @@ public class StringParse {
                     //NEWTOPIC indicates the start of a new topic, make a new topic object
                     Topics tempTopic= new Topics();
                     ArrayList<Question> q= new ArrayList<Question>();
-                    tempTopic.set_questions(q);
+                    tempTopic.setQuestions(q);
                     i++;
                     while(i<max && !(seperated[i].equals("NEWTOPIC"))) {
                         if(i<max && seperated[i].equals("CREATETIME")){
@@ -36,7 +36,7 @@ public class StringParse {
                                 Time=Time+" "+seperated[i];
                                 i++;
                             }
-                            tempTopic.set_time(Time);
+                            tempTopic.setTime(Time);
                         }
                         if(i<max && seperated[i].equals("TOPICNAME")){
                             i++;
@@ -45,7 +45,7 @@ public class StringParse {
                                 Topic=Topic+" "+seperated[i];
                                 i++;
                             }
-                            tempTopic.set_title(Topic);
+                            tempTopic.setTitle(Topic);
                         }
                         if(i<max && seperated[i].equals("ID")){
                             //id of the topics
@@ -54,7 +54,7 @@ public class StringParse {
                                 //do nothing
                             }
                             else {
-                                tempTopic.set_ID(seperated[i]);
+                                tempTopic.setID(seperated[i]);
                                 i++;
                             }
                         }
@@ -65,7 +65,7 @@ public class StringParse {
                                 Description=Description+" "+seperated[i];
                                 i++;
                             }
-                            tempTopic.set_description(Description);
+                            tempTopic.setDescription(Description);
                         }
                         //TODO: Figure out what this isn't working
                         if(i<max && seperated[i].equals("NEWQUESTION")) {

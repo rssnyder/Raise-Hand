@@ -71,7 +71,7 @@ public class StudentQuestions extends AppCompatActivity {
         // Get the Topic that the user clicked on,
         // then the questions in that topic.
         final Topics usersTopic = currentUser.getSingleTopic(topicID);
-        ArrayList<Question> topicQuestions = usersTopic.get_questions();
+        ArrayList<Question> topicQuestions = usersTopic.getQuestions();
 
         listItems = topicQuestions;
         /*

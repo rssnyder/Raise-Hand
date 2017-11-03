@@ -68,7 +68,7 @@ public class User {
     public Topics getSingleTopic(String topicID){
         for(Classes c : classes){
             for(Topics t : c.getTopics()){
-                if(t.get_ID().equals(topicID)){
+                if(t.getID().equals(topicID)){
                     return t;
                 }
             }
@@ -79,7 +79,7 @@ public class User {
     public Question getSingleQuestion(String questionID) {
         for (Classes c : classes) {
             for (Topics t : c.getTopics()) {
-                for (Question q : t.get_questions()) {
+                for (Question q : t.getQuestions()) {
                     if(q.getQuestionID().equals(questionID)){
                         return q;
                     }
@@ -92,7 +92,7 @@ public class User {
     public Reply getSingleReply(String replyID) {
         for (Classes c : classes) {
             for (Topics t : c.getTopics()) {
-                for (Question q : t.get_questions()){
+                for (Question q : t.getQuestions()){
                     for (Reply r : q.getReplies()) {
                         if (r.getReplyID().equals(replyID)){
                             return r;
