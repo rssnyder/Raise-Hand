@@ -108,9 +108,6 @@ public class TeacherReplies extends AppCompatActivity {
                 Intent makeReply = new Intent(getApplicationContext().getApplicationContext(), MakeReply.class);
                 makeReply.putExtra("questionID", questionID);
                 makeReply.putExtra("question", question);
-                Bundle bun = new Bundle();
-                bun.putString("questionID", questionID);
-                bun.putString("question", question);
                 startActivity(makeReply);
             }
         });
