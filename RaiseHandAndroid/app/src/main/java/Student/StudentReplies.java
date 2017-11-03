@@ -1,7 +1,9 @@
-package com.example.sae1.raisehand;
+package Student;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.ViewDragHelper;
@@ -12,46 +14,63 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.example.sae1.raisehand.R;
+import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.List;
 
-import RecyclerViews.ListItemTeacherNotifications;
-import RecyclerViews.MyAdapterNotifications;
-import utils.LoginActivity;
+import RecyclerViews.MyAdapterRepliesStudent;
+import Activities.MakeQuestion;
+import Activities.MakeReply;
+import Activities.LoginActivity;
+import Utils.Question;
+import Utils.Reply;
+import Utils.User;
 
-public class StudentNotifications extends AppCompatActivity {
-
+public class StudentReplies extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private List<ListItemTeacherNotifications> listItems;
+    private ArrayList<Reply> listItems;
+    private Field mDragger;
+
+    private SharedPreferences mPreferences;
+
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
-    private Toolbar mToolbar;
     private NavigationView nv;
-    private Field mDragger;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_notifications);
+        setContentView(R.layout.activity_student_replies);
 
-        recyclerView = (RecyclerView) findViewById(R.id.notificationRecyclerView);
+        //get question ID with a bundle
+        Bundle bundle = getIntent().getExtras();
+        final String questionID = bundle.getString("questionID");
+
+        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+
+        mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
+
+        recyclerView = (RecyclerView) findViewById(R.id.repliesRecyclerViewStudent);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        listItems = new ArrayList<>();
-        for(int i = 0; i < 10; i++){
-            ListItemTeacherNotifications listItem = new ListItemTeacherNotifications("Notification " + (i+1),
-                    "Dummy text. I'm here to notify you!");
-            listItems.add(listItem);
-        }
+        Gson gson = new Gson();
+        String json = mPreferences.getString("currentUser", "");
+        User currentUser = gson.fromJson(json, User.class);
 
+        // Get the question the user clicked on,
+        // then the replies in that question.
+        final Question userQuestion = currentUser.getSingleQuestion(questionID);
+        listItems=userQuestion.getReplies();
 
-
-        adapter = new MyAdapterNotifications(listItems, this);
+        adapter = new MyAdapterRepliesStudent(listItems, this);
 
         recyclerView.setAdapter(adapter);
 
@@ -63,9 +82,23 @@ public class StudentNotifications extends AppCompatActivity {
 
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
-
-        slideOutMenu();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        final String question = gson.toJson(userQuestion);
+
+        // Go to make a new question page on FAB click
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent makeReply = new Intent(getApplicationContext().getApplicationContext(), MakeReply.class);
+                makeReply.putExtra("questionID", questionID);
+                makeReply.putExtra("question", question);
+                Bundle bun = new Bundle();
+                bun.putString("topicID", questionID);
+                bun.putString("topic", question);
+                startActivity(makeReply);
+            }
+        });
 
         nv = (NavigationView) findViewById(R.id.nv1);
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -77,11 +110,15 @@ public class StudentNotifications extends AppCompatActivity {
                         startActivity(studentHome);
                         break;
                     case (R.id.nav_classes):
-                        Intent studentClasses = new Intent(getApplicationContext(), StudentClasses.class);
-                        startActivity(studentClasses);
+                        mDrawerLayout.closeDrawers();
                         break;
                     case (R.id.nav_notifications):
-                        mDrawerLayout.closeDrawers();
+                        Intent studentNotifications = new Intent(getApplicationContext(), StudentNotifications.class);
+                        startActivity(studentNotifications);
+                        break;
+                    case (R.id.nav_question):
+                        Intent studentQuestion = new Intent(getApplicationContext(), MakeQuestion.class);
+                        startActivity(studentQuestion);
                         break;
                     case (R.id.nav_settings):
                         Intent studentSettings = new Intent(getApplicationContext(), StudentSettings.class);
@@ -96,9 +133,7 @@ public class StudentNotifications extends AppCompatActivity {
                 return true;
             }
         });
-
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -149,4 +184,3 @@ public class StudentNotifications extends AppCompatActivity {
         }
     }
 }
-

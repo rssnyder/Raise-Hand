@@ -1,4 +1,4 @@
-package app;
+package Teacher;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -9,12 +9,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-
 import com.example.sae1.raisehand.R;
 
-import utils.LoginActivity;
+import Activities.LoginActivity;
 
-public class TeacherSettings extends AppCompatActivity {
+
+public class TeacherHomePage extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
@@ -24,7 +24,7 @@ public class TeacherSettings extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teacher_settings);
+        setContentView(R.layout.activity_teacher_home_page);
 
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
@@ -43,8 +43,7 @@ public class TeacherSettings extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case(R.id.nav_home):
-                        Intent teacherHome = new Intent(getApplicationContext(), TeacherHomePage.class);
-                        startActivity(teacherHome);
+                        mDrawerLayout.closeDrawers();
                         break;
                     case (R.id.nav_classes):
                         Intent teacherClasses = new Intent(getApplicationContext(), TeacherClasses.class);
@@ -59,11 +58,8 @@ public class TeacherSettings extends AppCompatActivity {
                         startActivity(teacherStudents);
                         break;
                     case (R.id.nav_settings):
-                        mDrawerLayout.closeDrawers();
-                        break;
-                    case (R.id.nav_question):
-                        Intent teacherQuestion = new Intent(getApplicationContext(), MakeQuestion.class);
-                        startActivity(teacherQuestion);
+                        Intent teacherSettings = new Intent(getApplicationContext(), TeacherSettings.class);
+                        startActivity(teacherSettings);
                         break;
 
                     case (R.id.nav_logout):
@@ -75,7 +71,6 @@ public class TeacherSettings extends AppCompatActivity {
                 return true;
             }
         });
-
     }
 
     @Override
@@ -87,5 +82,4 @@ public class TeacherSettings extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 }

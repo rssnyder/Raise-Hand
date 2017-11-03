@@ -1,4 +1,4 @@
-package utils;
+package Utils;
 
 import android.util.Log;
 import com.android.volley.Request;
@@ -7,7 +7,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import java.util.ArrayList;
-import app.MainActivity;
+import Activities.VolleyMainActivityHandler;
 
 /**
  * Created by sae1 on 10/9/17
@@ -82,7 +82,7 @@ public class Classes {
         );
         // Adding request to request queue
         Log.d(TAG, "Size of topics (outside of volley): " + topics.size());
-        MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
+        VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
         //return topics;
     }
 

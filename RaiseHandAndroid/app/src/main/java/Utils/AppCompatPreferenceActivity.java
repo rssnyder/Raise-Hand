@@ -1,4 +1,4 @@
-package com.example.sae1.raisehand;
+package Utils;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

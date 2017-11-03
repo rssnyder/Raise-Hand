@@ -15,12 +15,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.sae1.raisehand.R;
-import com.example.sae1.raisehand.StudentQuestions;
+import Student.StudentQuestions;
 import com.google.gson.Gson;
 
 import java.util.List;
 
-import utils.Topics;
+import Utils.Topics;
 
 public class MyAdapterTopicsStudent extends RecyclerView.Adapter<MyAdapterTopicsStudent.ViewHolder> {
 

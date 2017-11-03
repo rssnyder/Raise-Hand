@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="app.MainActivity"
+        android:name="Activities.VolleyMainActivityHandler"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="utils.LoginActivity"
+            android:name="Activities.LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,27 +25,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="app.TeacherClasses" />
-        <activity android:name="app.TeacherHomePage" />
-        <activity android:name="app.TeacherNotifications" />
-        <activity android:name="app.TeacherSettings" />
-        <activity android:name="app.TeacherStudents" />
-        <activity android:name="app.TeacherQuestions" />
-        <activity android:name="app.TeacherTopics" />
-        <activity android:name="utils.SignupActivity" />
-        <activity android:name=".StudentNotifications" />
-        <activity android:name=".StudentSettings" />
-        <activity android:name=".StudentClasses" />
-        <activity android:name=".StudentHomePage" />
+        <activity android:name="Teacher.TeacherClasses" />
+        <activity android:name="Teacher.TeacherHomePage" />
+        <activity android:name="Teacher.TeacherNotifications" />
+        <activity android:name="Teacher.TeacherSettings" />
+        <activity android:name="Teacher.TeacherStudents" />
+        <activity android:name="Teacher.TeacherQuestions" />
+        <activity android:name="Teacher.TeacherTopics" />
+        <activity android:name="Activities.SignupActivity" />
+        <activity android:name="Student.StudentNotifications" />
+        <activity android:name="Student.StudentSettings" />
+        <activity android:name="Student.StudentClasses" />
+        <activity android:name="Student.StudentHomePage" />
         <!-- <activity android:name="utils.QuestionActivity"></activity> -->
-        <activity android:name=".StudentTopics" />
-        <activity android:name=".StudentQuestions" />
-        <activity android:name="app.MakeQuestion" />
-        <activity android:name="app.MakeReply"></activity>
-        <activity android:name="app.TeacherReplies"></activity>
-        <activity android:name=".StudentReplies"></activity>
-        <activity android:name="app.RepliesReply"></activity>
-        <activity android:name="app.MakeReplyReply"></activity>
+        <activity android:name="Student.StudentTopics" />
+        <activity android:name="Student.StudentQuestions" />
+        <activity android:name="Activities.MakeQuestion" />
+        <activity android:name="Activities.MakeReply"></activity>
+        <activity android:name="Teacher.TeacherReplies"></activity>
+        <activity android:name="Student.StudentReplies"></activity>
+        <activity android:name="Activities.RepliesReply"></activity>
+        <activity android:name="Activities.MakeReplyReply"></activity>
     </application>
 
 </manifest>

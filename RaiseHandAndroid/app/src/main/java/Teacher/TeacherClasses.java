@@ -1,9 +1,8 @@
-package com.example.sae1.raisehand;
+package Teacher;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.ViewDragHelper;
@@ -14,29 +13,24 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
-
+import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.List;
+import RecyclerViews.MyAdapterClasses;
+import Activities.MakeQuestion;
+import Utils.Classes;
+import Activities.LoginActivity;
+import Utils.User;
 
-import RecyclerViews.MyAdapterRepliesStudent;
-import app.MakeQuestion;
-import app.MakeReply;
-import utils.LoginActivity;
-import utils.Question;
-import utils.Reply;
-import utils.User;
-
-public class StudentReplies extends AppCompatActivity {
+public class TeacherClasses extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private ArrayList<Reply> listItems;
+    private List<Classes> listItems;
     private Field mDragger;
-
     private SharedPreferences mPreferences;
-
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
@@ -46,30 +40,26 @@ public class StudentReplies extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_replies);
-
-        //get question ID with a bundle
-        Bundle bundle = getIntent().getExtras();
-        final String questionID = bundle.getString("questionID");
-
-        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+        setContentView(R.layout.activity_teacher_classes);
 
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
 
-        recyclerView = (RecyclerView) findViewById(R.id.repliesRecyclerViewStudent);
+        // Set up recycler view
+        recyclerView = (RecyclerView) findViewById(R.id.classesRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // list to hold items for recycler view.
+        // i.e. The classes the teacher is in
+        listItems = new ArrayList<>();
 
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
         User currentUser = gson.fromJson(json, User.class);
+        listItems = currentUser.get_classes();
 
-        // Get the question the user clicked on,
-        // then the replies in that question.
-        final Question userQuestion = currentUser.getSingleQuestion(questionID);
-        listItems=userQuestion.getReplies();
 
-        adapter = new MyAdapterRepliesStudent(listItems, this);
+        adapter = new MyAdapterClasses(listItems, this);
 
         recyclerView.setAdapter(adapter);
 
@@ -81,48 +71,40 @@ public class StudentReplies extends AppCompatActivity {
 
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
+
+        slideOutMenu();
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        final String question = gson.toJson(userQuestion);
-
-        // Go to make a new question page on FAB click
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent makeReply = new Intent(getApplicationContext().getApplicationContext(), MakeReply.class);
-                makeReply.putExtra("questionID", questionID);
-                makeReply.putExtra("question", question);
-                Bundle bun = new Bundle();
-                bun.putString("topicID", questionID);
-                bun.putString("topic", question);
-                startActivity(makeReply);
-            }
-        });
 
         nv = (NavigationView) findViewById(R.id.nv1);
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case(R.id.nav_home_student):
-                        Intent studentHome = new Intent(getApplicationContext(), StudentHomePage.class);
-                        startActivity(studentHome);
+                    case(R.id.nav_home):
+                        Intent teacherHome = new Intent(getApplicationContext(), TeacherHomePage.class);
+                        startActivity(teacherHome);
                         break;
                     case (R.id.nav_classes):
                         mDrawerLayout.closeDrawers();
                         break;
                     case (R.id.nav_notifications):
-                        Intent studentNotifications = new Intent(getApplicationContext(), StudentNotifications.class);
-                        startActivity(studentNotifications);
+                        Intent teacherNotifications = new Intent(getApplicationContext(), TeacherNotifications.class);
+                        startActivity(teacherNotifications);
                         break;
-                    case (R.id.nav_question):
-                        Intent studentQuestion = new Intent(getApplicationContext(), MakeQuestion.class);
-                        startActivity(studentQuestion);
+                    case (R.id.nav_students):
+                        Intent teacherStudents = new Intent(getApplicationContext(), TeacherStudents.class);
+                        startActivity(teacherStudents);
                         break;
                     case (R.id.nav_settings):
-                        Intent studentSettings = new Intent(getApplicationContext(), StudentSettings.class);
-                        startActivity(studentSettings);
+                        Intent teacherSettings = new Intent(getApplicationContext(), TeacherSettings.class);
+                        startActivity(teacherSettings);
                         break;
+                    case (R.id.nav_question):
+                        Intent teacherQuestion = new Intent(getApplicationContext(), MakeQuestion.class);
+                        startActivity(teacherQuestion);
+                        break;
+
                     case (R.id.nav_logout):
                         Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(loginPage);
@@ -132,6 +114,8 @@ public class StudentReplies extends AppCompatActivity {
                 return true;
             }
         });
+
+
     }
 
     @Override
@@ -182,4 +166,6 @@ public class StudentReplies extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
 }

@@ -1,4 +1,4 @@
-package utils;
+package Activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +17,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.example.sae1.raisehand.R;
 
-import app.MainActivity;
+import Utils.URLS;
 
 /**
  * Created by sae1 on 9/27/17.
@@ -81,7 +81,7 @@ public class SignupActivity extends AppCompatActivity {
             email_user = email.substring(0, email.indexOf("@"));
             isValidSignUp = true;
         } catch(StringIndexOutOfBoundsException e){
-            Toast.makeText(MainActivity.getInstance(), "Please enter a valid email address", Toast.LENGTH_LONG).show();
+            Toast.makeText(VolleyMainActivityHandler.getInstance(), "Please enter a valid email address", Toast.LENGTH_LONG).show();
             isValidSignUp = false;
         }
         final String email_domain=email.substring(email.indexOf("@")+1);
@@ -94,7 +94,7 @@ public class SignupActivity extends AppCompatActivity {
         }
 
         else{
-            Toast.makeText(MainActivity.getInstance(), "Passwords do not match", Toast.LENGTH_SHORT).show();
+            Toast.makeText(VolleyMainActivityHandler.getInstance(), "Passwords do not match", Toast.LENGTH_SHORT).show();
             PasswordConfirm.setText("");
             Password.setText("");
         }
@@ -103,10 +103,10 @@ public class SignupActivity extends AppCompatActivity {
 
         if(!allFieldsFilled){
             isValidSignUp = false;
-            Toast.makeText(MainActivity.getInstance(), "Please fill out all fields", Toast.LENGTH_LONG).show();
+            Toast.makeText(VolleyMainActivityHandler.getInstance(), "Please fill out all fields", Toast.LENGTH_LONG).show();
         }
         if((email_domain.isEmpty() || !email_domain.contains(".")) && allFieldsFilled){
-            Toast.makeText(MainActivity.getInstance(), "Please enter a valid email address", Toast.LENGTH_LONG).show();
+            Toast.makeText(VolleyMainActivityHandler.getInstance(), "Please enter a valid email address", Toast.LENGTH_LONG).show();
             isValidSignUp = false;
         }
 
@@ -140,11 +140,11 @@ public class SignupActivity extends AppCompatActivity {
                                                           String phpResponse = response.toString();
                                                           //in the php file, the user information is stored in an array with : as a delimiter between the variable name and actual value
                                                           if (phpResponse.contains("User exists")) {
-                                                              Toast.makeText(MainActivity.getInstance(), "User exists, please try again", Toast.LENGTH_LONG).show();
+                                                              Toast.makeText(VolleyMainActivityHandler.getInstance(), "User exists, please try again", Toast.LENGTH_LONG).show();
                                                           } else if (phpResponse.contains("Done")) {
-                                                              Toast.makeText(MainActivity.getInstance(), "Success: user created", Toast.LENGTH_LONG).show();
+                                                              Toast.makeText(VolleyMainActivityHandler.getInstance(), "Success: user created", Toast.LENGTH_LONG).show();
                                                           } else {
-                                                              Toast.makeText(MainActivity.getInstance(), "Error", Toast.LENGTH_LONG).show();
+                                                              Toast.makeText(VolleyMainActivityHandler.getInstance(), "Error", Toast.LENGTH_LONG).show();
                                                           }
                                                       }
                                                   }, new Response.ErrorListener() {
@@ -155,7 +155,7 @@ public class SignupActivity extends AppCompatActivity {
             }
             );
             // Adding request to request queue
-            MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
+            VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
         }
     }
     public void universityID(String result){

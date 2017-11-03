@@ -1,4 +1,4 @@
-package utils;
+package Utils;
 
 import android.util.Log;
 import android.widget.Toast;
@@ -10,7 +10,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 
 import java.util.ArrayList;
-import app.MainActivity;
+import Activities.VolleyMainActivityHandler;
 
 /**
  * Created by sae1 on 10/4/17.
@@ -177,9 +177,9 @@ public class Question {
                         String phpResponse = response.toString();
                         //in the php file, the user information is stored in an array with : as a delimiter between the variable name and actual value
                         if (phpResponse.contains("Done")) {
-                            Toast.makeText(MainActivity.getInstance(), "Success: question added", Toast.LENGTH_LONG).show();
+                            Toast.makeText(VolleyMainActivityHandler.getInstance(), "Success: question added", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(MainActivity.getInstance(), "Error", Toast.LENGTH_LONG).show();
+                            Toast.makeText(VolleyMainActivityHandler.getInstance(), "Error", Toast.LENGTH_LONG).show();
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -190,7 +190,7 @@ public class Question {
         }
         );
         // Adding request to request queue
-        MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
+        VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
 
     }
 
@@ -205,9 +205,9 @@ public class Question {
                         String phpResponse = response.toString();
                         //in the php file, the user information is stored in an array with : as a delimiter between the variable name and actual value
                         if (phpResponse.contains("Done")) {
-                            Toast.makeText(MainActivity.getInstance(), "Success: upvote completed", Toast.LENGTH_LONG).show();
+                            Toast.makeText(VolleyMainActivityHandler.getInstance(), "Success: upvote completed", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(MainActivity.getInstance(), "Error", Toast.LENGTH_LONG).show();
+                            Toast.makeText(VolleyMainActivityHandler.getInstance(), "Error", Toast.LENGTH_LONG).show();
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -218,7 +218,7 @@ public class Question {
         }
         );
         // Adding request to request queue
-        MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
+        VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
     }
 
     public void endorse(){
@@ -232,9 +232,9 @@ public class Question {
                         String phpResponse = response.toString();
                         //in the php file, the user information is stored in an array with : as a delimiter between the variable name and actual value
                         if (phpResponse.contains("Done")) {
-                            Toast.makeText(MainActivity.getInstance(), "Success: endorsement completed", Toast.LENGTH_LONG).show();
+                            Toast.makeText(VolleyMainActivityHandler.getInstance(), "Success: endorsement completed", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(MainActivity.getInstance(), "Error", Toast.LENGTH_LONG).show();
+                            Toast.makeText(VolleyMainActivityHandler.getInstance(), "Error", Toast.LENGTH_LONG).show();
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -245,7 +245,7 @@ public class Question {
         }
         );
         // Adding request to request queue
-        MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
+        VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
     }
 
 }

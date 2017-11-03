@@ -16,8 +16,8 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
-import app.TeacherReplies;
-import utils.Question;
+import Teacher.TeacherReplies;
+import Utils.Question;
 
 public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.ViewHolder> {
 

@@ -1,4 +1,4 @@
-package com.example.sae1.raisehand;
+package Student;
 
 
 import android.annotation.TargetApi;
@@ -19,6 +19,9 @@ import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import android.view.MenuItem;
+
+import Utils.AppCompatPreferenceActivity;
+import com.example.sae1.raisehand.R;
 
 import java.util.List;
 

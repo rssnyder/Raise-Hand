@@ -1,13 +1,13 @@
-package app;
+package Student;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.ViewDragHelper;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -19,37 +19,41 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-import RecyclerViews.ListItemTeacherStudents;
-import RecyclerViews.MyAdapterStudents;
-import utils.LoginActivity;
+import RecyclerViews.ListItemTeacherNotifications;
+import RecyclerViews.MyAdapterNotifications;
+import Activities.LoginActivity;
 
-public class TeacherStudents extends AppCompatActivity {
+public class StudentNotifications extends AppCompatActivity {
+
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private List<ListItemTeacherStudents> listItems;
-    private Field mDragger;
+    private List<ListItemTeacherNotifications> listItems;
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
-    private NavigationView nv;
     private Toolbar mToolbar;
+    private NavigationView nv;
+    private Field mDragger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teacher_students);
+        setContentView(R.layout.activity_student_notifications);
 
-        recyclerView = (RecyclerView) findViewById(R.id.studentsRecyclerView);
+        recyclerView = (RecyclerView) findViewById(R.id.notificationRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         listItems = new ArrayList<>();
-        for(int i = 0; i < 100; i++){
-            ListItemTeacherStudents listItem = new ListItemTeacherStudents("Student " + (i + 1),
-                                                                         "This student is in your class!");
+        for(int i = 0; i < 10; i++){
+            ListItemTeacherNotifications listItem = new ListItemTeacherNotifications("Notification " + (i+1),
+                    "Dummy text. I'm here to notify you!");
             listItems.add(listItem);
         }
-        adapter = new MyAdapterStudents(listItems, this);
+
+
+
+        adapter = new MyAdapterNotifications(listItems, this);
 
         recyclerView.setAdapter(adapter);
 
@@ -63,7 +67,6 @@ public class TeacherStudents extends AppCompatActivity {
         mToggle.syncState();
 
         slideOutMenu();
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         nv = (NavigationView) findViewById(R.id.nv1);
@@ -71,30 +74,21 @@ public class TeacherStudents extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case(R.id.nav_home):
-                        Intent teacherHome = new Intent(getApplicationContext(), TeacherHomePage.class);
-                        startActivity(teacherHome);
+                    case(R.id.nav_home_student):
+                        Intent studentHome = new Intent(getApplicationContext(), StudentHomePage.class);
+                        startActivity(studentHome);
                         break;
                     case (R.id.nav_classes):
-                        Intent teacherClasses = new Intent(getApplicationContext(), TeacherClasses.class);
-                        startActivity(teacherClasses);
+                        Intent studentClasses = new Intent(getApplicationContext(), StudentClasses.class);
+                        startActivity(studentClasses);
                         break;
                     case (R.id.nav_notifications):
-                        Intent teacherNotifications = new Intent(getApplicationContext(), TeacherNotifications.class);
-                        startActivity(teacherNotifications);
-                        break;
-                    case (R.id.nav_students):
                         mDrawerLayout.closeDrawers();
                         break;
                     case (R.id.nav_settings):
-                        Intent teacherSettings = new Intent(getApplicationContext(), TeacherSettings.class);
-                        startActivity(teacherSettings);
+                        Intent studentSettings = new Intent(getApplicationContext(), StudentSettings.class);
+                        startActivity(studentSettings);
                         break;
-                    case (R.id.nav_question):
-                        Intent teacherQuestion = new Intent(getApplicationContext(), MakeQuestion.class);
-                        startActivity(teacherQuestion);
-                        break;
-
                     case (R.id.nav_logout):
                         Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(loginPage);
@@ -105,8 +99,8 @@ public class TeacherStudents extends AppCompatActivity {
             }
         });
 
-
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -157,3 +151,4 @@ public class TeacherStudents extends AppCompatActivity {
         }
     }
 }
+

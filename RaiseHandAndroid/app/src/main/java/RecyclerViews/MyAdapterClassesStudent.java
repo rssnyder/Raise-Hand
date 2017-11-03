@@ -16,11 +16,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.sae1.raisehand.R;
-import com.example.sae1.raisehand.StudentTopics;
+import Student.StudentTopics;
 
 import java.util.List;
 
-import utils.Classes;
+import Utils.Classes;
 
 
 public class MyAdapterClassesStudent extends RecyclerView.Adapter<MyAdapterClassesStudent.ViewHolder>{

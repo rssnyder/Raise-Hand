@@ -1,4 +1,4 @@
-package com.example.sae1.raisehand;
+package Student;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
@@ -21,10 +22,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import RecyclerViews.MyAdapterClassesStudent;
-import app.MakeQuestion;
-import utils.Classes;
-import utils.LoginActivity;
-import utils.User;
+import Activities.MakeQuestion;
+import Utils.Classes;
+import Activities.LoginActivity;
+import Utils.User;
 
 public class StudentClasses extends AppCompatActivity {
     private RecyclerView recyclerView;

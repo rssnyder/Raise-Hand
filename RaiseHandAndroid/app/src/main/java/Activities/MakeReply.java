@@ -1,4 +1,4 @@
-package app;
+package Activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,9 +10,9 @@ import android.widget.EditText;
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
 
-import utils.Question;
-import utils.Reply;
-import utils.User;
+import Utils.Question;
+import Utils.Reply;
+import Utils.User;
 
 /**
  * Created by sae1 on 10/29/17.

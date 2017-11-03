@@ -1,81 +1,58 @@
-package app;
+package Teacher;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.ViewDragHelper;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.example.sae1.raisehand.R;
-import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.List;
 
-import RecyclerViews.MyAdapterTopics;
-import utils.Classes;
-import utils.LoginActivity;
-import utils.Topics;
-import utils.User;
+import RecyclerViews.ListItemTeacherNotifications;
+import RecyclerViews.MyAdapterNotifications;
+import Activities.MakeQuestion;
+import Activities.LoginActivity;
 
-public class TeacherTopics extends AppCompatActivity {
-    private String TAG = TeacherTopics.class.getSimpleName();
+public class TeacherNotifications extends AppCompatActivity {
+
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private ArrayList<Topics> listItems;
-    private Field mDragger;
-
-    private SharedPreferences mPreferences;
+    private List<ListItemTeacherNotifications> listItems;
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
-    private NavigationView nv;
     private Toolbar mToolbar;
+    private NavigationView nv;
+    private Field mDragger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teacher_topics);
+        setContentView(R.layout.activity_teacher_notifications);
 
-        Bundle bundle = getIntent().getExtras();
-        String classID = bundle.getString("classID");
-
-        mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
-
-        // Set up recycler view
-        recyclerView = (RecyclerView) findViewById(R.id.topicsRecyclerView);
+        recyclerView = (RecyclerView) findViewById(R.id.notificationRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // list to hold items for recycler view.
-        // i.e. The topics in the class
-        listItems = new ArrayList<Topics>();
-
-        Gson gson = new Gson();
-        String json = mPreferences.getString("currentUser", "");
-        User currentUser = gson.fromJson(json, User.class);
-
-        // loop until you find the Topics from the class you clicked on in TeacherClasses
-        // Can probably do this with the getSingleClass method
-        for(Classes c : currentUser.get_classes()){
-            if(c.getClassID().equals(classID)){
-                for (Topics t: c.getTopics()) {
-                    listItems.add(t);
-                }
-                break;
-            }
+        listItems = new ArrayList<>();
+        for(int i = 0; i < 10; i++){
+            ListItemTeacherNotifications listItem = new ListItemTeacherNotifications("Notification " + (i+1),
+                                                                                     "Dummy text. I'm here to notify you!");
+            listItems.add(listItem);
         }
 
-        adapter = new MyAdapterTopics(listItems, this);
+        adapter = new MyAdapterNotifications(listItems, this);
 
         recyclerView.setAdapter(adapter);
 
@@ -106,8 +83,7 @@ public class TeacherTopics extends AppCompatActivity {
                         startActivity(teacherClasses);
                         break;
                     case (R.id.nav_notifications):
-                        Intent teacherNotifications = new Intent(getApplicationContext(), TeacherNotifications.class);
-                        startActivity(teacherNotifications);
+                        mDrawerLayout.closeDrawers();
                         break;
                     case (R.id.nav_students):
                         Intent teacherStudents = new Intent(getApplicationContext(), TeacherStudents.class);
@@ -117,23 +93,22 @@ public class TeacherTopics extends AppCompatActivity {
                         Intent teacherSettings = new Intent(getApplicationContext(), TeacherSettings.class);
                         startActivity(teacherSettings);
                         break;
-                    case (R.id.nav_question):
-                        Intent teacherQuestion = new Intent(getApplicationContext(), MakeQuestion.class);
-                        startActivity(teacherQuestion);
-                        break;
-
                     case (R.id.nav_logout):
                         Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(loginPage);
                         finish();
+                        break;
+                    case (R.id.nav_question):
+                        Intent teacherQuestion = new Intent(getApplicationContext(), MakeQuestion.class);
+                        startActivity(teacherQuestion);
                         break;
                 }
                 return true;
             }
         });
 
-
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -183,6 +158,5 @@ public class TeacherTopics extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 
 }

@@ -1,4 +1,4 @@
-package app;
+package Teacher;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,12 +23,13 @@ import com.google.gson.Gson;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import RecyclerViews.MyAdapterReplies;
-import utils.LoginActivity;
-import utils.Question;
-import utils.Reply;
-import utils.SwipeController;
-import utils.SwipeControllerActions;
-import utils.User;
+import Activities.MakeReply;
+import Activities.LoginActivity;
+import Utils.Question;
+import Utils.Reply;
+import Utils.SwipeController;
+import Utils.SwipeControllerActions;
+import Utils.User;
 
 public class TeacherReplies extends AppCompatActivity {
     private RecyclerView recyclerView;

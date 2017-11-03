@@ -10,7 +10,7 @@
 
     <application
 
-        android:name="app.MainActivity"
+        android:name="app.VolleyMainActivityHandler"
 
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="utils.LoginActivity"
+            android:name="app.LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,17 +27,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="app.TeacherClasses"></activity>
-        <activity android:name="app.TeacherHomePage"></activity>
-        <activity android:name="app.TeacherNotifications"></activity>
-        <activity android:name="app.TeacherSettings"></activity>
-        <activity android:name="app.TeacherStudents"></activity>
-        <activity android:name="utils.SignupActivity"></activity>
+        <activity android:name="Teacher.TeacherClasses"></activity>
+        <activity android:name="Teacher.TeacherHomePage"></activity>
+        <activity android:name="Teacher.TeacherNotifications"></activity>
+        <activity android:name="Teacher.TeacherSettings"></activity>
+        <activity android:name="Teacher.TeacherStudents"></activity>
+        <activity android:name="app.SignupActivity"></activity>
 <<<<<<< HEAD
-        <activity android:name="com.example.sae1.raisehand.StudentNotifications"></activity>
-        <activity android:name="com.example.sae1.raisehand.StudentSettings"></activity>
-        <activity android:name="com.example.sae1.raisehand.StudentClasses"></activity>
-        <activity android:name="com.example.sae1.raisehand.StudentHomePage"></activity>
+        <activity android:name="Student.StudentNotifications"></activity>
+        <activity android:name="Student.StudentSettings"></activity>
+        <activity android:name="Student.StudentClasses"></activity>
+        <activity android:name="Student.StudentHomePage"></activity>
 =======
         <activity android:name="utils.QuestionActivity"></activity>
 >>>>>>> f591b1f58cd414e7727e6a5d807182b534961c8b

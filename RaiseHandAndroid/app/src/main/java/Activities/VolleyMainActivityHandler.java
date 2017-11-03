@@ -1,4 +1,4 @@
-package app;
+package Activities;
 import android.app.Application;
 import android.text.TextUtils;
 
@@ -10,10 +10,10 @@ import com.android.volley.toolbox.Volley;
  * Using source code from tutorialsbuzz.com
  */
 
-public class MainActivity extends Application {
-    public static final String TAG= MainActivity.class.getSimpleName();
+public class VolleyMainActivityHandler extends Application {
+    public static final String TAG= VolleyMainActivityHandler.class.getSimpleName();
     private RequestQueue mRequestQueue;
-    private static MainActivity mInstance;
+    private static VolleyMainActivityHandler mInstance;
 
 
     @Override
@@ -21,7 +21,7 @@ public class MainActivity extends Application {
         super.onCreate();
         mInstance = this;
     }
-    public static synchronized MainActivity getInstance() {
+    public static synchronized VolleyMainActivityHandler getInstance() {
         return mInstance;
     }
 

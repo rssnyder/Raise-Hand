@@ -15,8 +15,8 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
-import app.RepliesReply;
-import utils.Reply;
+import Activities.RepliesReply;
+import Utils.Reply;
 
 /**
  * Created by jaggarwal on 11/1/17.

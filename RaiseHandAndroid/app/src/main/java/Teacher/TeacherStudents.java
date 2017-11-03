@@ -1,37 +1,34 @@
-package com.example.sae1.raisehand;
+package Teacher;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.ViewDragHelper;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import com.google.gson.Gson;
+
+import com.example.sae1.raisehand.R;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import RecyclerViews.MyAdapterTopicsStudent;
-import app.MakeQuestion;
-import utils.Classes;
-import utils.LoginActivity;
-import utils.Topics;
-import utils.User;
+import java.util.List;
 
-public class StudentTopics extends AppCompatActivity {
-    private String TAG = StudentClasses.class.getSimpleName();
+import RecyclerViews.ListItemTeacherStudents;
+import RecyclerViews.MyAdapterStudents;
+import Activities.MakeQuestion;
+import Activities.LoginActivity;
+
+public class TeacherStudents extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private ArrayList<Topics> listItems;
+    private List<ListItemTeacherStudents> listItems;
     private Field mDragger;
-
-    private SharedPreferences mPreferences;
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
@@ -41,35 +38,19 @@ public class StudentTopics extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_topics);
+        setContentView(R.layout.activity_teacher_students);
 
-        Bundle bundle = getIntent().getExtras();
-        String classID = bundle.getString("classID");
-
-        mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
-
-        // Set up recycler view
-        recyclerView = (RecyclerView) findViewById(R.id.topicsRecyclerViewStudent);
+        recyclerView = (RecyclerView) findViewById(R.id.studentsRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        listItems = new ArrayList<Topics>();
-
-        Gson gson = new Gson();
-        String json = mPreferences.getString("currentUser", "");
-        User currentUser = gson.fromJson(json, User.class);
-
-        // loop until you find the Topics from the class you clicked on in TeacherClasses
-        for(Classes c : currentUser.get_classes()){
-            if(c.getClassID().equals(classID)){
-                for (Topics t: c.getTopics()) {
-                    listItems.add(t);
-                }
-                break;
-            }
+        listItems = new ArrayList<>();
+        for(int i = 0; i < 100; i++){
+            ListItemTeacherStudents listItem = new ListItemTeacherStudents("Student " + (i + 1),
+                                                                         "This student is in your class!");
+            listItems.add(listItem);
         }
-
-        adapter = new MyAdapterTopicsStudent(listItems, this);
+        adapter = new MyAdapterStudents(listItems, this);
 
         recyclerView.setAdapter(adapter);
 
@@ -91,29 +72,34 @@ public class StudentTopics extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case(R.id.nav_home_student):
-                        Intent studentHome = new Intent(getApplicationContext(), StudentHomePage.class);
-                        startActivity(studentHome);
+                    case(R.id.nav_home):
+                        Intent teacherHome = new Intent(getApplicationContext(), TeacherHomePage.class);
+                        startActivity(teacherHome);
                         break;
                     case (R.id.nav_classes):
-                        mDrawerLayout.closeDrawers();
+                        Intent teacherClasses = new Intent(getApplicationContext(), TeacherClasses.class);
+                        startActivity(teacherClasses);
                         break;
                     case (R.id.nav_notifications):
-                        Intent studentNotifications = new Intent(getApplicationContext(), StudentNotifications.class);
-                        startActivity(studentNotifications);
+                        Intent teacherNotifications = new Intent(getApplicationContext(), TeacherNotifications.class);
+                        startActivity(teacherNotifications);
+                        break;
+                    case (R.id.nav_students):
+                        mDrawerLayout.closeDrawers();
                         break;
                     case (R.id.nav_settings):
-                        Intent studentSettings = new Intent(getApplicationContext(), StudentSettings.class);
-                        startActivity(studentSettings);
+                        Intent teacherSettings = new Intent(getApplicationContext(), TeacherSettings.class);
+                        startActivity(teacherSettings);
                         break;
+                    case (R.id.nav_question):
+                        Intent teacherQuestion = new Intent(getApplicationContext(), MakeQuestion.class);
+                        startActivity(teacherQuestion);
+                        break;
+
                     case (R.id.nav_logout):
                         Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(loginPage);
                         finish();
-                        break;
-                    case (R.id.nav_question):
-                        Intent studentQuestion = new Intent(getApplicationContext(), MakeQuestion.class);
-                        startActivity(studentQuestion);
                         break;
                 }
                 return true;
@@ -122,7 +108,6 @@ public class StudentTopics extends AppCompatActivity {
 
 
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

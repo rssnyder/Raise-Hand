@@ -1,7 +1,11 @@
-package utils;
+package Activities;
 import android.app.ProgressDialog;
-import app.MainActivity;
-import app.TeacherNotifications;
+
+import Teacher.TeacherNotifications;
+import Utils.Classes;
+import Utils.Roles;
+import Utils.URLS;
+import Utils.User;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -20,7 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.example.sae1.raisehand.R;
-import com.example.sae1.raisehand.StudentNotifications;
+import Student.StudentNotifications;
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 
@@ -65,7 +69,7 @@ public class LoginActivity extends Activity {
         textViewRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View view){
-                Intent SignupActivity = new Intent(getApplicationContext(), SignupActivity.class);
+                Intent SignupActivity = new Intent(getApplicationContext(), Activities.SignupActivity.class);
                 startActivity(SignupActivity);
                 finish();
             }
@@ -153,7 +157,7 @@ public class LoginActivity extends Activity {
                                         classes.add(c);
                                     }
                                 }
-                                Toast.makeText(MainActivity.getInstance(), "Welcome back, " + first + "!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(VolleyMainActivityHandler.getInstance(), "Welcome back, " + first + "!", Toast.LENGTH_LONG).show();
                                 currentUser = new User(reset, unique_id, roleID, usern, first, last, classes, true);
 
                                 //store the user info on login
@@ -173,7 +177,7 @@ public class LoginActivity extends Activity {
 
                             }
                         else {
-                            Toast.makeText(MainActivity.getInstance(), "Logged In Failed", Toast.LENGTH_LONG).show();
+                            Toast.makeText(VolleyMainActivityHandler.getInstance(), "Logged In Failed", Toast.LENGTH_LONG).show();
                         }
                         hideProgressDialog();
                     }}, new Response.ErrorListener() {
@@ -185,7 +189,7 @@ public class LoginActivity extends Activity {
         }
         );
         // Adding request to request queue
-        MainActivity.getInstance().addToRequestQueue(req, tag_string_req);
+        VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
 
         String roleID = mPreferences.getString("role", "");
         //TODO make it go to the student or teacher page depending on what kind of user logged in
