@@ -61,10 +61,6 @@ public class MyAdapterQuestionsStudent extends RecyclerView.Adapter<MyAdapterQue
                 Intent studentReplies = new Intent(context.getApplicationContext(), StudentReplies.class);
                 studentReplies.putExtra("questionID", listItem.getQuestionID());
                 studentReplies.putExtra("question", question);
-
-                Bundle bundle = new Bundle();
-                bundle.putString("questionID", listItem.getQuestionID());
-                bundle.putString("question", question);
                 context.getApplicationContext().startActivity(studentReplies);
             }
         });

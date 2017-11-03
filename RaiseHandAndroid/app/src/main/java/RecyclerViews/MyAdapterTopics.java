@@ -53,10 +53,6 @@ public class MyAdapterTopics extends RecyclerView.Adapter<MyAdapterTopics.ViewHo
                 Intent teacherQuestions = new Intent(context.getApplicationContext(), TeacherQuestions.class);
                 teacherQuestions.putExtra("topicsID", listItem.getID());
                 teacherQuestions.putExtra("topic", topic);
-                // pass topic ID to the question activity
-                Bundle bundle = new Bundle();
-                bundle.putString("topicsID", listItem.getID());
-                bundle.putString("topic", topic);
                 context.getApplicationContext().startActivity(teacherQuestions);
             }
         });

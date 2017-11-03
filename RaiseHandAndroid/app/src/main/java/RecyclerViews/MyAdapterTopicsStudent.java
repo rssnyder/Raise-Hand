@@ -54,9 +54,6 @@ public class MyAdapterTopicsStudent extends RecyclerView.Adapter<MyAdapterTopics
                 Intent studentQuestions = new Intent(context.getApplicationContext(), StudentQuestions.class);
                 studentQuestions.putExtra("topicsID", listItem.getID());
                 studentQuestions.putExtra("topic", topic);
-                Bundle bundle = new Bundle();
-                bundle.putString("topicsID", listItem.getID());
-                bundle.putString("topic", topic);
                 context.getApplicationContext().startActivity(studentQuestions);
             }
         });

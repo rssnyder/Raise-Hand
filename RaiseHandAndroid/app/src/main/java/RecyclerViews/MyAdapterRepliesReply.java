@@ -63,9 +63,6 @@ public class MyAdapterRepliesReply extends RecyclerView.Adapter<MyAdapterReplies
                 Intent reply = new Intent(context.getApplicationContext(), RepliesReply.class);
                 reply.putExtra("replyID", listItem.getReplyID());
                 reply.putExtra("reply", rep);
-                Bundle bundle = new Bundle();
-                bundle.putString("replyID", listItem.getReplyID());
-                bundle.putString("reply", rep);
                 context.getApplicationContext().startActivity(reply);
             }
         });

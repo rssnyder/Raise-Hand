@@ -97,9 +97,6 @@ public class RepliesReply extends AppCompatActivity{
                 Intent replyReply = new Intent(getApplicationContext().getApplicationContext(), MakeReplyReply.class);
                 replyReply.putExtra("replyID", replyID);
                 replyReply.putExtra("reply", reply);
-                Bundle bundle = new Bundle();
-                bundle.putString("replyID", replyID);
-                bundle.putString("reply", reply);
                 startActivity(replyReply);
             }
         });
