@@ -3,6 +3,11 @@
 
     This file contains functions that deal with the database. Such as getting a class, seeing if a user belongs in a class, and others.
 
+    My code was dirty before. Dirty like a roadside rest stop in the middle of Lousiana.
+    Now it shines.
+
+    Remove this file if you want to see civilization fall.
+
   /*
     Returns a variable that contains the database. This can be used when you need one off queries
   */
