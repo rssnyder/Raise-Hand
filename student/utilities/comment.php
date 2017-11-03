@@ -62,6 +62,17 @@
     header("Location: ../posts.php?class=" . $_GET['class'] . "&thread=" . $thread . "&post=success");
     die("Comment posted.");
   }
+  else if($_GET['action'] == 'endorse') {
+    $comment = $_GET['comment'];
+    $query = "UPDATE replies
+                SET
+                endorsed = 1
+                WHERE ID = $comment";
+
+    $result = $db->query($query) or die($query);
+    header("Location: ../posts.php?class=" . $_GET['class'] . "&thread=" . $thread);
+    die("Comment endorsed.");
+  }
   else if($_GET['action'] == 'flag') {
     $comment = $_GET['comment'];
     $query = "UPDATE replies

@@ -1,4 +1,6 @@
 <?php
+  include '../utilities/dbConnect.php';
+
   session_start();
   //Check if user is logged in
   if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
@@ -14,16 +16,9 @@
     header("Location: ../login.php?event=logout");
   }
 
-  //TODO Grab all this from a file
-  //Define sql database information
-  $host="mysql.cs.iastate.edu";
-  $port=3306;
-  $socket="";
-  $user="dbu309sab3";
-  $password="SD0wFGqd";
-  $dbname="db309sab3";
-  //Connect to database
-  $db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
+  //Get the db Referance
+  $db = getDB();
+
 
   //Get this class
   $query = "SELECT * FROM classes WHERE ID = " . $_GET['class'];
@@ -40,7 +35,7 @@
       $id = $comment['ID'];
       $text = $comment['txt'];
       $author = $comment['user_name'];
-      $endorsedID = $comment['endorsed'];
+      $endorsed = $comment['endorsed'];
       $flagged = $comment['flagged'];
       $creation = $comment['creation'];
       $points = $comment['points'];
@@ -58,8 +53,12 @@
       if($text != 'REMOVED') {
         echo '<a href="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '&comment=' . $id . '&action=flag" class="commentButton">Flag</a>';
       }
+      //TAs can endorse thing
+      if($_SESSION['role'] != 4) {
+        echo '<a href="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '&comment=' . $id . '&action=endorse" class="commentButton">Endorse</a>';
+      }
       //Print endorsement
-      if($endorsedID) {
+      if($endorsed) {
         echo ' This comment has been endorsed!';
       }
       //create the hidden comment box.

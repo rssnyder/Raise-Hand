@@ -148,7 +148,7 @@
   <div id="main" class="main">
     <div id="commentBox" class="container-fluid" style="overflow-y: auto;max-height: 90vh;">
        <?php echo '<form action="utilities/endLive.php?class=' . $_GET['class'] . '" method="post">'; ?>
-         <input name="end" type="submit" value="End">
+         <input name="end" type="submit" value="End Live Session">
        </form>
     </div>
     <div id="questions" class="container-fluid" style="overflow-y: auto;max-height: 90vh;">

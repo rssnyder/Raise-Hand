@@ -46,7 +46,7 @@
       $id = $comment['ID'];
       $text = $comment['txt'];
       $author = $comment['user_name'];
-      $endorsedID = $comment['endorsed'];
+      $endorsed = $comment['endorsed'];
       $flagged = $comment['flagged'];
       $creation = $comment['creation'];
       $points = $comment['points'];
@@ -65,7 +65,7 @@
       }
       echo '<a href="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '&comment=' . $id . '&action=endorse" class="commentButton">Endorse</a>';
       //Print endorsement
-      if($endorsedID) {
+      if($endorsed) {
         echo ' Endorsed!';
       }
 
