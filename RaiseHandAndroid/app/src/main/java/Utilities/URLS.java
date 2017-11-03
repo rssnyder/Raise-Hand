@@ -6,7 +6,7 @@ package Utilities;
  */
 
 public class URLS {
-    private static final String ROOT_URL = "http://proj-309-sa-b-3.cs.iastate.edu/";
+    private static final String ROOT_URL = "http://proj-309-sa-b-3.cs.iastate.edu/android/";
     public static final String URL_REGISTER = ROOT_URL + "apiSign.php";
     public static final String URL_STRING_LOGIN= ROOT_URL+"api.php";
     public static final String URL_TOPICS= ROOT_URL+"topics.php";
