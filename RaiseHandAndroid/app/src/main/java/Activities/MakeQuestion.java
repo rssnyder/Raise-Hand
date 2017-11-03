@@ -29,11 +29,10 @@ public class MakeQuestion extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //make the activity page
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_question);
-
         submit = (Button) findViewById(R.id.submitQuestion);
-
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
         titleQuestion = (EditText) findViewById(R.id.titleQuestion);
         textQuestion = (EditText) findViewById(R.id.enterQuestion);
@@ -51,20 +50,23 @@ public class MakeQuestion extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+                //get the information that the user had submitted in the text boxes
+                final String inputTitle = titleQuestion.getText().toString();
+                final String inputDetails = textQuestion.getText().toString();
 
-                final String inputTitle = titleQuestion.getText().toString(); //question title
-                final String inputDetails = textQuestion.getText().toString(); //question details
-
+                //Store information in a temporary question object to enable adding it to the database
                 Question temp = new Question();
-
                 //current user's id
                 temp.setOwnerID(currentUser.getId());
                 //current username
                 temp.setQuestionUsername(currentUser.getUsername());
                 //topic this should fall under
                 temp.setParent(topic);
+                //title that was inserted by user
                 temp.setQuestionTitle(inputTitle);
+                //actual text of question that was entered by the user
                 temp.setQuestionDescription(inputDetails);
+                //calls the method from the Question class (in Utils) that adds the question to the database
                 temp.addQuestionToDatabase();
             }
         });
