@@ -31,26 +31,19 @@ public class MakeReply extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //create the page
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_reply);
-
         submit = (Button) findViewById(R.id.submitReply);
-
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
         textReply = (EditText) findViewById(R.id.textReply);
 
-
+        //Get the information that was passed in from the previous activity
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
-        String question1 = mPreferences.getString("question", "");
         currentUser = gson.fromJson(json, User.class);
-        final Question parentQuestion = gson.fromJson(question1, Question.class);
-
         String questionParentAsString = getIntent().getStringExtra("question");
         final Question question = gson.fromJson(questionParentAsString, Question.class);
-
-        Bundle bundle = getIntent().getExtras();
-        final String questionID = bundle.getString("questionID");
 
         // Click the submit button
         submit.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +51,10 @@ public class MakeReply extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                final String inputDetails = textReply.getText().toString(); //question details
+                //get the information that the user had submitted in the text box
+                final String inputDetails = textReply.getText().toString();
+
+                //Store information in a temporary reply object to enable adding it to the database
                 Reply temp = new Reply();
                 //current user's id
                 temp.setReplyUserID(currentUser.getId());
@@ -66,7 +62,9 @@ public class MakeReply extends AppCompatActivity {
                 temp.setReplyUsername(currentUser.getUsername());
                 //topic this should fall under
                 temp.setReplyQParent(question);
+                //what the user inputted for the reply text
                 temp.setReply(inputDetails);
+                //calls the method from the Reply class (in Utils) that adds the reply to the database
                 temp.addToDatabase();
             }
         });
