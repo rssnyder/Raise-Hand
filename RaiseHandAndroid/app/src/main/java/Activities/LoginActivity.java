@@ -93,12 +93,13 @@ public class LoginActivity extends Activity {
         //first getting the values
         final String username = editTextUsername.getText().toString();
         final String password = editTextPassword.getText().toString();
+
         //url to be used to get the user information via PHP/ volley
         String urlSuffix= "?username="+username+"&pass="+password;
         String url_final= URLS.URL_STRING_LOGIN+urlSuffix;
 
 
-        //validating inputs
+        //validating inputs are there
         if (TextUtils.isEmpty(username)) {
             editTextUsername.setError("Please enter your username");
             editTextUsername.requestFocus();
@@ -114,14 +115,6 @@ public class LoginActivity extends Activity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                       // TODO used for testing teacher app. Remove before deployment!
-                        if(username.equals("teacher") && password.equals("teacher")){
-                            Intent teacherNotifications =
-                                    new Intent(getApplicationContext(), TeacherNotifications.class);
-                            startActivity(teacherNotifications);
-                            finish();
-                        }
-
                         Log.d(TAG, response.toString());
                         String phpResponse=response.toString();
                         //in the php file, the user information is stored in an array with : as a delimiter between the variable name and actual value
@@ -191,19 +184,20 @@ public class LoginActivity extends Activity {
         // Adding request to request queue
         VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
 
+        //Get the role of the user and direct the user to the correct page depending on their role
         String roleID = mPreferences.getString("role", "");
-        //TODO make it go to the student or teacher page depending on what kind of user logged in
-        //Go to the teacher notification page
         if (roleID.equals(Roles.TEACHER.toString())) {
             Intent teacherNotifications =
                     new Intent(getApplicationContext(), TeacherNotifications.class);
             startActivity(teacherNotifications);
-            finish(); //finsih this activity so you can't press back to go to the login screen after already logging in
+            //finsih this activity so you can't press back to go to the login screen after already logging in
+            finish();
         } else if (roleID.equals(Roles.STUDENT.toString())) {
             Intent studentNotifications =
                     new Intent(getApplicationContext(), StudentNotifications.class);
             startActivity(studentNotifications);
-            finish(); //finsih this activity so you can't press back to go to the login screen after already logging in
+            //finsih this activity so you can't press back to go to the login screen after already logging in
+            finish();
         }
     }
 
