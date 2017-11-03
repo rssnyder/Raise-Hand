@@ -245,7 +245,7 @@ public class StringParse {
                                                 //this is not a reply but a place holder
                                                 replyParent=null;
                                             }
-                                            tempR.setReplyParent(replyParent);
+                                            tempR.setReplyIDParent(replyParent);
                                         }
                                         if(i<max && seperated[i].equals("REPLYID")) {
                                             i++;

@@ -123,7 +123,7 @@ public class Reply {
 
     public void setReplyEndorsed(Boolean endorsed){this.endorsed=endorsed;}
 
-    public void setReplyParent(String replyParent){ this.replyParent=replyParent; }
+    public void setReplyIDParent(String replyParent){ this.replyParent=replyParent; }
 
     public void setReplyID(String replyID){ this.replyID=replyID; }
 

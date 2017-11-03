@@ -53,7 +53,7 @@ public class MakeReplyReply extends AppCompatActivity {
                 Reply temp = new Reply();
                 temp.setReplyUserID(currentUser.getId());
                 temp.setReplyUsername(currentUser.getUsername());
-                temp.setReplyParent(replyParentIDAsString);
+                temp.setReplyIDParent(replyParentIDAsString);
                 temp.setReply(inputDetails);
                 temp.addToDatabase();
             }
