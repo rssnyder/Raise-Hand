@@ -1,5 +1,5 @@
 <?php
-  include '../utilities/dbConnect.php';
+  include '../utilities/database.php';
 
   session_start();
   //Check if user is logged in
@@ -19,16 +19,12 @@
   //Get the db Referance
   $db = getDB();
 
-
   //Get this class
-  $query = "SELECT * FROM classes WHERE ID = " . $_GET['class'];
-  $result = $db->query($query) or die($db->error);
-  $class = $result->fetch_assoc();
+  $class = getClass($db, $_GET['class']);
 
   function getChildComments($parentID, $lvl, $threadID, $db) {
     //Get the children of this comment
-    $query = "SELECT * FROM replies WHERE parent = " . $parentID . " AND thread_id = " . $threadID;
-    $result = $db->query($query) or die($db->error);
+    $result = getChildComm($db, $parentID, $threadID);
     //If we have a child comments
     while($comment = $result->fetch_assoc()) {
       //Indent the line the specifed level
@@ -149,18 +145,14 @@
   <div class="main">
     <div id="threads" class="container-fluid" style="overflow-y: auto;max-height: 90vh;">
       <?php
-        $class = $_GET['class'];
-        $thread = $_GET['thread'];
         //Get the current thread
-        $query = "SELECT * FROM threads WHERE ID = " . $thread;
-        $result = $db->query($query) or die($db->error);
-        $mainThread = $result->fetch_assoc();
+        $mainThread = getThread($db, $_GET['thread']);
         //Print the thread title
         echo '<div class="row row-no-padding">
                 <div class="col-md-12">
                   <div class="jumbotron well">';
         echo '<h5>' . $mainThread['title'] . '</h5><br>' . $mainThread['description'] . '<br><br>';
-        echo '<button class="commentButton" onclick="unhide(this,\'childComment0\')">Reply</button><a href="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $thread . '&action=flagThread" class="commentButton">Flag</a>';
+        echo '<button class="commentButton" onclick="unhide(this,\'childComment0\')">Reply</button><a href="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $_GET['thread'] . '&action=flagThread" class="commentButton">Flag</a>';
         //create the hidden comment box.
         echo '<div id="childComment0" class="hidden">
               <div class="content3">';
@@ -172,7 +164,7 @@
         echo '</div></div>';
         echo '</div></div></div>';
         //Now we can work on child comments
-        getChildComments(0, 1, $thread, $db);
+        getChildComments(0, 1, $_GET['thread'], $db);
       ?>
     </div>
   </div>
