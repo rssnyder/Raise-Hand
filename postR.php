@@ -24,7 +24,9 @@
        $stmt = "INSERT INTO replies(thread_id, owner_id, txt, user_name, parent) VALUES ('$threadID', '$ownerID', '$txt', '$user_name', 0)";
     }
     else{
-	    $stmt = "INSERT INTO replies(thread_id, owner_id, txt, user_name, parent) VALUES ('$threadID', '$ownerID', '$txt', '$user_name', '$parent')";
+        $thread = "SELECT thread_id FROM replies WHERE parent='$parent'";
+        $result = $db->query($thread) or die($db->error);
+	    $stmt = "INSERT INTO replies(thread_id, owner_id, txt, user_name, parent) VALUES ('$result', '$ownerID', '$txt', '$user_name', '$parent')";
     }
 	$stmt = $db->query($stmt) or die($db->error);
 	die("Done");
