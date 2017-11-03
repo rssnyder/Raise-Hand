@@ -42,7 +42,7 @@ public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.View
         holder.textViewTime.setText(listItem.getReplyTimestamp());
         holder.textViewH.setText(listItem.getReply());
         holder.textViewP.setText("Points: "+ listItem.getReplyUpvotes());
-        holder.textViewReplies.setText("This reply has "+listItem.getReplies().size()+" replies to it. Click to view");
+       // holder.textViewReplies.setText("This reply has "+listItem.getReplies().size()+" replies to it. Click to view");
         if(listItem.getReplyEndorsed()){
             holder.textViewE.setText("Endorsed!");
         }

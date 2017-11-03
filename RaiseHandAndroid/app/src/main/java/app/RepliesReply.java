@@ -70,6 +70,7 @@ public class RepliesReply extends AppCompatActivity{
         // TODO: figure how to get this
         listItems = userReply.getReplies();
 
+
         adapter = new MyAdapterRepliesReply(listItems, this);
 
         setUpRecyclerView();

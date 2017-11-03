@@ -67,7 +67,22 @@ public class TeacherReplies extends AppCompatActivity {
         // Get the question the user clicked on,
         // then the replies in that question.
         final Question userQuestion = currentUser.getSingleQuestion(questionID);
+        //only get original replies, not replies to replies
         listItems=userQuestion.getParentRepliesOnly();
+
+        //go through every parent reply and find the replies to replies
+        for(Reply r: listItems) {
+            ArrayList<Reply> temp = new ArrayList<Reply>();
+            if (r.getReplies() == null || r.getReplies().size() == 0) {
+                //go through all replies to find the ones that are children of the parent reply
+                for (Reply rep : userQuestion.getReplies()) {
+                    if (rep.getReplyParent() != null && r.getReplyID().equals(rep.getReplyParent())) {
+                        temp.add(rep);
+                    }
+                }
+                r.setReplies(temp);
+            }
+        }
 
         adapter = new MyAdapterReplies(listItems, this);
 
