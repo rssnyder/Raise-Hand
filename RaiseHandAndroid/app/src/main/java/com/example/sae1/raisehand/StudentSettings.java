@@ -13,25 +13,14 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 
 import java.util.List;
-
-import app.TeacherClasses;
-import app.TeacherHomePage;
-import app.TeacherNotifications;
-import app.TeacherStudents;
-import utils.LoginActivity;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -44,7 +33,7 @@ import utils.LoginActivity;
  * href="http://developer.android.com/guide/topics/ui/settings.html">Settings
  * API Guide</a> for more information on developing a Settings UI.
  */
-public class student_settings extends AppCompatPreferenceActivity {
+public class StudentSettings extends AppCompatPreferenceActivity {
 
 //    private DrawerLayout mDrawerLayout;
 //    private ActionBarDrawerToggle mToggle;
@@ -155,18 +144,18 @@ public class student_settings extends AppCompatPreferenceActivity {
 //            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 //                switch (item.getItemId()){
 //                    case(R.id.nav_home):
-//                        Intent studentHome = new Intent(getApplicationContext(), student_home_page.class);
+//                        Intent studentHome = new Intent(getApplicationContext(), StudentHomePage.class);
 //                        startActivity(studentHome);
 //                        break;
 //                    case (R.id.nav_classes):
-//                        Intent studentClasses = new Intent(getApplicationContext(), student_classes.class);
-//                        startActivity(studentClasses);
+//                        Intent StudentClasses = new Intent(getApplicationContext(), StudentClasses.class);
+//                        startActivity(StudentClasses);
 //                        break;
 //                    case (R.id.nav_notifications):
 //                        mDrawerLayout.closeDrawers();
 //                        break;
 //                    case (R.id.nav_settings):
-//                        Intent studentSettings = new Intent(getApplicationContext(), student_settings.class);
+//                        Intent studentSettings = new Intent(getApplicationContext(), StudentSettings.class);
 //                        startActivity(studentSettings);
 //                        break;
 //                    case (R.id.nav_logout):
@@ -244,7 +233,7 @@ public class student_settings extends AppCompatPreferenceActivity {
         public boolean onOptionsItemSelected(MenuItem item) {
             int id = item.getItemId();
             if (id == android.R.id.home) {
-                startActivity(new Intent(getActivity(), student_settings.class));
+                startActivity(new Intent(getActivity(), StudentSettings.class));
                 return true;
             }
             return super.onOptionsItemSelected(item);
@@ -274,7 +263,7 @@ public class student_settings extends AppCompatPreferenceActivity {
         public boolean onOptionsItemSelected(MenuItem item) {
             int id = item.getItemId();
             if (id == android.R.id.home) {
-                startActivity(new Intent(getActivity(), student_settings.class));
+                startActivity(new Intent(getActivity(), StudentSettings.class));
                 return true;
             }
             return super.onOptionsItemSelected(item);
@@ -304,7 +293,7 @@ public class student_settings extends AppCompatPreferenceActivity {
         public boolean onOptionsItemSelected(MenuItem item) {
             int id = item.getItemId();
             if (id == android.R.id.home) {
-                startActivity(new Intent(getActivity(), student_settings.class));
+                startActivity(new Intent(getActivity(), StudentSettings.class));
                 return true;
             }
             return super.onOptionsItemSelected(item);

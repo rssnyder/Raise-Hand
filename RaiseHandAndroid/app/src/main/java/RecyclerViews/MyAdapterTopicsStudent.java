@@ -15,11 +15,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.sae1.raisehand.R;
+import com.example.sae1.raisehand.StudentQuestions;
 import com.google.gson.Gson;
 
 import java.util.List;
 
-import app.TeacherQuestions;
 import utils.Topics;
 
 public class MyAdapterTopicsStudent extends RecyclerView.Adapter<MyAdapterTopicsStudent.ViewHolder> {
@@ -51,7 +51,7 @@ public class MyAdapterTopicsStudent extends RecyclerView.Adapter<MyAdapterTopics
             @Override
             public void onClick(View view) {
                 // TODO go to the topics' questions
-                Intent studentQuestions = new Intent(context.getApplicationContext(), com.example.sae1.raisehand.student_questions.class);
+                Intent studentQuestions = new Intent(context.getApplicationContext(), StudentQuestions.class);
                 studentQuestions.putExtra("topicsID", listItem.get_ID());
                 studentQuestions.putExtra("topic", topic);
                 Bundle bundle = new Bundle();

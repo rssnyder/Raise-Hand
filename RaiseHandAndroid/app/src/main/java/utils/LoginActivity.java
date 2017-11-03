@@ -20,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.example.sae1.raisehand.R;
+import com.example.sae1.raisehand.StudentNotifications;
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 
@@ -196,7 +197,7 @@ public class LoginActivity extends Activity {
             finish(); //finsih this activity so you can't press back to go to the login screen after already logging in
         } else if (roleID.equals(Roles.STUDENT.toString())) {
             Intent studentNotifications =
-                    new Intent(getApplicationContext(), com.example.sae1.raisehand.student_notifications.class);
+                    new Intent(getApplicationContext(), StudentNotifications.class);
             startActivity(studentNotifications);
             finish(); //finsih this activity so you can't press back to go to the login screen after already logging in
         }

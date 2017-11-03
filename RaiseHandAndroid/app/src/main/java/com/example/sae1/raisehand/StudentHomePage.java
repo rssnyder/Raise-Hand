@@ -1,7 +1,6 @@
 package com.example.sae1.raisehand;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -9,69 +8,26 @@ import android.support.v4.widget.ViewDragHelper;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import RecyclerViews.MyAdapterTopicsStudent;
+
 import app.MakeQuestion;
-import utils.Classes;
 import utils.LoginActivity;
-import utils.Topics;
-import utils.User;
 
-public class student_topics extends AppCompatActivity {
-    private String TAG = student_classes.class.getSimpleName();
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
-    private ArrayList<Topics> listItems;
-    private Field mDragger;
-
-    private SharedPreferences mPreferences;
+public class StudentHomePage extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView nv;
     private Toolbar mToolbar;
+    private Field mDragger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_topics);
-
-        Bundle bundle = getIntent().getExtras();
-        String classID = bundle.getString("classID");
-
-        mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
-
-        // Set up recycler view
-        recyclerView = (RecyclerView) findViewById(R.id.topicsRecyclerViewStudent);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        listItems = new ArrayList<Topics>();
-
-        Gson gson = new Gson();
-        String json = mPreferences.getString("currentUser", "");
-        User currentUser = gson.fromJson(json, User.class);
-
-        // loop until you find the Topics from the class you clicked on in TeacherClasses
-        for(Classes c : currentUser.get_classes()){
-            if(c.getClassID().equals(classID)){
-                for (Topics t: c.getTopics()) {
-                    listItems.add(t);
-                }
-                break;
-            }
-        }
-
-        adapter = new MyAdapterTopicsStudent(listItems, this);
-
-        recyclerView.setAdapter(adapter);
+        setContentView(R.layout.activity_student_home_page);
 
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
@@ -83,6 +39,7 @@ public class student_topics extends AppCompatActivity {
         mToggle.syncState();
 
         slideOutMenu();
+        mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -92,18 +49,19 @@ public class student_topics extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case(R.id.nav_home_student):
-                        Intent studentHome = new Intent(getApplicationContext(), student_home_page.class);
-                        startActivity(studentHome);
-                        break;
-                    case (R.id.nav_classes):
                         mDrawerLayout.closeDrawers();
                         break;
+                    case (R.id.nav_classes):
+
+                        Intent studentClasses = new Intent(getApplicationContext(), StudentClasses.class);
+                        startActivity(studentClasses);
+                        break;
                     case (R.id.nav_notifications):
-                        Intent studentNotifications = new Intent(getApplicationContext(), student_notifications.class);
+                        Intent studentNotifications = new Intent(getApplicationContext(), StudentNotifications.class);
                         startActivity(studentNotifications);
                         break;
                     case (R.id.nav_settings):
-                        Intent studentSettings = new Intent(getApplicationContext(), student_settings.class);
+                        Intent studentSettings = new Intent(getApplicationContext(), StudentSettings.class);
                         startActivity(studentSettings);
                         break;
                     case (R.id.nav_logout):
@@ -112,17 +70,14 @@ public class student_topics extends AppCompatActivity {
                         finish();
                         break;
                     case (R.id.nav_question):
-                        Intent studentQuestion = new Intent(getApplicationContext(), MakeQuestion.class);
-                        startActivity(studentQuestion);
+                        Intent questionPage = new Intent(getApplicationContext(), MakeQuestion.class);
+                        startActivity(questionPage);
                         break;
                 }
                 return true;
             }
         });
-
-
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -33,17 +33,17 @@
         <activity android:name="app.TeacherQuestions" />
         <activity android:name="app.TeacherTopics" />
         <activity android:name="utils.SignupActivity" />
-        <activity android:name=".student_notifications" />
-        <activity android:name=".student_settings" />
-        <activity android:name=".student_classes" />
-        <activity android:name=".student_home_page" />
+        <activity android:name=".StudentNotifications" />
+        <activity android:name=".StudentSettings" />
+        <activity android:name=".StudentClasses" />
+        <activity android:name=".StudentHomePage" />
         <!-- <activity android:name="utils.QuestionActivity"></activity> -->
-        <activity android:name=".student_topics" />
-        <activity android:name=".student_questions" />
+        <activity android:name=".StudentTopics" />
+        <activity android:name=".StudentQuestions" />
         <activity android:name="app.MakeQuestion" />
         <activity android:name="app.MakeReply"></activity>
         <activity android:name="app.TeacherReplies"></activity>
-        <activity android:name=".studentReplies"></activity>
+        <activity android:name=".StudentReplies"></activity>
         <activity android:name="app.RepliesReply"></activity>
         <activity android:name="app.MakeReplyReply"></activity>
     </application>

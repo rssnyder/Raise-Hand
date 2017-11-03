@@ -34,10 +34,10 @@
         <activity android:name="app.TeacherStudents"></activity>
         <activity android:name="utils.SignupActivity"></activity>
 <<<<<<< HEAD
-        <activity android:name="com.example.sae1.raisehand.student_notifications"></activity>
-        <activity android:name="com.example.sae1.raisehand.student_settings"></activity>
-        <activity android:name="com.example.sae1.raisehand.student_classes"></activity>
-        <activity android:name="com.example.sae1.raisehand.student_home_page"></activity>
+        <activity android:name="com.example.sae1.raisehand.StudentNotifications"></activity>
+        <activity android:name="com.example.sae1.raisehand.StudentSettings"></activity>
+        <activity android:name="com.example.sae1.raisehand.StudentClasses"></activity>
+        <activity android:name="com.example.sae1.raisehand.StudentHomePage"></activity>
 =======
         <activity android:name="utils.QuestionActivity"></activity>
 >>>>>>> f591b1f58cd414e7727e6a5d807182b534961c8b

@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.sae1.raisehand.R;
+import com.example.sae1.raisehand.StudentReplies;
 import com.google.gson.Gson;
 import java.util.List;
 
@@ -57,7 +58,7 @@ public class MyAdapterQuestionsStudent extends RecyclerView.Adapter<MyAdapterQue
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                Intent studentReplies = new Intent(context.getApplicationContext(), com.example.sae1.raisehand.studentReplies.class);
+                Intent studentReplies = new Intent(context.getApplicationContext(), StudentReplies.class);
                 studentReplies.putExtra("questionID", listItem.getQuestionID());
                 studentReplies.putExtra("question", question);
 

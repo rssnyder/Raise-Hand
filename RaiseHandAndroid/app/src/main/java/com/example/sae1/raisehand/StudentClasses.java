@@ -22,12 +22,11 @@ import java.util.List;
 
 import RecyclerViews.MyAdapterClassesStudent;
 import app.MakeQuestion;
-import app.TeacherClasses;
 import utils.Classes;
 import utils.LoginActivity;
 import utils.User;
 
-public class student_classes extends AppCompatActivity {
+public class StudentClasses extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<Classes> listItems;
@@ -83,14 +82,14 @@ public class student_classes extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case(R.id.nav_home_student):
-                        Intent studentHome = new Intent(getApplicationContext(), student_home_page.class);
+                        Intent studentHome = new Intent(getApplicationContext(), StudentHomePage.class);
                         startActivity(studentHome);
                         break;
                     case (R.id.nav_classes):
                         mDrawerLayout.closeDrawers();
                         break;
                     case (R.id.nav_notifications):
-                        Intent studentNotifications = new Intent(getApplicationContext(), student_notifications.class);
+                        Intent studentNotifications = new Intent(getApplicationContext(), StudentNotifications.class);
                         startActivity(studentNotifications);
                         break;
                     case (R.id.nav_question):
@@ -98,7 +97,7 @@ public class student_classes extends AppCompatActivity {
                         startActivity(studentQuestion);
                         break;
                     case (R.id.nav_settings):
-                        Intent studentSettings = new Intent(getApplicationContext(), student_settings.class);
+                        Intent studentSettings = new Intent(getApplicationContext(), StudentSettings.class);
                         startActivity(studentSettings);
                         break;
                     case (R.id.nav_logout):
