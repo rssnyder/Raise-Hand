@@ -90,7 +90,8 @@
       //Did not find user and class in table
       return false;
     }
-
+  }
+  
     /*
       Gets object of all classes this person is a memeber of, in any role
     */
@@ -99,5 +100,4 @@
       $query = "SELECT class_id FROM userClasses WHERE user_id = $uID";
       return $db->query($query) or die($db->error);
     }
-  }
  ?>
