@@ -38,18 +38,12 @@ public class MakeQuestion extends AppCompatActivity {
         titleQuestion = (EditText) findViewById(R.id.titleQuestion);
         textQuestion = (EditText) findViewById(R.id.enterQuestion);
 
-
+        //Get the information that was passed in from the previous activity
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
-        String topic1 = mPreferences.getString("topic", "");
         currentUser = gson.fromJson(json, User.class);
-        final Topics parentTopic = gson.fromJson(topic1, Topics.class);
-
         String topicParentAsString = getIntent().getStringExtra("topic");
         final Topics topic = gson.fromJson(topicParentAsString, Topics.class);
-
-        Bundle bundle = getIntent().getExtras();
-        final String topicID = bundle.getString("topicsID");
 
         // Click the submit button
         submit.setOnClickListener(new View.OnClickListener() {
