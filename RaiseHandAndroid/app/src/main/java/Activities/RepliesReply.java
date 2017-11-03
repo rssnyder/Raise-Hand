@@ -69,8 +69,7 @@ public class RepliesReply extends AppCompatActivity{
         User currentUser = gson.fromJson(json, User.class);
 
         final Reply userReply = currentUser.getSingleReply(replyID);
-
-        // TODO: figure how to get this
+        
         listItems = userReply.getReplies();
 
 
