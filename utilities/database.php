@@ -44,11 +44,55 @@
   }
 
   /*
+    Returns object of threads avalible in this SplSubject
+  */
+  function getThreads($db, $topic) {
+    //Get the threads
+    $query = "SELECT * FROM threads WHERE topic_id = " . $topic;
+    return $db->query($query) or die('Error querying database.');
+  }
+
+  /*
+    Returns object of topics from a class
+  */
+  function getTopics($db, $class) {
+    //Get the topics
+    $query = "SELECT * FROM topics WHERE class_id = " . $class;
+    return $db->query($query) or die('Error querying database.');
+  }
+
+  /*
     Returns list the object that contains all children of specified comment
   */
   function getChildComm($db, $parentID, $threadID) {
     //Get the children of this comment
     $query = "SELECT * FROM replies WHERE parent = " . $parentID . " AND thread_id = " . $threadID;
     return $db->query($query) or die($db->error);
+  }
+
+  /*
+    Checks if a user belongs in a given class
+  */
+  function doesBelong($db, $class, $uID) {
+    //Check to see if student is actually in this class
+    $query = "SELECT class_id FROM userClasses WHERE user_id = " . $uID ." AND class_id = " . $class;
+    $result = $db->query($query) or die($db->error);
+    if($oclass = $result->fetch_assoc()) {
+        //This user is associated with this class
+        return true
+    }
+    else {
+      //Did not find user and class in table
+      return false;
+    }
+
+    /*
+      Gets object of all classes this person is a memeber of, in any role
+    */
+    function getClasses($db, $uID) {
+      //Get the classes that the teacher is a teacher of
+      $query = "SELECT class_id FROM userClasses WHERE user_id = $uID";
+      return $db->query($query) or die($db->error);
+    }
   }
  ?>

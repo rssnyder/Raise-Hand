@@ -69,16 +69,10 @@ include '../utilities/database.php';
               </div>
 
       <?php
-      //Get all the classes that this student is a part of and build the homepage
-      //Get the classes that the teacher is a teacher of
-      $myID = $_SESSION['id'];
-      $query = "SELECT class_id FROM userClasses WHERE user_id = $myID";
-      $result = $db->query($query) or die($db->error);
+        //Get all the classes that this student is a part of and build the homepage
+        $class = getClasses($db, $_SESSION['id']);
         while ($class = $result->fetch_assoc()) {
-          $id = $class['class_id'];
-          $query = "SELECT * FROM classes WHERE ID = $id";
-          $result2 = $db->query($query) or die($db->error);
-          $thisClass = $result2->fetch_assoc();
+          $thisClass = getClass($db, $class['class_id']);
           echo '
                   <div class="col-md-6">
                     <div class="home">
@@ -94,10 +88,7 @@ include '../utilities/database.php';
                 </div>
                 <br>';
           if($class = $result->fetch_assoc()) {
-            $id = $class['class_id'];
-            $query = "SELECT * FROM classes WHERE ID = $id";
-            $result2 = $db->query($query) or die($db->error);
-            $thisClass = $result2->fetch_assoc();
+            $thisClass = getClass($db, $class['class_id']);
             echo '<div class="row">
                     <div class="col-md-6">
                       <div class="home">

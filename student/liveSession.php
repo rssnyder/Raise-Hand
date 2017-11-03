@@ -19,29 +19,18 @@
   //Get the db Referance
   $db = getDB();
 
-  //See if session is avalible
-  function startSession($class){
+  //Function to call if no session avalible
+  function leaveSession($class){
     header("Location: pages.php?class=$class");
-    die("Go create session");
+    die("No live session currently");
   }
+
   //Check to see if live session is currently in session
   $check = "SELECT 1 FROM liveQueue" . $_GET['class'] . " LIMIT 1";
-  $result = $db->query($check) or startSession($_GET['class']);
-
-
+  $result = $db->query($check) or leaveSession($_GET['class']);
 
   //Check to see if student is actually in this class
-  $belongs = false;
-  $query = "SELECT class_id FROM userClasses WHERE user_id = " . $_SESSION['id'];
-  $result = $db->query($query) or die($db->error);
-  while ($oclass = $result->fetch_assoc()) {
-    if($_GET['class'] == $oclass['class_id']) {
-      //user is in this class
-      $belongs = true;
-      break;
-    }
-  }
-  if(!$belongs) {
+  if(!doesBelong($db, $_GET['class'], $_SESSION['id'])) {
     //user is not in this class
     header("Location: home.php");
     die("You shall not pass");
@@ -56,10 +45,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     <script>
+      //Keep track of questions posted to the page
       var feed = 0;
 
-      //Script to get question
-
+      //Script to get questions
       function createQ() {
         var div = document.createElement("div");
         div.innerHTML = "hey there." + counter;
@@ -71,6 +60,7 @@
 
       </script>
       <script id="source" language="javascript" type="text/javascript">
+        //Every one second, get new questions asked and post them to the page
          window.setInterval(function getData(){
            //Get the GET variables
            var $_GET=[];
@@ -95,10 +85,6 @@
                      jumDiv.setAttribute('class', 'jumbotron well');
                      jumDiv.setAttribute('id', data[counter]);
                      jumDiv.innerHTML = data[counter + 2] + '       - ' + data[counter + 1];
-                     //colDiv.appendChild(jumDiv);
-                     //div.appendChild(colDiv);
-
-                     //div.innerHTML = '<div class=\"col-md-12\"><div class=\"jumbotron well\">' + data[counter + 1] + ': ' + data[counter + 2] + '</div></div>';
                      counter += 3;
                      feed = counter;
                      document.getElementById('questions').appendChild(jumDiv);
@@ -120,6 +106,7 @@
            }, 1000);
        </script>
        <script>
+        //Function to submit questions to feed
          function submitQ() {
            //Get the GET variables
            var $_GET=[];
@@ -144,11 +131,8 @@
               alert(data);
             }
             });
-
         }
        </script>
-
-    <!-- End questionable content -->
 
     <!-- The top banner of the webpage -->
     <div class="top">
