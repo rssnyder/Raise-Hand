@@ -1,4 +1,6 @@
 <?php
+include '../utilities/database.php';
+
   session_start();
   //Check if user is logged in
   if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
@@ -14,21 +16,11 @@
     header("Location: ../login.php?event=logout");
   }
 
-  //TODO Grab all this from a file
-  //Define sql database information
-  $host="mysql.cs.iastate.edu";
-  $port=3306;
-  $socket="";
-  $user="dbu309sab3";
-  $password="SD0wFGqd";
-  $dbname="db309sab3";
-  //Connect to database
-  $db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
+  //Get the db Referance
+  $db = getDB();
 
   //Get this class
-  $query = "SELECT * FROM classes WHERE ID = " . $_GET['class'];
-  $result = $db->query($query) or die($db->error);
-  $class = $result->fetch_assoc();
+  $class = getClass($db, $_GET['class']);
 
   //Check to see if this teacher actaully owns this classes
   if($class['teacher_id'] != $_SESSION['id']) {
@@ -38,8 +30,7 @@
 
   function getChildComments($parentID, $lvl, $threadID, $db) {
     //Get the children of this comment
-    $query = "SELECT * FROM replies WHERE parent = " . $parentID . " AND thread_id = " . $threadID;
-    $result = $db->query($query) or die($db->error);
+    $result = getChildComm($db, $parentID, $threadID);
     //If we have a child comments
     while($comment = $result->fetch_assoc()) {
       //Indent the line the specifed level
@@ -89,7 +80,7 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="../css/pages.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     <script type="text/javascript">
@@ -153,18 +144,14 @@
   <div class="main">
     <div id="threads" class="container-fluid" style="overflow-y: auto;max-height: 90vh;">
       <?php
-        $class = $_GET['class'];
-        $thread = $_GET['thread'];
         //Get the current thread
-        $query = "SELECT * FROM threads WHERE ID = " . $thread;
-        $result = $db->query($query) or die($db->error);
-        $mainThread = $result->fetch_assoc();
+        $mainThread = getThread($db, $_GET['thread']);
         //Print the thread title
         echo '<div class="row row-no-padding">
                 <div class="col-md-12">
                   <div class="jumbotron well">';
         echo '<h5>' . $mainThread['title'] . '</h5><br>' . $mainThread['description'] . '<br><br>';
-        echo '<button class="commentButton" onclick="unhide(this,\'childComment0\')">Reply</button><a href="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '&action=flagThread" class="commentButton">Flag</a>';
+        echo '<button class="commentButton" onclick="unhide(this,\'childComment0\')">Reply</button><a href="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $_GET['thread'] . '&action=flagThread" class="commentButton">Flag</a>';
         //create the hidden comment box.
         echo '<div id="childComment0" class="hidden">
               <div class="content3">';
@@ -176,7 +163,7 @@
         echo '</div></div>';
         echo '</div></div></div>';
         //Now we can work on child comments
-        getChildComments(0, 1, $thread, $db);
+        getChildComments(0, 1, $_GET['thread'], $db);
       ?>
     </div>
   </div>
