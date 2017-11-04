@@ -98,7 +98,7 @@
             $desc = $thread["description"];
 
             //Make the topic itself a button
-            echo '<a href="posts.php?class=' . $class . '&thread=' . $id . '" class="topic">';
+            echo '<a href="posts.php?class=' . $_GET['class'] . '&thread=' . $id . '" class="topic">';
 
             //Print the topic
             echo '<h2>' . $name . '</h2></a><br><p> - ' . $desc . '</p></div></div>';
@@ -111,7 +111,7 @@
               $desc = $thread["description"];
 
               //Make the topic itself a button
-              echo '<a href="posts.php?class=' . $class . '&thread=' . $id . '" class="topic">';
+              echo '<a href="posts.php?class=' . $_GET['class'] . '&thread=' . $id . '" class="topic">';
 
               //Print the topic
               echo '<h2>' . $name . '</h2></a><br><p> - ' . $desc . '</p></div></div></div>';

