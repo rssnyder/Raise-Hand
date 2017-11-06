@@ -46,6 +46,8 @@
         <activity android:name="Student.StudentReplies"></activity>
         <activity android:name="Activities.RepliesReply"></activity>
         <activity android:name="Activities.MakeReplyReply"></activity>
+        <activity android:name="Activities.ResetPassword"></activity>
+        <activity android:name="Activities.ForgotPassword"></activity>
     </application>
 
 </manifest>

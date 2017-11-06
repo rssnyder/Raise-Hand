@@ -41,12 +41,12 @@ public class ResetPassword  extends AppCompatActivity {
         buttonSubmit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                forgotPassword();
+                resetPassword();
             }
         });
 
     }
-    public void forgotPassword() {
+    public void resetPassword() {
         final String password = Password.getText().toString();
         final String passwordConfirm = PasswordConfirm.getText().toString();
         final String email = Email.getText().toString();

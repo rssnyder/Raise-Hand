@@ -33,8 +33,7 @@ import com.google.gson.annotations.Expose;
  */
 public class LoginActivity extends Activity {
     private String TAG= LoginActivity.class.getSimpleName();
-    private Button buttonLogin;
-    private Button textViewRegister;
+    private Button buttonLogin, textViewRegister, textViewReset;
     private ProgressDialog pDialog;
     private String tag_string_req= "string_req";
     EditText editTextUsername, editTextPassword;
@@ -49,6 +48,7 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.activity_login);
         buttonLogin= (Button) findViewById(R.id.buttonLogin);
         textViewRegister= (Button) findViewById(R.id.textViewRegister);
+        textViewReset= (Button) findViewById(R.id.textViewReset);
         pDialog= new ProgressDialog(this);
         pDialog.setMessage("Loading...");
         pDialog.setCancelable(false);
@@ -68,6 +68,14 @@ public class LoginActivity extends Activity {
             public void onClick (View view){
                 Intent SignupActivity = new Intent(getApplicationContext(), Activities.SignupActivity.class);
                 startActivity(SignupActivity);
+                finish();
+            }
+        });
+        textViewReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View view){
+                Intent ForgotPassActivity = new Intent(getApplicationContext(), Activities.ForgotPassword.class);
+                startActivity(ForgotPassActivity);
                 finish();
             }
         });
