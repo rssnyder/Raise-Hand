@@ -139,7 +139,13 @@ public class LoginActivity extends Activity {
         );
         // Adding request to request queue
         VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
-
+        String reset= mPreferences.getString("reset","");
+        if(reset.equals("1")){
+            //redirect to a reset password page
+            Intent resetPassword= new Intent(getApplicationContext(), ResetPassword.class);
+            startActivity(resetPassword);
+            finish();
+        }
         //Get the role of the user and direct the user to the correct page depending on their role
         String roleID = mPreferences.getString("role", "");
         if (roleID.equals(Roles.TEACHER.toString())) {
