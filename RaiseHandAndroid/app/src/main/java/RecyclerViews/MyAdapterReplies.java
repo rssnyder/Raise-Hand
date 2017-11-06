@@ -42,9 +42,11 @@ public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.View
         holder.textViewTime.setText(listItem.getReplyTimestamp());
         holder.textViewH.setText(listItem.getReply());
         holder.textViewP.setText("Points: "+ listItem.getReplyUpvotes());
-       // holder.textViewReplies.setText("This reply has "+listItem.getReplies().size()+" replies to it. Click to view");
         if(listItem.getReplyEndorsed()){
             holder.textViewE.setText("Endorsed!");
+        }
+        else{
+            holder.textViewE.setText(" ");
         }
         Gson gson = new Gson();
         final String rep = gson.toJson(listItem);
@@ -76,7 +78,6 @@ public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.View
             textViewE= (TextView) itemView.findViewById(R.id.textViewE);
             textViewP= (TextView) itemView.findViewById(R.id.textViewP);
             textViewTime= (TextView) itemView.findViewById(R.id.textViewTime);
-            textViewReplies= (TextView) itemView.findViewById(R.id.textViewReplies);
             linearLayout = (LinearLayout) itemView.findViewById(R.id.linearLayoutTeacherReplies);
         }
     }

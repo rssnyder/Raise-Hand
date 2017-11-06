@@ -53,6 +53,9 @@ public class MyAdapterRepliesReply extends RecyclerView.Adapter<MyAdapterReplies
         if (listItem.getReplyEndorsed()){
             holder.textViewEndorsed.setText("Endorsed!");
         }
+        else{
+            holder.textViewEndorsed.setText(" ");
+        }
 
         Gson gson = new Gson();
         final String rep = gson.toJson(listItem);
