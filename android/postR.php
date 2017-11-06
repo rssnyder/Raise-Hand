@@ -18,7 +18,7 @@
 	$ownerID= $_GET['OID'];
     $threadID=$_GET['TID'];
     $parent= $_GET['replyParent'];
-    
+    Echo 'working';
     //finally, insert into the database
     if(strcmp($parent, "0")==0){
        $stmt = "INSERT INTO replies(thread_id, owner_id, txt, user_name, parent) VALUES ('$threadID', '$ownerID', '$txt', '$user_name', 0)";
