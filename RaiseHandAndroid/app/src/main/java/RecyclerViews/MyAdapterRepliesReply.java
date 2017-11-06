@@ -17,6 +17,7 @@ import java.util.List;
 
 import Activities.RepliesReply;
 import Utilities.Reply;
+import Utilities.StringParse;
 
 /**
  * Created by jaggarwal on 11/1/17.
@@ -47,7 +48,7 @@ public class MyAdapterRepliesReply extends RecyclerView.Adapter<MyAdapterReplies
     @Override
     public void onBindViewHolder(ViewHolder holder, int position){
         final Reply listItem = listItems.get(position);
-        holder.textViewTimestamp.setText(listItem.getReplyTimestamp());
+        holder.textViewTimestamp.setText(StringParse.parseTimeStamp(listItem.getReplyTimestamp()));
         holder.textViewHead.setText(listItem.getReply());
         holder.textViewPoints.setText("Points: " + listItem.getReplyUpvotes());
         if (listItem.getReplyEndorsed()){

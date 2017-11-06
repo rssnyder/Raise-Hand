@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import java.util.List;
 
 import Utilities.Question;
+import Utilities.StringParse;
 
 public class MyAdapterQuestionsStudent extends RecyclerView.Adapter<MyAdapterQuestionsStudent.ViewHolder> {
 
@@ -43,7 +44,7 @@ public class MyAdapterQuestionsStudent extends RecyclerView.Adapter<MyAdapterQue
 
         final Question listItem = listItems.get(position);
 
-        holder.textViewTimestamp.setText(listItem.getCreationTime());
+        holder.textViewTimestamp.setText(StringParse.parseTimeStamp(listItem.getCreationTime()));
         holder.textViewHead.setText(listItem.getQuestionTitle());
         holder.textViewDesc.setText(listItem.getQuestionDescription());
         holder.textViewPoints.setText("Points: " + listItem.getStudentRating());

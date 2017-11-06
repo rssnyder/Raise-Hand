@@ -307,4 +307,13 @@ public class StringParse {
         }
        return null;
     }
+
+    public static String parseTimeStamp(String timestamp){
+        String hours=timestamp.substring(timestamp.indexOf(":")-2);
+        hours=hours.substring(0,5);
+        String day=timestamp.substring(5,10);
+        day=day.replaceAll("-","/");
+        String timeStamp=hours+ " on "+day;
+        return timeStamp;
+    }
 }

@@ -18,6 +18,7 @@ import java.util.List;
 
 import Activities.RepliesReply;
 import Utilities.Reply;
+import Utilities.StringParse;
 
 public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.ViewHolder> {
 
@@ -39,7 +40,7 @@ public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Reply listItem = listItems.get(position);
-        holder.textViewTime.setText(listItem.getReplyTimestamp());
+        holder.textViewTime.setText(StringParse.parseTimeStamp(listItem.getReplyTimestamp()));
         holder.textViewH.setText(listItem.getReply());
         holder.textViewP.setText("Points: "+ listItem.getReplyUpvotes());
         if(listItem.getReplyEndorsed()){

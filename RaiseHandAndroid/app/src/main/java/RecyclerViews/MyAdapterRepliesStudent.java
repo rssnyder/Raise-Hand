@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import java.util.List;
 
 import Utilities.Reply;
+import Utilities.StringParse;
 
 public class MyAdapterRepliesStudent extends RecyclerView.Adapter<MyAdapterRepliesStudent.ViewHolder> {
 
@@ -37,7 +38,7 @@ public class MyAdapterRepliesStudent extends RecyclerView.Adapter<MyAdapterRepli
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Reply listItem = listItems.get(position);
 
-        holder.textViewTimestamp.setText(listItem.getReplyTimestamp());
+        holder.textViewTimestamp.setText(StringParse.parseTimeStamp(listItem.getReplyTimestamp()));
         holder.textViewHead.setText(listItem.getReply());
         holder.textViewPoints.setText("Points: "+ listItem.getReplyUpvotes());
         if(listItem.getReplyEndorsed()){
