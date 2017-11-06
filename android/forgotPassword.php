@@ -32,7 +32,6 @@
       $headers = "From: do-not-reply@raisehand.com" . "\r\n";
 
       mail($to,$subject,$txt,$headers);
-      $_SESSION['error'] = true;
-      $_SESSION['errorCode'] = "Please check your email for further reset instructions";
+      Echo 'Done';
      
 ?>
