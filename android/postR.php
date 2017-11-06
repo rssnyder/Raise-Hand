@@ -25,8 +25,10 @@
     else {
         $thread = "SELECT DISTINCT thread_id FROM replies WHERE ID='$parent'";
         $result = $db->query($thread) or die($db->error);
-        $resu= $result['thread_id'];
-	    $stmt = "INSERT INTO replies(thread_id, owner_id, txt, user_name, parent) VALUES ('$resu', '$ownerID', '$txt', '$user_name', '$parent')";
+        while($row = $result->fetch_array()){
+            $r=$row['thread_id'];
+	        $stmt = "INSERT INTO replies(thread_id, owner_id, txt, user_name, parent) VALUES ('$r', '$ownerID', '$txt', '$user_name', '$parent')";
+        }
     }
 	$stmt = $db->query($stmt) or die($db->error);
 	Echo 'Done';
