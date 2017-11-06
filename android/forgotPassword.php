@@ -15,7 +15,7 @@
     //hash the temp password
     $tempP = password_hash($p, PASSWORD_DEFAULT);
     //Update the users account
-    $ucheck = "UPDATE users SET pass = '$tempP', reset = 1 WHERE ID = '$email'";
+    $ucheck = "UPDATE users SET pass = '$tempP', reset = 1 WHERE email = '$email'";
     $result = $db->query($ucheck) or die($db->error);
       //Now need to send user email with temp password
       $to = $email;
