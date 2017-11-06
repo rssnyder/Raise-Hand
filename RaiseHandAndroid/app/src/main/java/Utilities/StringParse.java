@@ -311,6 +311,56 @@ public class StringParse {
     public static String parseTimeStamp(String timestamp){
         String hours=timestamp.substring(timestamp.indexOf(":")-2);
         hours=hours.substring(0,5);
+        if(hours.substring(0,2).equals("12")){
+            hours=hours+" pm";
+        }
+        else if(hours.substring(0,2).equals("13")){
+            hours="1"+hours.substring(2,5);
+            hours=hours+" pm";
+        }
+        else if(hours.substring(0,2).equals("14")){
+            hours="2"+hours.substring(2,5);
+            hours=hours+" pm";
+        }
+        else if(hours.substring(0,2).equals("15")){
+            hours="3"+hours.substring(2,5);
+            hours=hours+" pm";
+        }
+        else if(hours.substring(0,2).equals("16")){
+            hours="4"+hours.substring(2,5);
+            hours=hours+" pm";
+        }
+        else if(hours.substring(0,2).equals("17")){
+            hours="5"+hours.substring(2,5);
+            hours=hours+" pm";
+        }
+        else if(hours.substring(0,2).equals("18")){
+            hours="6"+hours.substring(2,5);
+            hours=hours+" pm";
+        }
+        else if(hours.substring(0,2).equals("19")){
+            hours="7"+hours.substring(2,5);
+            hours=hours+" pm";
+        }
+        else if(hours.substring(0,2).equals("20")){
+            hours="8"+hours.substring(2,5);
+            hours=hours+" pm";
+        }
+        else if(hours.substring(0,2).equals("21")){
+            hours="9"+hours.substring(2,5);
+            hours=hours+" pm";
+        }
+        else if(hours.substring(0,2).equals("22")){
+            hours="10"+hours.substring(2,5);
+            hours=hours+" pm";
+        }
+        else if(hours.substring(0,2).equals("23")){
+            hours="11"+hours.substring(2,5);
+            hours=hours+" pm";
+        }
+        else{
+            hours=hours+" am";
+        }
         String day=timestamp.substring(5,10);
         day=day.replaceAll("-","/");
         String timeStamp=hours+ " on "+day;
