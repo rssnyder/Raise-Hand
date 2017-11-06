@@ -29,7 +29,7 @@
 	    $stmt = "INSERT INTO replies(thread_id, owner_id, txt, user_name, parent) VALUES ('$result', '$ownerID', '$txt', '$user_name', '$parent')";
     }
 	$stmt = $db->query($stmt) or die($db->error);
-	die("Done");
+	Echo "Done";
 
   
 
