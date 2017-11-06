@@ -110,11 +110,9 @@
   */
   function getRelationship($db, $uID, $class) {
     //Get the userClass referance
-    $query = "SELECT relationship
-              FROM userClasses
-              WHERE user_id = $uID AND class_id = $class";
+    $query = "SELECT relationship FROM userClasses WHERE user_id = " . $uID . " AND class_id = " . $class;
     $result = $db->query($query) or die($db->error);
-    $relationship = $result->fetch_assoc()
+    $relationship = $result->fetch_assoc();
     return $relationship['relationship'];
   }
 

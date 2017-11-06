@@ -32,7 +32,7 @@
   //Get the relationship of the student to this class for TA endorsement
   $relationship = getRelationship($db, $_SESSION['id'], $class['ID']);
 
-  function getChildComments($parentID, $lvl, $threadID, $db) {
+  function getChildComments($parentID, $lvl, $threadID, $db, $relationship) {
     //Get the children of this comment
     $result = getChildComm($db, $parentID, $threadID);
     //If we have a child comments
@@ -57,15 +57,15 @@
             </button><button class="commentButton" onclick="unhide(this,\'childComment' . $id . '\')">Reply</button>';
       //if not already flagged, give option to flagged
       if($text != 'REMOVED') {
-        echo '<a href="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '&comment=' . $id . '&action=flag" class="commentButton">Flag</a>';
+        echo '<a href="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '&comment=' . $id . '&action=flag" class="commentButton">Comment</a>';
       }
       //TAs can endorse thing
-      if($relationship ==  3) {
+      if(($relationship ==  3) && (!$endorsed)) {
         echo '<a href="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '&comment=' . $id . '&action=endorse" class="commentButton">Endorse</a>';
       }
       //Print endorsement
       if($endorsed) {
-        echo ' This comment has been endorsed!';
+        echo 'Endorsed Answer!';
       }
       //create the hidden comment box.
       echo '<div id="childComment' . $id . '" class="hidden">
@@ -78,7 +78,7 @@
       echo '</div></div>';
       echo '</div></div></div>';
       //Print any child comments of this comment
-      getChildComments($id, $lvl + 1, $threadID, $db);
+      getChildComments($id, $lvl + 1, $threadID, $db, $relationship);
     }
 
   }
@@ -175,7 +175,7 @@
         echo '</div></div>';
         echo '</div></div></div>';
         //Now we can work on child comments
-        getChildComments(0, 1, $_GET['thread'], $db);
+        getChildComments(0, 1, $_GET['thread'], $db, $relationship);
       ?>
     </div>
   </div>
