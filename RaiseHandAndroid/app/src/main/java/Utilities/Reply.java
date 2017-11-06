@@ -139,11 +139,11 @@ public class Reply {
         //encoding spaces with a + sign for the url
         reply2=reply2.replaceAll(" ","+");
         String url="";
-        if(this.replyParent==null){
-           url=URLS.URL_REPLY+"?txt="+reply2+"&username="+this.username+"&OID="+this.userID+"&TID="+parent.getQuestionID()+"&replyParent=0";
+        if(this.replyParent!=null){
+            url = URLS.URL_REPLY + "?txt=" + reply2 + "&username=" + this.username + "&OID=" + this.userID + "&TID=0" + "&replyParent=" + this.getReplyParent();
         }
         else {
-            url = URLS.URL_REPLY + "?txt=" + reply2 + "&username=" + this.username + "&OID=" + this.userID + "&TID=0" + "&replyParent=" + this.getReplyParent();
+            url=URLS.URL_REPLY+"?txt="+reply2+"&username="+this.username+"&OID="+this.userID+"&TID="+parent.getQuestionID()+"&replyParent=0";
         }
         StringRequest req = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {

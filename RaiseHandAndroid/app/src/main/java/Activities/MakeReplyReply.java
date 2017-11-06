@@ -40,9 +40,7 @@ public class MakeReplyReply extends AppCompatActivity {
 
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
-
         currentUser = gson.fromJson(json, User.class);
-
         final String replyParentIDAsString = getIntent().getStringExtra("replyID");
         //final Reply reply = gson.fromJson(replyParentAsString, Reply.class);
 

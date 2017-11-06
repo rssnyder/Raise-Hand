@@ -103,9 +103,6 @@ public class TeacherQuestions extends AppCompatActivity {
                 Intent makeQuestion = new Intent(getApplicationContext().getApplicationContext(), MakeQuestion.class);
                 makeQuestion.putExtra("topicID", topicID);
                 makeQuestion.putExtra("topic", topic);
-                Bundle bun = new Bundle();
-                bun.putString("topicID", topicID);
-                bun.putString("topic", topic);
                 startActivity(makeQuestion);
             }
         });
