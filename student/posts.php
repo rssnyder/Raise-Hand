@@ -22,6 +22,16 @@
   //Get this class
   $class = getClass($db, $_GET['class']);
 
+  //Check to see if student is actually in this class
+  if(!doesBelong($db, $_GET['class'], $_SESSION['id'])) {
+    //user is not in this class
+    header("Location: home.php");
+    die("You shall not pass");
+  }
+
+  //Get the relationship of the student to this class for TA endorsement
+  $relationship = getRelationship($db, $_SESSION['id'], $class['ID']);
+
   function getChildComments($parentID, $lvl, $threadID, $db) {
     //Get the children of this comment
     $result = getChildComm($db, $parentID, $threadID);
@@ -50,7 +60,7 @@
         echo '<a href="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '&comment=' . $id . '&action=flag" class="commentButton">Flag</a>';
       }
       //TAs can endorse thing
-      if($_SESSION['role'] != 4) {
+      if($relationship ==  3) {
         echo '<a href="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '&comment=' . $id . '&action=endorse" class="commentButton">Endorse</a>';
       }
       //Print endorsement
@@ -80,7 +90,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-    
+
     <script type="text/javascript">
       //Vote Button
       $('.vote').click(function () {
