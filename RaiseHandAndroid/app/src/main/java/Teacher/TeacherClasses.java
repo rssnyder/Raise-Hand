@@ -25,6 +25,9 @@ import Utilities.Classes;
 import Activities.LoginActivity;
 import Utilities.User;
 
+/**
+ * This activity displays the classes that a teacher is in.
+ */
 public class TeacherClasses extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -42,6 +45,7 @@ public class TeacherClasses extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_classes);
 
+        // Gets stored preferences. User is stored here.
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
 
         // Set up recycler view
@@ -53,29 +57,38 @@ public class TeacherClasses extends AppCompatActivity {
         // i.e. The classes the teacher is in
         listItems = new ArrayList<>();
 
+        // Converts the mPrferences's json data of the current user to a User object.
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
         User currentUser = gson.fromJson(json, User.class);
+
+        // Get the classes the current user is in
         listItems = currentUser.getClasses();
 
-
+        // Adapter to display the classes as recycler views. (cards on the screen)
         adapter = new MyAdapterClasses(listItems, this);
 
+        // Set the adapter to the recycler view
         recyclerView.setAdapter(adapter);
 
+        // Get the nav menu stuff
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
 
+        // create the drawer layout (the thing you swipe from the side)
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 
+        // add the menu items to the drawer
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
 
-        slideOutMenu();
+        //makes it so you can swipe the menu out from anywhere on screen
+//        slideOutMenu();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // populate the navigation buttons to go to the correct place
         nv = (NavigationView) findViewById(R.id.nv1);
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -127,7 +140,7 @@ public class TeacherClasses extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
+/*
     private void slideOutMenu(){
 
         try {
@@ -166,6 +179,6 @@ public class TeacherClasses extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
+*/
 
 }

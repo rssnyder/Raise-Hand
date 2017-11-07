@@ -20,10 +20,10 @@ import com.google.gson.Gson;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-import RecyclerViews.MyAdapterTopics;
-import Activities.MakeQuestion;
-import Utilities.Classes;
 import Activities.LoginActivity;
+import Activities.MakeQuestion;
+import RecyclerViews.MyAdapterTopics;
+import Utilities.Classes;
 import Utilities.Topics;
 import Utilities.User;
 
@@ -43,13 +43,14 @@ public class TeacherTopics extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_topics);
 
+        // Bundle gets the classID from the class the user clicked on in the TeacherClasses adapter (myAdapterClasses)
         Bundle bundle = getIntent().getExtras();
         String classID = bundle.getString("classID");
 
+        // Gets stored preferences. User is stored here.
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
 
         // Set up recycler view
@@ -59,8 +60,9 @@ public class TeacherTopics extends AppCompatActivity {
 
         // list to hold items for recycler view.
         // i.e. The topics in the class
-        listItems = new ArrayList<Topics>();
+        listItems = new ArrayList<>();
 
+        // Converts the mPrferences's json data of the current user to a User object.
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
         User currentUser = gson.fromJson(json, User.class);
@@ -76,23 +78,30 @@ public class TeacherTopics extends AppCompatActivity {
             }
         }
 
+        // Adapter to display the classes as recycler views. (cards on the screen)
         adapter = new MyAdapterTopics(listItems, this);
 
+        // Set the adapter to the recycler view
         recyclerView.setAdapter(adapter);
 
+        // Get the nav menu stuff
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
 
+        // create the drawer layout (the thing you swipe from the side)
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 
+        // add the menu items to the drawer
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
 
-        slideOutMenu();
+        //makes it so you can swipe the menu out from anywhere on screen
+//        slideOutMenu();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // populate the navigation buttons to go to the correct place
         nv = (NavigationView) findViewById(R.id.nv1);
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -145,7 +154,7 @@ public class TeacherTopics extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
+/*
     private void slideOutMenu(){
 
         try {
@@ -184,6 +193,6 @@ public class TeacherTopics extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
+*/
 
 }
