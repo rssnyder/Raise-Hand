@@ -21,6 +21,8 @@ import Utilities.StringParse;
 
 /**
  * Created by jaggarwal on 11/1/17.
+ *
+ * This is an adapter for reply to a reply. It represents each reply in the layout holder
  */
 
 public class MyAdapterRepliesReply extends RecyclerView.Adapter<MyAdapterRepliesReply.ViewHolder> {
@@ -33,6 +35,12 @@ public class MyAdapterRepliesReply extends RecyclerView.Adapter<MyAdapterReplies
         this.context = context;
     }
 
+    /**
+     *
+     * This method inflates the view for the handler i.e. how the page will look like when the user
+     * gets to that page
+     *
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
@@ -40,11 +48,25 @@ public class MyAdapterRepliesReply extends RecyclerView.Adapter<MyAdapterReplies
         return new ViewHolder(v);
     }
 
+    /**
+     *
+     * This method is to get the size of the ArrayList of replies to a particular reply
+     *
+     * @return the size of number of replies
+     */
     @Override
     public int getItemCount() {
         return listItems.size();
     }
 
+    /**
+     *
+     * The functionality specific to a particular reply. It sets the timeStamp, the title, the points
+     * and whether or not it is endorsed.
+     *
+     * @param holder the layout that holds the replies
+     * @param position what item in the holder was clicked
+     */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position){
         final Reply listItem = listItems.get(position);
@@ -74,6 +96,9 @@ public class MyAdapterRepliesReply extends RecyclerView.Adapter<MyAdapterReplies
     }
 
 
+    /**
+     * This class defines all the attributes for a holder object i.e. reply
+     */
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView textViewHead;
         public TextView textViewEndorsed;

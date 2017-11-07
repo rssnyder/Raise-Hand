@@ -2,6 +2,7 @@ package Student;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Canvas;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -28,6 +30,8 @@ import Activities.MakeReply;
 import Activities.LoginActivity;
 import Utilities.Question;
 import Utilities.Reply;
+import Utilities.SwipeController;
+import Utilities.SwipeControllerActions;
 import Utilities.User;
 
 public class StudentReplies extends AppCompatActivity {
@@ -35,6 +39,7 @@ public class StudentReplies extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private ArrayList<Reply> listItems;
     private Field mDragger;
+    SwipeController swipeController = null;
 
     private SharedPreferences mPreferences;
 
@@ -57,10 +62,6 @@ public class StudentReplies extends AppCompatActivity {
 
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
 
-        recyclerView = (RecyclerView) findViewById(R.id.repliesRecyclerViewStudent);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
         User currentUser = gson.fromJson(json, User.class);
@@ -68,11 +69,25 @@ public class StudentReplies extends AppCompatActivity {
         // Get the question the user clicked on,
         // then the replies in that question.
         final Question userQuestion = currentUser.getSingleQuestion(questionID);
-        listItems=userQuestion.getReplies();
+        listItems=userQuestion.getParentRepliesOnly();
+
+        //go through every parent reply and find the replies to replies
+        for(Reply r: listItems) {
+            ArrayList<Reply> temp = new ArrayList<Reply>();
+            if (r.getReplies() == null || r.getReplies().size() == 0) {
+                //go through all replies to find the ones that are children of the parent reply
+                for (Reply rep : userQuestion.getReplies()) {
+                    if (rep.getReplyParent() != null && r.getReplyID().equals(rep.getReplyParent())) {
+                        temp.add(rep);
+                    }
+                }
+                r.setReplies(temp);
+            }
+        }
 
         adapter = new MyAdapterRepliesStudent(listItems, this);
 
-        recyclerView.setAdapter(adapter);
+        setUpRecyclerView();
 
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
@@ -182,5 +197,33 @@ public class StudentReplies extends AppCompatActivity {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+    }
+
+    private void setUpRecyclerView(){
+        recyclerView = (RecyclerView) findViewById(R.id.repliesRecyclerViewStudent);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+
+        swipeController = new SwipeController(new SwipeControllerActions() {
+            @Override
+            public void onRightClicked(int position) {
+                //Upboat here
+                listItems.get(position).upVote();
+            }
+            @Override
+            public void onLeftClicked(int position){
+                listItems.get(position).endorse();
+            }
+        });
+        ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
+        itemTouchhelper.attachToRecyclerView(recyclerView);
+
+        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+                swipeController.onDraw(c);
+            }
+        });
     }
 }

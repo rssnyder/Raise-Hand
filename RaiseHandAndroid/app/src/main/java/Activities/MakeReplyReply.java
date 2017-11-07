@@ -17,7 +17,7 @@ import Utilities.User;
 
 /**
  * Created by jaggarwal on 11/1/17.
- * This a method that enables the user to make a reply, you can
+ * This a class that enables the user to make a reply, you can
  * only get to this through a reply so that we have a reply ID for the reply to
  * be put underneath
  */
@@ -29,6 +29,13 @@ public class MakeReplyReply extends AppCompatActivity {
     private SharedPreferences mPreferences;
     private User currentUser;
 
+    /**
+     *
+     * This method starts the activity, initializes the activity view and gets the currentUser, and
+     * adds functionality to add a new reply
+     *
+     * @param savedInstanceState the current state of the activity
+     */
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -46,6 +53,7 @@ public class MakeReplyReply extends AppCompatActivity {
         final String replyParentIDAsString = getIntent().getStringExtra("replyID");
         //final Reply reply = gson.fromJson(replyParentAsString, Reply.class);
 
+        // On click listener to add a reply to that reply.
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

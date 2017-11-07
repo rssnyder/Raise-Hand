@@ -34,6 +34,9 @@ import Utilities.User;
 
 /**
  * Created by jaggarwal on 11/1/17.
+ *
+ * This is a activity for the reply to reply page. It contains the Recycler View and the the adapter
+ * for the activity.
  */
 
 public class RepliesReply extends AppCompatActivity{
@@ -52,6 +55,13 @@ public class RepliesReply extends AppCompatActivity{
     private NavigationView nv;
     private Toolbar mToolbar;
 
+    /**
+     *
+     * This method starts the activity, initializes the activity view and gets the currentUser, and
+     * adds functionality to add a new reply
+     *
+     * @param savedInstanceState the current state of the activity
+     */
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -136,6 +146,11 @@ public class RepliesReply extends AppCompatActivity{
         });
     }
 
+    /**
+     *
+     * Private method to set the recycler view
+     *
+     */
     private void setUpRecyclerView(){
 
         recyclerView = (RecyclerView) findViewById(R.id.replyRecyclerView);
