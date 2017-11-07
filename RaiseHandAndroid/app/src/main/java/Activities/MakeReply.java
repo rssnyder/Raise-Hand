@@ -1,5 +1,6 @@
 package Activities;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
 
+import Teacher.TeacherClasses;
 import Utilities.Question;
 import Utilities.Reply;
 import Utilities.User;
@@ -66,6 +68,10 @@ public class MakeReply extends AppCompatActivity {
                 temp.setReply(inputDetails);
                 //calls the method from the Reply class (in Utilities) that adds the reply to the database
                 temp.addToDatabase();
+
+                //Go to Classes (when we figure out the refreshing thing, this should redirect back to the previous reply)
+                Intent teacherClasses = new Intent(getApplicationContext(), TeacherClasses.class);
+                startActivity(teacherClasses);
             }
         });
 

@@ -11,6 +11,7 @@ import android.widget.EditText;
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
 
+import Teacher.TeacherClasses;
 import Utilities.Reply;
 import Utilities.User;
 
@@ -55,6 +56,11 @@ public class MakeReplyReply extends AppCompatActivity {
                 temp.setReplyIDParent(replyParentIDAsString);
                 temp.setReply(inputDetails);
                 temp.addToDatabase();
+
+                //Go to Classes (when we figure out the refreshing thing, this should redirect back to the previous reply)
+                Intent teacherClasses = new Intent(getApplicationContext(), TeacherClasses.class);
+                startActivity(teacherClasses);
+
 
             }
         });
