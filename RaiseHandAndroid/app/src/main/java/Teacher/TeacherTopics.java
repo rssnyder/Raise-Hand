@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.ViewDragHelper;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -31,7 +30,7 @@ public class TeacherTopics extends AppCompatActivity {
     private String TAG = TeacherTopics.class.getSimpleName();
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private ArrayList<Topics> listItems;
+    private ArrayList<Topics> listItemsOfTopics;
     private Field mDragger;
 
     private SharedPreferences mPreferences;
@@ -60,7 +59,7 @@ public class TeacherTopics extends AppCompatActivity {
 
         // list to hold items for recycler view.
         // i.e. The topics in the class
-        listItems = new ArrayList<>();
+        listItemsOfTopics = new ArrayList<>();
 
         // Converts the mPrferences's json data of the current user to a User object.
         Gson gson = new Gson();
@@ -72,14 +71,14 @@ public class TeacherTopics extends AppCompatActivity {
         for(Classes c : currentUser.getClasses()){
             if(c.getClassID().equals(classID)){
                 for (Topics t: c.getTopics()) {
-                    listItems.add(t);
+                    listItemsOfTopics.add(t);
                 }
                 break;
             }
         }
 
-        // Adapter to display the classes as recycler views. (cards on the screen)
-        adapter = new MyAdapterTopics(listItems, this);
+        // Adapter to display the topics as recycler views. (cards on the screen)
+        adapter = new MyAdapterTopics(listItemsOfTopics, this);
 
         // Set the adapter to the recycler view
         recyclerView.setAdapter(adapter);

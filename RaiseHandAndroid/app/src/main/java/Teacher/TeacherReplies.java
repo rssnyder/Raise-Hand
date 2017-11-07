@@ -3,13 +3,13 @@ package Teacher;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -22,9 +22,10 @@ import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import RecyclerViews.MyAdapterReplies;
-import Activities.MakeReply;
+
 import Activities.LoginActivity;
+import Activities.MakeReply;
+import RecyclerViews.MyAdapterReplies;
 import Utilities.Question;
 import Utilities.Reply;
 import Utilities.SwipeController;
@@ -38,9 +39,7 @@ public class TeacherReplies extends AppCompatActivity {
     private Field mDragger;
     SwipeController swipeController = null;
 
-
     private SharedPreferences mPreferences;
-
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
@@ -57,10 +56,13 @@ public class TeacherReplies extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         final String questionID = bundle.getString("questionID");
 
+        // FABulous way to add a reply
         FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
 
+        // Gets stored preferences. User is stored here.
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
 
+        // Converts the mPrferences's json data of the current user to a User object.
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
         User currentUser = gson.fromJson(json, User.class);
@@ -69,7 +71,7 @@ public class TeacherReplies extends AppCompatActivity {
         // then the replies in that question.
         final Question userQuestion = currentUser.getSingleQuestion(questionID);
         //only get original replies, not replies to replies
-        listItems=userQuestion.getParentRepliesOnly();
+        listItems = userQuestion.getParentRepliesOnly();
 
         //go through every parent reply and find the replies to replies
         for(Reply r: listItems) {
@@ -85,20 +87,26 @@ public class TeacherReplies extends AppCompatActivity {
             }
         }
 
+        // Adapter to display the questions as recycler views. (cards on the screen)
         adapter = new MyAdapterReplies(listItems, this);
 
+        // Makes the recycler view
         setUpRecyclerView();
 
+        // Get the nav menu
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
 
+        // create the drawer layout (the thing you swipe from the side)
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 
+        // add the menu items to the drawer
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // put the questions into a string from its JSON
         final String question = gson.toJson(userQuestion);
 
         // Go to make a new reply page on FAB click
@@ -106,12 +114,14 @@ public class TeacherReplies extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent makeReply = new Intent(getApplicationContext().getApplicationContext(), MakeReply.class);
+                // Pass the question ID and question array
                 makeReply.putExtra("questionID", questionID);
                 makeReply.putExtra("question", question);
                 startActivity(makeReply);
             }
         });
 
+        // populate the navigation buttons to go to the correct place
         nv = (NavigationView) findViewById(R.id.nv1);
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -122,7 +132,8 @@ public class TeacherReplies extends AppCompatActivity {
                         startActivity(teacherHome);
                         break;
                     case (R.id.nav_classes):
-                        mDrawerLayout.closeDrawers();
+                        Intent teacherClasses = new Intent(getApplicationContext(), TeacherClasses.class);
+                        startActivity(teacherClasses);
                         break;
                     case (R.id.nav_notifications):
                         Intent teacherNotifications = new Intent(getApplicationContext(), TeacherNotifications.class);
@@ -136,7 +147,6 @@ public class TeacherReplies extends AppCompatActivity {
                         Intent teacherSettings = new Intent(getApplicationContext(), TeacherSettings.class);
                         startActivity(teacherSettings);
                         break;
-
                     case (R.id.nav_logout):
                         Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(loginPage);
@@ -148,20 +158,25 @@ public class TeacherReplies extends AppCompatActivity {
         });
     }
 
+    /**
+     * Sets up the recycler view
+     */
     private void setUpRecyclerView(){
         recyclerView = (RecyclerView) findViewById(R.id.repliesRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
+        // Be able to swipe the items
         swipeController = new SwipeController(new SwipeControllerActions() {
             @Override
             public void onRightClicked(int position) {
-                //Upboat here
+                //shows the upvote on right click
                 listItems.get(position).upVote();
             }
             @Override
             public void onLeftClicked(int position){
+                // Endorses on left click
                 listItems.get(position).endorse();
             }
         });

@@ -24,25 +24,23 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-import RecyclerViews.MyAdapterQuestions;
-import Activities.MakeQuestion;
 import Activities.LoginActivity;
+import Activities.MakeQuestion;
+import RecyclerViews.MyAdapterQuestions;
 import Utilities.Question;
-import Utilities.Reply;
+import Utilities.SwipeController;
 import Utilities.SwipeControllerActions;
 import Utilities.Topics;
 import Utilities.User;
-import Utilities.SwipeController;
 
 public class TeacherQuestions extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private List<Question> listItems;
+    private List<Question> listItemsOfQuestions;
     private Field mDragger;
     SwipeController swipeController = null;
 
     private SharedPreferences mPreferences;
-
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
@@ -54,16 +52,20 @@ public class TeacherQuestions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_questions);
 
+        // Bundle gets the topicsID from the topic that the user clicked on in the teacherTopics adapter
         Bundle bundle = getIntent().getExtras();
         final String topicID = bundle.getString("topicsID");
 
+        // FAB that makes a new question
         FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
 
+        // Gets stored preferences. User is stored here.
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
 
-        listItems = new ArrayList<>();
-        List<Reply> replyList = new ArrayList<>();
+        // List to hold the questions
+        listItemsOfQuestions = new ArrayList<>();
 
+        // Converts the mPrferences's json data of the current user to a User object.
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
         User currentUser = gson.fromJson(json, User.class);
@@ -74,23 +76,28 @@ public class TeacherQuestions extends AppCompatActivity {
         final Topics usersTopic = currentUser.getSingleTopic(topicID);
         ArrayList<Question> topicQuestions = usersTopic.getQuestions();
 
-        listItems = topicQuestions;
+        // after getting the questions, assign it to listItemsOfQuestions
+        listItemsOfQuestions = topicQuestions;
 
-        adapter = new MyAdapterQuestions(listItems, this);
+        // Adapter to display the questions as recycler views. (cards on the screen)
+        adapter = new MyAdapterQuestions(listItemsOfQuestions, this);
 
+        // Makes the recycler view
         setUpRecyclerView();
 
+        // Get the nav menu
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
 
+        // create the drawer layout (the thing you swipe from the side)
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 
+        // add the menu items to the drawer
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
 
 //        slideOutMenu();
-        mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -107,6 +114,7 @@ public class TeacherQuestions extends AppCompatActivity {
             }
         });
 
+        // populate the navigation buttons to go to the correct place
         nv = (NavigationView) findViewById(R.id.nv1);
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -117,7 +125,8 @@ public class TeacherQuestions extends AppCompatActivity {
                         startActivity(teacherHome);
                         break;
                     case (R.id.nav_classes):
-                        mDrawerLayout.closeDrawers();
+                        Intent teacherClasses = new Intent(getApplicationContext(), TeacherClasses.class);
+                        startActivity(teacherClasses);
                         break;
                     case (R.id.nav_notifications):
                         Intent teacherNotifications = new Intent(getApplicationContext(), TeacherNotifications.class);
@@ -145,6 +154,9 @@ public class TeacherQuestions extends AppCompatActivity {
 
     }
 
+    /**
+     * Sets up the recycler view
+     */
     private void setUpRecyclerView(){
 
         recyclerView = (RecyclerView) findViewById(R.id.questionsRecyclerView);
@@ -152,15 +164,17 @@ public class TeacherQuestions extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
+        // Be able to swipe the items
         swipeController = new SwipeController(new SwipeControllerActions() {
             @Override
             public void onRightClicked(int position) {
-                //Upboat here
-                    listItems.get(position).upVote();
+                //shows the upvote on right click
+                listItemsOfQuestions.get(position).upVote();
             }
             @Override
             public void onLeftClicked(int position){
-                listItems.get(position).endorse();
+                // Endorses on left click
+                listItemsOfQuestions.get(position).endorse();
             }
         });
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
