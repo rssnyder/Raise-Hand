@@ -6,22 +6,23 @@
             android:icon="@mipmap/ic_home_black_24dp"
             android:title="Home"/>
 
-        <item android:id="@+id/nav_notifications"
+        <item android:id="@+id/nav_notifications_student"
             android:icon="@mipmap/ic_notifications_black_24dp"
             android:title="Notifications"/>
 
-        <item android:id="@+id/nav_classes"
+        <item android:id="@+id/nav_classes_student"
             android:icon="@mipmap/ic_school_black_24dp"
             android:title="Classes"/>
 
-        <item android:id="@+id/nav_settings"
+        <item android:id="@+id/nav_settings_student"
             android:icon="@mipmap/ic_settings_black_24dp"
             android:title="Settings"/>
-        <item android:id = "@+id/nav_question"
+
+        <item android:id = "@+id/nav_question_student"
             android:icon="@mipmap/ic_create_black_24dp"
             android:title="Question"/>
 
-        <item android:id="@+id/nav_logout"
+        <item android:id="@+id/nav_logout_student"
             android:icon="@mipmap/ic_power_settings_new_black_24dp"
             android:title="Logout"/>
     </group>

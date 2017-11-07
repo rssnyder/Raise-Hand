@@ -77,7 +77,7 @@ public class StudentClasses extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        nv = (NavigationView) findViewById(R.id.nv1);
+        nv = (NavigationView) findViewById(R.id.nv2);
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -86,22 +86,22 @@ public class StudentClasses extends AppCompatActivity {
                         Intent studentHome = new Intent(getApplicationContext(), StudentHomePage.class);
                         startActivity(studentHome);
                         break;
-                    case (R.id.nav_classes):
+                    case (R.id.nav_classes_student):
                         mDrawerLayout.closeDrawers();
                         break;
-                    case (R.id.nav_notifications):
+                    case (R.id.nav_notifications_student):
                         Intent studentNotifications = new Intent(getApplicationContext(), StudentNotifications.class);
                         startActivity(studentNotifications);
                         break;
-                    case (R.id.nav_question):
+                    case (R.id.nav_question_student):
                         Intent studentQuestion = new Intent(getApplicationContext(), MakeQuestion.class);
                         startActivity(studentQuestion);
                         break;
-                    case (R.id.nav_settings):
+                    case (R.id.nav_settings_student):
                         Intent studentSettings = new Intent(getApplicationContext(), StudentSettings.class);
                         startActivity(studentSettings);
                         break;
-                    case (R.id.nav_logout):
+                    case (R.id.nav_logout_student):
                         Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(loginPage);
                         finish();

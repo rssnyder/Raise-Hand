@@ -40,7 +40,7 @@ public class StudentNotifications extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_notifications);
 
-        recyclerView = (RecyclerView) findViewById(R.id.notificationRecyclerView);
+        recyclerView = (RecyclerView) findViewById(R.id.notificationRecyclerViewStudent);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -69,7 +69,7 @@ public class StudentNotifications extends AppCompatActivity {
         slideOutMenu();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        nv = (NavigationView) findViewById(R.id.nv1);
+        nv = (NavigationView) findViewById(R.id.nv2);
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -78,18 +78,18 @@ public class StudentNotifications extends AppCompatActivity {
                         Intent studentHome = new Intent(getApplicationContext(), StudentHomePage.class);
                         startActivity(studentHome);
                         break;
-                    case (R.id.nav_classes):
+                    case (R.id.nav_classes_student):
                         Intent studentClasses = new Intent(getApplicationContext(), StudentClasses.class);
                         startActivity(studentClasses);
                         break;
-                    case (R.id.nav_notifications):
+                    case (R.id.nav_notifications_student):
                         mDrawerLayout.closeDrawers();
                         break;
-                    case (R.id.nav_settings):
+                    case (R.id.nav_settings_student):
                         Intent studentSettings = new Intent(getApplicationContext(), StudentSettings.class);
                         startActivity(studentSettings);
                         break;
-                    case (R.id.nav_logout):
+                    case (R.id.nav_logout_student):
                         Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(loginPage);
                         finish();
