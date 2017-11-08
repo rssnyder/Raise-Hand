@@ -127,4 +127,25 @@
     return $user;
   }
 
+  /*
+    Function to get list of TAs for a class
+  */
+  function getTAs($db, $class) {
+    //Get the TAs IDs from the class
+    $query = 'SELECT user_id FROM userClasses WHERE relationship = 3 AND class_id = ' . $class;
+    $result = $db->query($query) or die($db->error);
+    //Get all these users
+    $allTA = array();
+    while($TA = $result->fetch_assoc()) {
+      //Build a string of the name
+      $query = 'SELECT first_name, last_name, email FROM users WHERE ID = ' . $TA['user_id'];
+      $result2 = $db->query($query) or die($db->error);
+      $thisTA = $result2->fetch_assoc();
+      $name = $thisTA['first_name'] . ' ' . $thisTA['last_name'] . ': ' . $thisTA['email'];
+      array_push($allTA, $name);
+    }
+    //Return the array of TA names
+    return $allTA;
+  }
+
  ?>
