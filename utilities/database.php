@@ -116,4 +116,15 @@
     return $relationship['relationship'];
   }
 
+  /*
+    Gets a users information
+  */
+  function getUserInfo($db, $uID) {
+    //Get the user with limited information
+    $query = "SELECT first_name, last_name,email FROM users WHERE ID = " . $uID;
+    $result = $db->query($query) or die($db->error);
+    $user = $result->fetch_assoc();
+    return $user;
+  }
+
  ?>

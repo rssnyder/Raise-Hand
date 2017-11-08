@@ -64,6 +64,7 @@
   <div class="main">
     <div align="center" class="container">
       <?php
+        //This is for the join a class page
         if(!strcmp($_GET['page'], 'joinClass')) {
           echo '<form id="class-join-form" action="utilities/joinClass.php" method="post">';
           if($_SESSION['error']){
@@ -74,6 +75,24 @@
             <input type="text" name="accessCode" value="" size="35"><br><br>
             <input name="signup" type="submit" value="Join Class"><br><br>
           </form>';
+        }
+        //This is the homepage for a class
+        if("" == trim($_GET['class'])) {
+          $teacher = getUserInfo($class['teacher_id']);
+          echo '<div id="questions" class="container-fluid" style="overflow-y: auto;max-height: 90vh;">';
+          echo '<div class="row row-no-padding">
+                  <div class="col-md-6">
+                    <div class="jumbotron well">
+                      <h1>' . $class['class_name'] . '</h1><h3>' . $class['description'] . '</h3>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="jumbotron well">
+                      <h4>Instructor:</h4> ' . $teacher['first_name'] . ' ' . $teacher['last_name'] . '
+                    </div>
+                  </div>
+                </div>;
+
         }
       ?>
     </div>
