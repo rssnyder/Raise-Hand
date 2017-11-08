@@ -24,6 +24,10 @@ import RecyclerViews.MyAdapterNotifications;
 import Activities.MakeQuestion;
 import Activities.LoginActivity;
 
+/**
+ * This class has notifications for the teacher.
+ * Notifications will include recent questions and replies submitted.
+ */
 public class TeacherNotifications extends AppCompatActivity {
 
     private RecyclerView recyclerView;
@@ -41,10 +45,12 @@ public class TeacherNotifications extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_notifications);
 
+        // Setting up the recycler view
         recyclerView = (RecyclerView) findViewById(R.id.notificationRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        // Sampe of notification items
         listItems = new ArrayList<>();
         for(int i = 0; i < 10; i++){
             ListItemTeacherNotifications listItem = new ListItemTeacherNotifications("Notification " + (i+1),
@@ -52,23 +58,28 @@ public class TeacherNotifications extends AppCompatActivity {
             listItems.add(listItem);
         }
 
+        // Adapter to display the questions as recycler views. (cards on the screen)
         adapter = new MyAdapterNotifications(listItems, this);
 
         recyclerView.setAdapter(adapter);
 
+        // Get the nav menu
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
 
+        // create the drawer layout (the thing you swipe from the side)
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 
+        // add the menu items to the drawer
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
 
-        slideOutMenu();
+//        slideOutMenu();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // populate the navigation buttons to go to the correct place
         nv = (NavigationView) findViewById(R.id.nv1);
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -119,7 +130,7 @@ public class TeacherNotifications extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
+/*
     private void slideOutMenu(){
 
         try {
@@ -158,5 +169,5 @@ public class TeacherNotifications extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
+*/
 }

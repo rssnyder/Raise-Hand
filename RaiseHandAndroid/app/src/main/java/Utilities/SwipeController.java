@@ -148,9 +148,12 @@ public class SwipeController extends Callback {
         }
     }
 
+    /**
+     * Displays the buttons. Can change what it draws by changing the draw text and color.
+     */
     private void drawButtons(Canvas c, RecyclerView.ViewHolder viewHolder) {
         float buttonWidthWithoutPadding = buttonWidth - 20;
-        float corners = 16;
+        float corners = 0;
 
         View itemView = viewHolder.itemView;
         Paint p = new Paint();

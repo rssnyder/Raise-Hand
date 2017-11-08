@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import RecyclerViews.MyAdapterRepliesReply;
+import Teacher.TeacherClasses;
 import Teacher.TeacherHomePage;
 import Teacher.TeacherNotifications;
 import Teacher.TeacherSettings;
@@ -120,7 +121,8 @@ public class RepliesReply extends AppCompatActivity{
                         startActivity(teacherHome);
                         break;
                     case (R.id.nav_classes):
-                        mDrawerLayout.closeDrawers();
+                        Intent teacherClasses = new Intent(getApplicationContext(), TeacherClasses.class);
+                        startActivity(teacherClasses);
                         break;
                     case (R.id.nav_notifications):
                         Intent teacherNotifications = new Intent(getApplicationContext(), TeacherNotifications.class);
@@ -144,6 +146,16 @@ public class RepliesReply extends AppCompatActivity{
                 return true;
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(mToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     /**

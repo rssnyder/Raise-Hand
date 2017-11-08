@@ -13,7 +13,9 @@ import com.example.sae1.raisehand.R;
 
 import Activities.LoginActivity;
 
-
+/**
+ * This will be the home page for the teacher
+ */
 public class TeacherHomePage extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
@@ -26,6 +28,7 @@ public class TeacherHomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_home_page);
 
+        // Gets stored preferences. User is stored here.
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
 
