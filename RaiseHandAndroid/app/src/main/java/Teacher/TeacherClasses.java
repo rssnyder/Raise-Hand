@@ -21,8 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 import RecyclerViews.MyAdapterClasses;
 import Activities.MakeQuestion;
+import Utilities.ActivitiesNames;
 import Utilities.Classes;
 import Activities.LoginActivity;
+import Utilities.NavUtil;
 import Utilities.User;
 
 /**
@@ -90,44 +92,7 @@ public class TeacherClasses extends AppCompatActivity {
 
         // populate the navigation buttons to go to the correct place
         nv = (NavigationView) findViewById(R.id.nv1);
-        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case(R.id.nav_home):
-                        Intent teacherHome = new Intent(getApplicationContext(), TeacherHomePage.class);
-                        startActivity(teacherHome);
-                        break;
-                    case (R.id.nav_classes):
-                        mDrawerLayout.closeDrawers();
-                        break;
-                    case (R.id.nav_notifications):
-                        Intent teacherNotifications = new Intent(getApplicationContext(), TeacherNotifications.class);
-                        startActivity(teacherNotifications);
-                        break;
-                    case (R.id.nav_students):
-                        Intent teacherStudents = new Intent(getApplicationContext(), TeacherStudents.class);
-                        startActivity(teacherStudents);
-                        break;
-                    case (R.id.nav_settings):
-                        Intent teacherSettings = new Intent(getApplicationContext(), TeacherSettings.class);
-                        startActivity(teacherSettings);
-                        break;
-                    case (R.id.nav_question):
-                        Intent teacherQuestion = new Intent(getApplicationContext(), MakeQuestion.class);
-                        startActivity(teacherQuestion);
-                        break;
-
-                    case (R.id.nav_logout):
-                        Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
-                        startActivity(loginPage);
-                        finish();
-                        break;
-                }
-                return true;
-            }
-        });
-
+        NavUtil.setNavMenu(nv, ActivitiesNames.CLASSES, getApplicationContext(), mDrawerLayout);
 
     }
 

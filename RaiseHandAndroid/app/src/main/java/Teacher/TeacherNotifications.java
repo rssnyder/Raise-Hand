@@ -23,6 +23,8 @@ import RecyclerViews.ListItemTeacherNotifications;
 import RecyclerViews.MyAdapterNotifications;
 import Activities.MakeQuestion;
 import Activities.LoginActivity;
+import Utilities.ActivitiesNames;
+import Utilities.NavUtil;
 
 /**
  * This class has notifications for the teacher.
@@ -81,42 +83,7 @@ public class TeacherNotifications extends AppCompatActivity {
 
         // populate the navigation buttons to go to the correct place
         nv = (NavigationView) findViewById(R.id.nv1);
-        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case(R.id.nav_home):
-                        Intent teacherHome = new Intent(getApplicationContext(), TeacherHomePage.class);
-                        startActivity(teacherHome);
-                        break;
-                    case (R.id.nav_classes):
-                        Intent teacherClasses = new Intent(getApplicationContext(), TeacherClasses.class);
-                        startActivity(teacherClasses);
-                        break;
-                    case (R.id.nav_notifications):
-                        mDrawerLayout.closeDrawers();
-                        break;
-                    case (R.id.nav_students):
-                        Intent teacherStudents = new Intent(getApplicationContext(), TeacherStudents.class);
-                        startActivity(teacherStudents);
-                        break;
-                    case (R.id.nav_settings):
-                        Intent teacherSettings = new Intent(getApplicationContext(), TeacherSettings.class);
-                        startActivity(teacherSettings);
-                        break;
-                    case (R.id.nav_logout):
-                        Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
-                        startActivity(loginPage);
-                        finish();
-                        break;
-                    case (R.id.nav_question):
-                        Intent teacherQuestion = new Intent(getApplicationContext(), MakeQuestion.class);
-                        startActivity(teacherQuestion);
-                        break;
-                }
-                return true;
-            }
-        });
+        NavUtil.setNavMenu(nv, ActivitiesNames.NOTIFICATIONS, getApplicationContext(), mDrawerLayout);
 
     }
 

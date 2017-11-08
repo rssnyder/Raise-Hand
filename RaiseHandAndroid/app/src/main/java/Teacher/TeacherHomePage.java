@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import com.example.sae1.raisehand.R;
 
 import Activities.LoginActivity;
+import Utilities.ActivitiesNames;
+import Utilities.NavUtil;
 
 /**
  * This will be the home page for the teacher
@@ -41,39 +43,7 @@ public class TeacherHomePage extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         nv = (NavigationView) findViewById(R.id.nv1);
-        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case(R.id.nav_home):
-                        mDrawerLayout.closeDrawers();
-                        break;
-                    case (R.id.nav_classes):
-                        Intent teacherClasses = new Intent(getApplicationContext(), TeacherClasses.class);
-                        startActivity(teacherClasses);
-                        break;
-                    case (R.id.nav_notifications):
-                        Intent teacherNotifications = new Intent(getApplicationContext(), TeacherNotifications.class);
-                        startActivity(teacherNotifications);
-                        break;
-                    case (R.id.nav_students):
-                        Intent teacherStudents = new Intent(getApplicationContext(), TeacherStudents.class);
-                        startActivity(teacherStudents);
-                        break;
-                    case (R.id.nav_settings):
-                        Intent teacherSettings = new Intent(getApplicationContext(), TeacherSettings.class);
-                        startActivity(teacherSettings);
-                        break;
-
-                    case (R.id.nav_logout):
-                        Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
-                        startActivity(loginPage);
-                        finish();
-                        break;
-                }
-                return true;
-            }
-        });
+        NavUtil.setNavMenu(nv, ActivitiesNames.HOME, getApplicationContext(), mDrawerLayout);
     }
 
     @Override
