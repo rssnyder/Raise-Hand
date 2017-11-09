@@ -1,8 +1,6 @@
 package Teacher;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.ViewDragHelper;
@@ -21,8 +19,6 @@ import java.util.List;
 
 import RecyclerViews.ListItemTeacherStudents;
 import RecyclerViews.MyAdapterStudents;
-import Activities.MakeQuestion;
-import Activities.LoginActivity;
 import Utilities.ActivitiesNames;
 import Utilities.NavUtil;
 

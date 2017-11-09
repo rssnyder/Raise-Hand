@@ -1,9 +1,7 @@
 package Teacher;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -19,8 +17,6 @@ import com.google.gson.Gson;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-import Activities.LoginActivity;
-import Activities.MakeQuestion;
 import RecyclerViews.MyAdapterTopics;
 import Utilities.ActivitiesNames;
 import Utilities.Classes;
