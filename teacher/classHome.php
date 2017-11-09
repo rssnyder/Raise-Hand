@@ -4,7 +4,7 @@
   session_start();
   //Check if user is logged in
   if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-    if(($_SESSION['role'] != 4) && $_SESSION['role'] != 3) {
+    if($_SESSION['role'] != 2) {
       $_SESSION['error'] = true;
       $_SESSION['errorCode'] = "Not Permitted";
       header("Location: ../login.php");
@@ -22,11 +22,10 @@
   //Get this class
   $class = getClass($db, $_GET['class']);
 
-  //Check to see if student is actually in this class
-  if(!doesBelong($db, $_GET['class'], $_SESSION['id'])) {
-    //user is not in this class
+  //Check to see if this teacher actaully owns this classes
+  if($class['teacher_id'] != $_SESSION['id']) {
     header("Location: home.php");
-    die("You shall not pass");
+    die("oops");
   }
 
 ?>
@@ -63,20 +62,40 @@
   <!-- Main content of the webpage -->
   <div class="main">
     <div align="center" class="container">
-      <?php
-        //This is for the join a class page
-        if(!strcmp($_GET['page'], 'joinClass')) {
-          echo '<form id="class-join-form" action="utilities/joinClass.php" method="post">';
-          if($_SESSION['error']){
-              echo '<font color="red">' . $_SESSION['errorCode'] . "</font><br><br>";
-              $_SESSION['error'] = false;
-          }
-          echo 'Access Code: <br>
-            <input type="text" name="accessCode" value="" size="35"><br><br>
-            <input name="signup" type="submit" value="Join Class"><br><br>
-          </form>';
-        }
-      ?>
+          <div id="questions" class="container-fluid" style="overflow-y: auto;max-height: 90vh;">';
+                <div class="row row-no-padding">
+                  <div class="col-md-12">
+                    <div class="jumbotron well">
+                      <?php
+                        $teacher = getUserInfo($db, $class['teacher_id']);
+                        echo '<h1>' . $class['class_name'] . '</h1><h3>' . $class['description'] . '</h3>';
+                      ?>
+                    </div>
+                  </div>
+                </div>
+                <div class="row row-no-padding">
+                  <div class="col-md-12">
+                    <div class="jumbotron well">
+                      <?php
+                          echo '<h4>Instructor:</h4> ' . $teacher['first_name'] . ' ' . $teacher['last_name'] . '<h6>Contact:</h6> ' . $teacher['email'];
+                      ?>
+                    </div>
+                  </div>
+                </div>
+                <div class="row row-no-padding">
+                  <div class="col-md-12">
+                    <div class="jumbotron well">
+                      <?php
+                          echo '<h4>Teaching Assistants:</h4>';
+                          $allTAs = getTAs($db, $_GET['class']);
+                          foreach ($allTAs as $value) {
+                            echo $value . '<br>';
+                          }
+                      ?>
+                    </div>
+                  </div>
+                </div>
+            </div>
     </div>
   </div>
 
