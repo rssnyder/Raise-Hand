@@ -8,6 +8,7 @@ import Utilities.URLS;
 import Utilities.User;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -25,6 +26,8 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.example.sae1.raisehand.R;
 import Student.StudentNotifications;
+import Utilities.VolleyHelper;
+
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 
@@ -57,10 +60,26 @@ public class LoginActivity extends Activity {
 
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
 
+        final String usernameString = editTextUsername.getText().toString();
+        final String passwordString = editTextPassword.getText().toString();
+
         buttonLogin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                userLogin();
+                //validating inputs are there
+//                if (TextUtils.isEmpty(usernameString)) {
+//                    editTextUsername.setError("Please enter your username");
+//                    editTextUsername.requestFocus();
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(passwordString)) {
+//                    editTextPassword.setError("Please enter your password");
+//                    editTextPassword.requestFocus();
+//                    return;
+//                }
+
+                VolleyHelper.userLogin(usernameString, passwordString, getApplicationContext());
+//                userLogin();
             }
         });
         textViewRegister.setOnClickListener(new View.OnClickListener() {
@@ -81,18 +100,6 @@ public class LoginActivity extends Activity {
         });
     }
 
-    public void showProgressDialog() {
-        if(!pDialog.isShowing()) {
-            pDialog.show();
-        }
-    }
-
-    public void hideProgressDialog() {
-        if(pDialog.isShowing()) {
-            pDialog.hide();
-            pDialog.dismiss();
-        }
-    }
 
     private void userLogin() {
         //first getting the values
@@ -171,7 +178,18 @@ public class LoginActivity extends Activity {
         }
     }
 
+    public void showProgressDialog() {
+        if(!pDialog.isShowing()) {
+            pDialog.show();
+        }
+    }
 
+    public void hideProgressDialog() {
+        if(pDialog.isShowing()) {
+            pDialog.hide();
+            pDialog.dismiss();
+        }
+    }
 
     public User getCurrentUser() {
         return currentUser;
