@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 /**
  * Created by sae1 on 9/17/17.
- * We will need to add to this later, but it's an okay start.
+ * This is an object that holds information
+ * about the current user
  */
 
 public class User {
