@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.sae1.raisehand">
+          package="com.example.sae1.raisehand">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.READ_PROFILE"/>
     <!-- <uses-permission android:name="android.permission.READ_CONTACTS" /> -->
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:name="Activities.VolleyMainActivityHandler"
@@ -20,34 +20,36 @@
             android:name="Activities.LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="Teacher.TeacherClasses" />
-        <activity android:name="Teacher.TeacherHomePage" />
-        <activity android:name="Teacher.TeacherNotifications" />
-        <activity android:name="Teacher.TeacherSettings" />
-        <activity android:name="Teacher.TeacherStudents" />
-        <activity android:name="Teacher.TeacherQuestions" />
-        <activity android:name="Teacher.TeacherTopics" />
-        <activity android:name="Activities.SignupActivity" />
-        <activity android:name="Student.StudentNotifications" />
-        <activity android:name="Student.StudentSettings" />
-        <activity android:name="Student.StudentClasses" />
-        <activity android:name="Student.StudentHomePage" />
+        <activity android:name="Teacher.TeacherClasses"/>
+        <activity android:name="Teacher.TeacherHomePage"/>
+        <activity android:name="Teacher.TeacherNotifications"/>
+        <activity android:name="Teacher.TeacherSettings"/>
+        <activity android:name="Teacher.TeacherStudents"/>
+        <activity android:name="Teacher.TeacherQuestions"/>
+        <activity android:name="Teacher.TeacherTopics"/>
+        <activity android:name="Activities.SignupActivity"/>
+        <activity android:name="Student.StudentNotifications"/>
+        <activity android:name="Student.StudentSettings"/>
+        <activity android:name="Student.StudentClasses"/>
+        <activity android:name="Student.StudentHomePage"/>
         <!-- <activity android:name="utils.QuestionActivity"></activity> -->
-        <activity android:name="Student.StudentTopics" />
-        <activity android:name="Student.StudentQuestions" />
-        <activity android:name="Activities.MakeQuestion" />
-        <activity android:name="Activities.MakeReply"></activity>
-        <activity android:name="Teacher.TeacherReplies"></activity>
-        <activity android:name="Student.StudentReplies"></activity>
-        <activity android:name="Activities.RepliesReply"></activity>
-        <activity android:name="Activities.MakeReplyReply"></activity>
-        <activity android:name="Activities.ResetPassword"></activity>
-        <activity android:name="Activities.ForgotPassword"></activity>
+        <activity android:name="Student.StudentTopics"/>
+        <activity android:name="Student.StudentQuestions"/>
+        <activity android:name="Activities.MakeQuestion"/>
+        <activity android:name="Activities.MakeReply"/>
+        <activity android:name="Teacher.TeacherReplies"/>
+        <activity android:name="Student.StudentReplies"/>
+        <activity android:name="Activities.RepliesReply"/>
+        <activity android:name="Activities.MakeReplyReply"/>
+        <activity android:name="Activities.ResetPassword"/>
+        <activity android:name="Activities.ForgotPassword"/>
+        <activity android:name="Activities.LiveFeed">
+        </activity>
     </application>
 
 </manifest>
