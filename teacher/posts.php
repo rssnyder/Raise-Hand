@@ -81,6 +81,7 @@ include '../utilities/database.php';
 
 <html lang="en">
   <head>
+    
     <link rel="stylesheet" href="../css/pages.css">
     <link rel="stylesheet" href="utilities/teach.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
