@@ -23,12 +23,9 @@ public class User {
         this.loggedIn = loggedIn;
 
     }
-    public Boolean getReset(User u){
+    public String getReset(){
         //if it is a string of 0, then it doesn't need to have a password reset
-        if(u.reset.equals("0"))
-            return false;
-        else
-            return true;
+        return reset;
     }
     public String getId() {
         return this.id;

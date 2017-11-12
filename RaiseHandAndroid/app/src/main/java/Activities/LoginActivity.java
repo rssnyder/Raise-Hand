@@ -28,6 +28,8 @@ import Student.StudentNotifications;
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 
+import java.util.Map;
+
 /**
  * A login screen that offers login via email/password.
  */
@@ -40,7 +42,6 @@ public class LoginActivity extends Activity {
     @Expose
     private User currentUser;
     private SharedPreferences mPreferences;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,28 +148,35 @@ public class LoginActivity extends Activity {
         );
         // Adding request to request queue
         VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
-        String reset= mPreferences.getString("reset","");
-        if(reset.equals("1")){
+
+        Map map= mPreferences.getAll();
+        String json = (String) map.get("currentUser");
+        String reset=json.substring(json.indexOf("reset")+8,json.indexOf("roleID")-3);
+        String roleID = mPreferences.getString("role", "");
+        if(reset.equals("1")) {
             //redirect to a reset password page
-            Intent resetPassword= new Intent(getApplicationContext(), ResetPassword.class);
+            Intent resetPassword = new Intent(getApplicationContext(), ResetPassword.class);
             startActivity(resetPassword);
             finish();
         }
         //Get the role of the user and direct the user to the correct page depending on their role
-        String roleID = mPreferences.getString("role", "");
-        if (roleID.equals(Roles.TEACHER.toString())) {
-            Intent teacherNotifications =
-                    new Intent(getApplicationContext(), TeacherNotifications.class);
-            startActivity(teacherNotifications);
-            //finsih this activity so you can't press back to go to the login screen after already logging in
-            finish();
+
+        else if (roleID.equals(Roles.TEACHER.toString())) {
+
+                Intent teacherNotifications =
+                        new Intent(getApplicationContext(), TeacherNotifications.class);
+                startActivity(teacherNotifications);
+                //finsih this activity so you can't press back to go to the login screen after already logging in
+                finish();
+
         } else if (roleID.equals(Roles.STUDENT.toString())) {
-            Intent studentNotifications =
-                    new Intent(getApplicationContext(), StudentNotifications.class);
-            startActivity(studentNotifications);
-            //finsih this activity so you can't press back to go to the login screen after already logging in
-            finish();
+                Intent studentNotifications =
+                        new Intent(getApplicationContext(), StudentNotifications.class);
+                startActivity(studentNotifications);
+                //finsih this activity so you can't press back to go to the login screen after already logging in
+                finish();
         }
+
     }
 
 
