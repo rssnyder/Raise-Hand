@@ -8,18 +8,14 @@
   //Connect to database
   $db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
   
-  
-  if("" == trim($_POST['password1'])) {
-    $_SESSION['error'] = true;
-    $_SESSION['errorCode'] = "Password Required";
-    header("Location: ../resetPassword.php");
-  }
-  else {
-    $password = $_POST['password1'];
+
+    $password = $_GET['password'];
     $temp = password_hash($password, PASSWORD_DEFAULT);
-    $uid = $_SESSION['id'];
+    $username = $_GET['username'];
     //Update the users account
-    $ucheck = "UPDATE users SET pass = '$temp', reset = 0 WHERE ID = '$uid'";
+    $ucheck = "UPDATE users SET pass = '$temp', reset = 0 WHERE username = '$username'";
     $result = $db->query($ucheck) or die($db->error);
-  }
+    Echo 'logged in';
+
+
 ?>
