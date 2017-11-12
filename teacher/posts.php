@@ -41,37 +41,49 @@ include '../utilities/database.php';
       $flagged = $comment['flagged'];
       $creation = $comment['creation'];
       $points = $comment['points'];
-      //Print the comment
-      echo '<div class="row">
-              <div class="col-md-' . $lvl . '"></div>
-              <div class="col-md-' . (12 - $lvl) . '">
-                <div class="jumbotron well">';
-      echo '<p>' . $text . '</p>  -' . $author . ' @ ' . $creation . '<br><br>';
-      //Print the buttons
-      echo '<button id="like' . $id . '" type="button" class="btn btn-default btn-sm" onclick="likeC(\'like' . $id . '\','. $points .')">
-              <span class="glyphicon glyphicon-thumbs-up"></span>' . $points . ' Likes
-            </button><button class="commentButton" onclick="unhide(this,\'childComment' . $id . '\')">Reply</button>';
-      if($text != 'REMOVED') {
-        echo '<a href="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '&comment=' . $id . '&action=flag" class="commentButton">Flag</a>';
-      }
-      if(!$endorsed) {
-        echo '<a href="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '&comment=' . $id . '&action=endorse" class="commentButton">Endorse</a>';
-      }
-      //Print endorsement
-      if($endorsed) {
-        echo ' Endorsed Answer!';
-      }
 
-      //create the hidden comment box.
-      echo '<div id="childComment' . $id . '" class="hidden">
-            <div class="content3">';
-      echo '<form action="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '&action=comment" method="post">';
-      echo '<input type="hidden" name="parentID" value="' . $id . '" size="35">
-            <input type="text" name="comment" value="" size="35"><br>
-            <input name="signup' . $id . '" type="submit" value="Submit">
-            </form>';
-      echo '</div></div>';
-      echo '</div></div></div>';
+      //If the comment is remove, we still want to post something there so that you can see child comments.
+      if($text == 'REMOVED') {
+        echo '<div class="row">
+                <div class="col-md-' . $lvl . '"></div>
+                <div class="col-md-' . (12 - $lvl) . '">
+                  <div class="jumbotron well">';
+        echo '<p>' . $text . '</p>
+              </div></div></div>';
+      }
+      else {
+        //Print the comment
+        echo '<div class="row">
+                <div class="col-md-' . $lvl . '"></div>
+                <div class="col-md-' . (12 - $lvl) . '">
+                  <div class="jumbotron well">';
+        echo '<p>' . $text . '</p>  -' . $author . ' @ ' . $creation . '<br><br>';
+        //Print the buttons
+        echo '<button id="like' . $id . '" type="button" class="btn btn-default btn-sm" onclick="likeC(\'like' . $id . '\','. $points .')">
+                <span class="glyphicon glyphicon-thumbs-up"></span>' . $points . ' Likes
+              </button><button class="commentButton" onclick="unhide(this,\'childComment' . $id . '\')">Reply</button>';
+        if($text != 'REMOVED') {
+          echo '<a href="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '&comment=' . $id . '&action=flag" class="commentButton">Flag</a>';
+        }
+        if(!$endorsed) {
+          echo '<a href="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '&comment=' . $id . '&action=endorse" class="commentButton">Endorse</a>';
+        }
+        //Print endorsement
+        if($endorsed) {
+          echo ' Endorsed Answer!';
+        }
+
+        //create the hidden comment box.
+        echo '<div id="childComment' . $id . '" class="hidden">
+              <div class="content3">';
+        echo '<form action="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $threadID . '&action=comment" method="post">';
+        echo '<input type="hidden" name="parentID" value="' . $id . '" size="35">
+              <input type="text" name="comment" value="" size="35"><br>
+              <input name="signup' . $id . '" type="submit" value="Submit">
+              </form>';
+        echo '</div></div>';
+        echo '</div></div></div>';
+      }
       //Print any child comments of this comment
       getChildComments($id, $lvl + 1, $threadID, $db);
     }
@@ -81,7 +93,7 @@ include '../utilities/database.php';
 
 <html lang="en">
   <head>
-    
+
     <link rel="stylesheet" href="../css/pages.css">
     <link rel="stylesheet" href="utilities/teach.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
