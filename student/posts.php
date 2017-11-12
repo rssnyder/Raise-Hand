@@ -52,7 +52,8 @@
                 <div class="col-md-' . $lvl . '"></div>
                 <div class="col-md-' . (12 - $lvl) . '">
                   <div class="jumbotron well">';
-        echo '<p>' . $text . '</p>';
+        echo '<p>' . $text . '</p>
+              </div></div></div>';
       }
       else {
         //Print the comment
