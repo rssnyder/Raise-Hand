@@ -10,8 +10,10 @@ import android.view.MenuItem;
 
 import com.example.sae1.raisehand.R;
 
+import Activities.ForgotPassword;
 import Activities.LoginActivity;
 import Activities.MakeQuestion;
+import Activities.ResetPassword;
 import Teacher.TeacherClasses;
 import Teacher.TeacherHomePage;
 import Teacher.TeacherNotifications;
@@ -83,8 +85,8 @@ public class NavUtil {
                             break;
                         }
                         else {
-                            Intent teacherSettings = new Intent(theContext, TeacherSettings.class);
-                            theContext.startActivity(teacherSettings);
+                            Intent resetPassword = new Intent(theContext, ResetPassword.class);
+                            theContext.startActivity(resetPassword);
                             break;
                         }
                     case (R.id.nav_logout):

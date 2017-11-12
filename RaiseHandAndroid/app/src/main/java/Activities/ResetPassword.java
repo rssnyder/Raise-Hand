@@ -62,6 +62,7 @@ public class ResetPassword  extends AppCompatActivity {
         String json = mPreferences.getString("currentUser", "");
         currentUser = gson.fromJson(json, User.class);
         final String username= currentUser.getUsername();
+        final String role=currentUser.getRoleId();
         final String password = Password.getText().toString();
         final String passwordConfirm = PasswordConfirm.getText().toString();
         if(!password.equals(passwordConfirm)) {
@@ -78,7 +79,7 @@ public class ResetPassword  extends AppCompatActivity {
                         public void onResponse(String response) {
                             Log.d(TAG, response.toString());
                             String phpResponse = response.toString();
-                            if (phpResponse.contains("Done")) {
+                            if (phpResponse.contains("Password has been changed")) {
                                 Toast.makeText(VolleyMainActivityHandler.getInstance(), "Success: password changed", Toast.LENGTH_LONG).show();
                             } else {
                                 Toast.makeText(VolleyMainActivityHandler.getInstance(), "Error", Toast.LENGTH_LONG).show();
@@ -92,14 +93,13 @@ public class ResetPassword  extends AppCompatActivity {
             });
             // Adding request to request queue
         VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
-        String roleID = mPreferences.getString("role", "");
-        if (roleID.equals(Roles.TEACHER.toString())) {
+        if (role.equals(Roles.TEACHER.toString())) {
             Intent teacherNotifications =
                     new Intent(getApplicationContext(), TeacherNotifications.class);
             startActivity(teacherNotifications);
             //finsih this activity so you can't press back to go to the login screen after already logging in
             finish();
-        } else if (roleID.equals(Roles.STUDENT.toString())) {
+        } else if (role.equals(Roles.STUDENT.toString())) {
             Intent studentNotifications =
                     new Intent(getApplicationContext(), StudentNotifications.class);
             startActivity(studentNotifications);
