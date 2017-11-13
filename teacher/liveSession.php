@@ -112,6 +112,37 @@ include '../utilities/database.php';
               });
            }, 1000);
        </script>
+       <script id="feedSav" language="javascript" type="text/javascript">
+         function saveFeed() {
+            var textFile = null,
+             makeTextFile = function (text) {
+               var data = new Blob([text], {type: 'text/plain'});
+
+               // If we are replacing a previously generated file we need to
+               // manually revoke the object URL to avoid memory leaks.
+               if (textFile !== null) {
+                 window.URL.revokeObjectURL(textFile);
+               }
+
+               textFile = window.URL.createObjectURL(data);
+
+               return textFile;
+             };
+
+
+             var create = document.getElementById('create'),
+               textbox = document.getElementById('textbox');
+
+             create.addEventListener('click', function () {
+               //Get all the comment Divs
+               var x = document.querySelectorAll(".jumbotron well");
+               x[0].innerHTML = "Hey we can change this.";
+               var link = document.getElementById('downloadlink');
+               link.href = makeTextFile(textbox.value);
+               link.style.display = 'block';
+             }, false);
+            };
+       </script>
     <!-- End questionable content -->
 
     <!-- The top banner of the webpage -->

@@ -66,6 +66,7 @@
         $_SESSION['name'] = $name;
         $_SESSION['error']  = false;
         $_SESSION['role'] = $role;
+        $_SESSION['email'] = $pass['email'];
         //User has a password Reset
         header("Location: ../resetPassword.php");
         die("Go reset the password");
@@ -78,6 +79,7 @@
       $_SESSION['name'] = $name;
       $_SESSION['error']  = false;
       $_SESSION['role'] = $role;
+      $_SESSION['email'] = $pass['email'];
       if($role == 1) {
         header("Location: ../admin/home.php");
         die("Going to admin panel");

@@ -132,8 +132,7 @@ include '../utilities/database.php';
              });
            };
        </script>
-    <!-- End questionable content -->
-
+       
     <!-- The top banner of the webpage -->
     <div class="top">
         <font size="-5"><a class="logout" href="../login.php?event=logout">Logout</a></font>
