@@ -16,8 +16,8 @@ import Utilities.Reply;
 import Utilities.User;
 
 /**
- * Created by jaggarwal on 11/1/17.
- * This a class that enables the user to make a reply, you can
+ * @author jaggarwal
+ * This a page that enables the user to make a reply, you can
  * only get to this through a reply so that we have a reply ID for the reply to
  * be put underneath
  */

@@ -25,7 +25,7 @@ import Utilities.URLS;
 import Utilities.User;
 
 /**
- * Created by sae1 on 11/6/17.
+ * @author sae1
  * This class is used when a user logins after having submitted a
  * request for a temp password (thus their password is the temp password).
  * The app should auto-redirect to this page to allow the user to reset
@@ -57,6 +57,14 @@ public class ResetPassword  extends AppCompatActivity {
         });
 
     }
+
+    /**
+     * This method will allow the user to type in their
+     * current password, and their desired new password (which
+     * they must do twice to confirm). Then it calls volley
+     * and changes their password in the database and takes the
+     * user out of "reset" stage.
+     */
     public void resetPassword() {
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");

@@ -6,8 +6,8 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 /**
- * Created by sae1 on 9/17/17.
- * Using source code from tutorialsbuzz.com
+ * This class is what enables volley to work. This code
+ * was given to us by our professor.
  */
 
 public class VolleyMainActivityHandler extends Application {

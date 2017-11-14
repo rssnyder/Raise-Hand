@@ -34,7 +34,7 @@ import Utilities.SwipeControllerActions;
 import Utilities.User;
 
 /**
- * Created by jaggarwal on 11/1/17.
+ * @author jaggarwal
  *
  * This is a activity for the reply to reply page. It contains the Recycler View and the the adapter
  * for the activity.

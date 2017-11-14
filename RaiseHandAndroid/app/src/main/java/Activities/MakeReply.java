@@ -17,8 +17,8 @@ import Utilities.Reply;
 import Utilities.User;
 
 /**
- * Created by sae1 on 10/29/17.
- * This a method that enables the user to make a reply, you can
+ * @author sae1
+ * This is a page that enables the user to make a reply, you can
  * only get to this through a question so that we have a question ID for the reply to
  * be put underneath
  *

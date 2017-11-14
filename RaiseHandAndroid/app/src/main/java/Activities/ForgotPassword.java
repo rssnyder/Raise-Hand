@@ -18,7 +18,7 @@ import com.example.sae1.raisehand.R;
 import Utilities.URLS;
 
 /**
- * Created by sae1 on 11/6/17.
+ * @author sae1
  * This will be used when a user initially tries to
  * reset his or her password. This is the first form that they
  * fill out and then will get an email with a temporary password

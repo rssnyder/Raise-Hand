@@ -31,6 +31,7 @@ import com.google.gson.annotations.Expose;
 import java.util.Map;
 
 /**
+ * @author sae1
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends Activity {
@@ -182,7 +183,6 @@ public class LoginActivity extends Activity {
                 //finsih this activity so you can't press back to go to the login screen after already logging in
                 finish();
         }
-
     }
 }
 

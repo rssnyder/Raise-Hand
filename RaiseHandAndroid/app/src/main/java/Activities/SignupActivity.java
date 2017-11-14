@@ -20,7 +20,7 @@ import com.example.sae1.raisehand.R;
 import Utilities.URLS;
 
 /**
- * Created by sae1 on 9/27/17.
+ * @author sae1
  * This activity allows users to create a new user in the database and sign up
  */
 
@@ -66,6 +66,11 @@ public class SignupActivity extends AppCompatActivity {
         });
 
     }
+    /** This method enables users to create an account by providing
+     * a first name, last name, username, password (twice), email, and
+     * university. Then it calls on volley to insert into the database a
+     * new user.
+     **/
     public void signUp() {
         boolean isValidSignUp = true;
         final String first = FirstName.getText().toString();

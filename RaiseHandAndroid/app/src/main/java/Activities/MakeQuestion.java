@@ -17,6 +17,7 @@ import Utilities.User;
 
 
 /**
+ * @author joel2
  * This a method that enables the user to make a question, you can
  * only get to this through a topic so that we have a topic ID for the question to
  * be put underneath
