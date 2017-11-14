@@ -82,19 +82,25 @@ public class LoginActivity extends Activity {
         });
     }
 
-    public void showProgressDialog() {
+    private void showProgressDialog() {
         if(!pDialog.isShowing()) {
             pDialog.show();
         }
     }
 
-    public void hideProgressDialog() {
+    private void hideProgressDialog() {
         if(pDialog.isShowing()) {
             pDialog.hide();
             pDialog.dismiss();
         }
     }
 
+    /** Given a username and password that the user has typed in,
+     * this method will use android volley to see if the password is correct
+     * and if it is, then it will log the user in. If the user is in the
+     * "reset password" stage, then it will automatically direct the user
+     * to a password reset page instead of the home page.
+     **/
     private void userLogin() {
         //first getting the values
         final String username = editTextUsername.getText().toString();
@@ -177,12 +183,6 @@ public class LoginActivity extends Activity {
                 finish();
         }
 
-    }
-
-
-
-    public User getCurrentUser() {
-        return currentUser;
     }
 }
 

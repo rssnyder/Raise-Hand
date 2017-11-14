@@ -44,6 +44,11 @@ public class ForgotPassword extends AppCompatActivity {
         });
 
     }
+
+    /** Given an email from the user, a volley request is sent to
+     * give the user a temporary password and email it to them. It
+     * also saves that they are in the "reset" stage on the database
+     **/
     public void startPasswordReset() {
         final String email = Email.getText().toString();
         String url_final = "";
