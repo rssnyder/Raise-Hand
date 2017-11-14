@@ -1,7 +1,7 @@
 package RecyclerViews;
 
 /**
- * Created by jaggarwal on 10/9/17.
+ * @author jaggarwal
  */
 
 

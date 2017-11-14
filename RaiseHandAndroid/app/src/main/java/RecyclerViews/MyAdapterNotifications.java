@@ -11,7 +11,10 @@ import android.widget.TextView;
 import com.example.sae1.raisehand.R;
 
 import java.util.List;
-
+/*
+@author joel2
+This class handles how to show the list of notifications to a teacher
+ */
 public class MyAdapterNotifications extends RecyclerView.Adapter<MyAdapterNotifications.ViewHolder> {
 
     private List<ListItemTeacherNotifications> listItems;

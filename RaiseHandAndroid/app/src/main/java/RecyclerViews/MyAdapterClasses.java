@@ -18,6 +18,10 @@ import java.util.List;
 import Teacher.TeacherTopics;
 import Utilities.Classes;
 
+/*
+@author joel2
+This class handles how to show the list of classes to a teacher
+ */
 public class MyAdapterClasses extends RecyclerView.Adapter<MyAdapterClasses.ViewHolder> {
 
     private List<Classes> listItems;

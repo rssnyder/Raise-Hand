@@ -20,7 +20,7 @@ import Utilities.Reply;
 import Utilities.StringParse;
 
 /**
- * Created by jaggarwal on 11/1/17.
+ * @author jaggarwal
  *
  * This is an adapter for reply to a reply. It represents each reply in the layout holder
  */

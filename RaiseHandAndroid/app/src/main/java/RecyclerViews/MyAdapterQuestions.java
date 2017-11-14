@@ -19,7 +19,10 @@ import java.util.List;
 import Teacher.TeacherReplies;
 import Utilities.Question;
 import Utilities.StringParse;
-
+/*
+@author joel2
+This class handles how to show the list of questions to a teacher
+ */
 public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.ViewHolder> {
 
     private List<Question> listItems;
