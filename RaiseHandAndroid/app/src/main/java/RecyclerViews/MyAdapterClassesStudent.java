@@ -2,6 +2,7 @@ package RecyclerViews;
 
 /**
  * @author jaggarwal
+ * How to view the list of classes on the student side of the app
  */
 
 

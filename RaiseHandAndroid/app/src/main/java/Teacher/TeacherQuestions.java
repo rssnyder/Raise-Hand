@@ -34,7 +34,10 @@ import Utilities.SwipeController;
 import Utilities.SwipeControllerActions;
 import Utilities.Topics;
 import Utilities.User;
-
+/**
+ * @author joel2
+ * This class has questions for the teacher's class.
+ */
 public class TeacherQuestions extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;

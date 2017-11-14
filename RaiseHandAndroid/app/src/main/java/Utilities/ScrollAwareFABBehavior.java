@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
+ * @author joel2
  * Makes the floating action button disappear or appear depending on the scroll direction
  */
 public class ScrollAwareFABBehavior extends FloatingActionButton.Behavior {

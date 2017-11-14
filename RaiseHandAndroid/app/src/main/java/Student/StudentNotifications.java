@@ -22,7 +22,10 @@ import java.util.List;
 import RecyclerViews.ListItemTeacherNotifications;
 import RecyclerViews.MyAdapterNotifications;
 import Activities.LoginActivity;
-
+/**
+ * @author jaggarwal
+ * This is a class for recent activity the student may have missed
+ */
 public class StudentNotifications extends AppCompatActivity {
 
     private RecyclerView recyclerView;

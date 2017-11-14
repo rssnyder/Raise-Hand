@@ -9,6 +9,10 @@ import android.support.v7.widget.Toolbar;
 
 import com.example.sae1.raisehand.R;
 
+/**
+ * @author jaggarwal
+ * This is a class for the live session for students
+ */
 public class StudentLiveSession extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;

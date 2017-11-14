@@ -33,7 +33,10 @@ import Utilities.Reply;
 import Utilities.SwipeController;
 import Utilities.SwipeControllerActions;
 import Utilities.User;
-
+/**
+ * @author jaggarwal
+ * This is a class for the replies in a student's class
+ */
 public class StudentReplies extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;

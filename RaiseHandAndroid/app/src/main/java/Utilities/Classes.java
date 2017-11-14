@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import Activities.VolleyMainActivityHandler;
 
 /**
- * Created by sae1 on 10/9/17
+ * @author sae1
  * This is an object, class
  * Each class has an array list of topics, a class id, and a title
  */

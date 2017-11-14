@@ -25,6 +25,7 @@ import Utilities.NavUtil;
 import Utilities.User;
 
 /**
+ * @author joel2
  * This activity displays the classes that a teacher is in.
  */
 public class TeacherClasses extends AppCompatActivity {

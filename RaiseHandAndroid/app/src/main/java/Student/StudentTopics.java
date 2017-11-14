@@ -25,7 +25,10 @@ import Utilities.Classes;
 import Activities.LoginActivity;
 import Utilities.Topics;
 import Utilities.User;
-
+/**
+ * @author jaggarwal
+ * This is a class for the topics in a student's class
+ */
 public class StudentTopics extends AppCompatActivity {
     private String TAG = StudentClasses.class.getSimpleName();
     private RecyclerView recyclerView;

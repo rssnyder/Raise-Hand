@@ -1,5 +1,7 @@
 package Utilities;
-
+/*
+@author joel2
+ */
 public abstract class SwipeControllerActions {
 
     public void onLeftClicked(int position) {}

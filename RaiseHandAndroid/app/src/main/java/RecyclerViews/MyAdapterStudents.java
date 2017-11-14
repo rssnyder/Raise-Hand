@@ -11,7 +11,9 @@ import android.widget.TextView;
 import com.example.sae1.raisehand.R;
 
 import java.util.List;
-
+/**
+ * @author jaggarwal
+ */
 public class MyAdapterStudents extends RecyclerView.Adapter<MyAdapterStudents.ViewHolder> {
 
     private List<ListItemTeacherStudents> listItems;

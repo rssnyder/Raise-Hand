@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import Activities.VolleyMainActivityHandler;
 
 /**
- * Created by sae1 on 10/4/17.
+ * @author sae1
  * This is an object, question
  * It has the text that it contains, an amount of points, if it is endorsed or not,
  * a timestamp, a creation username, a userid, an id, the topic it belongs to

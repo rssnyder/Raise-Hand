@@ -1,7 +1,7 @@
 package Utilities;
 
 /**
- * Created by sae1 on 9/17/17.
+ * @author sae1
  * This is the class that helps with android volley calls by making final urls
  */
 

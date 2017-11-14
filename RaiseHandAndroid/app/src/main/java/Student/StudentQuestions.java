@@ -33,7 +33,10 @@ import Utilities.SwipeController;
 import Utilities.SwipeControllerActions;
 import Utilities.Topics;
 import Utilities.User;
-
+/**
+ * @author jaggarwal
+ * This is a class for the questions in a student's class
+ */
 public class StudentQuestions extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;

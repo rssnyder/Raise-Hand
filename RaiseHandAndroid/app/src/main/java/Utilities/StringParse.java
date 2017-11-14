@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Created by sae1 on 11/3/17 to clean up the code and
- * make it so that all of the string parsing is handled in this
- * file instead of making all of the classes messy
+ * @author sae1
+ * This class handles all of the string parsing that
+ * must be done due to android volley string responses
  */
 
 public class StringParse {

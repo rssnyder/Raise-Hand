@@ -3,9 +3,8 @@ package Utilities;
 import java.util.ArrayList;
 
 /**
- * Created by sae1 on 9/17/17.
- * This is an object that holds information
- * about the current user
+ * @author sae1
+ * This is an object that holds information about the current user
  */
 
 public class User {

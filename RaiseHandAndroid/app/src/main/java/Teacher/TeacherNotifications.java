@@ -22,6 +22,7 @@ import Utilities.ActivitiesNames;
 import Utilities.NavUtil;
 
 /**
+ * @author joel2
  * This class has notifications for the teacher.
  * Notifications will include recent questions and replies submitted.
  */

@@ -1,9 +1,9 @@
 package RecyclerViews;
 
 /**
- * Created by jaggarwal on 10/9/17.
+ * @author jaggarwal
+ * How to view the list of questions on the student side of the app
  */
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;

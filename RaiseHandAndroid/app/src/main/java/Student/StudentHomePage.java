@@ -17,7 +17,10 @@ import java.lang.reflect.Field;
 
 import Activities.MakeQuestion;
 import Activities.LoginActivity;
-
+/**
+ * @author jaggarwal
+ * This is a class for the home page for students
+ */
 public class StudentHomePage extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;

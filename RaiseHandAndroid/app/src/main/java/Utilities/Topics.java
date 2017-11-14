@@ -3,7 +3,7 @@ package Utilities;
 import java.util.ArrayList;
 
 /**
- * Created by sae1 on 10/6/17.
+ * @author sae1
  * This is an object, Topics
  * It has a title, a creation time, an id, a description, and an array list of questions
  */

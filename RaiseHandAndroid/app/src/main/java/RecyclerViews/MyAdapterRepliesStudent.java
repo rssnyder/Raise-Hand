@@ -16,7 +16,10 @@ import java.util.List;
 
 import Utilities.Reply;
 import Utilities.StringParse;
-
+/**
+ * @author jaggarwal
+ * How to view the list of replies on the student side of the app
+ */
 public class MyAdapterRepliesStudent extends RecyclerView.Adapter<MyAdapterRepliesStudent.ViewHolder> {
 
     private List<Reply> listItems;
