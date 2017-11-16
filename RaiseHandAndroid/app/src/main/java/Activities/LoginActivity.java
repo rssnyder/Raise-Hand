@@ -148,7 +148,7 @@ public class LoginActivity extends Activity {
                             editor.commit();
                         }
                         else {
-                            Toast.makeText(VolleyMainActivityHandler.getInstance(), "Logged In Failed", Toast.LENGTH_LONG).show();
+                             Toast.makeText(VolleyMainActivityHandler.getInstance(), "Logged In Failed", Toast.LENGTH_LONG).show();
                         }
                         hideProgressDialog();
                     }}, new Response.ErrorListener() {
