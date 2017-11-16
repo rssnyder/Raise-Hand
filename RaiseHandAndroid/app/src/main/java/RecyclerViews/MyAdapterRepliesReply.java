@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -96,6 +97,12 @@ public class MyAdapterRepliesReply extends RecyclerView.Adapter<MyAdapterReplies
                 context.getApplicationContext().startActivity(reply);
             }
         });
+        holder.flagged.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listItem.report();
+            }
+        });
 
     }
 
@@ -108,7 +115,7 @@ public class MyAdapterRepliesReply extends RecyclerView.Adapter<MyAdapterReplies
         public TextView textViewEndorsed;
         public TextView textViewPoints;
         public TextView textViewTimestamp;
-        
+        public Button flagged;
         public LinearLayout linearLayout;
 
         
@@ -119,6 +126,7 @@ public class MyAdapterRepliesReply extends RecyclerView.Adapter<MyAdapterReplies
             textViewPoints = (TextView)itemView.findViewById(R.id.textViewPonts);
             textViewTimestamp = (TextView)itemView.findViewById(R.id.textViewTimeStap);
             linearLayout = (LinearLayout)itemView.findViewById(R.id.linearLayoutRepliesReply);
+            flagged= (Button) itemView.findViewById(R.id.flagrep);
             
         }
         

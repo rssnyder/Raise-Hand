@@ -21,4 +21,7 @@ public class URLS {
     public static final String URL_RESETPASS= ROOT_URL+"resetPassword.php";
     public static final String URL_REPORTQ=ROOT_URL+"reportQ.php";
     public static final String URL_REPORTR=ROOT_URL+"reportR.php";
+    public static final String URL_REFRESHQ=ROOT_URL+"refreshQ.php";
+    public static final String URL_REFRESHR=ROOT_URL+"refreshR.php";
+    public static final String URL_REFRESH_REPLIES_TO_REPLIES=ROOT_URL+"refreshRR.php";
 }
