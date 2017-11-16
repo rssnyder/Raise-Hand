@@ -23,40 +23,76 @@ public class Classes {
     private String classID;
     private static ArrayList<Topics> topics;
 
+    /**
+     * Constructor for a class
+     * @param title title of class
+     * @param classID class id
+     */
     public Classes(String title, String classID){
         this.title=title;
         this.classID=classID;
         this.topics = new ArrayList<Topics>();
     }
 
+    /**
+     * clear all of the topics that are in the class
+     */
     public void emptyTopics(){
         topics.clear();
     }
 
+    /**
+     *
+     * @return array list of topics in the class
+     */
     public ArrayList<Topics> getTopics() {
         return topics;
     }
 
+    /**
+     * set the topics for the class
+     * @param topics arraylist containing topic objects in the class
+     */
     public void setTopics(ArrayList<Topics> topics) {
         this.topics = topics;
     }
 
+    /**
+     *
+     * @return title of the class
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     *
+     * @param title set the title to the class
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     *
+     * @return the class id
+     */
     public String getClassID() {
         return classID;
     }
 
+    /**
+     *  Only used when interpreting the android volley information
+     * @param classID set the class id
+     */
     public void setClassID(String classID) {
         this.classID = classID;
     }
 
+    /**
+     * This interfaces with android volley and gets all of the topics that
+     * relate to a class
+     */
     public void get_topics() {
         String urlSuffix= "?classId="+classID;
         String url_final= URLS.URL_TOPICS+urlSuffix;
