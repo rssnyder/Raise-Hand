@@ -39,7 +39,13 @@ public class MyAdapterStudents extends RecyclerView.Adapter<MyAdapterStudents.Vi
                 .inflate(R.layout.list_item_teacher_students, parent, false);
         return new ViewHolder(v);
     }
-
+    /**
+     *
+     * The functionality specific to a particular student.
+     *
+     * @param holder the layout that holds the student
+     * @param position what item in the holder was clicked
+     */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         ListItemTeacherStudents listItem = listItems.get(position);
@@ -47,12 +53,17 @@ public class MyAdapterStudents extends RecyclerView.Adapter<MyAdapterStudents.Vi
         holder.textViewHead.setText(listItem.getHead());
         holder.textViewDesc.setText(listItem.getDesc());
     }
-
+    /**
+     *
+     * @return the number of students a class has
+     */
     @Override
     public int getItemCount() {
         return listItems.size();
     }
-
+    /**
+     * This class defines all the attributes for a holder object i.e. a student
+     */
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView textViewHead;

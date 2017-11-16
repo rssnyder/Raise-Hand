@@ -47,7 +47,13 @@ public class MyAdapterTopics extends RecyclerView.Adapter<MyAdapterTopics.ViewHo
                 .inflate(R.layout.list_item_teacher_topics, parent, false);
         return new ViewHolder(v);
     }
-
+    /**
+     *
+     * The functionality specific to a particular topic. It sets title and description
+     *
+     * @param holder the layout that holds the topic
+     * @param position what item in the holder was clicked
+     */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Topics listItem = listItems.get(position);
@@ -69,12 +75,17 @@ public class MyAdapterTopics extends RecyclerView.Adapter<MyAdapterTopics.ViewHo
             }
         });
     }
-
+    /**
+     *
+     * @return the number of topics a class has
+     */
     @Override
     public int getItemCount() {
         return listItems.size();
     }
-
+    /**
+     * This class defines all the attributes for a holder object i.e. a topic
+     */
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView textViewHead;

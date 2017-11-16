@@ -45,7 +45,13 @@ public class MyAdapterNotificationsStudent extends RecyclerView.Adapter<MyAdapte
                 .inflate(R.layout.list_item_student_notifications, parent, false);
         return new MyAdapterNotificationsStudent.ViewHolder(v);
     }
-
+    /**
+     *
+     * The functionality specific to a particular notification. It sets the title and description
+     *
+     * @param holder the layout that holds the notification
+     * @param position what item in the holder was clicked
+     */
     @Override
     public void onBindViewHolder(MyAdapterNotificationsStudent.ViewHolder holder, int position) {
         Question listItem = listItems.get(position);
@@ -62,7 +68,9 @@ public class MyAdapterNotificationsStudent extends RecyclerView.Adapter<MyAdapte
     public int getItemCount() {
         return listItems.size();
     }
-
+    /**
+     * This class defines all the attributes for a holder object i.e. notification
+     */
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView textViewHead;

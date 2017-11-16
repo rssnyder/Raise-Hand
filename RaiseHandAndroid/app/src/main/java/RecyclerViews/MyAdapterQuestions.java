@@ -49,12 +49,22 @@ public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.
                 .inflate(R.layout.list_item_teacher_questions, parent, false);
         return new ViewHolder(v);
     }
-
+    /**
+     *
+     * @return the number of questions a topic has
+     */
     @Override
     public int getItemCount() {
         return listItems.size();
     }
-
+    /**
+     *
+     * The functionality specific to a particular question. It sets the timestamp,
+     * title, description, upvotes, and if it is endorsed or not
+     *
+     * @param holder the layout that holds the question
+     * @param position what item in the holder was clicked
+     */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Question listItem = listItems.get(position);
@@ -90,7 +100,9 @@ public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.
             }
         });
     }
-
+    /**
+     * This class defines all the attributes for a holder object i.e. question
+     */
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView textViewHead;

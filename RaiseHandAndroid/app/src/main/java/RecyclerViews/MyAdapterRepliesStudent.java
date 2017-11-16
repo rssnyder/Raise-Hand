@@ -50,7 +50,14 @@ public class MyAdapterRepliesStudent extends RecyclerView.Adapter<MyAdapterRepli
                 .inflate(R.layout.list_item_student_replies, parent, false);
         return new ViewHolder(v);
     }
-
+    /**
+     *
+     * The functionality specific to a particular reply. It sets the timestamp,
+     * text, upvotes, and if it is endorsed or not
+     *
+     * @param holder the layout that holds the reply
+     * @param position what item in the holder was clicked
+     */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Reply listItem = listItems.get(position);
@@ -72,12 +79,17 @@ public class MyAdapterRepliesStudent extends RecyclerView.Adapter<MyAdapterRepli
         });
     }
 
-
+    /**
+     *
+     * @return the number of replies a question has
+     */
     @Override
     public int getItemCount() {
         return listItems.size();
     }
-
+    /**
+     * This class defines all the attributes for a holder object i.e. reply
+     */
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView textViewHead;

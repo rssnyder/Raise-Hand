@@ -47,7 +47,13 @@ public class MyAdapterClasses extends RecyclerView.Adapter<MyAdapterClasses.View
                 .inflate(R.layout.list_item_teacher_classes, parent, false);
         return new ViewHolder(v);
     }
-
+        /**
+         *
+         * The functionality specific to a particular class. It sets the class id and title
+         *
+         * @param holder the layout that holds the class
+         * @param position what item in the holder was clicked
+         */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Classes listItem = listItems.get(position);
@@ -75,7 +81,9 @@ public class MyAdapterClasses extends RecyclerView.Adapter<MyAdapterClasses.View
     public int getItemCount() {
         return listItems.size();
     }
-
+        /**
+         * This class defines all the attributes for a holder object i.e. class
+         */
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView textViewHead;
