@@ -223,6 +223,29 @@ public class Reply {
     }
 
     public void report(){
+        String url=URLS.URL_REPORTR+"?RID="+this.replyID;
+        StringRequest req = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
 
+                        Log.d(TAG, response.toString());
+                        String phpResponse = response.toString();
+                        //in the php file, the user information is stored in an array with : as a delimiter between the variable name and actual value
+                        if (phpResponse.contains("Done")) {
+                            Toast.makeText(VolleyMainActivityHandler.getInstance(), "Success: reply flagged", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(VolleyMainActivityHandler.getInstance(), "Error", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+            }
+        }
+        );
+        // Adding request to request queue
+        VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
     }
 }
