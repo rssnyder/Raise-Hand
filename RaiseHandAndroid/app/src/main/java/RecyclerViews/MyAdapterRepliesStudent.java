@@ -2,10 +2,12 @@ package RecyclerViews;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,6 +16,7 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
+import Activities.RepliesReply;
 import Utilities.Reply;
 import Utilities.StringParse;
 /**
@@ -50,6 +53,12 @@ public class MyAdapterRepliesStudent extends RecyclerView.Adapter<MyAdapterRepli
 
         Gson gson = new Gson();
         final String rep = gson.toJson(listItem);
+        holder.reportIt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listItem.report();
+            }
+        });
     }
 
 
@@ -65,6 +74,7 @@ public class MyAdapterRepliesStudent extends RecyclerView.Adapter<MyAdapterRepli
         public TextView textViewPoints;
         public TextView textViewTimestamp;
         public LinearLayout linearLayout;
+        public Button reportIt;
         public ViewHolder(View itemView) {
             super(itemView);
 
@@ -73,6 +83,7 @@ public class MyAdapterRepliesStudent extends RecyclerView.Adapter<MyAdapterRepli
             textViewPoints = (TextView) itemView.findViewById(R.id.textViewPo);
             textViewTimestamp = (TextView) itemView.findViewById(R.id.textViewTim);
             linearLayout = (LinearLayout) itemView.findViewById(R.id.linearLayoutStudentReplies);
+            reportIt= (Button) itemView.findViewById(R.id.reportbutton);
         }
     }
 

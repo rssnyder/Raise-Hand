@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -64,6 +65,13 @@ public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.View
                 context.getApplicationContext().startActivity(reply);
             }
         });
+        holder.reportb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //report the reply
+                listItem.report();
+            }
+        });
     }
 
 
@@ -76,6 +84,7 @@ public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.View
 
         public TextView textViewH, textViewE, textViewP, textViewTime, textViewReplies;
         public LinearLayout linearLayout;
+        public Button reportb;
         public ViewHolder(View itemView) {
             super(itemView);
             textViewH = (TextView) itemView.findViewById(R.id.textViewH);
@@ -83,6 +92,7 @@ public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.View
             textViewP= (TextView) itemView.findViewById(R.id.textViewP);
             textViewTime= (TextView) itemView.findViewById(R.id.textViewTime);
             linearLayout = (LinearLayout) itemView.findViewById(R.id.linearLayoutTeacherReplies);
+            reportb= (Button) itemView.findViewById(R.id.reportB);
         }
     }
 
