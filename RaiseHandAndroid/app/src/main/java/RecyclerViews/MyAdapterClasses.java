@@ -26,12 +26,21 @@ public class MyAdapterClasses extends RecyclerView.Adapter<MyAdapterClasses.View
 
     private List<Classes> listItems;
     private Context context;
-
+    /**
+     * constructor to make the page display the list of classes a teacher teaches
+     * @param listItems the list of classes a teacher teaches
+     * @param context this instance of the app
+     */
     public MyAdapterClasses(List<Classes> listItems, Context context) {
         this.listItems = listItems;
         this.context = context;
     }
-
+        /**
+         *
+         * This method inflates the view for the handler i.e. how the page will look like when the user
+         * gets to that page
+         *
+         */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
@@ -58,8 +67,10 @@ public class MyAdapterClasses extends RecyclerView.Adapter<MyAdapterClasses.View
             }
         });
     }
-
-
+    /**
+     *
+     * @return the number of classes that should be listed
+     */
     @Override
     public int getItemCount() {
         return listItems.size();

@@ -18,12 +18,21 @@ public class MyAdapterStudents extends RecyclerView.Adapter<MyAdapterStudents.Vi
 
     private List<ListItemTeacherStudents> listItems;
     private Context context;
-
+    /**
+     * constructor to make the page display the list of students in a class
+     * @param listItems the list of students in the class
+     * @param context this instance of the app
+     */
     public MyAdapterStudents(List<ListItemTeacherStudents> listItems, Context context) {
         this.listItems = listItems;
         this.context = context;
     }
-
+    /**
+     *
+     * This method inflates the view for the handler i.e. how the page will look like when the user
+     * gets to that page
+     *
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())

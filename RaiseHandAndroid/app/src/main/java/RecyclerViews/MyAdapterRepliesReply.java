@@ -29,6 +29,11 @@ public class MyAdapterRepliesReply extends RecyclerView.Adapter<MyAdapterReplies
     private List<Reply> listItems;
     private Context context;
 
+    /**
+     * constructor to make the page display the replies to a reply
+     * @param listItems the list of replies
+     * @param context this instance of the app
+     */
     public MyAdapterRepliesReply(List<Reply> listItems, Context context){
         this.listItems = listItems;
         this.context = context;

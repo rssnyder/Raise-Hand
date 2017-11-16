@@ -28,12 +28,21 @@ public class MyAdapterQuestions extends RecyclerView.Adapter<MyAdapterQuestions.
 
     private List<Question> listItems;
     private Context context;
-
+    /**
+     * constructor to make the page display the questions in a topic
+     * @param listItems the list of questions
+     * @param context this instance of the app
+     */
     public MyAdapterQuestions(List<Question> listItems, Context context) {
         this.listItems = listItems;
         this.context = context;
     }
-
+    /**
+     *
+     * This method inflates the view for the handler i.e. how the page will look like when the user
+     * gets to that page
+     *
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())

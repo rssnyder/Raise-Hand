@@ -24,11 +24,21 @@ public class MyAdapterNotificationsStudent extends RecyclerView.Adapter<MyAdapte
     private List<Question> listItems;
     private Context context;
 
+    /**
+     * constructor to make the page display the list of notifications
+     * @param listItems the list of notifications
+     * @param context this instance of the app
+     */
     public MyAdapterNotificationsStudent(List<Question> listItems, Context context) {
         this.listItems = listItems;
         this.context = context;
     }
-
+    /**
+     *
+     * This method inflates the view for the handler i.e. how the page will look like when the user
+     * gets to that page
+     *
+     */
     @Override
     public MyAdapterNotificationsStudent.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
@@ -44,6 +54,10 @@ public class MyAdapterNotificationsStudent extends RecyclerView.Adapter<MyAdapte
         holder.textViewDesc.setText(listItem.getQuestionDescription());
     }
 
+    /**
+     *
+     * @return the number of notifications a user has
+     */
     @Override
     public int getItemCount() {
         return listItems.size();

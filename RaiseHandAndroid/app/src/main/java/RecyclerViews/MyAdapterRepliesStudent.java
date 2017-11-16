@@ -29,11 +29,21 @@ public class MyAdapterRepliesStudent extends RecyclerView.Adapter<MyAdapterRepli
     private List<Reply> listItems;
     private Context context;
 
+    /**
+     * constructor to make the page display the replies of a question
+     * @param listItems the list of replies
+     * @param context this instance of the app
+     */
     public MyAdapterRepliesStudent(List<Reply> listItems, Context context) {
         this.listItems = listItems;
         this.context = context;
     }
-
+    /**
+     *
+     * This method inflates the view for the handler i.e. how the page will look like when the user
+     * gets to that page
+     *
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
