@@ -20,9 +20,8 @@ import Utilities.Reply;
 import Utilities.StringParse;
 
 /**
- * @author jaggarwal
- *
  * This is an adapter for reply to a reply. It represents each reply in the layout holder
+ * @author jaggarwal
  */
 
 public class MyAdapterRepliesReply extends RecyclerView.Adapter<MyAdapterRepliesReply.ViewHolder> {

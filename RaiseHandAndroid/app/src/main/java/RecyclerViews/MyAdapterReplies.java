@@ -20,9 +20,9 @@ import java.util.List;
 import Activities.RepliesReply;
 import Utilities.Reply;
 import Utilities.StringParse;
-/*
-@author joel2
-This class handles how to show the list of replies to a teacher
+/**
+ * This class handles how to show the list of replies to a teacher
+ * @author joel2
  */
 public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.ViewHolder> {
 

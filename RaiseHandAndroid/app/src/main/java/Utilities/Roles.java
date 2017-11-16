@@ -1,9 +1,10 @@
 package Utilities;
 
 /**
- * @author joel2
+ *
  * This takes the number that represents a role and turns
  * it into a meaningful name (admin, teacher, ta, or student)
+ * @author joel2
  */
 public enum Roles {
 

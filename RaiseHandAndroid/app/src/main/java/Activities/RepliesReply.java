@@ -34,10 +34,11 @@ import Utilities.SwipeControllerActions;
 import Utilities.User;
 
 /**
- * @author jaggarwal
+ *
  *
  * This is a activity for the reply to reply page. It contains the Recycler View and the the adapter
  * for the activity.
+ * @author jaggarwal
  */
 
 public class RepliesReply extends AppCompatActivity{
@@ -59,7 +60,7 @@ public class RepliesReply extends AppCompatActivity{
     /**
      *
      * This method starts the activity, initializes the activity view and gets the currentUser, and
-     * adds functionality to add a new reply
+     * adds functionality to add a new reply to a reply
      *
      * @param savedInstanceState the current state of the activity
      */
@@ -160,7 +161,7 @@ public class RepliesReply extends AppCompatActivity{
 
     /**
      *
-     * Private method to set the recycler view
+     * Private method to set the recycler view to view replies to replies
      *
      */
     private void setUpRecyclerView(){

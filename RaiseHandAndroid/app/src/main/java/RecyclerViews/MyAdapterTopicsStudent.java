@@ -1,6 +1,7 @@
 package RecyclerViews;
 
 /**
+ * This class handles how to show the list of topics to a student
  * @author jaggarwal
  */
 

@@ -10,9 +10,10 @@ import java.util.ArrayList;
 import Activities.VolleyMainActivityHandler;
 
 /**
- * @author sae1
+ *
  * This is an object, class
  * Each class has an array list of topics, a class id, and a title
+ * @author sae1
  */
 
 public class Classes {

@@ -20,8 +20,9 @@ import Activities.RepliesReply;
 import Utilities.Reply;
 import Utilities.StringParse;
 /**
- * @author jaggarwal
+ *
  * How to view the list of replies on the student side of the app
+ * @author jaggarwal
  */
 public class MyAdapterRepliesStudent extends RecyclerView.Adapter<MyAdapterRepliesStudent.ViewHolder> {
 

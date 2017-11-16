@@ -18,10 +18,11 @@ import com.example.sae1.raisehand.R;
 import Utilities.URLS;
 
 /**
- * @author sae1
+ *
  * This will be used when a user initially tries to
  * reset his or her password. This is the first form that they
  * fill out and then will get an email with a temporary password
+ * @author sae1
  */
 
 public class ForgotPassword extends AppCompatActivity {
@@ -30,6 +31,11 @@ public class ForgotPassword extends AppCompatActivity {
     EditText Email;
     Button buttonSubmit;
 
+    /**
+     * This method starts the activity, initializes the activity view and gets the currentUser, and
+     * adds functionality to request a new password
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

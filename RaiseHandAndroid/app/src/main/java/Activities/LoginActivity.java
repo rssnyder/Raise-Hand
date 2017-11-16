@@ -31,8 +31,9 @@ import com.google.gson.annotations.Expose;
 import java.util.Map;
 
 /**
- * @author sae1
+ *
  * A login screen that offers login via email/password.
+ * @author sae1
  */
 public class LoginActivity extends Activity {
     private String TAG= LoginActivity.class.getSimpleName();
@@ -44,6 +45,11 @@ public class LoginActivity extends Activity {
     private User currentUser;
     private SharedPreferences mPreferences;
 
+    /**
+     * This method starts the activity, initializes the activity view and gets the currentUser, and
+     * adds functionality to login
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -17,10 +17,11 @@ import Utilities.User;
 
 
 /**
- * @author joel2
+ *
  * This a method that enables the user to make a question, you can
  * only get to this through a topic so that we have a topic ID for the question to
  * be put underneath
+ * @author joel2
  */
 public class MakeQuestion extends AppCompatActivity {
 
@@ -29,7 +30,11 @@ public class MakeQuestion extends AppCompatActivity {
     private SharedPreferences mPreferences;
     private User currentUser;
 
-
+    /**
+     * This method starts the activity, initializes the activity view and gets the currentUser, and
+     * adds functionality to add a new question
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //make the activity page

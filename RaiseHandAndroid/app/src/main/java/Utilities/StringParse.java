@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * @author sae1
+ *
  * This class handles all of the string parsing that
  * must be done due to android volley string responses
+ * @author sae1
  */
 
 public class StringParse {

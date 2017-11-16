@@ -1,5 +1,8 @@
 package RecyclerViews;
 
+/**
+ * @author jaggarwal
+ */
 public class ListItemTeacherStudents {
 
     private String head;

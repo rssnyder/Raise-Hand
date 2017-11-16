@@ -18,9 +18,9 @@ import java.util.List;
 
 import Teacher.TeacherQuestions;
 import Utilities.Topics;
-/*
-@author joel2
-This class handles how to show the list of topics to a teacher
+/**
+ * This class handles how to show the list of topics to a teacher
+ * @author joel2
  */
 public class MyAdapterTopics extends RecyclerView.Adapter<MyAdapterTopics.ViewHolder> {
 

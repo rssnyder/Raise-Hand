@@ -1,8 +1,9 @@
 package RecyclerViews;
 
 /**
- * @author jaggarwal
+ *
  * How to view the list of notifications on the student side of the app
+ * @author jaggarwal
  */
 
 import android.content.Context;

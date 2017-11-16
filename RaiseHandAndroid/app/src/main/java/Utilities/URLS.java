@@ -1,8 +1,9 @@
 package Utilities;
 
 /**
- * @author sae1
+ *
  * This is the class that helps with android volley calls by making final urls
+ * @author sae1
  */
 
 public class URLS {

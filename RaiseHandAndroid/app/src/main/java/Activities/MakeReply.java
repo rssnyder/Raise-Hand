@@ -17,11 +17,11 @@ import Utilities.Reply;
 import Utilities.User;
 
 /**
- * @author sae1
+ *
  * This is a page that enables the user to make a reply, you can
  * only get to this through a question so that we have a question ID for the reply to
  * be put underneath
- *
+ *@author sae1
  */
 
 public class MakeReply extends AppCompatActivity {
@@ -30,7 +30,11 @@ public class MakeReply extends AppCompatActivity {
     private SharedPreferences mPreferences;
     private User currentUser;
 
-
+    /**
+     * This method starts the activity, initializes the activity view and gets the currentUser, and
+     * adds functionality to add a new reply
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //create the page

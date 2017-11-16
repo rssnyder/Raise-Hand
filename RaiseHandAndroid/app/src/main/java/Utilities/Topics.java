@@ -3,9 +3,10 @@ package Utilities;
 import java.util.ArrayList;
 
 /**
- * @author sae1
+ *
  * This is an object, Topics
  * It has a title, a creation time, an id, a description, and an array list of questions
+ * @author sae1
  */
 
 public class Topics {

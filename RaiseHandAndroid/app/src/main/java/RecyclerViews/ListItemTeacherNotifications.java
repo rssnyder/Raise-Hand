@@ -1,5 +1,9 @@
 package RecyclerViews;
 
+/**
+ *
+ * @author joel2
+ */
 public class ListItemTeacherNotifications {
 
     private String head;

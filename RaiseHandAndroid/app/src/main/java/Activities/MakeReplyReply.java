@@ -16,10 +16,11 @@ import Utilities.Reply;
 import Utilities.User;
 
 /**
- * @author jaggarwal
+ *
  * This a page that enables the user to make a reply, you can
  * only get to this through a reply so that we have a reply ID for the reply to
  * be put underneath
+ * @author jaggarwal
  */
 
 public class MakeReplyReply extends AppCompatActivity {
@@ -32,7 +33,7 @@ public class MakeReplyReply extends AppCompatActivity {
     /**
      *
      * This method starts the activity, initializes the activity view and gets the currentUser, and
-     * adds functionality to add a new reply
+     * adds functionality to add a new reply to a reply
      *
      * @param savedInstanceState the current state of the activity
      */

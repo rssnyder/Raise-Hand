@@ -25,11 +25,12 @@ import Utilities.URLS;
 import Utilities.User;
 
 /**
- * @author sae1
+ *
  * This class is used when a user logins after having submitted a
  * request for a temp password (thus their password is the temp password).
  * The app should auto-redirect to this page to allow the user to reset
  * their password to something new.
+ * @author sae1
  */
 
 public class ResetPassword  extends AppCompatActivity {
@@ -40,6 +41,13 @@ public class ResetPassword  extends AppCompatActivity {
     private User currentUser;
     private SharedPreferences mPreferences;
 
+    /**
+     *
+     * This method starts the activity, initializes the activity view and gets the currentUser, and
+     * adds functionality to add reset their password
+     *
+     * @param savedInstanceState the current state of the activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

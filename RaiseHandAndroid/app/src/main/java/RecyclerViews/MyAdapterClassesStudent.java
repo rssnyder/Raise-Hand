@@ -1,11 +1,4 @@
 package RecyclerViews;
-
-/**
- * @author jaggarwal
- * How to view the list of classes on the student side of the app
- */
-
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +16,11 @@ import java.util.List;
 
 import Utilities.Classes;
 
+/**
+ *
+ * How to view the list of classes on the student side of the app
+ * @author jaggarwal
+ */
 
 public class MyAdapterClassesStudent extends RecyclerView.Adapter<MyAdapterClassesStudent.ViewHolder>{
     private List<Classes> listItems;

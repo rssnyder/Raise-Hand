@@ -20,8 +20,8 @@ import com.example.sae1.raisehand.R;
 import Utilities.URLS;
 
 /**
- * @author sae1
  * This activity allows users to create a new user in the database and sign up
+ * @author sae1
  */
 
 public class SignupActivity extends AppCompatActivity {
@@ -31,7 +31,13 @@ public class SignupActivity extends AppCompatActivity {
     Button buttonRegister;
     Spinner university;
     int university_id;
-
+    /**
+     *
+     * This method starts the activity, initializes the activity view and gets the currentUser, and
+     * adds functionality to create an account
+     *
+     * @param savedInstanceState the current state of the activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

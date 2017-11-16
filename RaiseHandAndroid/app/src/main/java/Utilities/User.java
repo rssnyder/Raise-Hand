@@ -3,8 +3,9 @@ package Utilities;
 import java.util.ArrayList;
 
 /**
- * @author sae1
+ *
  * This is an object that holds information about the current user
+ * @author sae1
  */
 
 public class User {

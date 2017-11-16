@@ -13,6 +13,9 @@ import static android.support.v7.widget.helper.ItemTouchHelper.ACTION_STATE_SWIP
 import static android.support.v7.widget.helper.ItemTouchHelper.LEFT;
 import static android.support.v7.widget.helper.ItemTouchHelper.RIGHT;
 
+/**
+ * @author joel2
+ */
 enum ButtonsState {
     GONE,
     LEFT_VISIBLE,

@@ -1,5 +1,5 @@
 package Utilities;
-/*
+/**
 @author joel2
  */
 public abstract class SwipeControllerActions {
