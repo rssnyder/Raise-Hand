@@ -53,6 +53,13 @@ public class TeacherQuestions extends AppCompatActivity {
     private NavigationView nv;
     private Toolbar mToolbar;
 
+    /**
+     *
+     * This method starts the activity, initializes the activity view and gets the currentUser, as
+     * well as the question to the topic that is in the class the teacher teaches
+     *
+     * @param savedInstanceState the current state of the activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -160,7 +167,11 @@ public class TeacherQuestions extends AppCompatActivity {
             }
         });
     }
-
+    /**
+     * if an item in the pull out menu is selected, navigate to a new page
+     * @param item the list item that was selected
+     * @return if the item is selected
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

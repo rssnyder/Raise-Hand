@@ -19,7 +19,13 @@ public class StudentLiveSession extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
     private NavigationView nv;
     private Toolbar mToolbar;
-
+    /**
+     *
+     * This method starts the activity, initializes the activity view and gets the currentUser, as
+     * well as the current livefeed session
+     *
+     * @param savedInstanceState the current state of the activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

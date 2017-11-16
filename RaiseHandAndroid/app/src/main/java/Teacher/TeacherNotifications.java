@@ -38,7 +38,13 @@ public class TeacherNotifications extends AppCompatActivity {
     private Toolbar mToolbar;
     private NavigationView nv;
     private Field mDragger;
-
+    /**
+     *
+     * This method starts the activity, initializes the activity view and gets the currentUser, as
+     * well as the notifications a teacher has
+     *
+     * @param savedInstanceState the current state of the activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +90,11 @@ public class TeacherNotifications extends AppCompatActivity {
 
     }
 
-
+    /**
+     * if an item in the pull out menu is selected, navigate to a new page
+     * @param item the list item that was selected
+     * @return if the item is selected
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

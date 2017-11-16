@@ -29,7 +29,13 @@ public class StudentHomePage extends AppCompatActivity {
     private NavigationView nv;
     private Toolbar mToolbar;
     private Field mDragger;
-
+    /**
+     *
+     * This method starts the activity, initializes the activity view and gets the currentUser, as
+     * well as the notifications that a student has
+     *
+     * @param savedInstanceState the current state of the activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +90,11 @@ public class StudentHomePage extends AppCompatActivity {
             }
         });
     }
-
+    /**
+     * if an item in the pull out menu is selected, navigate to a new page
+     * @param item the list item that was selected
+     * @return if the item is selected
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

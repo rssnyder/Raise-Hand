@@ -40,7 +40,13 @@ public class TeacherClasses extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
     private NavigationView nv;
     private Toolbar mToolbar;
-
+    /**
+     *
+     * This method starts the activity, initializes the activity view and gets the currentUser, as
+     * well as the classes a teacher teaches
+     *
+     * @param savedInstanceState the current state of the activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,7 +100,11 @@ public class TeacherClasses extends AppCompatActivity {
         NavUtil.setNavMenu(nv, ActivitiesNames.CLASSES, getApplicationContext(), mDrawerLayout);
 
     }
-
+    /**
+     * if an item in the pull out menu is selected, navigate to a new page
+     * @param item the list item that was selected
+     * @return if the item is selected
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

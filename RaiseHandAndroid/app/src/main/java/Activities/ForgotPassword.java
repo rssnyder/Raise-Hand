@@ -34,7 +34,7 @@ public class ForgotPassword extends AppCompatActivity {
     /**
      * This method starts the activity, initializes the activity view and gets the currentUser, and
      * adds functionality to request a new password
-     * @param savedInstanceState
+     * @param savedInstanceState the state of the activity
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {

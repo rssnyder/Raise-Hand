@@ -33,7 +33,7 @@ public class MakeReply extends AppCompatActivity {
     /**
      * This method starts the activity, initializes the activity view and gets the currentUser, and
      * adds functionality to add a new reply
-     * @param savedInstanceState
+     * @param savedInstanceState state of the app
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {

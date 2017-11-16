@@ -52,7 +52,13 @@ public class StudentQuestions extends AppCompatActivity {
     private SharedPreferences mPreferences;
 
     private SwipeController swipeController = null;
-
+    /**
+     *
+     * This method starts the activity, initializes the activity view and gets the currentUser, as
+     * well as the question to the topic that is in the class the student is in
+     *
+     * @param savedInstanceState the current state of the activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -153,7 +159,11 @@ public class StudentQuestions extends AppCompatActivity {
             }
         });
     }
-
+    /**
+     * if an item in the pull out menu is selected, navigate to a new page
+     * @param item the list item that was selected
+     * @return if the item is selected
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -164,6 +174,9 @@ public class StudentQuestions extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * sets up the recycler view
+     */
     public void setUpRecyclerView(){
 
         recyclerView = (RecyclerView) findViewById(R.id.questionsRecyclerViewStudent);

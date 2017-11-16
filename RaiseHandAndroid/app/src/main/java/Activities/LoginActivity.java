@@ -48,7 +48,7 @@ public class LoginActivity extends Activity {
     /**
      * This method starts the activity, initializes the activity view and gets the currentUser, and
      * adds functionality to login
-     * @param savedInstanceState
+     * @param savedInstanceState state of the app
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
