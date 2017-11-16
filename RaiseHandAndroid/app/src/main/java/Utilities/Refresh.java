@@ -3,7 +3,8 @@ package Utilities;
 import java.util.ArrayList;
 
 /**
- * Created by sae1 on 11/16/17.
+ * This is a class of methods to enable swipe down for request
+ * @author sae1
  */
 
 public class Refresh {
