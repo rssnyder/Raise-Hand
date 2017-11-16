@@ -19,10 +19,19 @@ public enum Roles {
         role = r;
     }
 
+    /**
+     *
+     * @param otherRole given role
+     * @return if the curent user's role is equal to the given role
+     */
     public boolean equalsName(String otherRole) {
         return role.equals(otherRole);
     }
 
+    /**
+     *
+     * @return The role in string form
+     */
     public String toString() {
         return this.role;
     }

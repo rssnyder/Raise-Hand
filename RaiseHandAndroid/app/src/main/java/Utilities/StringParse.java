@@ -12,8 +12,11 @@ import java.util.Scanner;
 
 public class StringParse {
 
-    /* Method that is called within the Utilities -> Classes class
-     * when Volley is used to find all of the topics of a class
+    /**
+     * Used within the classes object to parse through the information
+     * returned by Volley regarding the topics within the class
+     * @param phpResponse
+     * @return an array list of the topics that are in a given class
      */
     public static ArrayList<Topics> parseTopicsVolley(String phpResponse){
             ArrayList<Topics> topics=new ArrayList<>();
@@ -270,6 +273,12 @@ public class StringParse {
         return topics;
     }
 
+    /**
+     * Used during login to parse through the information return by volley
+     * about the user who logged in
+     * @param phpResponse
+     * @return current user
+     */
     public static User parseUserVolley(String phpResponse){
 
         String[] seperated=phpResponse.split(":");
@@ -309,6 +318,11 @@ public class StringParse {
        return null;
     }
 
+    /**
+     *
+     * @param timestamp the given timestamp that is in form 17:32:09 09/23/2017
+     * @return the time stamp that is no longer in military hours
+     */
     public static String parseTimeStamp(String timestamp){
         String hours=timestamp.substring(timestamp.indexOf(":")-2);
         hours=hours.substring(0,5);
