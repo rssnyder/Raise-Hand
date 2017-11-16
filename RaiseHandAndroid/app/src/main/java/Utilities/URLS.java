@@ -18,4 +18,6 @@ public class URLS {
     public static final String URL_ENDORSEMENTQ= ROOT_URL+"endorseQ.php";
     public static final String URL_FORGOTPASS= ROOT_URL+"forgotPassword.php";
     public static final String URL_RESETPASS= ROOT_URL+"resetPassword.php";
+    public static final String URL_REPORTQ=ROOT_URL+"reportQ.php";
+    public static final String URL_REPORTR=ROOT_URL+"reportR.php";
 }

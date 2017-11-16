@@ -221,4 +221,8 @@ public class Reply {
         // Adding request to request queue
         VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
     }
+
+    public void report(){
+
+    }
 }
