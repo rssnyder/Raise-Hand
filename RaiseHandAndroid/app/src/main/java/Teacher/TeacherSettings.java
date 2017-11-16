@@ -13,8 +13,9 @@ import com.example.sae1.raisehand.R;
 import Utilities.ActivitiesNames;
 import Utilities.NavUtil;
 /**
- * @author joel2
+ *
  * This class has user settings for the teacher.
+ * @author joel2
  */
 public class TeacherSettings extends AppCompatActivity {
 

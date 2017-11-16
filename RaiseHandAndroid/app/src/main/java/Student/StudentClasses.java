@@ -27,8 +27,8 @@ import Utilities.Classes;
 import Activities.LoginActivity;
 import Utilities.User;
 /**
- * @author jaggarwal
  * This is a class for all of the classes that a student is in
+ * @author jaggarwal
  */
 public class StudentClasses extends AppCompatActivity {
     private RecyclerView recyclerView;

@@ -22,8 +22,9 @@ import RecyclerViews.MyAdapterStudents;
 import Utilities.ActivitiesNames;
 import Utilities.NavUtil;
 /**
- * @author joel2
+ *
  * This class has the students in the teachers class
+ * @author joel2
  */
 public class TeacherStudents extends AppCompatActivity {
     private RecyclerView recyclerView;

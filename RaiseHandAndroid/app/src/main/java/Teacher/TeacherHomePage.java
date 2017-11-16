@@ -13,8 +13,9 @@ import com.example.sae1.raisehand.R;
 import Utilities.ActivitiesNames;
 import Utilities.NavUtil;
 
-/**@author joel2
+/**
  * This will be the home page for the teacher
+ * @author joel2
  */
 public class TeacherHomePage extends AppCompatActivity {
 

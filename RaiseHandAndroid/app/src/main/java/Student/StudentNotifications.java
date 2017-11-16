@@ -23,8 +23,9 @@ import RecyclerViews.ListItemTeacherNotifications;
 import RecyclerViews.MyAdapterNotifications;
 import Activities.LoginActivity;
 /**
- * @author jaggarwal
+ *
  * This is a class for recent activity the student may have missed
+ * @author jaggarwal
  */
 public class StudentNotifications extends AppCompatActivity {
 

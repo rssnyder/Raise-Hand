@@ -24,8 +24,9 @@ import Utilities.NavUtil;
 import Utilities.Topics;
 import Utilities.User;
 /**
- * @author joel2
+ *
  * This class has topics for the teacher's class.
+ *  @author joel2
  */
 public class TeacherTopics extends AppCompatActivity {
     private String TAG = TeacherTopics.class.getSimpleName();

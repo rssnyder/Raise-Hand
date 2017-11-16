@@ -32,8 +32,9 @@ import Utilities.SwipeController;
 import Utilities.SwipeControllerActions;
 import Utilities.User;
 /**
- * @author joel2
+ *
  * This class has replies for the teacher's class.
+ * @author joel2
  */
 public class TeacherReplies extends AppCompatActivity {
     private RecyclerView recyclerView;
