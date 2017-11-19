@@ -1,0 +1,75 @@
+\hypertarget{signup_8php}{}\section{signup.\+php File Reference}
+\label{signup_8php}\index{signup.\+php@{signup.\+php}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{signup_8php_aed15c17c9da92081945e8ee167bdf7a0}{sign\+Up}} (\$username, \$first, \$last, \$email, \$password, \$db)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{signup_8php_a1fa3127fc82f96b1436d871ef02be319}{\$db}} = \mbox{\hyperlink{database_8php_a4162847310de81b83504109485866a7c}{get\+DB}}()
+\item 
+if(\char`\"{}\char`\"{}==trim(\$\+\_\+\+P\+O\+ST\mbox{[}\textquotesingle{}first\textquotesingle{}\mbox{]})) else if(\char`\"{}\char`\"{}==trim(\$\+\_\+\+P\+O\+ST\mbox{[}\textquotesingle{}last\textquotesingle{}\mbox{]})) else if(\char`\"{}\char`\"{}==trim(\$\+\_\+\+P\+O\+ST\mbox{[}\textquotesingle{}username\textquotesingle{}\mbox{]})) else if(\char`\"{}\char`\"{}==trim(\$\+\_\+\+P\+O\+ST\mbox{[}\textquotesingle{}email\textquotesingle{}\mbox{]})) else if(\char`\"{}\char`\"{}==trim(\$\+\_\+\+P\+O\+ST\mbox{[}\textquotesingle{}password1\textquotesingle{}\mbox{]})) else if(\$\+\_\+\+P\+O\+ST\mbox{[}\textquotesingle{}password1\textquotesingle{}\mbox{]} !=\$\+\_\+\+P\+O\+ST\mbox{[}\textquotesingle{}password2\textquotesingle{}\mbox{]}) \mbox{\hyperlink{signup_8php_a12e81082faa4fe8fec9874c6510a4b5a}{else}}
+\item 
+\mbox{\hyperlink{signup_8php_ab8fb2b266e6115a51d358bee61a9173a}{\$ucheck}} = \char`\"{}S\+E\+L\+E\+CT username F\+R\+OM users W\+H\+E\+RE username = \textquotesingle{}\$username\textquotesingle{} \char`\"{}
+\item 
+\mbox{\hyperlink{signup_8php_a112ef069ddc0454086e3d1e6d8d55d07}{\$result}} = \$db-\/$>$query(\$ucheck) or die(\$db-\/$>$error)
+\item 
+\mbox{\hyperlink{signup_8php_a227a9443cabbe5e23cfc10c4371e09d1}{\$uname}} = \$result-\/$>$fetch\+\_\+assoc()
+\item 
+if(\$uname) \mbox{\hyperlink{signup_8php_a607686ef9f99ea7c42f4f3dd3dbb2b0d}{\$password}} = \$\+\_\+\+P\+O\+ST\mbox{[}\textquotesingle{}password1\textquotesingle{}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{signup_8php_aed15c17c9da92081945e8ee167bdf7a0}\label{signup_8php_aed15c17c9da92081945e8ee167bdf7a0}} 
+\index{signup.\+php@{signup.\+php}!sign\+Up@{sign\+Up}}
+\index{sign\+Up@{sign\+Up}!signup.\+php@{signup.\+php}}
+\subsubsection{\texorpdfstring{sign\+Up()}{signUp()}}
+{\footnotesize\ttfamily sign\+Up (\begin{DoxyParamCaption}\item[{}]{\$username,  }\item[{}]{\$first,  }\item[{}]{\$last,  }\item[{}]{\$email,  }\item[{}]{\$password,  }\item[{}]{\$db }\end{DoxyParamCaption})}
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{signup_8php_a1fa3127fc82f96b1436d871ef02be319}\label{signup_8php_a1fa3127fc82f96b1436d871ef02be319}} 
+\index{signup.\+php@{signup.\+php}!\$db@{\$db}}
+\index{\$db@{\$db}!signup.\+php@{signup.\+php}}
+\subsubsection{\texorpdfstring{\$db}{$db}}
+{\footnotesize\ttfamily \$db = \mbox{\hyperlink{database_8php_a4162847310de81b83504109485866a7c}{get\+DB}}()}
+
+\mbox{\Hypertarget{signup_8php_a607686ef9f99ea7c42f4f3dd3dbb2b0d}\label{signup_8php_a607686ef9f99ea7c42f4f3dd3dbb2b0d}} 
+\index{signup.\+php@{signup.\+php}!\$password@{\$password}}
+\index{\$password@{\$password}!signup.\+php@{signup.\+php}}
+\subsubsection{\texorpdfstring{\$password}{$password}}
+{\footnotesize\ttfamily \$password = \$\+\_\+\+P\+O\+ST\mbox{[}\textquotesingle{}password1\textquotesingle{}\mbox{]}}
+
+\mbox{\Hypertarget{signup_8php_a112ef069ddc0454086e3d1e6d8d55d07}\label{signup_8php_a112ef069ddc0454086e3d1e6d8d55d07}} 
+\index{signup.\+php@{signup.\+php}!\$result@{\$result}}
+\index{\$result@{\$result}!signup.\+php@{signup.\+php}}
+\subsubsection{\texorpdfstring{\$result}{$result}}
+{\footnotesize\ttfamily \$result = \$db-\/$>$query(\$ucheck) or die(\$db-\/$>$error)}
+
+\mbox{\Hypertarget{signup_8php_ab8fb2b266e6115a51d358bee61a9173a}\label{signup_8php_ab8fb2b266e6115a51d358bee61a9173a}} 
+\index{signup.\+php@{signup.\+php}!\$ucheck@{\$ucheck}}
+\index{\$ucheck@{\$ucheck}!signup.\+php@{signup.\+php}}
+\subsubsection{\texorpdfstring{\$ucheck}{$ucheck}}
+{\footnotesize\ttfamily \$ucheck = \char`\"{}S\+E\+L\+E\+CT username F\+R\+OM users W\+H\+E\+RE username = \textquotesingle{}\$username\textquotesingle{} \char`\"{}}
+
+\mbox{\Hypertarget{signup_8php_a227a9443cabbe5e23cfc10c4371e09d1}\label{signup_8php_a227a9443cabbe5e23cfc10c4371e09d1}} 
+\index{signup.\+php@{signup.\+php}!\$uname@{\$uname}}
+\index{\$uname@{\$uname}!signup.\+php@{signup.\+php}}
+\subsubsection{\texorpdfstring{\$uname}{$uname}}
+{\footnotesize\ttfamily \$uname = \$result-\/$>$fetch\+\_\+assoc()}
+
+\mbox{\Hypertarget{signup_8php_a12e81082faa4fe8fec9874c6510a4b5a}\label{signup_8php_a12e81082faa4fe8fec9874c6510a4b5a}} 
+\index{signup.\+php@{signup.\+php}!else@{else}}
+\index{else@{else}!signup.\+php@{signup.\+php}}
+\subsubsection{\texorpdfstring{else}{else}}
+{\footnotesize\ttfamily if (\char`\"{}\char`\"{}==trim( \$\+\_\+\+P\+O\+ST\mbox{[} \textquotesingle{}first\textquotesingle{}\mbox{]})) else if (\char`\"{}\char`\"{}==trim( \$\+\_\+\+P\+O\+ST\mbox{[} \textquotesingle{}last\textquotesingle{}\mbox{]})) else if (\char`\"{}\char`\"{}==trim( \$\+\_\+\+P\+O\+ST\mbox{[} \textquotesingle{}username\textquotesingle{}\mbox{]})) else if (\char`\"{}\char`\"{}==trim( \$\+\_\+\+P\+O\+ST\mbox{[} \textquotesingle{}email\textquotesingle{}\mbox{]})) else if (\char`\"{}\char`\"{}==trim( \$\+\_\+\+P\+O\+ST\mbox{[} \textquotesingle{}password1\textquotesingle{}\mbox{]})) else if ( \$\+\_\+\+P\+O\+ST\mbox{[} \textquotesingle{}password1\textquotesingle{}\mbox{]} !=\$\+\_\+\+P\+O\+ST\mbox{[} \textquotesingle{}password2\textquotesingle{}\mbox{]}) else}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+\{
+    \mbox{\hyperlink{signin_8php_a0eb82aa5f81cf845de4b36cd653c42cf}{$username}} = $\_POST[\textcolor{stringliteral}{'username'}]
+\end{DoxyCode}

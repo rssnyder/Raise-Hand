@@ -1,0 +1,37 @@
+\hypertarget{upload_8php}{}\section{upload.\+php File Reference}
+\label{upload_8php}\index{upload.\+php@{upload.\+php}}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{upload_8php_ad41e09eb5e82b885a1780dc9054dd61d}{\$uploaddir}} = \textquotesingle{}/var/www/html/uploads/\textquotesingle{}
+\item 
+\mbox{\hyperlink{upload_8php_ae969147205b3eb3ab6491bb0cdf8481d}{\$uploadfile}} = \$uploaddir . basename(\$\+\_\+\+F\+I\+L\+ES\mbox{[}\textquotesingle{}uploaded\+\_\+file\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}name\textquotesingle{}\mbox{]})
+\item 
+if(copy(\$\+\_\+\+F\+I\+L\+ES\mbox{[}\textquotesingle{}uploaded\+\_\+file\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}tmp\+\_\+name\textquotesingle{}\mbox{]}, \$uploadfile)) \mbox{\hyperlink{upload_8php_ae21bfb0938e98c971932ffffac17aac3}{else}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{upload_8php_ad41e09eb5e82b885a1780dc9054dd61d}\label{upload_8php_ad41e09eb5e82b885a1780dc9054dd61d}} 
+\index{upload.\+php@{upload.\+php}!\$uploaddir@{\$uploaddir}}
+\index{\$uploaddir@{\$uploaddir}!upload.\+php@{upload.\+php}}
+\subsubsection{\texorpdfstring{\$uploaddir}{$uploaddir}}
+{\footnotesize\ttfamily \$uploaddir = \textquotesingle{}/var/www/html/uploads/\textquotesingle{}}
+
+\mbox{\Hypertarget{upload_8php_ae969147205b3eb3ab6491bb0cdf8481d}\label{upload_8php_ae969147205b3eb3ab6491bb0cdf8481d}} 
+\index{upload.\+php@{upload.\+php}!\$uploadfile@{\$uploadfile}}
+\index{\$uploadfile@{\$uploadfile}!upload.\+php@{upload.\+php}}
+\subsubsection{\texorpdfstring{\$uploadfile}{$uploadfile}}
+{\footnotesize\ttfamily \$uploadfile = \$uploaddir . basename(\$\+\_\+\+F\+I\+L\+ES\mbox{[}\textquotesingle{}uploaded\+\_\+file\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}name\textquotesingle{}\mbox{]})}
+
+\mbox{\Hypertarget{upload_8php_ae21bfb0938e98c971932ffffac17aac3}\label{upload_8php_ae21bfb0938e98c971932ffffac17aac3}} 
+\index{upload.\+php@{upload.\+php}!else@{else}}
+\index{else@{else}!upload.\+php@{upload.\+php}}
+\subsubsection{\texorpdfstring{else}{else}}
+{\footnotesize\ttfamily if (copy( \$\+\_\+\+F\+I\+L\+ES\mbox{[} \textquotesingle{}uploaded\+\_\+file\textquotesingle{}\mbox{]}\mbox{[} \textquotesingle{}tmp\+\_\+name\textquotesingle{}\mbox{]}, \$uploadfile)) else}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+\{
+       echo \textcolor{stringliteral}{"Upload failed"}
+\end{DoxyCode}
