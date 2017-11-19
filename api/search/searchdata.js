@@ -1,24 +1,21 @@
 var indexSectionsWithContent =
 {
-  0: "$degrsu",
-  1: "drsu",
-  2: "dgs",
-  3: "$e"
+  0: "dg",
+  1: "d",
+  2: "dg"
 };
 
 var indexSectionNames =
 {
   0: "all",
   1: "files",
-  2: "functions",
-  3: "variables"
+  2: "functions"
 };
 
 var indexSectionLabels =
 {
   0: "All",
   1: "Files",
-  2: "Functions",
-  3: "Variables"
+  2: "Functions"
 };
 
