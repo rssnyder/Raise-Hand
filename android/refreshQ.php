@@ -11,5 +11,27 @@
 	$topic_id=$_GET['topicID'];
 	$stmt = "SELECT * FROM threads WHERE topic_id='$topic_id'";
 	$stmt = $db->query($stmt) or die($db->error);
-	die("Done");
+	while($r= $stmt->fetch_array()){
+            Echo 'NEWQUESTION ';
+            Echo 'QUESTIONTITLE ';
+            Echo ''.$r['title'].' ';
+            Echo 'QUESTIONDESCRIPTION ';
+            Echo ''.$r['description'].' ';
+            Echo 'QUESTIONUSER ';
+            Echo ''.$r['user_name'].' ';
+            Echo 'QUESTIONUSERID ';
+            Echo ''.$r['owner_id'].' ';
+            Echo 'POINTS ';
+            Echo ''.$r['points'].' ';
+            Echo 'ENDORSED ';
+            if($r['endorsed']==1){
+                Echo 'Yes ';
+            }
+            else{
+                Echo 'No ';
+            }
+            Echo 'CREATION ';
+            Echo ''.$r['creation'].' ';
+	}
+
 ?>
