@@ -18,23 +18,26 @@ import Activities.VolleyMainActivityHandler;
  */
 
 public class Refresh {
-    private String TAG= Refresh.class.getSimpleName();
-    private String tag_string_req= "string_req";
+    private static String TAG= Refresh.class.getSimpleName();
+    private static String tag_string_req= "string_req";
+    private static ArrayList<Question> questions= new ArrayList<Question>();
+    private static ArrayList<Reply> replies= new ArrayList<Reply>();
     /**
      * Given a parent topicID, the list of questions will be refreshed using android volley
      * @param parentTopicID
      * @return an array list of questions in this topic
      */
-    public ArrayList<Question> refreshQuestions(String parentTopicID){
+    public ArrayList<Question> refreshQuestions(final String parentTopicID){
         String urlSuffix= "?topicId="+parentTopicID;
         String url_final= URLS.URL_REFRESHQ+urlSuffix;
+        questions.clear();
         StringRequest req = new StringRequest(Request.Method.GET,url_final,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.d(TAG, response.toString());
                         String phpResponse=response.toString();
-                        //setTopics(StringParse.parseTopicsVolley(phpResponse));
+                        questions=StringParse.parseQuestions(phpResponse, parentTopicID);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -45,7 +48,7 @@ public class Refresh {
         );
         // Adding request to request queue
         VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
-        return null;
+        return questions;
     }
 
     /**
@@ -54,16 +57,17 @@ public class Refresh {
      * @param parentQuestionID
      * @return an array list of replies directly to a question
      */
-    public ArrayList<Reply> refreshReplies(String parentQuestionID){
+    public static ArrayList<Reply> refreshReplies(final String parentQuestionID){
         String urlSuffix= "?questionId="+parentQuestionID;
         String url_final= URLS.URL_REFRESHR+urlSuffix;
+        replies.clear();
         StringRequest req = new StringRequest(Request.Method.GET,url_final,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.d(TAG, response.toString());
                         String phpResponse=response.toString();
-                        //setTopics(StringParse.parseTopicsVolley(phpResponse));
+                        replies=StringParse.parseReplies(phpResponse, parentQuestionID);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -74,7 +78,7 @@ public class Refresh {
         );
         // Adding request to request queue
         VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
-        return null;
+        return replies;
     }
 
     /**
@@ -85,13 +89,14 @@ public class Refresh {
     public ArrayList<Reply> refreshRepliesOfReplies(String parentReplyID){
         String urlSuffix= "?replyId="+parentReplyID;
         String url_final= URLS.URL_REFRESH_REPLIES_TO_REPLIES+urlSuffix;
+        replies.clear();
         StringRequest req = new StringRequest(Request.Method.GET,url_final,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.d(TAG, response.toString());
                         String phpResponse=response.toString();
-                        //setTopics(StringParse.parseTopicsVolley(phpResponse));
+                        replies=StringParse.parseReplies(phpResponse);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -102,6 +107,6 @@ public class Refresh {
         );
         // Adding request to request queue
         VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
-        return null;
+        return replies;
     }
 }
