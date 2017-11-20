@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.List;
 
 import Activities.MakeReply;
 import RecyclerViews.MyAdapterReplies;
@@ -40,7 +41,7 @@ import Utilities.User;
  */
 public class TeacherReplies extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
+    private MyAdapterReplies adapter;
     private ArrayList<Reply> listItems;
     private Field mDragger;
     SwipeController swipeController = null;
@@ -145,6 +146,8 @@ public class TeacherReplies extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 adapter.clear();
+                List<Reply> lr = Refresh.refreshReplies(questionID);
+                System.out.println(lr.toString());
                 adapter.addAll(Refresh.refreshReplies(questionID));
                 swipeContainer.setRefreshing(false);
             }
