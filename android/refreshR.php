@@ -11,5 +11,29 @@
 	$question_id=$_GET['questionId'];
 	$stmt = "SELECT * FROM replies WHERE thread_id='$question_id' AND parent=0";
 	$stmt = $db->query($stmt) or die($db->error);
-	die("$stmt");
+	while($r= $stmt->fetch_array()){
+            Echo 'NEWQUESTION ';
+            Echo 'QUESTIONTITLE ';
+            Echo ''.$r['title'].' ';
+            Echo 'QUESTIONDESCRIPTION ';
+            Echo ''.$r['description'].' ';
+            Echo 'QUESTIONUSER ';
+            Echo ''.$r['user_name'].' ';
+            Echo 'QUESTIONUSERID ';
+            Echo ''.$r['owner_id'].' ';
+            Echo 'POINTS ';
+            Echo ''.$r['points'].' ';
+            Echo 'ENDORSED ';
+            if($r['endorsed']==1){
+                Echo 'Yes ';
+            }
+            else{
+                Echo 'No ';
+            }
+            Echo 'CREATION ';
+            Echo ''.$r['creation'].' ';
+            Echo 'QUESTIONID ';
+            Echo ''.$r['ID'].' ';
+	}
+
 ?>
