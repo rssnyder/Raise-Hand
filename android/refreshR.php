@@ -11,5 +11,5 @@
 	$question_id=$_GET['questionId'];
 	$stmt = "SELECT * FROM replies WHERE thread_id='$question_id' AND parent=0";
 	$stmt = $db->query($stmt) or die($db->error);
-	die("Done");
+	die("$stmt");
 ?>
