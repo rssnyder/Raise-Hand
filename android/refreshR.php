@@ -11,7 +11,7 @@
 	$question_id=$_GET['questionId'];
 	$stmt = "SELECT * FROM replies WHERE thread_id='$question_id' AND parent=0";
 	$stmt = $db->query($stmt) or die($db->error);
-	while($r= $stmt->fetch_array()){
+	while($ro= $stmt->fetch_array()){
            Echo 'NEWREPLY ';
                 Echo 'REPLYTXT ';
                 Echo ''.$ro['txt'].' ';
