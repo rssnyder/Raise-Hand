@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -51,6 +52,8 @@ public class TeacherReplies extends AppCompatActivity {
     private NavigationView nv;
     private Toolbar mToolbar;
 
+    private SwipeRefreshLayout swipeContainer;
+
     /**
      *
      * This method starts the activity, initializes the activity view and gets the currentUser, as
@@ -69,6 +72,8 @@ public class TeacherReplies extends AppCompatActivity {
 
         // FABulous way to add a reply
         FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
 
         // Gets stored preferences. User is stored here.
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
@@ -135,6 +140,15 @@ public class TeacherReplies extends AppCompatActivity {
         // populate the navigation buttons to go to the correct place
         nv = (NavigationView) findViewById(R.id.nv1);
         NavUtil.setNavMenu(nv, ActivitiesNames.NONE, getApplicationContext(), mDrawerLayout);
+
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                adapter.clear();
+                adapter.addAll(Refresh.refreshReplies(questionID));
+                swipeContainer.setRefreshing(false);
+            }
+        });
     }
     /**
      * if an item in the pull out menu is selected, navigate to a new page

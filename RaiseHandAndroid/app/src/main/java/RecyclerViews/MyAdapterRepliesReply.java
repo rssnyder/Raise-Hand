@@ -2,7 +2,6 @@ package RecyclerViews;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,7 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
-import Activities.RepliesReply;
+import Teacher.TeacherRepliesReply;
 import Utilities.Reply;
 import Utilities.StringParse;
 
@@ -91,7 +90,7 @@ public class MyAdapterRepliesReply extends RecyclerView.Adapter<MyAdapterReplies
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent reply = new Intent(context.getApplicationContext(), RepliesReply.class);
+                Intent reply = new Intent(context.getApplicationContext(), TeacherRepliesReply.class);
                 reply.putExtra("replyID", listItem.getReplyID());
                 reply.putExtra("reply", rep);
                 context.getApplicationContext().startActivity(reply);

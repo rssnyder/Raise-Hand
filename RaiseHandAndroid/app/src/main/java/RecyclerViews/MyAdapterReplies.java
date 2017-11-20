@@ -3,7 +3,6 @@ package RecyclerViews;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +16,7 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
-import Activities.RepliesReply;
+import Teacher.TeacherRepliesReply;
 import Utilities.Reply;
 import Utilities.StringParse;
 /**
@@ -75,7 +74,7 @@ public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.View
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent reply = new Intent(context.getApplicationContext(), RepliesReply.class);
+                Intent reply = new Intent(context.getApplicationContext(), TeacherRepliesReply.class);
                 reply.putExtra("replyID", listItem.getReplyID());
                 reply.putExtra("reply", rep);
                 context.getApplicationContext().startActivity(reply);
@@ -115,6 +114,18 @@ public class MyAdapterReplies extends RecyclerView.Adapter<MyAdapterReplies.View
             linearLayout = (LinearLayout) itemView.findViewById(R.id.linearLayoutTeacherReplies);
             reportb= (Button) itemView.findViewById(R.id.reportB);
         }
+    }
+
+    // Clean all elements of the recycler
+    public void clear(){
+        listItems.clear();
+        notifyDataSetChanged();
+    }
+
+    // Add a list of items
+    public void addAll(List<Reply> list) {
+        listItems.addAll(list);
+        notifyDataSetChanged();
     }
 
 }

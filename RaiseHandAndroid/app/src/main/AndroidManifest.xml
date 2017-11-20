@@ -44,7 +44,7 @@
         <activity android:name="Activities.MakeReply"/>
         <activity android:name="Teacher.TeacherReplies"/>
         <activity android:name="Student.StudentReplies"/>
-        <activity android:name="Activities.RepliesReply"/>
+        <activity android:name="Teacher.TeacherRepliesReply"/>
         <activity android:name="Activities.MakeReplyReply"/>
         <activity android:name="Activities.ResetPassword"/>
         <activity android:name="Activities.ForgotPassword"/>

@@ -1,4 +1,4 @@
-package Activities;
+package Teacher;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,6 +22,9 @@ import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+
+import Activities.LoginActivity;
+import Activities.MakeReplyReply;
 import RecyclerViews.MyAdapterRepliesReply;
 import Teacher.TeacherClasses;
 import Teacher.TeacherHomePage;
@@ -41,7 +44,7 @@ import Utilities.User;
  * @author jaggarwal
  */
 
-public class RepliesReply extends AppCompatActivity{
+public class TeacherRepliesReply extends AppCompatActivity{
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private ArrayList<Reply> listItems;
