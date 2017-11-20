@@ -32,6 +32,8 @@
             }
             Echo 'CREATION ';
             Echo ''.$r['creation'].' ';
+            Echo 'QUESTIONID ';
+            Echo ''.$r['ID'].' ';
 	}
 
 ?>
