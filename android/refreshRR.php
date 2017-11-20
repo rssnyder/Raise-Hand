@@ -11,5 +11,29 @@
 	$reply_id=$_GET['replyId'];
 	$stmt = "SELECT * FROM replies WHERE parent='$reply_id'";
 	$stmt = $db->query($stmt) or die($db->error);
-	die("Done");
+	while($ro= $stmt->fetch_array()){
+           Echo 'NEWREPLY ';
+                Echo 'REPLYTXT ';
+                Echo ''.$ro['txt'].' ';
+                Echo 'REPLYUSER ';
+                Echo ''.$ro['user_name'].' ';
+                Echo 'REPLYUSERID ';
+                Echo ''.$ro['owner_id'].' ';
+                Echo 'POINTS ';
+                Echo ''.$ro['points'].' ';
+                Echo 'ENDORSED ';
+                if($ro['endorsed']==1){
+                    Echo 'Yes ';
+                }
+                else{
+                 Echo 'No ';
+                }
+                Echo 'CREATION ';
+                Echo ''.$ro['creation'].' ';
+                Echo 'PARENT ';
+                Echo ''.$ro['parent'].' ';
+                Echo 'REPLYID ';
+                Echo ''.$ro['ID'].' ';
+	}
+
 ?>
