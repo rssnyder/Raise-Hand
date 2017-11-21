@@ -563,7 +563,7 @@ public class StringParse {
             }
         }
         parent.setReplies(reply);
-        System.out.print("Replies size " + reply.size());
+        //System.out.print("Replies size " + reply.size());
         return reply;
     }
 

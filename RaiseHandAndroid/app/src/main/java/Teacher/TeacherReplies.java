@@ -1,5 +1,6 @@
 package Teacher;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
@@ -14,25 +15,35 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.StringRequest;
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
+import com.google.gson.annotations.Expose;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
 import Activities.MakeReply;
+import Activities.VolleyMainActivityHandler;
 import RecyclerViews.MyAdapterReplies;
 import Utilities.ActivitiesNames;
 import Utilities.NavUtil;
 import Utilities.Question;
 import Utilities.Refresh;
 import Utilities.Reply;
+import Utilities.StringParse;
 import Utilities.SwipeController;
 import Utilities.SwipeControllerActions;
+import Utilities.URLS;
 import Utilities.User;
 /**
  *
@@ -45,14 +56,14 @@ public class TeacherReplies extends AppCompatActivity {
     private ArrayList<Reply> listItems;
     private Field mDragger;
     SwipeController swipeController = null;
-
+    private ProgressDialog pDialog;
     private SharedPreferences mPreferences;
-
+    private static String TAG= TeacherReplies.class.getSimpleName();
+    private static String tag_string_req= "string_req";
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView nv;
     private Toolbar mToolbar;
-
     private SwipeRefreshLayout swipeContainer;
 
     /**
@@ -75,7 +86,9 @@ public class TeacherReplies extends AppCompatActivity {
         FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
 
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
-
+        pDialog= new ProgressDialog(this);
+        pDialog.setMessage("Loading...");
+        pDialog.setCancelable(false);
         // Gets stored preferences. User is stored here.
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
 
@@ -146,12 +159,24 @@ public class TeacherReplies extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 adapter.clear();
-                Refresh.refreshReplies(userQuestion);
+                refreshReplies(userQuestion);
                 adapter.addAll(userQuestion.getParentRepliesOnly());
                 swipeContainer.setRefreshing(false);
 
             }
         });
+    }
+    private void showProgressDialog() {
+        if(!pDialog.isShowing()) {
+            pDialog.show();
+        }
+    }
+
+    private void hideProgressDialog() {
+        if(pDialog.isShowing()) {
+            pDialog.hide();
+            pDialog.dismiss();
+        }
     }
     /**
      * if an item in the pull out menu is selected, navigate to a new page
@@ -200,4 +225,36 @@ public class TeacherReplies extends AppCompatActivity {
             }
         });
     }
+    /**
+     * Given a parent question id, it will return a list of questions that directly correspond
+     * to the topic (not replies to replies)
+     * @param parentQuestion
+     * @return an array list of replies directly to a question
+     */
+    public void refreshReplies(final Question parentQuestion){
+        String urlSuffix= "?questionId="+parentQuestion.getQuestionID();
+        String url_final= URLS.URL_REFRESHR+urlSuffix;
+        showProgressDialog();
+        StringRequest req = new StringRequest(Request.Method.GET,url_final,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d(TAG, response.toString());
+                        String phpResponse=response.toString();
+                        listItems=StringParse.parseReplies(phpResponse, parentQuestion);
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                hideProgressDialog();
+            }
+        }
+        );
+        // Adding request to request queue
+        VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
+        hideProgressDialog();
+    }
+
 }

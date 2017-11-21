@@ -52,34 +52,7 @@ public class Refresh {
         return questions;
     }
 
-    /**
-     * Given a parent question id, it will return a list of questions that directly correspond
-     * to the topic (not replies to replies)
-     * @param parentQuestion
-     * @return an array list of replies directly to a question
-     */
-    public static void refreshReplies(final Question parentQuestion){
-        String urlSuffix= "?questionId="+parentQuestion.getQuestionID();
-        String url_final= URLS.URL_REFRESHR+urlSuffix;
-        replies.clear();
-        StringRequest req = new StringRequest(Request.Method.GET,url_final,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d(TAG, response.toString());
-                        String phpResponse=response.toString();
-                        StringParse.parseReplies(phpResponse, parentQuestion);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-            }
-        }
-        );
-        // Adding request to request queue
-        VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
-    }
+
 
     /**
      * Given a parent reply id, it will return a list of replies to that reply
