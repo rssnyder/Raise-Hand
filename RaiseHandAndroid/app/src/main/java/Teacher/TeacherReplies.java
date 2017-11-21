@@ -158,10 +158,14 @@ public class TeacherReplies extends AppCompatActivity {
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                adapter.clear();
+
                 refreshReplies(userQuestion);
-                adapter.addAll(userQuestion.getParentRepliesOnly());
                 swipeContainer.setRefreshing(false);
+                Intent refreshR = new Intent(getApplicationContext(), TeacherReplies.class);
+                refreshR.putExtra("questionID", questionID);
+                refreshR.putExtra("question", question);
+                startActivity(refreshR);
+
 
             }
         });
@@ -241,7 +245,7 @@ public class TeacherReplies extends AppCompatActivity {
                     public void onResponse(String response) {
                         Log.d(TAG, response.toString());
                         String phpResponse=response.toString();
-                        listItems=StringParse.parseReplies(phpResponse, parentQuestion);
+                        StringParse.parseReplies(phpResponse, parentQuestion);
 
                     }
                 }, new Response.ErrorListener() {
