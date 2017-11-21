@@ -360,7 +360,7 @@ public class StringParse {
         return timeStamp;
     }
 
-    public static ArrayList<Question> parseQuestions(String questions, String parent) {
+    public static ArrayList<Question> parseQuestions(String questions, Topics parent) {
         ArrayList<Question> question = new ArrayList<>();
         String[] seperated = questions.split(" ");
         int max = seperated.length;
@@ -457,16 +457,17 @@ public class StringParse {
                         i++;
                     }
                     Topics t=new Topics();
-                    t.setID(parent);
+                    t.setID(parent.getID());
                     tempQuestion.setParent(t);
                     question.add(tempQuestion);
                 }
             }
         }
+        parent.setQuestions(question);
         return question;
     }
 
-    public static ArrayList<Reply> parseReplies(String replies, String parent) {
+    public static ArrayList<Reply> parseReplies(String replies, Question parent) {
         ArrayList<Reply> reply = new ArrayList<>();
         String[] seperated = replies.split(" ");
         int max = seperated.length;
@@ -560,15 +561,16 @@ public class StringParse {
 
                 }
                 Question q=new Question();
-                q.setQuestionID(parent);
+                q.setQuestionID(parent.getQuestionID());
                 tempR.setReplyQParent(q);
                 reply.add(tempR);
             }
         }
+        parent.setReplies(reply);
         return reply;
     }
 
-    public static ArrayList<Reply> parseReplies(String replies) {
+    public static ArrayList<Reply> parseReplies(String replies, Reply parent) {
         ArrayList<Reply> reply = new ArrayList<>();
         String[] seperated = replies.split(" ");
         int max = seperated.length;
@@ -664,6 +666,7 @@ public class StringParse {
                 reply.add(tempR);
             }
         }
+        parent.setReplies(reply);
         return reply;
     }
 }

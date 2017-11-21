@@ -24,11 +24,11 @@ public class Refresh {
     private static ArrayList<Reply> replies= new ArrayList<Reply>();
     /**
      * Given a parent topicID, the list of questions will be refreshed using android volley
-     * @param parentTopicID
+     * @param parentTopic
      * @return an array list of questions in this topic
      */
-    public ArrayList<Question> refreshQuestions(final String parentTopicID){
-        String urlSuffix= "?topicId="+parentTopicID;
+    public ArrayList<Question> refreshQuestions(final Topics parentTopic){
+        String urlSuffix= "?topicId="+parentTopic.getID();
         String url_final= URLS.URL_REFRESHQ+urlSuffix;
         questions.clear();
         StringRequest req = new StringRequest(Request.Method.GET,url_final,
@@ -37,7 +37,7 @@ public class Refresh {
                     public void onResponse(String response) {
                         Log.d(TAG, response.toString());
                         String phpResponse=response.toString();
-                        questions=StringParse.parseQuestions(phpResponse, parentTopicID);
+                        questions=StringParse.parseQuestions(phpResponse, parentTopic);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -54,11 +54,11 @@ public class Refresh {
     /**
      * Given a parent question id, it will return a list of questions that directly correspond
      * to the topic (not replies to replies)
-     * @param parentQuestionID
+     * @param parentQuestion
      * @return an array list of replies directly to a question
      */
-    public static ArrayList<Reply> refreshReplies(final String parentQuestionID){
-        String urlSuffix= "?questionId="+parentQuestionID;
+    public static ArrayList<Reply> refreshReplies(final Question parentQuestion){
+        String urlSuffix= "?questionId="+parentQuestion.getQuestionID();
         String url_final= URLS.URL_REFRESHR+urlSuffix;
         replies.clear();
         StringRequest req = new StringRequest(Request.Method.GET,url_final,
@@ -67,7 +67,7 @@ public class Refresh {
                     public void onResponse(String response) {
                         Log.d(TAG, response.toString());
                         String phpResponse=response.toString();
-                        replies=StringParse.parseReplies(phpResponse, parentQuestionID);
+                        replies=StringParse.parseReplies(phpResponse, parentQuestion);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -83,11 +83,11 @@ public class Refresh {
 
     /**
      * Given a parent reply id, it will return a list of replies to that reply
-     * @param parentReplyID
+     * @param parentReply
      * @return an array list of replies to a reply
      */
-    public ArrayList<Reply> refreshRepliesOfReplies(String parentReplyID){
-        String urlSuffix= "?replyId="+parentReplyID;
+    public ArrayList<Reply> refreshRepliesOfReplies(final Reply parentReply){
+        String urlSuffix= "?replyId="+parentReply.getReplyID();
         String url_final= URLS.URL_REFRESH_REPLIES_TO_REPLIES+urlSuffix;
         replies.clear();
         StringRequest req = new StringRequest(Request.Method.GET,url_final,
@@ -96,7 +96,7 @@ public class Refresh {
                     public void onResponse(String response) {
                         Log.d(TAG, response.toString());
                         String phpResponse=response.toString();
-                        replies=StringParse.parseReplies(phpResponse);
+                        replies=StringParse.parseReplies(phpResponse, parentReply);
                     }
                 }, new Response.ErrorListener() {
             @Override

@@ -146,9 +146,9 @@ public class TeacherReplies extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 adapter.clear();
-                List<Reply> lr = Refresh.refreshReplies(questionID);
+                List<Reply> lr = Refresh.refreshReplies(userQuestion);
                 System.out.println(lr.toString());
-                adapter.addAll(Refresh.refreshReplies(questionID));
+                adapter.addAll(Refresh.refreshReplies(userQuestion));
                 swipeContainer.setRefreshing(false);
             }
         });
