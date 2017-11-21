@@ -456,9 +456,7 @@ public class StringParse {
                         tempQuestion.setQuestionID(seperated[i]);
                         i++;
                     }
-                    Topics t=new Topics();
-                    t.setID(parent.getID());
-                    tempQuestion.setParent(t);
+                    tempQuestion.setParent(parent);
                     question.add(tempQuestion);
                 }
             }
@@ -558,15 +556,14 @@ public class StringParse {
                         i++;
                         tempR.setReplyID(replyID);
                     }
-
+                    tempR.setReplyQParent(parent);
+                    reply.add(tempR);
                 }
-                Question q=new Question();
-                q.setQuestionID(parent.getQuestionID());
-                tempR.setReplyQParent(q);
-                reply.add(tempR);
+
             }
         }
         parent.setReplies(reply);
+        System.out.print("Replies size " + reply.size());
         return reply;
     }
 
@@ -642,6 +639,7 @@ public class StringParse {
                             time = time + seperated[i] + " ";
                             i++;
                         }
+                        //TODO: Maybe have to parse this too?
                         tempR.setReplyTimestamp(time);
                     }
                     if (i < max && seperated[i].equals("PARENT")) {
@@ -661,12 +659,12 @@ public class StringParse {
                         i++;
                         tempR.setReplyID(replyID);
                     }
-
+                    reply.add(tempR);
                 }
-                reply.add(tempR);
             }
         }
         parent.setReplies(reply);
+        System.out.print("Replies size " + reply.size());
         return reply;
     }
 }

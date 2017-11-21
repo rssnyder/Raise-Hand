@@ -28,6 +28,7 @@ public class Refresh {
      * @return an array list of questions in this topic
      */
     public ArrayList<Question> refreshQuestions(final Topics parentTopic){
+        //TODO: Get all of the replies to this question as well
         String urlSuffix= "?topicId="+parentTopic.getID();
         String url_final= URLS.URL_REFRESHQ+urlSuffix;
         questions.clear();
@@ -57,7 +58,7 @@ public class Refresh {
      * @param parentQuestion
      * @return an array list of replies directly to a question
      */
-    public static ArrayList<Reply> refreshReplies(final Question parentQuestion){
+    public static void refreshReplies(final Question parentQuestion){
         String urlSuffix= "?questionId="+parentQuestion.getQuestionID();
         String url_final= URLS.URL_REFRESHR+urlSuffix;
         replies.clear();
@@ -67,7 +68,7 @@ public class Refresh {
                     public void onResponse(String response) {
                         Log.d(TAG, response.toString());
                         String phpResponse=response.toString();
-                        replies=StringParse.parseReplies(phpResponse, parentQuestion);
+                        StringParse.parseReplies(phpResponse, parentQuestion);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -78,7 +79,6 @@ public class Refresh {
         );
         // Adding request to request queue
         VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
-        return replies;
     }
 
     /**
