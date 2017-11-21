@@ -1,0 +1,1 @@
+select * FROM replies where ((UNIX_TIMESTAMP(NOW())-UNIX_TIMESTAMP(creation))/60/60/24) <1
