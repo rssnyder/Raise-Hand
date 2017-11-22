@@ -9,7 +9,7 @@
 	//Connect to database
 	$db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 	$question_id=$_GET['questionId'];
-	$stmt = "SELECT * FROM replies WHERE thread_id='$question_id' AND parent=0";
+	$stmt = "SELECT r.* FROM replies r WHERE r.thread_id='$question_id' AND r.parent=0 AND (TIMESTAMPDIFF(MINUTE, r.creation, NOW())) <= 10";
 	$stmt = $db->query($stmt) or die($db->error);
 	while($ro= $stmt->fetch_array()){
            Echo 'NEWREPLY ';
