@@ -65,7 +65,7 @@ public class TeacherReplies extends AppCompatActivity {
     private NavigationView nv;
     private Toolbar mToolbar;
     private SwipeRefreshLayout swipeContainer;
-    ArrayList<Reply> result= new ArrayList<Reply>();
+    private ArrayList<Reply> newItems;
 
     /**
      *
@@ -78,7 +78,7 @@ public class TeacherReplies extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_replies);
-
+        newItems=new ArrayList<Reply>();
         //get question ID with a bundle
         Bundle bundle = getIntent().getExtras();
         final String questionID = bundle.getString("questionID");
@@ -160,13 +160,15 @@ public class TeacherReplies extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 refreshReplies(userQuestion);
-                result.addAll(userQuestion.getReplies());
-                userQuestion.setReplies(result);
-                listItems.clear();
-                listItems=userQuestion.getParentRepliesOnly();
-                adapter.clear();
-                adapter.addAll(listItems);
+                Gson gson = new Gson();
+                Intent refreshR = new Intent(getApplicationContext().getApplicationContext(), TeacherReplies.class);
+                final String question = gson.toJson(userQuestion);
+                // Pass the question ID and question array
+                refreshR.putExtra("questionID", questionID);
+                refreshR.putExtra("question", question);
                 swipeContainer.setRefreshing(false);
+                startActivity(refreshR);
+                //adapter.addAll(newItems);
             }
         });
     }
@@ -238,15 +240,17 @@ public class TeacherReplies extends AppCompatActivity {
     public void refreshReplies(final Question parentQuestion){
         String urlSuffix= "?questionId="+parentQuestion.getQuestionID();
         String url_final= URLS.URL_REFRESHR+urlSuffix;
-        result.clear();
         showProgressDialog();
+        newItems.clear();
         StringRequest req = new StringRequest(Request.Method.GET,url_final,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.d(TAG, response.toString());
                         //parse replies makes sure that we do not add duplicates
-                        result.addAll(StringParse.parseReplies(response, parentQuestion));
+                        ArrayList<Reply> temp= StringParse.parseReplies(response, parentQuestion);
+                        temp.addAll(parentQuestion.getReplies());
+                        parentQuestion.setReplies(temp);
                         hideProgressDialog();
                     }
                 }, new Response.ErrorListener() {

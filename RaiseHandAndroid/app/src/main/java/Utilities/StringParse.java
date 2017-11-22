@@ -26,12 +26,12 @@ public class StringParse {
         int i = 0;
         //The string can contain multiple parts to indicate when we start reading new information
         while (i < max) {
-            i++;
             if (i < max && seperated[i].equals("NEWTOPIC")) {
                 //NEWTOPIC indicates the start of a new topic, make a new topic object
                 Topics tempTopic = new Topics();
                 ArrayList<Question> q = new ArrayList<Question>();
                 tempTopic.setQuestions(q);
+                i++;
                 while (i < max && !(seperated[i].equals("NEWTOPIC"))) {
                     if (i < max && seperated[i].equals("CREATETIME")) {
                         i++;
@@ -558,8 +558,9 @@ public class StringParse {
                         tempR.setReplyID(replyID);
                     }
                     tempR.setReplyQParent(parent);
-                    if(!parent.getReplies().contains(tempR))
+                    if(!parent.getReplies().contains(tempR)) {
                         reply.add(tempR);
+                    }
                 }
 
             }
