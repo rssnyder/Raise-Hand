@@ -65,6 +65,7 @@ public class TeacherReplies extends AppCompatActivity {
     private NavigationView nv;
     private Toolbar mToolbar;
     private SwipeRefreshLayout swipeContainer;
+    ArrayList<Reply> result= new ArrayList<Reply>();
 
     /**
      *
@@ -158,17 +159,14 @@ public class TeacherReplies extends AppCompatActivity {
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                ArrayList<Reply> result= new ArrayList<Reply>();
-                result= userQuestion.getReplies();
-                result.addAll(refreshReplies(userQuestion));
+                refreshReplies(userQuestion);
+                result.addAll(userQuestion.getReplies());
                 userQuestion.setReplies(result);
+                listItems.clear();
+                listItems=userQuestion.getParentRepliesOnly();
+                adapter.clear();
+                adapter.addAll(listItems);
                 swipeContainer.setRefreshing(false);
-                Intent refreshR = new Intent(getApplicationContext(), TeacherReplies.class);
-                refreshR.putExtra("questionID", questionID);
-                refreshR.putExtra("question", question);
-                startActivity(refreshR);
-
-
             }
         });
     }
@@ -237,18 +235,20 @@ public class TeacherReplies extends AppCompatActivity {
      * @param parentQuestion
      * @return an array list of replies directly to a question
      */
-    public ArrayList<Reply> refreshReplies(final Question parentQuestion){
+    public void refreshReplies(final Question parentQuestion){
         String urlSuffix= "?questionId="+parentQuestion.getQuestionID();
         String url_final= URLS.URL_REFRESHR+urlSuffix;
+        result.clear();
         showProgressDialog();
-        final ArrayList<Reply> result= new ArrayList<Reply>();
         StringRequest req = new StringRequest(Request.Method.GET,url_final,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.d(TAG, response.toString());
                         String phpResponse=response.toString();
+                        //parse replies makes sure that we do not add duplicates
                         result.addAll(StringParse.parseReplies(phpResponse, parentQuestion));
+                        hideProgressDialog();
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -258,10 +258,11 @@ public class TeacherReplies extends AppCompatActivity {
             }
         }
         );
+
         // Adding request to request queue
         VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
-        hideProgressDialog();
-        return result;
     }
+
+
 
 }
