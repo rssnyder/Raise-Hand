@@ -178,7 +178,9 @@
         $query = $query . "WHERE topic_id = " . $thisT['ID'];
         $firstT = 0;
       }
-      $query = $query . " or topic_id = " . $thisT['ID'];
+      else {
+        $query = $query . " or topic_id = " . $thisT['ID'];
+      }
     }
     //Order the query by date
     $query = $query . " ODER BY creation LIMIT 3";
