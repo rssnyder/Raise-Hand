@@ -245,9 +245,8 @@ public class TeacherReplies extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Log.d(TAG, response.toString());
-                        String phpResponse=response.toString();
                         //parse replies makes sure that we do not add duplicates
-                        result.addAll(StringParse.parseReplies(phpResponse, parentQuestion));
+                        result.addAll(StringParse.parseReplies(response, parentQuestion));
                         hideProgressDialog();
                     }
                 }, new Response.ErrorListener() {
