@@ -161,4 +161,29 @@
     return $allTA;
   }
 
+  /// Gets a list of recent threads posted in a class.
+  /// @param $db the database to query.
+  /// @param $classID.
+  /// @return list of thread arrays that contain recent threads
+  function getRecentThreads($db, $classID) {
+    //Make a query that gets all the threads of a class
+    $query = "SELECT  ID, topic_id, owner_id, title, description, creation, user_name
+              FROM  threads";
+    //Due to format of db we have to get the topics of a class first
+    $topics = getTopics($db, $classID);
+    //For every topic, add it to the possible topics we want thread from
+    $firstT = 1;
+    while($thisT = $topics->fetch_assoc()) {
+      if($firstT) {
+        $query = $query . "WHERE topic_id = " . $thisT['ID'];
+        $firstT = 0;
+      }
+      $query = $query . " or topic_id = " . $thisT['ID'];
+    }
+    //Order the query by date
+    $query = $query . " ODER BY creation";
+    //Finally, get recent threads from this class
+    return $db->query($query) or die($db->error);
+  }
+
  ?>
