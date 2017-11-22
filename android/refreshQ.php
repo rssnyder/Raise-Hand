@@ -9,7 +9,7 @@
 	//Connect to database
 	$db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 	$topic_id=$_GET['topicID'];
-	$stmt = "SELECT * FROM threads WHERE topic_id='$topic_id'";
+	$stmt = "SELECT t.* FROM threads t WHERE t.topic_id='$topic_id' AND (TIMESTAMPDIFF(MINUTE, t.creation, NOW())) <= 10";
 	$stmt = $db->query($stmt) or die($db->error);
 	while($r= $stmt->fetch_array()){
             Echo 'NEWQUESTION ';
