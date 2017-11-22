@@ -106,6 +106,7 @@
                       <?php
                         //If we have at least 3 threads
                         if($thisT = $threads->fetch_assoc()) {
+                          echo '<h4>' . $thisT['title'] . '</h4>';
                           echo $thisT['description'];
                         }
                       ?>
@@ -113,12 +114,24 @@
                   </div>
                   <div class="col-md-4">
                     <div class="jumbotron well">
-
+                      <?php
+                        //If we have at least 3 threads
+                        if($thisT = $threads->fetch_assoc()) {
+                          echo '<h4>' . $thisT['title'] . '</h4>';
+                          echo $thisT['description'];
+                        }
+                      ?>
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="jumbotron well">
-
+                      <?php
+                        //If we have at least 3 threads
+                        if($thisT = $threads->fetch_assoc()) {
+                          echo '<h4>' . $thisT['title'] . '</h4>';
+                          echo $thisT['description'];
+                        }
+                      ?>
                     </div>
                   </div>
                 </div>

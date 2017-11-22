@@ -175,7 +175,7 @@
     $firstT = 1;
     while($thisT = $topics->fetch_assoc()) {
       if($firstT) {
-        $query = $query . "WHERE topic_id = " . $thisT['ID'];
+        $query = $query . " WHERE topic_id = " . $thisT['ID'];
         $firstT = 0;
       }
       else {
@@ -185,7 +185,8 @@
     //Order the query by date
     $query = $query . " ORDER BY creation LIMIT 3";
     //Finally, get recent threads from this class
-    return $db->query($query) or die($db->error);
+    $result = $db->query($query) or die($db->error);
+    return $result;
   }
 
  ?>
