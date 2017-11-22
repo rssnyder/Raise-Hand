@@ -181,7 +181,7 @@
       $query = $query . " or topic_id = " . $thisT['ID'];
     }
     //Order the query by date
-    $query = $query . " ODER BY creation";
+    $query = $query . " ODER BY creation LIMIT 3";
     //Finally, get recent threads from this class
     return $db->query($query) or die($db->error);
   }

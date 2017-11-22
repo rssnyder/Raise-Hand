@@ -96,6 +96,32 @@
                     </div>
                   </div>
                 </div>
+                <?php
+                  //Time to get the recent threads
+                  $threads = getRecentThreads($db, $_GET['class']);
+                ?>
+                <div class="row row-no-padding">
+                  <div class="col-md-4">
+                    <div class="jumbotron well">
+                      <?php
+                        //If we have at least 3 threads
+                        if($thisT = $threads->fetch_assoc()) {
+                          echo $thisT['description'];
+                        }
+                      ?>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="jumbotron well">
+
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="jumbotron well">
+
+                    </div>
+                  </div>
+                </div>
             </div>
     </div>
   </div>
