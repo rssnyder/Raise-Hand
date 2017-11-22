@@ -557,13 +557,12 @@ public class StringParse {
                         tempR.setReplyID(replyID);
                     }
                     tempR.setReplyQParent(parent);
-                    reply.add(tempR);
+                    if(!parent.getReplies().contains(tempR))
+                        reply.add(tempR);
                 }
 
             }
         }
-        parent.setReplies(reply);
-        //System.out.print("Replies size " + reply.size());
         return reply;
     }
 
