@@ -1,1 +1,1 @@
-select * FROM replies where ((UNIX_TIMESTAMP(NOW())-UNIX_TIMESTAMP(creation))/60/60/24) <1
+select r.* FROM replies r WHERE (TIMESTAMPDIFF(MINUTE, r.creation, NOW())) <= 10
