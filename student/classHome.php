@@ -106,7 +106,7 @@
                       <?php
                         //If we have at least 3 threads
                         if($thisT = $threads->fetch_assoc()) {
-                          echo '<h4>' . $thisT['title'] . '</h4>';
+                          echo '<h4><a href=posts.php?class=' . $_GET['class'] . '&thread=' . $thisT['ID'] . '>' . $thisT['title'] . '</a></h4>';
                           echo $thisT['description'];
                         }
                       ?>
@@ -117,7 +117,7 @@
                       <?php
                         //If we have at least 3 threads
                         if($thisT = $threads->fetch_assoc()) {
-                          echo '<h4>' . $thisT['title'] . '</h4>';
+                          echo '<h4><a href=posts.php?class=' . $_GET['class'] . '&thread=' . $thisT['ID'] . '>' . $thisT['title'] . '</a></h4>';
                           echo $thisT['description'];
                         }
                       ?>
@@ -128,7 +128,7 @@
                       <?php
                         //If we have at least 3 threads
                         if($thisT = $threads->fetch_assoc()) {
-                          echo '<h4>' . $thisT['title'] . '</h4>';
+                          echo '<h4><a href=posts.php?class=' . $_GET['class'] . '&thread=' . $thisT['ID'] . '>' . $thisT['title'] . '</a></h4>';
                           echo $thisT['description'];
                         }
                       ?>

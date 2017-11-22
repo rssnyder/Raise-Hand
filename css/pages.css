@@ -55,6 +55,30 @@ a.logout {
   color: #524727;
   text-decoration: none;
 }
+/* Style for normal links */
+@linkBlue: #0000ee;
+a {
+  color: @linkBlue;
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  &:before {
+    background-color: @linkBlue;
+    content: '';
+    height: 2px;
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s ease-in-out;
+    width: 100%;
+  }
+  &:hover {
+    &:before {
+       width: 0;
+    }
+  }
+}
 /*Buttons in the sidebar*/
 .left .button {
     background-color: #F1BE48;
