@@ -252,6 +252,11 @@ public class Question {
      */
     public void setQuestionID(String s){this.questionID=s;}
 
+    /**
+     * add a reply to the already existing list of replies
+     * @param r the reply to be added to the list of replies
+     */
+    public void addReply(Reply r){replies.add(r);}
 
     /**
      * Given a question, it will push this question to the database

@@ -155,20 +155,14 @@ public class TeacherReplies extends AppCompatActivity {
         // populate the navigation buttons to go to the correct place
         nv = (NavigationView) findViewById(R.id.nv1);
         NavUtil.setNavMenu(nv, ActivitiesNames.NONE, getApplicationContext(), mDrawerLayout);
-
+        System.out.println("Outside volley # of replies " + userQuestion.getReplies().size());
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 refreshReplies(userQuestion);
-                Gson gson = new Gson();
-                Intent refreshR = new Intent(getApplicationContext().getApplicationContext(), TeacherReplies.class);
-                final String question = gson.toJson(userQuestion);
-                // Pass the question ID and question array
-                refreshR.putExtra("questionID", questionID);
-                refreshR.putExtra("question", question);
                 swipeContainer.setRefreshing(false);
-                startActivity(refreshR);
-                //adapter.addAll(newItems);
+                adapter.clear();
+                adapter.addAll(userQuestion.getParentRepliesOnly());
             }
         });
     }
@@ -249,9 +243,13 @@ public class TeacherReplies extends AppCompatActivity {
                         Log.d(TAG, response.toString());
                         //parse replies makes sure that we do not add duplicates
                         ArrayList<Reply> temp= StringParse.parseReplies(response, parentQuestion);
-                        temp.addAll(parentQuestion.getReplies());
-                        parentQuestion.setReplies(temp);
+                        Gson gson = new Gson();
+                        String json = mPreferences.getString("currentUser", "");
+                        User currentUser = gson.fromJson(json, User.class);
+                        Question userQuestion = currentUser.getSingleQuestion(parentQuestion.getQuestionID());
+                        userQuestion.setReplies(temp);
                         hideProgressDialog();
+
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -261,9 +259,9 @@ public class TeacherReplies extends AppCompatActivity {
             }
         }
         );
-
         // Adding request to request queue
         VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
+
     }
 
 

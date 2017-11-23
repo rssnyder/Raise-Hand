@@ -472,11 +472,10 @@ public class StringParse {
         int i = 0;
         //The string can contain multiple parts to indicate when we start reading new information
         while (i < max) {
-            i++;
             if (i < max && seperated[i].equals("NEWREPLY")) {
                 //Get all of the replies
                 Reply tempR = new Reply();
-               // i++;
+                i++;
                 while (i < max && !(seperated[i].equals("NEWREPLY"))) {
                     //Build a new reply
                     if (i < max && seperated[i].equals("REPLYTXT")) {
@@ -558,9 +557,7 @@ public class StringParse {
                         tempR.setReplyID(replyID);
                     }
                     tempR.setReplyQParent(parent);
-                    if(!parent.getReplies().contains(tempR)) {
-                        reply.add(tempR);
-                    }
+                    reply.add(tempR);
                 }
 
             }
@@ -664,7 +661,6 @@ public class StringParse {
                 }
             }
         }
-        parent.setReplies(reply);
         System.out.print("Replies size " + reply.size());
         return reply;
     }
