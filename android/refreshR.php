@@ -37,6 +37,4 @@
         Echo 'REPLYID ';
         Echo ''.$ro['ID'].' ';
     }
-
-
 ?>
