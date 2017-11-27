@@ -63,7 +63,7 @@ include '../utilities/database.php';
 
   <!-- Main content of the webpage -->
   <div class="main">
-    <canvas id="myChart" width="400" height="400"></canvas>
+    <canvas id="myChart"></canvas>
     <script>
     var ctx = document.getElementById("myChart").getContext('2d');
     var myChart = new Chart(ctx, {
