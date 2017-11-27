@@ -162,8 +162,9 @@ include '../utilities/database.php';
       echo '<button class="button" onclick="window.location=\'home.php\';">' . $_SESSION['name'] . '\'s Home</button>';
       echo '<button class="button" onclick="window.location=\'classHome.php?class=' . $_GET['class'] . '\';">' . $class['class_name'] . ' Home</button>';
       echo '<button class="button" onclick="window.location=\'topics.php?class=' . $_GET['class'] . '\';">Discussion Topics</button>';
+      echo '<button class="button" onclick="window.location=\'stats.php?class=' . $_GET['class'] . '\';">Class Stats</button>';
       echo '<button class="button" onclick="window.location=\'liveSession.php?class=' . $_GET['class'] . '\';">Live Session</button>';
-     ?>
+   ?>
   </div>
 
   <!-- Main content of the webpage -->

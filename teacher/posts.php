@@ -132,7 +132,7 @@ include '../utilities/database.php';
              });
            };
        </script>
-       
+
     <!-- The top banner of the webpage -->
     <div class="top">
         <font size="-5"><a class="logout" href="../login.php?event=logout">Logout</a></font>
@@ -151,6 +151,7 @@ include '../utilities/database.php';
       echo '<button class="button" onclick="window.location=\'classHome.php?class=' . $_GET['class'] . '\';">' . $class['class_name'] . ' Home</button>';
       echo '<button class="button" onclick="window.location=\'pages.php?class=' . $_GET['class'] . '&page=classSettings\';">Class Settings</button>';
       echo '<button class="button" onclick="window.location=\'topics.php?class=' . $_GET['class'] . '\';">Discussion Topics</button>';
+      echo '<button class="button" onclick="window.location=\'stats.php?class=' . $_GET['class'] . '\';">Class Stats</button>';
       echo '<button class="button" onclick="window.location=\'liveSession.php?class=' . $_GET['class'] . '\';">Live Session</button>';
      ?>
   </div>

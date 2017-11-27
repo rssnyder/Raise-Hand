@@ -26,7 +26,7 @@ include '../../utilities/database.php';
 
   //Build the email
   $today = getdate();
-  $body = "The folling is the log of the live session from " . $today['weekday'] . ", " . $today['month'] . $today['mday'] . "\r\n\n\n";
+  $body = "The following is the log of the live session from " . $today['weekday'] . ", " . $today['month'] . $today['mday'] . "\r\n\n\n";
   while($question = $result->fetch_assoc()) {
     $body = $body . $question['txt'] . " - " . $question['username'] . "\r\n\n";
   }

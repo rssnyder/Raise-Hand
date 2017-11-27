@@ -1,5 +1,5 @@
 <?php
-  include '../utilities/database.php';
+include '../utilities/database.php';
 
   session_start();
   //Check if user is logged in
@@ -50,55 +50,59 @@
   </head>
 
   <!-- The left sidebar -->
-  <!-- The left sidebar -->
   <div class="left">
     <?php
       echo '<button class="button" onclick="window.location=\'home.php\';">' . $_SESSION['name'] . '\'s Home</button>';
       echo '<button class="button" onclick="window.location=\'classHome.php?class=' . $_GET['class'] . '\';">' . $class['class_name'] . ' Home</button>';
+      echo '<button class="button" onclick="window.location=\'pages.php?class=' . $_GET['class'] . '&page=classSettings\';">Class Settings</button>';
       echo '<button class="button" onclick="window.location=\'topics.php?class=' . $_GET['class'] . '\';">Discussion Topics</button>';
       echo '<button class="button" onclick="window.location=\'stats.php?class=' . $_GET['class'] . '\';">Class Stats</button>';
       echo '<button class="button" onclick="window.location=\'liveSession.php?class=' . $_GET['class'] . '\';">Live Session</button>';
-   ?>
+     ?>
   </div>
 
   <!-- Main content of the webpage -->
   <div class="main">
-    <div align="center" class="container">
-          <div id="questions" class="container-fluid" style="overflow-y: auto;max-height: 90vh;">';
-                <div class="row row-no-padding">
-                  <div class="col-md-12">
-                    <div class="jumbotron well">
-                      <?php
-                        $teacher = getUserInfo($db, $class['teacher_id']);
-                        echo '<h1>' . $class['class_name'] . '</h1><h3>' . $class['description'] . '</h3>';
-                      ?>
-                    </div>
-                  </div>
-                </div>
-                <div class="row row-no-padding">
-                  <div class="col-md-12">
-                    <div class="jumbotron well">
-                      <?php
-                          echo '<h4>Instructor:</h4> ' . $teacher['first_name'] . ' ' . $teacher['last_name'] . '<h6>Contact:</h6> ' . $teacher['email'];
-                      ?>
-                    </div>
-                  </div>
-                </div>
-                <div class="row row-no-padding">
-                  <div class="col-md-12">
-                    <div class="jumbotron well">
-                      <?php
-                          echo '<h4>Teaching Assistants:</h4>';
-                          $allTAs = getTAs($db, $_GET['class']);
-                          foreach ($allTAs as $value) {
-                            echo $value . '<br>';
-                          }
-                      ?>
-                    </div>
-                  </div>
-                </div>
-            </div>
+    <canvas id="myChart" width="400" height="400"></canvas>
+    <script>
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+          datasets: [{
+              label: '# of Votes',
+              data: [12, 19, 3, 5, 2, 3],
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255,99,132,1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  }
+              }]
+          }
+      }
+    });
+    </script>
     </div>
   </div>
-
 </html>
