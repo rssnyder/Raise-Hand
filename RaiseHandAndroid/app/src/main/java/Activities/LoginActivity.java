@@ -165,7 +165,7 @@ public class LoginActivity extends Activity {
         Map map= mPreferences.getAll();
         String json = (String) map.get("currentUser");
         String reset=json.substring(json.indexOf("reset")+8,json.indexOf("roleID")-3);
-        String roleID = mPreferences.getString("role", "");
+        String roleID = json.substring(json.indexOf("roleID")+9,json.indexOf("username")-3);
         if(reset.equals("1")) {
             //redirect to a reset password page
             Intent resetPassword = new Intent(getApplicationContext(), ResetPassword.class);
