@@ -14,7 +14,7 @@
 
   	$a = 1;
 
-    $thing = $result->fetch_assoc()
+    $thing = $result->fetch_assoc();
   	//print the first element (so the comma isn't at the beginning)
   	Echo '{';
   	Echo '"result":';
