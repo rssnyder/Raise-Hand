@@ -11,11 +11,11 @@
 	$class_id=$_GET['classId'];
 	$classes = explode("+", $class_id);
     $userClasses= "SELECT ID FROM topics WHERE class_id IN ('$classes')";
-    Echo '$userClasses';
+    Echo $userClasses;
     $topic=$db->query($userClasses) or die($db->error);
     $topics=$topic->fetch_array();
 	$stmt = "SELECT t.* FROM threads t WHERE t.topic_id IN ('$topics') AND (TIMESTAMPDIFF(MINUTE, t.creation, NOW())) <= 180";
-	Echo '$stmt';
+	Echo $stmt;
 	$stmt = $db->query($stmt) or die($db->error);
 	while($r= $stmt->fetch_array()){
             Echo 'NEWQUESTION ';
