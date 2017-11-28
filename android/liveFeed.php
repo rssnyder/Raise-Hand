@@ -14,6 +14,7 @@
 
   	$a = 1;
 
+  	//print the first element (so the comma isn't at the beginning)
   	Echo '[';
 	Echo '{"ID":';
   	Echo '"'.$class['ID'].'"';
@@ -26,6 +27,8 @@
   	Echo ', "txt":';
   	Echo '"'.$class['txt'].'"';
   	Echo '}';
+
+  	// Print the rest of the elements
   	while($class = $result->fetch_assoc()) {
   		if($a > 1){
 		  	Echo ',{"ID":';
