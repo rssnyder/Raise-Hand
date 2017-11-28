@@ -19,15 +19,15 @@
   	Echo '"result":';
   	Echo '[';
 	Echo '{"ID":';
-  	Echo '"'.$class['ID'].'"';
+  	Echo '"'.$result['ID'].'"';
   	Echo ', "username":';
-  	Echo '"'.$class['username'].'"';
+  	Echo '"'.$result['username'].'"';
   	Echo ', "class_id":';
   	Echo '"'.$class['class_id'].'"';
   	Echo ', "creation":';
-  	Echo '"'.$class['creation'].'"';
+  	Echo '"'.$result['creation'].'"';
   	Echo ', "txt":';
-  	Echo '"'.$class['txt'].'"';
+  	Echo '"'.$result['txt'].'"';
   	Echo '}';
 
   	// Print the rest of the elements
