@@ -12,7 +12,6 @@
 	$query = "SELECT * FROM liveQueue" . $_GET['class'] . " WHERE class_id = " . $_GET['class'];
   	$result = $db->query($query) or die($db->error);
 
-  	$a = 1;
 
     $thing = $result->fetch_assoc();
   	//print the first element (so the comma isn't at the beginning)
@@ -33,20 +32,17 @@
 
   	// Print the rest of the elements
   	while($class = $result->fetch_assoc()) {
-  		if($a > 1){
-		  	Echo ',{"ID":';
-		  	Echo '"'.$class['ID'].'"';
-		  	Echo ', "username":';
-		  	Echo '"'.$class['username'].'"';
-		  	Echo ', "class_id":';
-		  	Echo '"'.$class['class_id'].'"';
-		  	Echo ', "creation":';
-		  	Echo '"'.$class['creation'].'"';
-		  	Echo ', "txt":';
-		  	Echo '"'.$class['txt'].'"';
-		  	Echo '}';
-	  }
-	  $a = 2;
+	  	Echo ',{"ID":';
+	  	Echo '"'.$class['ID'].'"';
+	  	Echo ', "username":';
+	  	Echo '"'.$class['username'].'"';
+	  	Echo ', "class_id":';
+	  	Echo '"'.$class['class_id'].'"';
+	  	Echo ', "creation":';
+	  	Echo '"'.$class['creation'].'"';
+	  	Echo ', "txt":';
+	  	Echo '"'.$class['txt'].'"';
+	  	Echo '}';
   	}
   	Echo ']';
   	Echo '}';
