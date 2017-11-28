@@ -9,7 +9,7 @@
 	//Connect to database
 	$db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 	$class_id=$_GET['classId'];
-    $userClasses= "SELECT ID FROM topics WHERE class_id IN ({implode('+', $class_id)})";
+    $userClasses= "SELECT ID FROM topics WHERE class_id IN ({explode('+', $class_id)})";
     Echo $userClasses;
     $topic=$db->query($userClasses) or die($db->error);
     $topics=$topic->fetch_array();
