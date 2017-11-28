@@ -15,7 +15,7 @@
   	$a = 1;
 
   	//print the first element (so the comma isn't at the beginning)
-  	Echo '"result":'
+  	Echo '"result":';
   	Echo '[';
 	Echo '{"ID":';
   	Echo '"'.$class['ID'].'"';
