@@ -8,20 +8,25 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import Activities.VolleyMainActivityHandler;
 
 import static Utilities.URLS.URL_LIVE_FEED;
 
+/**
+ * A Volley class that retrieves the live feed data in a JSON format.
+ */
 public class LiveFeedVolley {
     private static String TAG = LiveFeedVolley.class.getSimpleName();
-    private static String tag_string_req= "string_req";
+    private static String tag_string_req= "json_req";
     private static JSONObject json;
 
+    /**
+     * retrieves the live feed comments for the classID. Puts them in a JSON object
+     * @param classID ID of the class
+     */
     public static void LiveSessionVolley(String classID){
         String url_final = URL_LIVE_FEED + "?class=" + classID;
         System.out.println(url_final);
@@ -30,24 +35,9 @@ public class LiveFeedVolley {
                                                   @Override
                                                   public void onResponse(JSONObject response) {
                                                       Log.d(TAG, response.toString());
-//                                                      try{
 
-                                                          json = response;
-//                                                            String username = response.getString("username");
-//                                                            String ID = response.getString("ID");
-//                                                            String classID = response.getString("class_id");
-//                                                            String date = response.getString("creation");
-//                                                            String text = response.getString("txt");
-//
-//                                                            System.out.println(username+
-//                                                                              ID+
-//                                                                              classID+
-//                                                                              date+
-//                                                                              text);
-//                                                      }
-//                                                      catch (JSONException e) {
-//                                                          e.printStackTrace();
-//                                                      }
+                                                      // The response is stored in a JSON object.
+                                                      json = response;
                                                   }
                                               }, new Response.ErrorListener() {
             @Override
@@ -61,9 +51,5 @@ public class LiveFeedVolley {
 
     public static JSONObject getJSON(){
         return json;
-    }
-
-    public static void parseString(String phpResponse){
-        String[] seperated = phpResponse.split("\",\"");
     }
 }
