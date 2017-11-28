@@ -12,19 +12,35 @@
 	$query = "SELECT * FROM liveQueue" . $_GET['class'] . " WHERE class_id = " . $_GET['class'];
   	$result = $db->query($query) or die($db->error);
 
+  	$a = 1;
+
   	Echo '[';
+	Echo '{"ID":';
+  	Echo '"'.$class['ID'].'"';
+  	Echo ', "username":';
+  	Echo '"'.$class['username'].'"';
+  	Echo ', "class_id":';
+  	Echo '"'.$class['class_id'].'"';
+  	Echo ', "creation":';
+  	Echo '"'.$class['creation'].'"';
+  	Echo ', "txt":';
+  	Echo '"'.$class['txt'].'"';
+  	Echo '}';
   	while($class = $result->fetch_assoc()) {
-	  	Echo '{"ID":';
-	  	Echo '"'.$class['ID'].'"';
-	  	Echo ', "username":';
-	  	Echo '"'.$class['username'].'"';
-	  	Echo ', "class_id":';
-	  	Echo '"'.$class['class_id'].'"';
-	  	Echo ', "creation":';
-	  	Echo '"'.$class['creation'].'"';
-	  	Echo ', "txt":';
-	  	Echo '"'.$class['txt'].'"';
-	  	Echo '},';
+  		if($a > 1){
+		  	Echo ',{"ID":';
+		  	Echo '"'.$class['ID'].'"';
+		  	Echo ', "username":';
+		  	Echo '"'.$class['username'].'"';
+		  	Echo ', "class_id":';
+		  	Echo '"'.$class['class_id'].'"';
+		  	Echo ', "creation":';
+		  	Echo '"'.$class['creation'].'"';
+		  	Echo ', "txt":';
+		  	Echo '"'.$class['txt'].'"';
+		  	Echo '}';
+	  }
+	  $a = 2;
   	}
   	Echo ']';
 
