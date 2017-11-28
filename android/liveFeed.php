@@ -24,7 +24,7 @@
 	  	Echo '"'.$class['creation'].'"';
 	  	Echo ', "txt":';
 	  	Echo '"'.$class['txt'].'"';
-	  	Echo '}';
+	  	Echo '},';
   	}
 
 ?>
