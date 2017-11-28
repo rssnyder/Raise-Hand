@@ -12,12 +12,10 @@
 	$classes=explode('+', $class_id);
 	$list=implode(', ', $classes);
     $userClasses= "SELECT ID FROM topics WHERE class_id IN ($list)";
-    Echo $userClasses;
     $topic=$db->query($userClasses) or die($db->error);
     $topics= $topic->fetch_array();
     $list2=implode(', ', $topics);
 	$stmt = "SELECT t.* FROM threads t WHERE t.topic_id IN ($list2) AND (TIMESTAMPDIFF(MINUTE, t.creation, NOW())) <= 180";
-	Echo $stmt;
 	$stmt = $db->query($stmt) or die($db->error);
 	while($r= $stmt->fetch_array()){
             Echo 'NEWQUESTION ';
