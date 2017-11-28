@@ -9,11 +9,11 @@
 	//Connect to database
 	$db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 	$class_id=$_GET['classId'];
-    $userClasses= "SELECT ID FROM topics WHERE class_id IN ({explode('+', $class_id)})";
+	$classes=explode('+', $class_id);
+    $userClasses= "SELECT ID FROM topics WHERE class_id IN (implode(', ', $classes))";
     Echo $userClasses;
     $topic=$db->query($userClasses) or die($db->error);
-    $topics=$topic->fetch_array();
-	$stmt = "SELECT t.* FROM threads t WHERE t.topic_id IN ('$topics') AND (TIMESTAMPDIFF(MINUTE, t.creation, NOW())) <= 180";
+	$stmt = "SELECT t.* FROM threads t WHERE t.topic_id IN (implode(', ', $topic)) AND (TIMESTAMPDIFF(MINUTE, t.creation, NOW())) <= 180";
 	Echo $stmt;
 	$stmt = $db->query($stmt) or die($db->error);
 	while($r= $stmt->fetch_array()){
