@@ -12,6 +12,8 @@ import Utilities.LiveFeedVolley;
 
 public class LiveFeed extends AppCompatActivity {
 
+    // TODO be able to choose the class
+    // TODO submit questions
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
