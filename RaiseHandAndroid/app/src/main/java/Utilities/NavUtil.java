@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import com.example.sae1.raisehand.R;
 
 import Activities.ForgotPassword;
+import Activities.LiveFeed;
 import Activities.LoginActivity;
 import Activities.MakeQuestion;
 import Activities.ResetPassword;
@@ -89,20 +90,20 @@ public class NavUtil {
                             theContext.startActivity(resetPassword);
                             break;
                         }
+                    case (R.id.nav_live):
+                        if(ActivityEnum == ActivityEnum.LIVE_SESSION){
+                            mDrawerLayout.closeDrawers();
+                            break;
+                        }
+                        else{
+                            Intent liveSession = new Intent(theContext, LiveFeed.class);
+                            theContext.startActivity(liveSession);
+                            break;
+                        }
                     case (R.id.nav_logout):
                         Intent loginPage = new Intent(theContext, LoginActivity.class);
                         theContext.startActivity(loginPage);
                         break;
-                    case (R.id.nav_question):
-                        if(ActivityEnum == ActivityEnum.QUESTION){
-                            mDrawerLayout.closeDrawers();
-                            break;
-                        }
-                        else {
-                            Intent teacherQuestion = new Intent(theContext, MakeQuestion.class);
-                            theContext.startActivity(teacherQuestion);
-                            break;
-                        }
                 }
                 return true;
             }

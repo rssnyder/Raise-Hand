@@ -22,9 +22,8 @@
           android:icon="@mipmap/ic_settings_black_24dp"
           android:title="Settings"/>
 
-        <item android:id="@+id/nav_question"
-              android:icon="@mipmap/ic_create_black_24dp"
-              android:title="Question"/>
+        <item android:id="@+id/nav_live"
+              android:title="Live Session"/>
 
         <item android:id="@+id/nav_logout"
           android:icon="@mipmap/ic_power_settings_new_black_24dp"

@@ -5,6 +5,11 @@ import android.os.Bundle;
 
 import com.example.sae1.raisehand.R;
 
+import org.json.JSONObject;
+
+import Utilities.LiveFeedVolley;
+
+
 public class LiveFeed extends AppCompatActivity {
 
     @Override
@@ -12,6 +17,10 @@ public class LiveFeed extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_live_feed);
 
-        
+        LiveFeedVolley.LiveSessionVolley("7");
+
+        JSONObject json = LiveFeedVolley.getJSON();
+
+        System.out.println("JSON: " + json);
     }
 }

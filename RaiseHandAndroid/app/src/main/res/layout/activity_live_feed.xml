@@ -5,6 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.sae1.raisehand.Activities.LiveFeed">
+    tools:context="Activities.LiveFeed">
 
 </android.support.constraint.ConstraintLayout>

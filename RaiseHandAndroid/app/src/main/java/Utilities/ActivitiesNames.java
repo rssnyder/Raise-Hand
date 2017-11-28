@@ -10,6 +10,7 @@ public enum ActivitiesNames{
     NOTIFICATIONS,
     STUDENTS,
     SETTINGS,
+    LIVE_SESSION,
     LOGOUT,
     QUESTION,
     NONE
