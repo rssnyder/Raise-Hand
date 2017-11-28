@@ -2,6 +2,7 @@ package RecyclerViews;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
+import Student.StudentRepliesReply;
 import Utilities.Reply;
 import Utilities.StringParse;
 /**
@@ -66,9 +68,21 @@ public class MyAdapterRepliesStudent extends RecyclerView.Adapter<MyAdapterRepli
         if(listItem.getReplyEndorsed()){
             holder.textViewEndorsed.setText("Endorsed!");
         }
+        else{
+            holder.textViewEndorsed.setText(" ");
+        }
 
         Gson gson = new Gson();
         final String rep = gson.toJson(listItem);
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent reply = new Intent(context.getApplicationContext(), StudentRepliesReply.class);
+                reply.putExtra("replyID", listItem.getReplyID());
+                reply.putExtra("reply", rep);
+                context.getApplicationContext().startActivity(reply);
+            }
+        });
         holder.reportIt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,6 +120,18 @@ public class MyAdapterRepliesStudent extends RecyclerView.Adapter<MyAdapterRepli
             linearLayout = (LinearLayout) itemView.findViewById(R.id.linearLayoutStudentReplies);
             reportIt= (Button) itemView.findViewById(R.id.reportbutton);
         }
+    }
+
+    // Clean all elements of the recycler
+    public void clear(){
+        listItems.clear();
+        notifyDataSetChanged();
+    }
+
+    // Add a list of items
+    public void addAll(List<Reply> list) {
+        listItems.addAll(list);
+        notifyDataSetChanged();
     }
 
 }

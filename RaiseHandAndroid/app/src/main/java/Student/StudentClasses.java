@@ -23,8 +23,10 @@ import java.util.List;
 
 import RecyclerViews.MyAdapterClassesStudent;
 import Activities.MakeQuestion;
+import Utilities.ActivitiesNames;
 import Utilities.Classes;
 import Activities.LoginActivity;
+import Utilities.NavUtil;
 import Utilities.User;
 /**
  * This is a class for all of the classes that a student is in
@@ -65,61 +67,39 @@ public class StudentClasses extends AppCompatActivity {
         // i.e. The classes the teacher is in
         listItems = new ArrayList<>();
 
+        // Converts the mPrferences's json data of the current user to a User object.
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
         User currentUser = gson.fromJson(json, User.class);
+
+        // Get the classes the current user is in
         listItems = currentUser.getClasses();
 
+        // Adapter to display the classes as recycler views. (cards on the screen)
         adapter = new MyAdapterClassesStudent(listItems, this);
 
+        // Set the adapter to the recycler view
         recyclerView.setAdapter(adapter);
 
+        // Get the nav menu stuff
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
 
+        // create the drawer layout (the thing you swipe from the side)
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 
+        // add the menu items to the drawer
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
 
-        slideOutMenu();
+        //makes it so you can swipe the menu out from anywhere on screen
+//        slideOutMenu();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         nv = (NavigationView) findViewById(R.id.nv2);
-        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case(R.id.nav_home_student):
-                        Intent studentHome = new Intent(getApplicationContext(), StudentHomePage.class);
-                        startActivity(studentHome);
-                        break;
-                    case (R.id.nav_classes_student):
-                        mDrawerLayout.closeDrawers();
-                        break;
-                    case (R.id.nav_notifications_student):
-                        Intent studentNotifications = new Intent(getApplicationContext(), StudentNotifications.class);
-                        startActivity(studentNotifications);
-                        break;
-                    case (R.id.nav_question_student):
-                        Intent studentQuestion = new Intent(getApplicationContext(), MakeQuestion.class);
-                        startActivity(studentQuestion);
-                        break;
-                    case (R.id.nav_settings_student):
-                        Intent studentSettings = new Intent(getApplicationContext(), StudentSettings.class);
-                        startActivity(studentSettings);
-                        break;
-                    case (R.id.nav_logout_student):
-                        Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
-                        startActivity(loginPage);
-                        finish();
-                        break;
-                }
-                return true;
-            }
-        });
+        NavUtil.setNavMenu(nv, ActivitiesNames.CLASSES, getApplicationContext(), mDrawerLayout);
     }
     /**
      * if an item in the pull out menu is selected, navigate to a new page
@@ -136,42 +116,42 @@ public class StudentClasses extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void slideOutMenu(){
-
-        try {
-            mDragger = mDrawerLayout.getClass().getDeclaredField(
-                    "mLeftDragger");//mRightDragger for right obviously
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
-        mDragger.setAccessible(true);
-        ViewDragHelper draggerObj = null;
-        try {
-            draggerObj = (ViewDragHelper) mDragger
-                    .get(mDrawerLayout);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        Field mEdgeSize = null;
-        try {
-            mEdgeSize = draggerObj.getClass().getDeclaredField(
-                    "mEdgeSize");
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
-        mEdgeSize.setAccessible(true);
-        int edge = 0;
-        try {
-            edge = mEdgeSize.getInt(draggerObj);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            mEdgeSize.setInt(draggerObj, edge * 25);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
+//    private void slideOutMenu(){
+//
+//        try {
+//            mDragger = mDrawerLayout.getClass().getDeclaredField(
+//                    "mLeftDragger");//mRightDragger for right obviously
+//        } catch (NoSuchFieldException e) {
+//            e.printStackTrace();
+//        }
+//        mDragger.setAccessible(true);
+//        ViewDragHelper draggerObj = null;
+//        try {
+//            draggerObj = (ViewDragHelper) mDragger
+//                    .get(mDrawerLayout);
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        }
+//
+//        Field mEdgeSize = null;
+//        try {
+//            mEdgeSize = draggerObj.getClass().getDeclaredField(
+//                    "mEdgeSize");
+//        } catch (NoSuchFieldException e) {
+//            e.printStackTrace();
+//        }
+//        mEdgeSize.setAccessible(true);
+//        int edge = 0;
+//        try {
+//            edge = mEdgeSize.getInt(draggerObj);
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        }
+//
+//        try {
+//            mEdgeSize.setInt(draggerObj, edge * 25);
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

@@ -1,5 +1,6 @@
 package Student;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
@@ -7,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.ViewDragHelper;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,23 +17,34 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.StringRequest;
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+import Activities.VolleyMainActivityHandler;
 import RecyclerViews.MyAdapterRepliesStudent;
 import Activities.MakeQuestion;
 import Activities.MakeReply;
 import Activities.LoginActivity;
+import Utilities.ActivitiesNames;
+import Utilities.NavUtil;
 import Utilities.Question;
 import Utilities.Reply;
+import Utilities.StringParse;
 import Utilities.SwipeController;
 import Utilities.SwipeControllerActions;
+import Utilities.URLS;
 import Utilities.User;
 /**
  *
@@ -40,18 +53,20 @@ import Utilities.User;
  */
 public class StudentReplies extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
+    private MyAdapterRepliesStudent adapter;
     private ArrayList<Reply> listItems;
     private Field mDragger;
     SwipeController swipeController = null;
-
+    private ProgressDialog pDialog;
     private SharedPreferences mPreferences;
-
-
+    private SwipeRefreshLayout swipeContainer;
+    private ArrayList<Reply> newItems;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView nv;
     private Toolbar mToolbar;
+    private static String TAG= StudentReplies.class.getSimpleName();
+    private static String tag_string_req= "string_req";
     /**
      *
      * This method starts the activity, initializes the activity view and gets the currentUser, as
@@ -63,15 +78,21 @@ public class StudentReplies extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_replies);
-
+        newItems=new ArrayList<Reply>();
         //get question ID with a bundle
         Bundle bundle = getIntent().getExtras();
         final String questionID = bundle.getString("questionID");
 
         FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
 
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        pDialog= new ProgressDialog(this);
+        pDialog.setMessage("Loading...");
+        pDialog.setCancelable(false);
+        // Gets stored preferences. User is stored here.
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
 
+        // Converts the mPrferences's json data of the current user to a User object.
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
         User currentUser = gson.fromJson(json, User.class);
@@ -79,6 +100,7 @@ public class StudentReplies extends AppCompatActivity {
         // Get the question the user clicked on,
         // then the replies in that question.
         final Question userQuestion = currentUser.getSingleQuestion(questionID);
+        //only get original replies, not replies to replies
         listItems=userQuestion.getParentRepliesOnly();
 
         //go through every parent reply and find the replies to replies
@@ -95,20 +117,26 @@ public class StudentReplies extends AppCompatActivity {
             }
         }
 
+        // Adapter to display the questions as recycler views. (cards on the screen)
         adapter = new MyAdapterRepliesStudent(listItems, this);
 
+        // Makes the recycler view
         setUpRecyclerView();
 
+        // Get the nav menu
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
 
+        // create the drawer layout (the thing you swipe from the side)
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 
+        // add the menu items to the drawer
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // put the questions into a string from its JSON
         final String question = gson.toJson(userQuestion);
 
         // Go to make a new question page on FAB click
@@ -116,46 +144,24 @@ public class StudentReplies extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent makeReply = new Intent(getApplicationContext().getApplicationContext(), MakeReply.class);
+                // Pass the question ID and question array
                 makeReply.putExtra("questionID", questionID);
                 makeReply.putExtra("question", question);
-                Bundle bun = new Bundle();
-                bun.putString("topicID", questionID);
-                bun.putString("topic", question);
                 startActivity(makeReply);
             }
         });
 
+        // populate the navigation buttons to go to the correct place
         nv = (NavigationView) findViewById(R.id.nv2);
-        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        NavUtil.setNavMenu(nv, ActivitiesNames.NONE, getApplicationContext(), mDrawerLayout);
+        System.out.println("Outside volley # of replies " + userQuestion.getReplies().size());
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case(R.id.nav_home_student):
-                        Intent studentHome = new Intent(getApplicationContext(), StudentHomePage.class);
-                        startActivity(studentHome);
-                        break;
-                    case (R.id.nav_classes_student):
-                        mDrawerLayout.closeDrawers();
-                        break;
-                    case (R.id.nav_notifications_student):
-                        Intent studentNotifications = new Intent(getApplicationContext(), StudentNotifications.class);
-                        startActivity(studentNotifications);
-                        break;
-                    case (R.id.nav_question_student):
-                        Intent studentQuestion = new Intent(getApplicationContext(), MakeQuestion.class);
-                        startActivity(studentQuestion);
-                        break;
-                    case (R.id.nav_settings_student):
-                        Intent studentSettings = new Intent(getApplicationContext(), StudentSettings.class);
-                        startActivity(studentSettings);
-                        break;
-                    case (R.id.nav_logout_student):
-                        Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
-                        startActivity(loginPage);
-                        finish();
-                        break;
-                }
-                return true;
+            public void onRefresh() {
+                refreshReplies(userQuestion);
+                swipeContainer.setRefreshing(false);
+                adapter.clear();
+                adapter.addAll(userQuestion.getParentRepliesOnly());
             }
         });
     }
@@ -175,42 +181,55 @@ public class StudentReplies extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void slideOutMenu(){
+//    private void slideOutMenu(){
+//
+//        try {
+//            mDragger = mDrawerLayout.getClass().getDeclaredField(
+//                    "mLeftDragger");//mRightDragger for right obviously
+//        } catch (NoSuchFieldException e) {
+//            e.printStackTrace();
+//        }
+//        mDragger.setAccessible(true);
+//        ViewDragHelper draggerObj = null;
+//        try {
+//            draggerObj = (ViewDragHelper) mDragger
+//                    .get(mDrawerLayout);
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        }
+//
+//        Field mEdgeSize = null;
+//        try {
+//            mEdgeSize = draggerObj.getClass().getDeclaredField(
+//                    "mEdgeSize");
+//        } catch (NoSuchFieldException e) {
+//            e.printStackTrace();
+//        }
+//        mEdgeSize.setAccessible(true);
+//        int edge = 0;
+//        try {
+//            edge = mEdgeSize.getInt(draggerObj);
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        }
+//
+//        try {
+//            mEdgeSize.setInt(draggerObj, edge * 25);
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-        try {
-            mDragger = mDrawerLayout.getClass().getDeclaredField(
-                    "mLeftDragger");//mRightDragger for right obviously
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
+    private void showProgressDialog() {
+        if(!pDialog.isShowing()) {
+            pDialog.show();
         }
-        mDragger.setAccessible(true);
-        ViewDragHelper draggerObj = null;
-        try {
-            draggerObj = (ViewDragHelper) mDragger
-                    .get(mDrawerLayout);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+    }
 
-        Field mEdgeSize = null;
-        try {
-            mEdgeSize = draggerObj.getClass().getDeclaredField(
-                    "mEdgeSize");
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
-        mEdgeSize.setAccessible(true);
-        int edge = 0;
-        try {
-            edge = mEdgeSize.getInt(draggerObj);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            mEdgeSize.setInt(draggerObj, edge * 25);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
+    private void hideProgressDialog() {
+        if(pDialog.isShowing()) {
+            pDialog.hide();
+            pDialog.dismiss();
         }
     }
 
@@ -240,5 +259,44 @@ public class StudentReplies extends AppCompatActivity {
                 swipeController.onDraw(c);
             }
         });
+    }
+
+    /**
+     * Given a parent question id, it will return a list of questions that directly correspond
+     * to the topic (not replies to replies)
+     * @param parentQuestion
+     * @return an array list of replies directly to a question
+     */
+    public void refreshReplies(final Question parentQuestion){
+        String urlSuffix= "?questionId="+parentQuestion.getQuestionID();
+        String url_final= URLS.URL_REFRESHR+urlSuffix;
+        showProgressDialog();
+        newItems.clear();
+        StringRequest req = new StringRequest(Request.Method.GET,url_final,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d(TAG, response.toString());
+                        //parse replies makes sure that we do not add duplicates
+                        ArrayList<Reply> temp= StringParse.parseReplies(response, parentQuestion);
+                        Gson gson = new Gson();
+                        String json = mPreferences.getString("currentUser", "");
+                        User currentUser = gson.fromJson(json, User.class);
+                        Question userQuestion = currentUser.getSingleQuestion(parentQuestion.getQuestionID());
+                        userQuestion.setReplies(temp);
+                        hideProgressDialog();
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                hideProgressDialog();
+            }
+        }
+        );
+        // Adding request to request queue
+        VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
+
     }
 }

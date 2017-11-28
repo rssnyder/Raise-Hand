@@ -61,6 +61,8 @@ public class MyAdapterClassesStudent extends RecyclerView.Adapter<MyAdapterClass
         holder.textViewHead.setText(listItem.getTitle());
         holder.textViewDesc.setText(listItem.getClassID());
 
+        //get the classID of the class that the user clicked on
+        //pass it to the TeacherTopics intent. It is retrieved with a Bundle object
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

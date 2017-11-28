@@ -77,6 +77,7 @@ public class MyAdapterQuestionsStudent extends RecyclerView.Adapter<MyAdapterQue
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
+                // go to the questions' replies
                 Intent studentReplies = new Intent(context.getApplicationContext(), StudentReplies.class);
                 studentReplies.putExtra("questionID", listItem.getQuestionID());
                 studentReplies.putExtra("question", question);

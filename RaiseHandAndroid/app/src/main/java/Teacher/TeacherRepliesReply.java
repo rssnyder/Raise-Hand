@@ -26,11 +26,6 @@ import java.util.ArrayList;
 import Activities.LoginActivity;
 import Activities.MakeReplyReply;
 import RecyclerViews.MyAdapterRepliesReply;
-import Teacher.TeacherClasses;
-import Teacher.TeacherHomePage;
-import Teacher.TeacherNotifications;
-import Teacher.TeacherSettings;
-import Teacher.TeacherStudents;
 import Utilities.Reply;
 import Utilities.SwipeController;
 import Utilities.SwipeControllerActions;
@@ -39,7 +34,7 @@ import Utilities.User;
 /**
  *
  *
- * This is a activity for the reply to reply page. It contains the Recycler View and the the adapter
+ * This is a teacher activity for the reply to reply page. It contains the Recycler View and the the adapter
  * for the activity.
  * @author jaggarwal
  */
@@ -70,7 +65,7 @@ public class TeacherRepliesReply extends AppCompatActivity{
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_replies_reply);
+        setContentView(R.layout.activity_teacher_replies_reply);
 
         Bundle bundle = getIntent().getExtras();
         final String replyID = bundle.getString("replyID");

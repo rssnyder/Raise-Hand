@@ -27,6 +27,8 @@ import java.util.List;
 import RecyclerViews.MyAdapterQuestionsStudent;
 import Activities.MakeQuestion;
 import Activities.LoginActivity;
+import Utilities.ActivitiesNames;
+import Utilities.NavUtil;
 import Utilities.Question;
 import Utilities.Reply;
 import Utilities.SwipeController;
@@ -46,12 +48,13 @@ public class StudentQuestions extends AppCompatActivity {
     private Toolbar mToolbar;
     private Field mDragger;
 
+    private SwipeController swipeController = null;
+
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<Question> listItems;
     private SharedPreferences mPreferences;
 
-    private SwipeController swipeController = null;
     /**
      *
      * This method starts the activity, initializes the activity view and gets the currentUser, as
@@ -64,16 +67,20 @@ public class StudentQuestions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_questions);
 
+        // Bundle gets the topicsID from the topic that the user clicked on in the teacherTopics adapter
         Bundle bundle = getIntent().getExtras();
         final String topicID = bundle.getString("topicsID");
 
+        // FAB that makes a new question
         FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButtonStudent);
 
+        // Gets stored preferences. User is stored here.
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
 
+        // List to hold the questions
         listItems = new ArrayList<>();
-        List<Reply> replyList = new ArrayList<>();
 
+        // Converts the mPrferences's json data of the current user to a User object.
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
         User currentUser = gson.fromJson(json, User.class);
@@ -83,24 +90,24 @@ public class StudentQuestions extends AppCompatActivity {
         final Topics usersTopic = currentUser.getSingleTopic(topicID);
         ArrayList<Question> topicQuestions = usersTopic.getQuestions();
 
+        // after getting the questions, assign it to listItemsOfQuestions
         listItems = topicQuestions;
-        /*
-        // Used to test scrolling and the FAB
-        for(int i = 0; i < 10; i++){
-            listItems.add(topicQuestions.get(0));
-        }
-        */
 
+        // Adapter to display the questions as recycler views. (cards on the screen)
         adapter = new MyAdapterQuestionsStudent(listItems, this);
 
+        // Makes the recycler view
         setUpRecyclerView();
 
+        // Get the nav menu
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
 
+        // create the drawer layout (the thing you swipe from the side)
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 
+        // add the menu items to the drawer
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
 
@@ -118,46 +125,12 @@ public class StudentQuestions extends AppCompatActivity {
                 Intent makeQuestion = new Intent(getApplicationContext().getApplicationContext(), MakeQuestion.class);
                 makeQuestion.putExtra("topicID", topicID);
                 makeQuestion.putExtra("topic", topic);
-                Bundle bun = new Bundle();
-                bun.putString("topicID", topicID);
-                bun.putString("topic", topic);
                 startActivity(makeQuestion);
             }
         });
 
         nv = (NavigationView) findViewById(R.id.nv2);
-        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case(R.id.nav_home_student):
-                        Intent studentHome = new Intent(getApplicationContext(), StudentHomePage.class);
-                        startActivity(studentHome);
-                        break;
-                    case (R.id.nav_classes_student):
-                        mDrawerLayout.closeDrawers();
-                        break;
-                    case (R.id.nav_notifications_student):
-                        Intent studentNotifications = new Intent(getApplicationContext(), StudentNotifications.class);
-                        startActivity(studentNotifications);
-                        break;
-                    case (R.id.nav_settings_student):
-                        Intent studentSettings = new Intent(getApplicationContext(), StudentSettings.class);
-                        startActivity(studentSettings);
-                        break;
-                    case (R.id.nav_logout_student):
-                        Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
-                        startActivity(loginPage);
-                        finish();
-                        break;
-                    case (R.id.nav_question_student):
-                        Intent questionStudent = new Intent(getApplicationContext(), MakeQuestion.class);
-                        startActivity(questionStudent);
-                        break;
-                }
-                return true;
-            }
-        });
+        NavUtil.setNavMenu(nv, ActivitiesNames.NONE, getApplicationContext(), mDrawerLayout);
     }
     /**
      * if an item in the pull out menu is selected, navigate to a new page
@@ -184,6 +157,7 @@ public class StudentQuestions extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
+        // Be able to swipe the items
         swipeController = new SwipeController(new SwipeControllerActions() {
             @Override
             public void onRightClicked(int position) {

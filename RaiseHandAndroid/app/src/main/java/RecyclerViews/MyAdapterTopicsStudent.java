@@ -44,7 +44,7 @@ public class MyAdapterTopicsStudent extends RecyclerView.Adapter<MyAdapterTopics
      *
      */
     @Override
-    public MyAdapterTopicsStudent.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_student_topics, parent, false);
         return new ViewHolder(v);
@@ -67,7 +67,7 @@ public class MyAdapterTopicsStudent extends RecyclerView.Adapter<MyAdapterTopics
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO go to the topics' questions
+                // go to the topics' questions
                 Intent studentQuestions = new Intent(context.getApplicationContext(), StudentQuestions.class);
                 studentQuestions.putExtra("topicsID", listItem.getID());
                 studentQuestions.putExtra("topic", topic);

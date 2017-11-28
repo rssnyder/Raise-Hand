@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Student.StudentReplies"
+    tools:context="Student.StudentRepliesReply"
     tools:layout_editor_absoluteY="81dp"
     tools:layout_editor_absoluteX="0dp"
     android:id="@+id/drawerLayout">
@@ -26,17 +26,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <android.support.v4.widget.SwipeRefreshLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/swipeContainer"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/repliesRecyclerViewStudent"
+                android:id="@+id/replyRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
-            </android.support.v4.widget.SwipeRefreshLayout>
 
 
             <android.support.design.widget.FloatingActionButton
@@ -46,7 +39,7 @@
                 android:layout_gravity="bottom|right"
                 android:layout_margin="16dp"
                 android:src="@mipmap/ic_add_black_24dp"
-                app:layout_anchor="@id/repliesRecyclerViewStudent"
+                app:layout_anchor="@id/replyRecyclerView"
                 app:layout_anchorGravity="bottom|right|end"/>
             <!--app:layout_behavior="utils.ScrollAwareFABBehavior"/> This isn't reappearing after scrolling. Figure out later-->
         </android.support.design.widget.CoordinatorLayout>
@@ -55,7 +48,7 @@
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:menu="@menu/navigation_menu_student"
+        app:menu="@menu/navigation_menu"
         android:layout_gravity="start"
         app:headerLayout="@layout/naviagation_header"
         android:id="@+id/nv2">
