@@ -12,6 +12,7 @@
 	$query = "SELECT * FROM liveQueue" . $_GET['class'] . " WHERE class_id = " . $_GET['class'];
   	$result = $db->query($query) or die($db->error);
 
+  	Echo '['
   	while($class = $result->fetch_assoc()) {
 	  	Echo '{"ID":';
 	  	Echo '"'.$class['ID'].'"';
@@ -25,5 +26,6 @@
 	  	Echo '"'.$class['txt'].'"';
 	  	Echo '},';
   	}
+  	Echo ']'
 
 ?>
