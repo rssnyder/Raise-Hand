@@ -13,8 +13,7 @@
   	$result = $db->query($query) or die($db->error);
 
   	while($class = $result->fetch_assoc()) {
-	  	Echo '{"live_session": true';
-	  	Echo ', "ID":';
+	  	Echo '{"ID":';
 	  	Echo '"'.$class['ID'].'"';
 	  	Echo ', "username":';
 	  	Echo '"'.$class['username'].'"';
