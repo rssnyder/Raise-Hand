@@ -10,10 +10,12 @@
 	$db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 	$class_id=$_GET['classId'];
 	$classes=explode('+', $class_id);
-    $userClasses= "SELECT ID FROM topics WHERE class_id IN (implode(', ', $classes))";
+	$list=implode(', ', $classes);
+    $userClasses= "SELECT ID FROM topics WHERE class_id IN ($list)";
     Echo $userClasses;
     $topic=$db->query($userClasses) or die($db->error);
-	$stmt = "SELECT t.* FROM threads t WHERE t.topic_id IN (implode(', ', $topic)) AND (TIMESTAMPDIFF(MINUTE, t.creation, NOW())) <= 180";
+    $list2=implode(', ', $topic);
+	$stmt = "SELECT t.* FROM threads t WHERE t.topic_id IN ($list2) AND (TIMESTAMPDIFF(MINUTE, t.creation, NOW())) <= 180";
 	Echo $stmt;
 	$stmt = $db->query($stmt) or die($db->error);
 	while($r= $stmt->fetch_array()){
