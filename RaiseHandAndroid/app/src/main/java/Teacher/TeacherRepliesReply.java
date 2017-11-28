@@ -26,6 +26,8 @@ import java.util.ArrayList;
 import Activities.LoginActivity;
 import Activities.MakeReplyReply;
 import RecyclerViews.MyAdapterRepliesReply;
+import Utilities.ActivitiesNames;
+import Utilities.NavUtil;
 import Utilities.Reply;
 import Utilities.SwipeController;
 import Utilities.SwipeControllerActions;
@@ -111,40 +113,7 @@ public class TeacherRepliesReply extends AppCompatActivity{
             }
         });
         nv = (NavigationView) findViewById(R.id.nv1);
-        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case(R.id.nav_home):
-                        Intent teacherHome = new Intent(getApplicationContext(), TeacherHomePage.class);
-                        startActivity(teacherHome);
-                        break;
-                    case (R.id.nav_classes):
-                        Intent teacherClasses = new Intent(getApplicationContext(), TeacherClasses.class);
-                        startActivity(teacherClasses);
-                        break;
-                    case (R.id.nav_notifications):
-                        Intent teacherNotifications = new Intent(getApplicationContext(), TeacherNotifications.class);
-                        startActivity(teacherNotifications);
-                        break;
-                    case (R.id.nav_students):
-                        Intent teacherStudents = new Intent(getApplicationContext(), TeacherStudents.class);
-                        startActivity(teacherStudents);
-                        break;
-                    case (R.id.nav_settings):
-                        Intent teacherSettings = new Intent(getApplicationContext(), TeacherSettings.class);
-                        startActivity(teacherSettings);
-                        break;
-
-                    case (R.id.nav_logout):
-                        Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
-                        startActivity(loginPage);
-                        finish();
-                        break;
-                }
-                return true;
-            }
-        });
+        NavUtil.setNavMenu(nv, ActivitiesNames.NONE, getApplicationContext(), mDrawerLayout);
     }
 
     @Override

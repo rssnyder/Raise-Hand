@@ -1,5 +1,33 @@
 package Student;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+
+import com.example.sae1.raisehand.R;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+
+import Activities.MakeReplyReply;
+import RecyclerViews.MyAdapterRepliesReply;
+import Utilities.ActivitiesNames;
+import Utilities.NavUtil;
+import Utilities.Reply;
+import Utilities.SwipeController;
+import Utilities.User;
+
+import com.example.sae1.raisehand.R;
+import com.google.gson.Gson;
+
 /**
  *
  *
@@ -8,5 +36,81 @@ package Student;
  * @author jaggarwal
  */
 
-public class StudentRepliesReply {
+public class StudentRepliesReply extends AppCompatActivity{
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private ArrayList<Reply> listItems;
+    private Field mDragger;
+    SwipeController swipeController = null;
+
+
+    private SharedPreferences mPreferences;
+
+
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mToggle;
+    private NavigationView nv;
+    private Toolbar mToolbar;
+
+    /**
+     *
+     * This method starts the activity, initializes the activity view and gets the currentUser, and
+     * adds functionality to add a new reply to a reply
+     *
+     * @param savedInstanceState the current state of the activity
+     */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_student_replies_reply);
+        Bundle bundle = getIntent().getExtras();
+        final String replyID = bundle.getString("replyID");
+
+        FloatingActionButton floatingActionButton = (FloatingActionButton)findViewById(R.id.floatingActionButton);
+
+        mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
+
+        Gson gson = new Gson();
+        String json = mPreferences.getString("currentUser", "");
+        User currentUser = gson.fromJson(json, User.class);
+
+        final Reply userReply = currentUser.getSingleReply(replyID);
+
+        listItems = userReply.getReplies();
+
+
+        adapter = new MyAdapterRepliesReply(listItems, this);
+
+        setUpRecyclerView();
+
+        mToolbar = (Toolbar) findViewById(R.id.nav_action);
+        setSupportActionBar(mToolbar);
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        final String reply = gson.toJson(userReply);
+
+        // Go to make a new reply page on FAB click
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent replyReply = new Intent(getApplicationContext().getApplicationContext(), MakeReplyReply.class);
+                replyReply.putExtra("replyID", replyID);
+                replyReply.putExtra("reply", reply);
+                startActivity(replyReply);
+            }
+        });
+        nv = (NavigationView) findViewById(R.id.nv2);
+        NavUtil.setNavMenu(nv, ActivitiesNames.NONE, getApplicationContext(), mDrawerLayout);
+
+    }
+
+
+
 }
