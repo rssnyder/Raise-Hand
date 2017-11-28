@@ -10,7 +10,7 @@
 	$db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 	$class_id=$_GET['classId'];
 	$classes = explode("+", $class_id);
-    $userClasses= "SELECT * FROM topics WHERE class_id IN ('$classes')";
+    $userClasses= "SELECT ID FROM topics WHERE class_id IN ('$classes')";
     $topic=$db->query($userClasses) or die($db->error);
     $topics=$topic->fetch_array();
 	$stmt = "SELECT t.* FROM threads t WHERE t.topic_id IN ('$topics') AND (TIMESTAMPDIFF(MINUTE, t.creation, NOW())) <= 180";
