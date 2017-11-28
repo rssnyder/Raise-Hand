@@ -15,6 +15,7 @@
   	$a = 1;
 
   	//print the first element (so the comma isn't at the beginning)
+  	Echo '{';
   	Echo '"result":';
   	Echo '[';
 	Echo '{"ID":';
@@ -47,5 +48,6 @@
 	  $a = 2;
   	}
   	Echo ']';
+  	Echo '}';
 
 ?>
