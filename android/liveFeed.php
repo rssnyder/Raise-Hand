@@ -12,17 +12,19 @@
 	$query = "SELECT * FROM liveQueue" . $_GET['class'] . " WHERE classID = " . $_GET['class'];
   	$result = $db->query($query) or die($db->error);
 
-  	Echo '{"live_session": true';
-  	Echo ', "ID":';
-  	Echo ' '.$response['ID'].' ';
-  	Echo ', "username":';
-  	Echo ' '.$response['username'].' ';
-  	Echo ', "class_id":';
-  	Echo ' '.$response['class_id'].' ';
-  	Echo ', "creation":';
-  	Echo ' '.$response['creation'].' ';
-  	Echo ', "txt":';
-  	Echo ' '.$response['txt'].' ';
-  	Echo '}';
+  	while($class = $result->fetch_assoc()) {
+	  	Echo '{"live_session": true';
+	  	Echo ', "ID":';
+	  	Echo ' '.$class['ID'].' ';
+	  	Echo ', "username":';
+	  	Echo ' '.$class['username'].' ';
+	  	Echo ', "class_id":';
+	  	Echo ' '.$class['class_id'].' ';
+	  	Echo ', "creation":';
+	  	Echo ' '.$class['creation'].' ';
+	  	Echo ', "txt":';
+	  	Echo ' '.$class['txt'].' ';
+	  	Echo '}';
+  	}
 
 ?>
