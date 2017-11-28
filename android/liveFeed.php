@@ -9,7 +9,7 @@
 	//Connect to database
 	$db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 
-	$query = "SELECT * FROM liveQueue" . $_GET['class'] . " WHERE classID = " . $_GET['class'];
+	$query = "SELECT * FROM liveQueue" . $_GET['class'] . " WHERE class_id = " . $_GET['class'];
   	$result = $db->query($query) or die($db->error);
 
   	while($class = $result->fetch_assoc()) {
