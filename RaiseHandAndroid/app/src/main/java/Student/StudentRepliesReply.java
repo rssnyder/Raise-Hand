@@ -2,14 +2,18 @@ package Student;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.sae1.raisehand.R;
@@ -23,6 +27,7 @@ import Utilities.ActivitiesNames;
 import Utilities.NavUtil;
 import Utilities.Reply;
 import Utilities.SwipeController;
+import Utilities.SwipeControllerActions;
 import Utilities.User;
 
 import com.example.sae1.raisehand.R;
@@ -109,6 +114,50 @@ public class StudentRepliesReply extends AppCompatActivity{
         nv = (NavigationView) findViewById(R.id.nv2);
         NavUtil.setNavMenu(nv, ActivitiesNames.NONE, getApplicationContext(), mDrawerLayout);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(mToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     *
+     * Private method to set the recycler view to view replies to replies
+     *
+     */
+    private void setUpRecyclerView(){
+
+        recyclerView = (RecyclerView) findViewById(R.id.replyRecyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+
+        swipeController = new SwipeController(new SwipeControllerActions() {
+            @Override
+            public void onRightClicked(int position) {
+                //Upboat here
+                listItems.get(position).upVote();
+            }
+            @Override
+            public void onLeftClicked(int position){
+                //Think what can be done, maybe nothing
+            }
+        });
+        ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
+        itemTouchhelper.attachToRecyclerView(recyclerView);
+
+        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+                swipeController.onDraw(c);
+            }
+        });
     }
 
 
