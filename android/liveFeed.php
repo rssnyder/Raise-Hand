@@ -9,21 +9,22 @@
 	//Connect to database
 	$db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 
-	$query = "SELECT * FROM liveQueue" . $_GET['class'] . " WHERE class_id = " . $_GET['class'];
+	$query = "SELECT * FROM liveQueue" . $_GET['class'] . " WHERE classID = " . $_GET['class'];
   	$result = $db->query($query) or die($db->error);
 
   	while($class = $result->fetch_assoc()) {
-	  	Echo '{"ID":';
-	  	Echo ' '.$class['ID'].' ';
+	  	Echo '{"live_session": true';
+	  	Echo ', "ID":';
+	  	Echo '"'.$class['ID'].'"';
 	  	Echo ', "username":';
-	  	Echo ' '.$class['username'].' ';
+	  	Echo '"'.$class['username'].'"';
 	  	Echo ', "class_id":';
-	  	Echo ' '.$class['class_id'].' ';
+	  	Echo '"'.$class['class_id'].'"';
 	  	Echo ', "creation":';
-	  	Echo ' '.$class['creation'].' ';
+	  	Echo '"'.$class['creation'].'"';
 	  	Echo ', "txt":';
-	  	Echo ' '.$class['txt'].' ';
-	  	Echo '}';
+	  	Echo '"'.$class['txt'].'"';
+	  	Echo '},';
   	}
 
 ?>
