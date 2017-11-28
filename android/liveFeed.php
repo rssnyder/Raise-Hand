@@ -13,7 +13,7 @@
   	$result = $db->query($query) or die($db->error);
 
   	while($class = $result->fetch_assoc()) {
-	  	Echo ', "ID":';
+	  	Echo '{"ID":';
 	  	Echo ' '.$class['ID'].' ';
 	  	Echo ', "username":';
 	  	Echo ' '.$class['username'].' ';
