@@ -14,20 +14,21 @@
 
   	$a = 1;
 
+    $thing = $result->fetch_assoc()
   	//print the first element (so the comma isn't at the beginning)
   	Echo '{';
   	Echo '"result":';
   	Echo '[';
 	Echo '{"ID":';
-  	Echo '"'.$result['ID'].'"';
+  	Echo '"'.$thing['ID'].'"';
   	Echo ', "username":';
-  	Echo '"'.$result['username'].'"';
+  	Echo '"'.$thing['username'].'"';
   	Echo ', "class_id":';
-  	Echo '"'.$class['class_id'].'"';
+  	Echo '"'.$thing['class_id'].'"';
   	Echo ', "creation":';
-  	Echo '"'.$result['creation'].'"';
+  	Echo '"'.$thing['creation'].'"';
   	Echo ', "txt":';
-  	Echo '"'.$result['txt'].'"';
+  	Echo '"'.$thing['txt'].'"';
   	Echo '}';
 
   	// Print the rest of the elements
