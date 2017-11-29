@@ -77,8 +77,6 @@ public class TeacherNotifications extends AppCompatActivity {
             listItems.add(q);
         }
 
-        
-
         // Adapter to display the questions as recycler views. (cards on the screen)
         adapter = new MyAdapterQuestions(listItems,this);
         recyclerView.setAdapter(adapter);
