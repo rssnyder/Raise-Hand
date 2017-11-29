@@ -78,7 +78,7 @@ public class TeacherNotifications extends AppCompatActivity {
             Question temp= new Question();
             temp.setQuestionTitle("You're up to date!");
             temp.setQuestionDescription("No recent activity.");
-            listItems.add(new Question());
+            listItems.add(temp);
         }
 
         // Adapter to display the questions as recycler views. (cards on the screen)
