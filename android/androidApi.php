@@ -23,189 +23,39 @@
 
   /// Get all the class information for classes that a user belongs to.
   /// @param $db the database to query.
-  /// @param $uID the user identification number, in integer or string form.
+  /// @param $qID the id of the question to endorse
   /// @return A database result that is a list of class information arrays.
-  function getClasses($db, $uID) {
-    //Get the classes that the teacher is a teacher of
-    $query = "SELECT class_id FROM userClasses WHERE user_id = $uID";
-    $result = $db->query($query) or die($db->error);
+  function endorseQ($db, $qID) {
     return $result;
   }
-
-  /// Get the information on a given thread.
+  
+  /// Get all the class information for classes that a user belongs to.
   /// @param $db the database to query.
-  /// @param $threadID the thread identification number of the thread you wish see.
-  /// @return An array of information on the given thread.
-  function getThread($db, $threadID) {
-    //Get this thread
-    $query = "SELECT * FROM threads WHERE ID = " . $threadID;
-    $result = $db->query($query) or die($db->error);
-    return $result->fetch_assoc();
-  }
-
-  /// Get all the threads that are children of a given topic.
-  /// @param $db the database to query.
-  /// @param $topicID the topic identification number of the topic we wish to see.
-  /// @return A list of arrays that contain information on all the children threads of this topic.
-  function getThreads($db, $topicID) {
-    //Get the threads
-    $query = "SELECT * FROM threads WHERE topic_id = " . $topicID;
-    $result = $db->query($query) or die('Error querying database.');
+  /// @param $rID the id of the reply to endorse
+  /// @return A database result that is a list of class information arrays.
+  function endorseR($db, $rID) {
     return $result;
   }
+  
+  
+  function forgotPassword($db, $email){
+      return $result;
+  }
 
-  /// Get all the topics that belong to a certain class.
-  /// @param $db the database to query.
-  /// @param $classID The identification number of the class we want to display.
-  /// @return A list of attays that contain information on all the topics in this class.
-  function getTopics($db, $classID) {
-    //Get the topics
-    $query = "SELECT * FROM topics WHERE class_id = " . $classID;
-    $result = $db->query($query) or die('Error querying database.');
+function liveFeed($db, $classId){
     return $result;
-  }
+}
 
-  /// Get all the child comments of a given comment, from a certain thread.
-  /// @param $db the database to query.
-  /// @param $parentID the comment identification number of whom we wish to see the children of.
-  /// @param $threadID the thread to which this comment belings to.
-  /// @return A list of arrays that hold information on all the children of this comment.
-  function getChildComm($db, $parentID, $threadID) {
-    //Get the children of this comment
-    $query = "SELECT * FROM replies WHERE parent = " . $parentID . " AND thread_id = " . $threadID;
-    $result = $db->query($query) or die($db->error);
-    return $result;
-  }
+function login($db, $username, $password){
+    
+}
 
-  /// A function to see if a user should be able to see a given class page.
-  /// @param $db the database to query.
-  /// @param $classID the class identification number that this user wishes to see.
-  /// @param $uID the user identification number that wihes to see this class.
-  /// @return True if the user can see this class, false otherwise.
-  function doesBelong($db, $classID, $uID) {
-    //Check to see if student is actually in this class
-    $query = "SELECT class_id FROM userClasses WHERE user_id = " . $uID ." AND class_id = " . $classID;
-    $result = $db->query($query) or die($db->error);
-    if($oclass = $result->fetch_assoc()) {
-        //This user is associated with this class
-        return true;
-    }
-    else {
-      //Did not find user and class in table
-      return false;
-    }
-  }
+function notifications($db, $classList){
+    
+}
 
-  /// Get the relationship that a user and class share.
-  /// @param $db the database to query.
-  /// @param $uID the user identification number of the user we want to see.
-  /// @param $classID the class identification number that we wish to see the realtionship to.
-  /// @return The realtionship, a number in our case, between the user and class.
-  function getRelationship($db, $uID, $classID) {
-    //Get the userClass referance
-    $query = "SELECT relationship FROM userClasses WHERE user_id = " . $uID . " AND class_id = " . $classID;
-    $result = $db->query($query) or die($db->error);
-    $relationship = $result->fetch_assoc();
-    return $relationship['relationship'];
-  }
-
-  /// Get the full name and email of a given user.
-  /// @param $db the database to query.
-  /// @param $uID the user identification number of the user we want to query.
-  /// @return An array that contains the information on the user.
-  function getUserInfo($db, $uID) {
-    //Get the user with limited information
-    $query = "SELECT first_name, last_name,email FROM users WHERE ID = " . $uID;
-    $result = $db->query($query) or die($db->error);
-    $user = $result->fetch_assoc();
-    return $user;
-  }
-
-  /// Get a list of the TAs that belong to a certain class.
-  /// @param $db the database to query.
-  /// @param $classID the class identification number that we want to see the assistants of.
-  /// @return An array of strings, each string built for display on a webpage that contain the name and email of each TA.
-  function getTAs($db, $classID) {
-    //Get the TAs IDs from the class
-    $query = 'SELECT user_id FROM userClasses WHERE relationship = 3 AND class_id = ' . $classID;
-    $result = $db->query($query) or die($db->error);
-    //Get all these users
-    $allTA = array();
-    while($TA = $result->fetch_assoc()) {
-      //Build a string of the name
-      $query = 'SELECT first_name, last_name, email FROM users WHERE ID = ' . $TA['user_id'];
-      $result2 = $db->query($query) or die($db->error);
-      $thisTA = $result2->fetch_assoc();
-      $name = $thisTA['first_name'] . ' ' . $thisTA['last_name'] . ': ' . $thisTA['email'];
-      array_push($allTA, $name);
-    }
-    //Return the array of TA names
-    return $allTA;
-  }
-
-  /// Gets a list of recent threads posted in a class.
-  /// @param $db the database to query.
-  /// @param $classID.
-  /// @return list of thread arrays that contain recent threads
-  function getRecentThreads($db, $classID) {
-    //Make a query that gets all the threads of a class
-    $query = "SELECT  ID, topic_id, owner_id, title, description, creation, user_name
-              FROM  threads";
-    //Due to format of db we have to get the topics of a class first
-    $topics = getTopics($db, $classID);
-    //For every topic, add it to the possible topics we want thread from
-    $firstT = 1;
-    while($thisT = $topics->fetch_assoc()) {
-      if($firstT) {
-        $query = $query . " WHERE topic_id = " . $thisT['ID'];
-        $firstT = 0;
-      }
-      else {
-        $query = $query . " or topic_id = " . $thisT['ID'];
-      }
-    }
-    //Order the query by date
-    $query = $query . " ORDER BY creation LIMIT 3";
-    //Finally, get recent threads from this class
-    $result = $db->query($query) or die($db->error);
-    return $result;
-  }
-
-  /// Gets a list of replies posted in a class.
-  /// @param $db the database to query.
-  /// @param $classID.
-  /// @return list of reply arrays that contain replies
-  function getReplies($db, $classID) {
-    //Make a query that gets all the threads of a class
-    $query = "SELECT  ID, topic_id, owner_id, title, description, creation, user_name
-              FROM  threads";
-    //Due to format of db we have to get the topics of a class first
-    $topics = getTopics($db, $classID);
-    //For every topic, add it to the possible topics we want thread from
-    $firstT = 1;
-    while($thisT = $topics->fetch_assoc()) {
-      if($firstT) {
-        $query = $query . " WHERE topic_id = " . $thisT['ID'];
-        $firstT = 0;
-      }
-      else {
-        $query = $query . " or topic_id = " . $thisT['ID'];
-      }
-    }
-    //Finally, get recent threads from this class
-    $result = $db->query($query) or die($db->error);
-
-    //Now lets get all the replies in each of these threads
-    $newQuery = "SELECT owner_id, creation FROM replies WHERE thread_id = -1";
-
-    //For every thread in this class
-    while($thread = $result->fetch_assoc()) {
-      $newQuery = $newQuery . " OR thread_id = " . $thread['ID'];
-    }
-
-    //Now that we have this new query built we can query for all the replies.
-    $result = $db->query($newQuery) or die($db->error);
-    return $result;
-  }
+function postQ($db, $description, $title, $ownerId, $topicId, $username){
+    
+}
 
  ?>
