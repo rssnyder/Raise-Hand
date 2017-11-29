@@ -15,6 +15,8 @@ import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,12 +76,8 @@ public class TeacherNotifications extends AppCompatActivity {
         for(Question q: r.getNotifications(currentUser.getClasses())){
             listItems.add(q);
         }
-        if(listItems.isEmpty()){
-            Question temp= new Question();
-            temp.setQuestionTitle("You're up to date!");
-            temp.setQuestionDescription("No recent activity.");
-            listItems.add(temp);
-        }
+
+        
 
         // Adapter to display the questions as recycler views. (cards on the screen)
         adapter = new MyAdapterQuestions(listItems,this);

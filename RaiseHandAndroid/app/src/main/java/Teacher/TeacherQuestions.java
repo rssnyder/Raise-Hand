@@ -180,45 +180,5 @@ public class TeacherQuestions extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /*
-    private void slideOutMenu(){
-
-        try {
-            mDragger = mDrawerLayout.getClass().getDeclaredField(
-                    "mLeftDragger");//mRightDragger for right obviously
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
-        mDragger.setAccessible(true);
-        ViewDragHelper draggerObj = null;
-        try {
-            draggerObj = (ViewDragHelper) mDragger
-                    .get(mDrawerLayout);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        Field mEdgeSize = null;
-        try {
-            mEdgeSize = draggerObj.getClass().getDeclaredField(
-                    "mEdgeSize");
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
-        mEdgeSize.setAccessible(true);
-        int edge = 0;
-        try {
-            edge = mEdgeSize.getInt(draggerObj);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            mEdgeSize.setInt(draggerObj, edge * 25);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }*/
-
 
 }
