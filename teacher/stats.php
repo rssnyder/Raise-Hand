@@ -75,54 +75,78 @@ include '../utilities/database.php';
               url: 'utilities/stats.php',
               dataType: "json",
               data: {class: $_GET['class']},
-              success: function(data){
-                alert(data);
-                console.log(data);
+              success: function(stats){
+                //Use the returned json to build the labes and data array to build the graph
+                var labels
+                console.log(stats);
+                var theUsers = '"';
+                var theData = '';
+                var first = 1;
+                jQuery.each(stats, function(user, value) {
+                  if(first == 1) {
+                    theUsers = theUsers + user + '"';
+                    theData = theData + value;
+                    first = 0;
+                  }
+                  else {
+                    theUsers = theUsers + ', "' + user + '"';
+                    theData = theData + ', ' + value;
+                  }
+                });
+                var graphData = '{' +
+                  '"type": "bar",' +
+                  '"data": {' +
+                      '"labels": [' +
+                          theUsers +
+                          '],' +
+                      '"datasets": [{' +
+                          '"label": "# of Votes",' +
+                          '"data": [' +
+                            theData +
+                          '],' +
+                          '"backgroundColor": [' +
+                              '"rgba(255, 99, 132, 0.2)",' +
+                              '"rgba(54, 162, 235, 0.2)",' +
+                              '"rgba(255, 206, 86, 0.2)",' +
+                              '"rgba(75, 192, 192, 0.2)",' +
+                              '"rgba(153, 102, 255, 0.2)",' +
+                              '"rgba(255, 159, 64, 0.2)"' +
+                          '],' +
+                          '"borderColor": [' +
+                              '"rgba(255,99,132,1)",' +
+                              '"rgba(54, 162, 235, 1)",' +
+                              '"rgba(255, 206, 86, 1)",' +
+                              '"rgba(75, 192, 192, 1)",' +
+                              '"rgba(153, 102, 255, 1)",' +
+                              '"rgba(255, 159, 64, 1)"' +
+                          '],' +
+                          '"borderWidth": "1"' +
+                      '}]' +
+                  '},' +
+                  '"options": {' +
+                      '"scales": {' +
+                          '"yAxes": [{' +
+                              '"ticks": {' +
+                                  '"beginAtZero":"true"' +
+                              '}' +
+                          '}]' +
+                      '}' +
+                  '}' +
+                '}';
+                var realData = JSON.parse(graphData);
+                console.log(realData);
+                var ctx = document.getElementById("myChart").getContext('2d');
+                var myChart = new Chart(ctx, realData);
               },
-              error: function() {
+              error: function(stats) {
                 alert("Error.");
+                console.log(stats);
               }
           });
       });
     </script>
     <script>
-      var ctx = document.getElementById("myChart").getContext('2d');
-      var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
-            }
-        }
-      });
+
     </script>
   </div>
   </div>
