@@ -15,7 +15,7 @@
 
     $thing = $result->fetch_assoc();
   	//print the first element (so the comma isn't at the beginning)
-  	Echo '{';
+  	//Echo '{';
   	Echo '"result":';
   	Echo '[';
 	Echo '{"ID":';
@@ -45,6 +45,6 @@
 	  	Echo '}';
   	}
   	Echo ']';
-  	Echo '}';
+  	//Echo '}';
 
 ?>
