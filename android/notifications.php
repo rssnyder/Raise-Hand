@@ -12,6 +12,7 @@
 	$classes=explode('+', $class_id);
 	$list=implode(', ', $classes);
     $userClasses= "SELECT ID FROM topics WHERE class_id IN ($list)";
+    echo $userClasses;
     $topic=$db->query($userClasses) or die($db->error);
     $topics= $topic->fetch_array();
     $list2=implode(', ', $topics);
