@@ -74,11 +74,17 @@ public class TeacherNotifications extends AppCompatActivity {
         for(Question q: r.getNotifications(currentUser.getClasses())){
             listItems.add(q);
         }
+        if(listItems.isEmpty()){
+            Question temp= new Question();
+            temp.setQuestionTitle("You're up to date!");
+            temp.setQuestionDescription("No recent activity.");
+            listItems.add(new Question());
+        }
 
         // Adapter to display the questions as recycler views. (cards on the screen)
         adapter = new MyAdapterQuestions(listItems,this);
         recyclerView.setAdapter(adapter);
-        
+
         // Get the nav menu
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
