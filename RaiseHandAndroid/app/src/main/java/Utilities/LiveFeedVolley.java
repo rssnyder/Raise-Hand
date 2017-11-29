@@ -7,8 +7,11 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import Activities.VolleyMainActivityHandler;
@@ -30,14 +33,32 @@ public class LiveFeedVolley {
     public static void LiveSessionVolley(String classID){
         String url_final = URL_LIVE_FEED + "?class=" + classID;
         System.out.println(url_final);
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, url_final, null,
-                                                             new Response.Listener<JSONObject>() {
+        JsonArrayRequest jsonObjReq = new JsonArrayRequest(Request.Method.GET, url_final, null,
+                                                            new Response.Listener<JSONArray>() {
                                                   @Override
-                                                  public void onResponse(JSONObject response) {
+                                                  public void onResponse(JSONArray response) {
                                                       Log.d(TAG, response.toString());
 
-                                                      // The response is stored in a JSON object.
-                                                      json = response;
+                                                      try {
+                                                          // retrieves first JSON object in outer array
+                                                          JSONObject liveFeedObject = response.getJSONObject(0);
+
+                                                          // Retrieves the "result" array from the JSON object
+                                                          JSONArray result = liveFeedObject.getJSONArray("result");
+
+                                                          // iterates through the JSON array getting objects and adding them
+                                                          // to the list view until there are no more objects in the array
+                                                          for(int i = 0; i < result.length(); i++){
+                                                              //gets each JSON onject within the JSON array
+                                                              JSONObject jsonObject = result.getJSONObject(i);
+
+                                                              String text = jsonObject.getString("txt");
+                                                              String username = jsonObject.getString("username");
+                                                          }
+                                                      } catch (JSONException e) {
+                                                          e.printStackTrace();
+                                                      }
+
                                                   }
                                               }, new Response.ErrorListener() {
             @Override
