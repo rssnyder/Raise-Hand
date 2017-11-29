@@ -51,43 +51,43 @@
         return $result;
     }
 
-    function refreshQ(){
+    function refreshQ($db, $topicId){
         return $result;
     }
 
-    function refreshR(){
+    function refreshR($db, $questionId){
         return $result;
     }
 
-    function refreshRR(){
+    function refreshRR($db, $replyId){
         return $result;
     }
 
-    function reportQ(){
+    function reportQ($db, $questionId){
         return $result;
     }
 
-    function reportR(){
+    function reportR($db, $replyId){
         return $result;
     }
 
-    function resetPassword(){
+    function resetPassword($db, $password, $username){
         return $result;
     }
 
-    function signup(){
+    function signup($db, $firstname, $lastname, $password, $username, $email, $universityId){
         return $result;
     }
 
-    function topics(){
+    function topics($db, $classId){
         return $result;
     }
 
-    function upvoteQ(){
+    function upvoteQ($db, $questionId){
         return $result;
     }
 
-    function upvoteR(){
+    function upvoteR($db, $replyId){
         return $result; 
     }
 ?>
