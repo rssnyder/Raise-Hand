@@ -9,6 +9,7 @@ import com.example.sae1.raisehand.R;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class LiveFeed extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private List<LiveFeedPOJO> listItems;
+    private List<JSONObject> listItems;
 
     // TODO be able to choose the class
     // TODO submit questions
@@ -43,12 +44,20 @@ public class LiveFeed extends AppCompatActivity {
 
         JSONArray jArray = LiveFeedVolley.LiveSessionVolley("7");
 
-        JSONArray json = LiveFeedVolley.getJSON();
+        for(int i = 0; i < jArray.length(); i++){
+            try {
+                JSONObject jObject = jArray.getJSONObject(i);
+                listItems.add(jObject);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
 
 
         ObjectMapper mapper = new ObjectMapper();
 
 
-        System.out.println("JSON: " + json);
+        System.out.println("JSON: " + jArray);
     }
 }
