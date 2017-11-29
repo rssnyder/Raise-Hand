@@ -21,6 +21,10 @@ public class RecentActivity {
     private static String TAG= RecentActivity.class.getSimpleName();
     private static String tag_string_req= "string_req";
     private ArrayList<Question> recentQuestions;
+
+    public RecentActivity(){
+
+    }
     /**
      * This method will return an array list of questions that were recently posted in
      * his or her classes. It will return an empty array list if he or she is not in any classes
@@ -28,7 +32,7 @@ public class RecentActivity {
      * @param userClasses the classes the user is currently in
      * @return an array list of questions that were recently posted in his or her classes
      */
-    public static ArrayList<Question> getNotifications(ArrayList<Classes> userClasses){
+    public ArrayList<Question> getNotifications(ArrayList<Classes> userClasses){
         recentQuestions=new ArrayList<Question>();
         String urlSuffix="";
         if(!userClasses.isEmpty()) {

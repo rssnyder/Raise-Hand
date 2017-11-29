@@ -67,14 +67,16 @@ public class TeacherNotifications extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        listItems = new ArrayList<Question>();
 
-        // Sampe of notification items
-        listItems = RecentActivity.getNotifications(currentUser.getClasses());
+        RecentActivity r=new RecentActivity();
+
+        for(Question q: r.getNotifications(currentUser.getClasses())){
+            listItems.add(q);
+        }
 
         // Adapter to display the questions as recycler views. (cards on the screen)
         adapter = new MyAdapterQuestions(listItems,this);
-
-
 
         // Get the nav menu
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
@@ -88,7 +90,6 @@ public class TeacherNotifications extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
 
-//        slideOutMenu();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -112,44 +113,4 @@ public class TeacherNotifications extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-/*
-    private void slideOutMenu(){
-
-        try {
-            mDragger = mDrawerLayout.getClass().getDeclaredField(
-                    "mLeftDragger");//mRightDragger for right obviously
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
-        mDragger.setAccessible(true);
-        ViewDragHelper draggerObj = null;
-        try {
-            draggerObj = (ViewDragHelper) mDragger
-                    .get(mDrawerLayout);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        Field mEdgeSize = null;
-        try {
-            mEdgeSize = draggerObj.getClass().getDeclaredField(
-                    "mEdgeSize");
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
-        mEdgeSize.setAccessible(true);
-        int edge = 0;
-        try {
-            edge = mEdgeSize.getInt(draggerObj);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            mEdgeSize.setInt(draggerObj, edge * 25);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
-*/
 }
