@@ -9,7 +9,9 @@ import org.json.JSONObject;
 
 import Utilities.LiveFeedVolley;
 
-
+/**
+ * Displays the live feed of a class.
+ */
 public class LiveFeed extends AppCompatActivity {
 
     // TODO be able to choose the class

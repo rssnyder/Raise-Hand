@@ -49,6 +49,10 @@ public class LiveFeedVolley {
         VolleyMainActivityHandler.getInstance().addToRequestQueue(jsonObjReq, tag_string_req);
     }
 
+    /**
+     * Getter for json file returned from volley
+     * @return json object from volley
+     */
     public static JSONObject getJSON(){
         return json;
     }
