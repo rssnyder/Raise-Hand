@@ -64,21 +64,15 @@ public class TeacherNotifications extends AppCompatActivity {
         String json = mPreferences.getString("currentUser", "");
         currentUser = gson.fromJson(json, User.class);
 
+        RecentActivity r=new RecentActivity();
+        listItems =  r.getNotifications(currentUser.getClasses());
+
+        // Adapter to display the questions as recycler views. (cards on the screen)
+        adapter = new MyAdapterQuestions(listItems,this);
         // Setting up the recycler view
         recyclerView = (RecyclerView) findViewById(R.id.questionsRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        listItems = new ArrayList<Question>();
-
-        RecentActivity r=new RecentActivity();
-
-        for(Question q: r.getNotifications(currentUser.getClasses())){
-            listItems.add(q);
-        }
-
-        // Adapter to display the questions as recycler views. (cards on the screen)
-        adapter = new MyAdapterQuestions(listItems,this);
         recyclerView.setAdapter(adapter);
 
         // Get the nav menu
@@ -98,7 +92,7 @@ public class TeacherNotifications extends AppCompatActivity {
 
         // populate the navigation buttons to go to the correct place
         nv = (NavigationView) findViewById(R.id.nv1);
-        NavUtil.setNavMenu(nv, ActivitiesNames.NOTIFICATIONS, getApplicationContext(), mDrawerLayout);
+        NavUtil.setNavMenu(nv, ActivitiesNames.NONE, getApplicationContext(), mDrawerLayout);
 
     }
 

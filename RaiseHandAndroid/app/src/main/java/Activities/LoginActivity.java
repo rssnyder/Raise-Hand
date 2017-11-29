@@ -1,6 +1,7 @@
 package Activities;
 import android.app.ProgressDialog;
 
+import Student.StudentHomePage;
 import Teacher.TeacherHomePage;
 import Teacher.TeacherNotifications;
 import Utilities.Roles;
@@ -184,9 +185,9 @@ public class LoginActivity extends Activity {
                 finish();
 
         } else if (roleID.equals(Roles.STUDENT.toString())) {
-                Intent studentNotifications =
-                        new Intent(getApplicationContext(), StudentNotifications.class);
-                startActivity(studentNotifications);
+                Intent studentHome =
+                        new Intent(getApplicationContext(), StudentHomePage.class);
+                startActivity(studentHome);
                 //finsih this activity so you can't press back to go to the login screen after already logging in
                 finish();
         }

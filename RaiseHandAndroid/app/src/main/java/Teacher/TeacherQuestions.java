@@ -110,8 +110,6 @@ public class TeacherQuestions extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
 
-//        slideOutMenu();
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         final String topic = gson.toJson(usersTopic);
