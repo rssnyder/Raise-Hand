@@ -14,9 +14,10 @@
 	foreach ($classes as $item) {
         $list+= $item . ', ';
     }
-    $list=substr($list, 0, -2);
+    echo $list;
+    $list=substr($list, 0, strlen($list)-2);
     $list+=")";
-	
+	echo $list;
     $userClasses= "SELECT ID FROM topics WHERE class_id IN $list";
     echo $userClasses;
     $topic=$db->query($userClasses) or die($db->error);
