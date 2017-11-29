@@ -78,7 +78,6 @@ include '../utilities/database.php';
               success: function(stats){
                 //Use the returned json to build the labes and data array to build the graph
                 var labels
-                console.log(stats);
                 var theUsers = '"';
                 var theData = '';
                 var first = 1;
@@ -100,7 +99,7 @@ include '../utilities/database.php';
                           theUsers +
                           '],' +
                       '"datasets": [{' +
-                          '"label": "# of Votes",' +
+                          '"label": "# of Comments",' +
                           '"data": [' +
                             theData +
                           '],' +
@@ -134,7 +133,6 @@ include '../utilities/database.php';
                   '}' +
                 '}';
                 var realData = JSON.parse(graphData);
-                console.log(realData);
                 var ctx = document.getElementById("myChart").getContext('2d');
                 var myChart = new Chart(ctx, realData);
               },
