@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import com.example.sae1.raisehand.R;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -40,9 +41,9 @@ public class LiveFeed extends AppCompatActivity {
         // list to hold the live feed questions
         listItems = new ArrayList<>();
 
-        LiveFeedVolley.LiveSessionVolley("7");
+        JSONArray jArray = LiveFeedVolley.LiveSessionVolley("7");
 
-        JSONObject json = LiveFeedVolley.getJSON();
+        JSONArray json = LiveFeedVolley.getJSON();
 
 
         ObjectMapper mapper = new ObjectMapper();

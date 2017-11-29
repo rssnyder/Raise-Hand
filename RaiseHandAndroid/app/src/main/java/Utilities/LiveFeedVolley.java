@@ -24,13 +24,13 @@ import static Utilities.URLS.URL_LIVE_FEED;
 public class LiveFeedVolley {
     private static String TAG = LiveFeedVolley.class.getSimpleName();
     private static String tag_string_req= "json_req";
-    private static JSONObject json;
+    private static JSONArray jArray;
 
     /**
      * retrieves the live feed comments for the classID. Puts them in a JSON object
      * @param classID ID of the class
      */
-    public static void LiveSessionVolley(String classID){
+    public static JSONArray LiveSessionVolley(String classID){
         String url_final = URL_LIVE_FEED + "?class=" + classID;
         System.out.println(url_final);
         JsonArrayRequest jsonObjReq = new JsonArrayRequest(Request.Method.GET, url_final, null,
@@ -44,17 +44,19 @@ public class LiveFeedVolley {
                                                           JSONObject liveFeedObject = response.getJSONObject(0);
 
                                                           // Retrieves the "result" array from the JSON object
-                                                          JSONArray result = liveFeedObject.getJSONArray("result");
+                                                          jArray = liveFeedObject.getJSONArray("result");
 
-                                                          // iterates through the JSON array getting objects and adding them
-                                                          // to the list view until there are no more objects in the array
-                                                          for(int i = 0; i < result.length(); i++){
-                                                              //gets each JSON onject within the JSON array
-                                                              JSONObject jsonObject = result.getJSONObject(i);
 
-                                                              String text = jsonObject.getString("txt");
-                                                              String username = jsonObject.getString("username");
-                                                          }
+//                                                          // iterates through the JSON array getting objects and adding them
+//                                                          // to the list view until there are no more objects in the array
+//                                                          for(int i = 0; i < result.length(); i++){
+//                                                              //gets each JSON onject within the JSON array
+//                                                              JSONObject jsonObject = result.getJSONObject(i);
+//
+//                                                              String text = jsonObject.getString("txt");
+//                                                              String username = jsonObject.getString("username");
+//
+//                                                          }
                                                       } catch (JSONException e) {
                                                           e.printStackTrace();
                                                       }
@@ -68,13 +70,14 @@ public class LiveFeedVolley {
         });
 
         VolleyMainActivityHandler.getInstance().addToRequestQueue(jsonObjReq, tag_string_req);
+        return jArray;
     }
 
     /**
      * Getter for json file returned from volley
      * @return json object from volley
      */
-    public static JSONObject getJSON(){
-        return json;
+    public static JSONArray getJSON(){
+        return jArray;
     }
 }
