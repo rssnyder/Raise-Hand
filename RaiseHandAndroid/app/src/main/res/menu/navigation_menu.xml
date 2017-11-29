@@ -23,6 +23,7 @@
           android:title="Settings"/>
 
         <item android:id="@+id/nav_live"
+              android:icon="@mipmap/ic_looks_black_24dp"
               android:title="Live Session"/>
 
         <item android:id="@+id/nav_logout"
