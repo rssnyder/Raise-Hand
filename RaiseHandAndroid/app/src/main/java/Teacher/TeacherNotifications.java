@@ -66,7 +66,7 @@ public class TeacherNotifications extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.questionsRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+
         listItems = new ArrayList<Question>();
 
         RecentActivity r=new RecentActivity();
@@ -77,7 +77,8 @@ public class TeacherNotifications extends AppCompatActivity {
 
         // Adapter to display the questions as recycler views. (cards on the screen)
         adapter = new MyAdapterQuestions(listItems,this);
-
+        recyclerView.setAdapter(adapter);
+        
         // Get the nav menu
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
