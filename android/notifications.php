@@ -10,11 +10,13 @@
 	$db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 	$class_id=$_GET['classId'];
 	$classes=explode('+', $class_id);
+	$list='(';
 	foreach ($classes as $item) {
-    echo $item;
+        $list+= $item . ', ';
     }
-	$list=implode(", ", $classes);
-    $userClasses= "SELECT ID FROM topics WHERE class_id IN ($list)";
+    $list=substr($list, 0, -2);
+	
+    $userClasses= "SELECT ID FROM topics WHERE class_id IN $list)";
     echo $userClasses;
     $topic=$db->query($userClasses) or die($db->error);
     $topics= $topic->fetch_array();
