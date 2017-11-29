@@ -28,7 +28,7 @@ public class RecentActivity {
      * @param userClasses the classes the user is currently in
      * @return an array list of questions that were recently posted in his or her classes
      */
-    public ArrayList<Question> getNotifications(ArrayList<Classes> userClasses){
+    public static ArrayList<Question> getNotifications(ArrayList<Classes> userClasses){
         recentQuestions=new ArrayList<Question>();
         String urlSuffix="";
         if(!userClasses.isEmpty()) {
