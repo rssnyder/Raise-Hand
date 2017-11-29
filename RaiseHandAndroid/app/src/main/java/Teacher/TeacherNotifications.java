@@ -1,5 +1,6 @@
 package Teacher;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -11,15 +12,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.example.sae1.raisehand.R;
+import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import RecyclerViews.ListItemTeacherNotifications;
 import RecyclerViews.MyAdapterNotifications;
+import RecyclerViews.MyAdapterQuestions;
 import Utilities.ActivitiesNames;
 import Utilities.NavUtil;
+import Utilities.Question;
+import Utilities.RecentActivity;
+import Utilities.User;
 
 /**
  *
@@ -31,8 +39,10 @@ public class TeacherNotifications extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private List<ListItemTeacherNotifications> listItems;
+    private List<Question> listItems;
 
+    private User currentUser;
+    private SharedPreferences mPreferences;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
@@ -48,24 +58,21 @@ public class TeacherNotifications extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teacher_notifications);
+        setContentView(R.layout.activity_teacher_questions);
+        mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = mPreferences.getString("currentUser", "");
+        currentUser = gson.fromJson(json, User.class);
 
-        // Setting up the recycler view
-        recyclerView = (RecyclerView) findViewById(R.id.notificationRecyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        // Sampe of notification items
-        listItems = new ArrayList<>();
-        for(int i = 0; i < 10; i++){
-            ListItemTeacherNotifications listItem = new ListItemTeacherNotifications("Notification " + (i+1),
-                                                                                     "Dummy text. I'm here to notify you!");
-            listItems.add(listItem);
-        }
+        RecentActivity r=new RecentActivity();
+        listItems =  r.getNotifications(currentUser.getClasses());
 
         // Adapter to display the questions as recycler views. (cards on the screen)
-        adapter = new MyAdapterNotifications(listItems, this);
-
+        adapter = new MyAdapterQuestions(listItems,this);
+        // Setting up the recycler view
+        recyclerView = (RecyclerView) findViewById(R.id.questionsRecyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
         // Get the nav menu
@@ -80,13 +87,12 @@ public class TeacherNotifications extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
 
-//        slideOutMenu();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // populate the navigation buttons to go to the correct place
         nv = (NavigationView) findViewById(R.id.nv1);
-        NavUtil.setNavMenu(nv, ActivitiesNames.NOTIFICATIONS, getApplicationContext(), mDrawerLayout);
+        NavUtil.setNavMenu(nv, ActivitiesNames.NONE, getApplicationContext(), mDrawerLayout);
 
     }
 
@@ -104,44 +110,4 @@ public class TeacherNotifications extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-/*
-    private void slideOutMenu(){
-
-        try {
-            mDragger = mDrawerLayout.getClass().getDeclaredField(
-                    "mLeftDragger");//mRightDragger for right obviously
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
-        mDragger.setAccessible(true);
-        ViewDragHelper draggerObj = null;
-        try {
-            draggerObj = (ViewDragHelper) mDragger
-                    .get(mDrawerLayout);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        Field mEdgeSize = null;
-        try {
-            mEdgeSize = draggerObj.getClass().getDeclaredField(
-                    "mEdgeSize");
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
-        mEdgeSize.setAccessible(true);
-        int edge = 0;
-        try {
-            edge = mEdgeSize.getInt(draggerObj);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            mEdgeSize.setInt(draggerObj, edge * 25);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
-*/
 }
