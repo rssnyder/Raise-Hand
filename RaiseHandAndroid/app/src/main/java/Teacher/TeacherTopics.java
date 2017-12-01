@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -44,6 +45,9 @@ public class TeacherTopics extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
     private NavigationView nv;
     private Toolbar mToolbar;
+
+    private SwipeRefreshLayout swipeContainer;
+
     /**
      *
      * This method starts the activity, initializes the activity view and gets the currentUser, as
@@ -55,6 +59,7 @@ public class TeacherTopics extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_topics);
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
 
         // FAB to refresh
         FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
@@ -114,14 +119,16 @@ public class TeacherTopics extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        // Swipe to refresh
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onClick(View view) {
+            public void onRefresh() {
                 Intent intent = getIntent();
                 finish();
                 startActivity(intent);
             }
         });
+
 
         // populate the navigation buttons to go to the correct place
         nv = (NavigationView) findViewById(R.id.nv1);

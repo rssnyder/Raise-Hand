@@ -35,6 +35,18 @@ public class MyAdapterTopics extends RecyclerView.Adapter<MyAdapterTopics.ViewHo
         this.listItems = listItems;
         this.context = context;
     }
+    // Clean all elements of the recycler
+    public void clear() {
+        listItems.clear();
+        notifyDataSetChanged();
+    }
+
+
+// Add a list of items -- change to type used
+    public void addAll(List<Topics> list) {
+        listItems.addAll(list);
+        notifyDataSetChanged();
+    }
     /**
      *
      * This method inflates the view for the handler i.e. how the page will look like when the user
