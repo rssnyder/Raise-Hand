@@ -59,7 +59,7 @@ include '../utilities/database.php';
                     <div class="home">
                       <center>
                         <br>
-                        <button class="button" onclick="window.location=\'classHome.php?class=' . $class['ID'] . '\';">' . $class['class_name'] . '</button>
+                        <button id="color' . ($class['ID'] % 6) . '" class="button" onclick="window.location=\'classHome.php?class=' . $class['ID'] . '\';">' . $class['class_name'] . '</button>
                         <p>
                           ' . $class['description'] . '
                         </p>
@@ -71,7 +71,7 @@ include '../utilities/database.php';
                       <div class="home">
                         <center>
                           <br>
-                          <button class="button" onclick="window.location=\'classHome.php?class=' . $class['ID'] . '\';">' . $class['class_name'] . '</button>
+                          <button id="color' . ($class['ID'] % 6) . '" class="button" onclick="window.location=\'classHome.php?class=' . $class['ID'] . '\';">' . $class['class_name'] . '</button>
                           <p>
                           ' . $class['description'] . '
                           </p>
