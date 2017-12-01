@@ -1,7 +1,9 @@
 package Teacher;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -10,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
@@ -52,6 +55,9 @@ public class TeacherTopics extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_topics);
+
+        // FAB to refresh
+        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
 
         // Bundle gets the classID from the class the user clicked on in the TeacherClasses adapter (myAdapterClasses)
         Bundle bundle = getIntent().getExtras();
@@ -107,6 +113,15 @@ public class TeacherTopics extends AppCompatActivity {
 //        slideOutMenu();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+            }
+        });
 
         // populate the navigation buttons to go to the correct place
         nv = (NavigationView) findViewById(R.id.nv1);

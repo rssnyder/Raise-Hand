@@ -12,14 +12,17 @@ import com.example.sae1.raisehand.R;
 
 import java.util.List;
 
-import Utilities.LiveFeedPOJO;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import Utilities.LiveFeedVolley;
 
 /**
  * This class handles how to show the list of items in the live feed.
  */
 public class MyAdapterLiveFeed extends RecyclerView.Adapter<MyAdapterLiveFeed.ViewHolder>{
 
-    private List<LiveFeedPOJO> listItems;
+    private List<JSONObject> listItems;
     private Context context;
 
     /**
@@ -27,7 +30,7 @@ public class MyAdapterLiveFeed extends RecyclerView.Adapter<MyAdapterLiveFeed.Vi
      * @param listItems list of live feed questions
      * @param context the instance of the app
      */
-    public MyAdapterLiveFeed(List<LiveFeedPOJO> listItems, Context context) {
+    public MyAdapterLiveFeed(List<JSONObject> listItems, Context context) {
         this.listItems = listItems;
         this.context = context;
     }
@@ -50,10 +53,14 @@ public class MyAdapterLiveFeed extends RecyclerView.Adapter<MyAdapterLiveFeed.Vi
      */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position){
-        LiveFeedPOJO listItem = listItems.get(position);
+        JSONObject listItem = listItems.get(position);
 
 //        holder.textViewHead.setText(listItem.getText());
-        holder.textViewDesc.setText(listItem.getText());
+        try {
+            holder.textViewDesc.setText(listItem.get("txt").toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -82,4 +89,5 @@ public class MyAdapterLiveFeed extends RecyclerView.Adapter<MyAdapterLiveFeed.Vi
 
         }
     }
+
 }

@@ -4,7 +4,7 @@ package Utilities;
  * Created by joelschwartz on 11/28/17.
  */
 
-public class LiveFeedPOJO {
+public class JSONObject {
 
     private String id;
     private String username;

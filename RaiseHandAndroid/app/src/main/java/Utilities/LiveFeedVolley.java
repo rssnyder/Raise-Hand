@@ -44,7 +44,8 @@ public class LiveFeedVolley {
                                                           JSONObject liveFeedObject = response.getJSONObject(0);
 
                                                           // Retrieves the "result" array from the JSON object
-                                                          jArray = liveFeedObject.getJSONArray("result");
+//                                                          jArray = liveFeedObject.getJSONArray("result");
+                                                          jArray = response;
 
 
 //                                                          // iterates through the JSON array getting objects and adding them

@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import com.example.sae1.raisehand.R;
 
 import Utilities.ActivitiesNames;
+import Utilities.LiveFeedVolley;
 import Utilities.NavUtil;
 
 /**
@@ -34,6 +35,8 @@ public class TeacherHomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_home_page);
+        LiveFeedVolley.LiveSessionVolley("7");
+
 
         // Gets stored preferences. User is stored here.
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
