@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import Activities.LoginActivity;
 import Activities.MakeReplyReply;
@@ -83,7 +84,7 @@ public class TeacherRepliesReply extends AppCompatActivity{
         final Reply userReply = currentUser.getSingleReply(replyID);
 
         listItems = userReply.getReplies();
-
+        Collections.reverse(listItems);
 
         adapter = new MyAdapterRepliesReply(listItems, this);
 

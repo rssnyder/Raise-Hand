@@ -30,6 +30,7 @@ import com.google.gson.annotations.Expose;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import Activities.MakeReply;
@@ -102,8 +103,8 @@ public class TeacherReplies extends AppCompatActivity {
         // then the replies in that question.
         final Question userQuestion = currentUser.getSingleQuestion(questionID);
         //only get original replies, not replies to replies
-        listItems = userQuestion.getParentRepliesOnly();
-
+        listItems = (userQuestion.getParentRepliesOnly());
+        Collections.reverse(listItems);
         //go through every parent reply and find the replies to replies
         for(Reply r: listItems) {
             ArrayList<Reply> temp = new ArrayList<Reply>();

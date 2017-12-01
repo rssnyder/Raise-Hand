@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import Activities.LoginActivity;
@@ -91,7 +92,7 @@ public class TeacherQuestions extends AppCompatActivity {
 
         // after getting the questions, assign it to listItemsOfQuestions
         listItemsOfQuestions = topicQuestions;
-
+        Collections.reverse(listItemsOfQuestions);
         // Adapter to display the questions as recycler views. (cards on the screen)
         adapter = new MyAdapterQuestions(listItemsOfQuestions, this);
 

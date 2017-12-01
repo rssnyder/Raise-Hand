@@ -33,7 +33,7 @@ import Utilities.User;
  *
  * This class has notifications for the teacher.
  * Notifications will include recent questions and replies submitted.
- * @author joel2
+ * @author sae1
  */
 public class TeacherNotifications extends AppCompatActivity {
 

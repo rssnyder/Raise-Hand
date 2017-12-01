@@ -31,6 +31,7 @@ import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import Activities.VolleyMainActivityHandler;
 import RecyclerViews.MyAdapterRepliesStudent;
@@ -102,7 +103,7 @@ public class StudentReplies extends AppCompatActivity {
         final Question userQuestion = currentUser.getSingleQuestion(questionID);
         //only get original replies, not replies to replies
         listItems=userQuestion.getParentRepliesOnly();
-
+        Collections.reverse(listItems);
         //go through every parent reply and find the replies to replies
         for(Reply r: listItems) {
             ArrayList<Reply> temp = new ArrayList<Reply>();

@@ -20,6 +20,7 @@ import com.example.sae1.raisehand.R;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import Activities.MakeReplyReply;
 import RecyclerViews.MyAdapterRepliesReply;
@@ -82,7 +83,7 @@ public class StudentRepliesReply extends AppCompatActivity{
         final Reply userReply = currentUser.getSingleReply(replyID);
 
         listItems = userReply.getReplies();
-
+        Collections.reverse(listItems);
 
         adapter = new MyAdapterRepliesReply(listItems, this);
 

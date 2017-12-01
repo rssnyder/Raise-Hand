@@ -38,7 +38,7 @@ public class RecentActivity {
         if(!userClasses.isEmpty()) {
            urlSuffix = "?classId=" + userClasses.get(0).getClassID();
         }
-        for(int i=1; i<userClasses.size(); i++) {
+        for(int i=1; i<userClasses.size()-1; i++) {
             urlSuffix+="+"+userClasses.get(i).getClassID();
 
         }
@@ -47,6 +47,7 @@ public class RecentActivity {
             return recentQuestions;
         }
         String url_final = URLS.URL_NOTIFICATIONS + urlSuffix;
+        System.out.println(url_final);
         StringRequest req = new StringRequest(Request.Method.GET,url_final,
                 new Response.Listener<String>() {
                     @Override
