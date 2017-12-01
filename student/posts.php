@@ -72,7 +72,7 @@
         }
         //Print endorsement
         if($endorsed) {
-          echo 'Endorsed Answer!';
+          echo '<text class="threed">Endorsed Answer!</text>';
         }
         //create the hidden comment box.
         echo '<div id="childComment' . $id . '" class="hidden">
