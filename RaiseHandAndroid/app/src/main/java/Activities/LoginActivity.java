@@ -176,7 +176,7 @@ public class LoginActivity extends Activity {
         }
         //Get the role of the user and direct the user to the correct page depending on their role
 
-        else if (roleID.equals(Roles.TEACHER.toString())) {
+        else if (roleID.equals(Roles.TEACHER.toString()) || roleID.equals(Roles.TA.toString())) {
 
                 Intent teacherHome =
                         new Intent(getApplicationContext(), TeacherHomePage.class);
