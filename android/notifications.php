@@ -15,7 +15,6 @@
 	   $list.=$classID;
 	   $list.=', ';
 	}
-    $list=substr($list, 0, strlen($list)-2);
     $list.=')';
 	echo $list;
     $userClasses= "SELECT ID FROM topics WHERE class_id IN $list";
