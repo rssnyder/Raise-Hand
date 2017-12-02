@@ -11,7 +11,7 @@
 	$class_id=$_GET['classId'];
 	$classes=explode('+', $class_id);
 	$list='(';
-	$comma= ', ';
+	$comma= ", ";
 	foreach($classes as $classID){
 	   
 	   $temp=$classID . "" . $comma;
