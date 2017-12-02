@@ -11,7 +11,6 @@
 	$class_id=$_GET['classId'];
 	$list= '(' . $class_id . ')';
     $userClasses= "SELECT ID FROM topics WHERE class_id IN $list";
-    echo $userClasses;
     $topic=$db->query($userClasses) or die($db->error);
     $finalarray="";
     while($t= $topic->fetch_array()){
@@ -19,7 +18,6 @@
     }
     $finalarray=rtrim($finalarray,',');
 	$stmt = "SELECT t.* FROM threads t WHERE t.topic_id IN ($finalarray) AND (TIMESTAMPDIFF(MINUTE, t.creation, NOW())) <= 180";
-    echo $stmt;
 	$stmt = $db->query($stmt) or die($db->error);
 	while($r= $stmt->fetch_array()){
             Echo 'NEWQUESTION ';
