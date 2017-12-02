@@ -48,8 +48,8 @@
         <activity android:name="Activities.MakeReplyReply"/>
         <activity android:name="Activities.ResetPassword"/>
         <activity android:name="Activities.ForgotPassword"/>
-        <activity android:name="Activities.LiveFeed">
-        </activity>
+        <activity android:name="Activities.LiveFeed"/>
+        <activity android:name="Student.StudentRepliesReply"></activity>
     </application>
 
 </manifest>
