@@ -9,14 +9,12 @@
 	//Connect to database
 	$db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 	$class_id=$_GET['classId'];
-	echo $class_id;
 	$list= '(' . $class_id . ')';
-	echo $list;
     $userClasses= "SELECT ID FROM topics WHERE class_id IN $list";
-    echo $userClasses;
     $topic=$db->query($userClasses) or die($db->error);
     $topics= $topic->fetch_array();
     $list2=implode(', ', $topics);
+    echo $list2;
 	$stmt = "SELECT t.* FROM threads t WHERE t.topic_id IN ($list2) AND (TIMESTAMPDIFF(MINUTE, t.creation, NOW())) <= 180";
 	$stmt = $db->query($stmt) or die($db->error);
 	while($r= $stmt->fetch_array()){
