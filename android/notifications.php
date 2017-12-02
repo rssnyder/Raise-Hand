@@ -12,7 +12,8 @@
 	$classes=explode('+', $class_id);
 	$list='(';
 	foreach($classes as $classID){
-	   $list.=$classID . ', ';
+	   $list.=$classID;
+	   $list.=', ';
 	}
     $list=substr($list, 0, strlen($list)-2);
     $list.=')';
