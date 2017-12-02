@@ -39,7 +39,7 @@ public class RecentActivity {
            urlSuffix = "?classId=" + userClasses.get(0).getClassID();
         }
         for(int i=1; i<userClasses.size()-1; i++) {
-            urlSuffix+="+"+userClasses.get(i).getClassID();
+            urlSuffix+=","+userClasses.get(i).getClassID();
 
         }
         if(urlSuffix.isEmpty()){
