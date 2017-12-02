@@ -10,7 +10,9 @@
 	$db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 	$class_id=$_GET['classId'];
 	$classes=explode('+', $class_id);
-	echo $classes;
+	foreach($classes as $classID){
+	    echo $classID;
+	}
 	$list='(';
 	foreach ($classes as $item) {
         $list+= $item . ', ';
