@@ -12,6 +12,7 @@
 	$list= '(' . $class_id . ')';
     $userClasses= "SELECT ID FROM topics WHERE class_id IN $list";
     $topic=$db->query($userClasses) or die($db->error);
+    $list2=$topic->fetch_array();
     $list2="";
     foreach($topic as $t){
         $list2 .= $t . ',';
