@@ -14,7 +14,6 @@
     $topic=$db->query($userClasses) or die($db->error);
     $topics= $topic->fetch_array();
     $list2=implode(', ', $topics);
-    echo $list2;
 	$stmt = "SELECT t.* FROM threads t WHERE t.topic_id IN ($list2) AND (TIMESTAMPDIFF(MINUTE, t.creation, NOW())) <= 180";
 	$stmt = $db->query($stmt) or die($db->error);
 	while($r= $stmt->fetch_array()){
