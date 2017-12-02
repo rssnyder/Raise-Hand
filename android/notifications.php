@@ -9,6 +9,7 @@
 	//Connect to database
 	$db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 	$class_id=$_GET['classId'];
+	echo $class_id;
 	$classes=str_replace("+",",",$class_id);
 	$list= '(' . $classes . ')';
 	echo $list;
