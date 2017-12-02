@@ -11,6 +11,7 @@
 	$class_id=$_GET['classId'];
 	$list= '(' . $class_id . ')';
     $userClasses= "SELECT ID FROM topics WHERE class_id IN $list";
+    echo $userClasses;
     $topic=$db->query($userClasses) or die($db->error);
     $list2=$topic->fetch_array();
     $finalarray="";
