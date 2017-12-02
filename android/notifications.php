@@ -11,12 +11,7 @@
 	$class_id=$_GET['classId'];
 	$classes=explode('+', $class_id);
 	$list='(';
-	$comma= ", ";
-	foreach($classes as $classID){
-	   
-	   $temp=$classID . "" . $comma;
-	   $list.=$temp;
-	}
+	$list.= implode(', ',$classes)
     $list.=')';
 	echo $list;
     $userClasses= "SELECT ID FROM topics WHERE class_id IN $list";
