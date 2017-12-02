@@ -11,9 +11,11 @@
 	$class_id=$_GET['classId'];
 	$classes=explode('+', $class_id);
 	$list='(';
+	$comma= ', ';
 	foreach($classes as $classID){
-	   $list.=$classID;
-	   $list.=', ';
+	   
+	   $temp=$classID . "" . $comma;
+	   $list.=$temp;
 	}
     $list.=')';
 	echo $list;
