@@ -14,9 +14,8 @@
 	foreach($classes as $classID){
 	   $list.=$classID . ', ';
 	}
-    echo $list;
     $list=substr($list, 0, strlen($list)-2);
-    $list+=")";
+    $list.=')';
 	echo $list;
     $userClasses= "SELECT ID FROM topics WHERE class_id IN $list";
     echo $userClasses;
