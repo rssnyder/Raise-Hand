@@ -10,8 +10,7 @@
 	$db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 	$class_id=$_GET['classId'];
 	echo $class_id;
-	$classes=str_replace("+",",",$class_id);
-	$list= '(' . $classes . ')';
+	$list= '(' . $class_id . ')';
 	echo $list;
     $userClasses= "SELECT ID FROM topics WHERE class_id IN $list";
     echo $userClasses;
