@@ -13,11 +13,11 @@
     $userClasses= "SELECT ID FROM topics WHERE class_id IN $list";
     $topic=$db->query($userClasses) or die($db->error);
     $list2=$topic->fetch_array();
-    $list2="";
-    foreach($topic as $t){
-        $list2 .= $t . ',';
+    $finalarray="";
+    foreach($list2 as $t){
+        $finalarray .= $t . ',';
     }
-	$stmt = "SELECT t.* FROM threads t WHERE t.topic_id IN ($topics) AND (TIMESTAMPDIFF(MINUTE, t.creation, NOW())) <= 180";
+	$stmt = "SELECT t.* FROM threads t WHERE t.topic_id IN ($finalarray) AND (TIMESTAMPDIFF(MINUTE, t.creation, NOW())) <= 180";
     echo $stmt;
 	$stmt = $db->query($stmt) or die($db->error);
 	while($r= $stmt->fetch_array()){
