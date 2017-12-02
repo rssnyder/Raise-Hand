@@ -1,8 +1,10 @@
 package Activities;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,6 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import RecyclerViews.MyAdapterLiveFeed;
@@ -52,8 +55,7 @@ public class LiveFeed extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
 
     private ProgressDialog pDialog;
-
-
+    private SwipeRefreshLayout swipeContainer;
 
     // TODO be able to choose the class
     // TODO submit questions
@@ -61,11 +63,13 @@ public class LiveFeed extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_live_feed);
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+
         pDialog= new ProgressDialog(this);
         pDialog.setMessage("Loading...");
         pDialog.setCancelable(false);
 
-        LiveSessionVolley("7");
+        LiveFeedVolley.LiveSessionVolley("7");
         //set up the recycler view
         recyclerView = (RecyclerView) findViewById(R.id.liveFeedRecyclerView);
         recyclerView.setHasFixedSize(true);
@@ -87,7 +91,7 @@ public class LiveFeed extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-
+        Collections.reverse(listItems);
 
             // Adapter to display the questions as recycler views. (cards on the screen)
             adapter = new MyAdapterLiveFeed(listItems, this);
@@ -106,6 +110,16 @@ public class LiveFeed extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // Swipe to refresh
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+            }
+        });
 
         ObjectMapper mapper = new ObjectMapper();
 
