@@ -12,6 +12,10 @@
 	$list= '(' . $class_id . ')';
     $userClasses= "SELECT ID FROM topics WHERE class_id IN $list";
     $topic=$db->query($userClasses) or die($db->error);
+    $list2="";
+    foreach($topic as $t){
+        $list2 .= $t . ',';
+    }
 	$stmt = "SELECT t.* FROM threads t WHERE t.topic_id IN ($topics) AND (TIMESTAMPDIFF(MINUTE, t.creation, NOW())) <= 180";
     echo $stmt;
 	$stmt = $db->query($stmt) or die($db->error);
