@@ -23,15 +23,16 @@
   </head>
   <body>
     <div id="title" align="center">
-      <h1 id="title">Raise Hand</h1>
+      <!--<h1 id="title">Raise Hand</h1>-->
+      <img src="uploads/logo.png">
     </div>
     <?php
     if($_SESSION['error']){
-        echo "<br><br><br><div align=\"center\">" . $_SESSION['errorCode'] . "</div>";
+        echo "<div align=\"center\"><text style='color: red;'>" . $_SESSION['errorCode'] . "</text></div><br>";
         $_SESSION['error'] = false;
     }
     ?>
-      <div align="center" class="container">
+      <div align="center" >
         <form id="login-form" action="utilities/signin.php" method="post">
           Username: <br>
           <input type="text" name="username" value="" size="35"><br>
