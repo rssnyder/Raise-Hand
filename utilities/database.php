@@ -183,7 +183,7 @@
       }
     }
     //Order the query by date
-    $query = $query . " ORDER BY creation LIMIT 3";
+    $query = $query . " ORDER BY creation DESC LIMIT 3";
     //Finally, get recent threads from this class
     $result = $db->query($query) or die($db->error);
     return $result;

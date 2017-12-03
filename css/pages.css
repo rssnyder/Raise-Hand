@@ -55,6 +55,25 @@ a.logout {
   color: #524727;
   text-decoration: none;
 }
+/* unvisited link */
+a:link {
+    color: red;
+}
+
+/* visited link */
+a:visited {
+    color: red;
+}
+
+/* mouse over link */
+a:hover {
+    color: hotpink;
+}
+
+/* selected link */
+a:active {
+    color: blue;
+}
 /*Buttons in the sidebar*/
 .button {
     background-color: #F1BE48;
