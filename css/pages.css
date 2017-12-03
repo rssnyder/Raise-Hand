@@ -306,7 +306,7 @@ a {
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#cc33cc', endColorstr='#5933cc',GradientType=0);
 	background-color:#cc33cc;
 }
-.left #color6.button {
+.left #color0.button {
 	-moz-box-shadow:inset 0px 1px 0px 0px #f5978e;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #f5978e;
 	box-shadow:inset 0px 1px 0px 0px #f5978e;
@@ -333,7 +333,7 @@ a {
   width: 178px;
   height: 60px;
 }
-.left #color6.button:hover {
+.left #color0.button:hover {
   background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #cc33cc), color-stop(1, #cc33a6));
 	background:-moz-linear-gradient(top, #cc33cc 5%, #cc33a6 100%);
 	background:-webkit-linear-gradient(top, #cc33cc 5%, #cc33a6 100%);

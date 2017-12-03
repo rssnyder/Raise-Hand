@@ -245,7 +245,7 @@ a.logout {
 	background-color:#a633cc;
 }
 
-#color6.button {
+#color0.button {
 	-moz-box-shadow:inset 0px 1px 0px 0px #b0b0b0;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #b0b0b0;
 	box-shadow:inset 0px 1px 0px 0px #b0b0b0;
@@ -269,7 +269,7 @@ a.logout {
   width: 178px;
   height: 50px;
 }
-#color6.button:hover {
+#color0.button:hover {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #cc33cc), color-stop(1, #ff0000));
 	background:-moz-linear-gradient(top, #cc33cc 5%, #ff0000 100%);
 	background:-webkit-linear-gradient(top, #cc33cc 5%, #ff0000 100%);
