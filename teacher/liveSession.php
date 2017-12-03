@@ -110,7 +110,7 @@ include '../utilities/database.php';
                 elem.remove();
                 $(elem).appendTo("#questions");
               });
-           }, 1000);
+           }, 100);
        </script>
        <script id="feedSav" language="javascript" type="text/javascript">
          function saveFeed() {

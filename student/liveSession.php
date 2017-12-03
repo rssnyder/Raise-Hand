@@ -21,7 +21,7 @@
 
   //Get this class
   $class = getClass($db, $_GET['class']);
-  
+
   //Function to call if no session avalible
   function leaveSession($class){
     header("Location: pages.php?class=$class");
@@ -108,7 +108,7 @@
                 elem.remove();
                 $(elem).appendTo("#questions");
               });
-           }, 1000);
+           }, 100);
        </script>
        <script>
         //Function to submit questions to feed
