@@ -169,7 +169,7 @@
         echo '<div class="row row-no-padding">
                 <div class="col-md-12">
                   <div class="jumbotron well">';
-        echo '<h5>' . $mainThread['title'] . '</h5><br>' . $mainThread['description'] . '<br><br>';
+        echo '<h5>' . $mainThread['title'] . '</h5><br>' . $mainThread['description'] . '<br><br>-' . $mainThread['user_name'] . ' @ ' . $mainThread['creation'] . '<br><br>';
         echo '<button class="commentButton" onclick="unhide(this,\'childComment0\')">Reply</button><a href="utilities/comment.php?class=' . $_GET['class'] . '&thread=' . $_GET['thread'] . '&action=flagThread" class="commentButton">Flag</a>';
         //create the hidden comment box.
         echo '<div id="childComment0" class="hidden">
