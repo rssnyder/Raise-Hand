@@ -1,7 +1,10 @@
 package Utilities;
 
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -15,6 +18,7 @@ import Activities.LiveFeed;
 import Activities.LoginActivity;
 import Activities.MakeQuestion;
 import Activities.ResetPassword;
+import Activities.SelectClassForLiveFeed;
 import Teacher.TeacherClasses;
 import Teacher.TeacherHomePage;
 import Teacher.TeacherNotifications;
@@ -96,8 +100,8 @@ public class NavUtil {
                             break;
                         }
                         else{
-                            Intent liveSession = new Intent(theContext, LiveFeed.class);
-                            theContext.startActivity(liveSession);
+                            Intent selectClass = new Intent(theContext, SelectClassForLiveFeed.class);
+                            theContext.startActivity(selectClass);
                             break;
                         }
                     case (R.id.nav_logout):

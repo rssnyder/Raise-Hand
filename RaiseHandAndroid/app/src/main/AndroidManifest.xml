@@ -49,7 +49,9 @@
         <activity android:name="Activities.ResetPassword"/>
         <activity android:name="Activities.ForgotPassword"/>
         <activity android:name="Activities.LiveFeed"/>
-        <activity android:name="Student.StudentRepliesReply"></activity>
+        <activity android:name="Student.StudentRepliesReply"/>
+        <activity android:name="Activities.SelectClassForLiveFeed">
+        </activity>
     </application>
 
 </manifest>

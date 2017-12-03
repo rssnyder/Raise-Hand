@@ -157,9 +157,9 @@ public class LiveFeed extends AppCompatActivity {
                 Message message = Message.obtain();
                 int size = listItems.size();
 
-                //sleep for 2 seconds
+                //sleep for .5 seconds
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
