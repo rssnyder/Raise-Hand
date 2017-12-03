@@ -32,35 +32,15 @@ public class LiveFeedVolley {
      */
     public static JSONArray LiveSessionVolley(String classID){
         String url_final = URL_LIVE_FEED + "?class=" + classID;
-        System.out.println(url_final);
+//        System.out.println(url_final);
         JsonArrayRequest jsonObjReq = new JsonArrayRequest(Request.Method.GET, url_final, null,
                                                             new Response.Listener<JSONArray>() {
                                                   @Override
                                                   public void onResponse(JSONArray response) {
                                                       Log.d(TAG, response.toString());
 
-                                                      try {
-                                                          // retrieves first JSON object in outer array
-                                                          JSONObject liveFeedObject = response.getJSONObject(0);
-
                                                           // Retrieves the "result" array from the JSON object
-//                                                          jArray = liveFeedObject.getJSONArray("result");
                                                           jArray = response;
-
-
-//                                                          // iterates through the JSON array getting objects and adding them
-//                                                          // to the list view until there are no more objects in the array
-//                                                          for(int i = 0; i < result.length(); i++){
-//                                                              //gets each JSON onject within the JSON array
-//                                                              JSONObject jsonObject = result.getJSONObject(i);
-//
-//                                                              String text = jsonObject.getString("txt");
-//                                                              String username = jsonObject.getString("username");
-//
-//                                                          }
-                                                      } catch (JSONException e) {
-                                                          e.printStackTrace();
-                                                      }
 
                                                   }
                                               }, new Response.ErrorListener() {

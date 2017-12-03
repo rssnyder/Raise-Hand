@@ -1,7 +1,10 @@
 package Activities;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -20,12 +23,15 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.sae1.raisehand.R;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -57,8 +63,11 @@ public class LiveFeed extends AppCompatActivity {
     private ProgressDialog pDialog;
     private SwipeRefreshLayout swipeContainer;
 
+    Thread thread;
+    Handler handler;
     // TODO be able to choose the class
     // TODO submit questions
+    @SuppressLint("HandlerLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +78,7 @@ public class LiveFeed extends AppCompatActivity {
         pDialog.setMessage("Loading...");
         pDialog.setCancelable(false);
 
-        LiveFeedVolley.LiveSessionVolley("7");
+        LiveSessionVolley("7");
         //set up the recycler view
         recyclerView = (RecyclerView) findViewById(R.id.liveFeedRecyclerView);
         recyclerView.setHasFixedSize(true);
@@ -78,25 +87,10 @@ public class LiveFeed extends AppCompatActivity {
         // list to hold the live feed questions
         listItems = new ArrayList<>();
 
-        jArray = LiveFeedVolley.getJSON();
-        System.out.println(jArray);
 
-        if(null != jArray) {
-            for (int i = 0; i < jArray.length(); i++) {
-                try {
-                    JSONObject jObject = jArray.getJSONObject(i);
-                    listItems.add(jObject);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        Collections.reverse(listItems);
-
-            // Adapter to display the questions as recycler views. (cards on the screen)
-            adapter = new MyAdapterLiveFeed(listItems, this);
-            recyclerView.setAdapter(adapter);
-        }
+        // Adapter to display the questions as recycler views. (cards on the screen)
+        adapter = new MyAdapterLiveFeed(listItems, this);
+        recyclerView.setAdapter(adapter);
 
         // Get the nav menu
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
@@ -130,6 +124,77 @@ public class LiveFeed extends AppCompatActivity {
         nv = (NavigationView) findViewById(R.id.nv1);
         NavUtil.setNavMenu(nv, ActivitiesNames.NONE, getApplicationContext(), mDrawerLayout);
 
+
+        // This starts a new thread which looks for new updates on the live feed server.
+        thread = new Thread(new MyThread());
+        thread.start();
+        handler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                Bundle bundle = new Bundle();
+                // get the message data (new live feed messages)
+                bundle = msg.getData();
+                String list = bundle.getString("listString");
+                Gson gson = new Gson();
+                listItems = gson.fromJson(list, new TypeToken<List<JSONObject>>(){}.getType());
+
+                // reset the recycler view and update the adapter with the new info
+                recyclerView.setAdapter(new MyAdapterLiveFeed(listItems));
+                recyclerView.invalidate();
+                adapter.notifyDataSetChanged();
+            }
+        };
+
+    }
+
+    /**
+     * This class checks for updates in the live feed.
+     */
+    class MyThread implements Runnable {
+        @Override
+        public void run(){
+            while (true){
+                Message message = Message.obtain();
+                int size = listItems.size();
+
+                //sleep for 2 seconds
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                // get the live feed data
+                jArray = LiveFeedVolley.LiveSessionVolley("7");
+
+                listItems.clear();
+                for (int i = 0; i < jArray.length(); i++) {
+                    try {
+                        JSONObject jObject = jArray.getJSONObject(i);
+                        listItems.add(jObject);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                // if there's new data (the list is bigger than before)
+                if (listItems.size() > size){
+                    Collections.reverse(listItems);
+                    //put the list in a string gson object
+                    Gson gson = new Gson();
+                    String listString = gson.toJson(listItems);
+                    //put the gson in a bundle
+                    Bundle bundle = new Bundle();
+                    bundle.putString("listString" , listString);
+                    //add the bundle to the message
+                    message.setData(bundle);
+                    //send it to the main thread
+                    handler.sendMessage(message);
+                }
+
+            }
+        }
     }
 
     private void showProgressDialog() {
@@ -146,7 +211,7 @@ public class LiveFeed extends AppCompatActivity {
     }
 
     public JSONArray LiveSessionVolley(String classID){
-        String url_final = URL_LIVE_FEED + "?class=" + classID;
+        final String url_final = URL_LIVE_FEED + "?class=" + classID;
         System.out.println(url_final);
         showProgressDialog();
         JsonArrayRequest jsonObjReq = new JsonArrayRequest(Request.Method.GET, url_final, null,
@@ -155,28 +220,20 @@ public class LiveFeed extends AppCompatActivity {
                                                                public void onResponse(JSONArray response) {
                                                                    Log.d(TAG, response.toString());
 
-                                                                   try {
-                                                                       // retrieves first JSON object in outer array
-                                                                       JSONObject liveFeedObject = response.getJSONObject(0);
+                                                                   // Retrieves the "result" array from the JSON object
+                                                                   jArray = response;
+                                                                   for (int i = 0; i < jArray.length(); i++) {
+                                                                       try {
+                                                                           JSONObject jObject = jArray.getJSONObject(i);
+                                                                           listItems.add(jObject);
 
-                                                                       // Retrieves the "result" array from the JSON object
-//                                                          jArray = liveFeedObject.getJSONArray("result");
-                                                                       jArray = response;
-
-
-//                                                          // iterates through the JSON array getting objects and adding them
-//                                                          // to the list view until there are no more objects in the array
-//                                                          for(int i = 0; i < result.length(); i++){
-//                                                              //gets each JSON onject within the JSON array
-//                                                              JSONObject jsonObject = result.getJSONObject(i);
-//
-//                                                              String text = jsonObject.getString("txt");
-//                                                              String username = jsonObject.getString("username");
-//
-//                                                          }
-                                                                   } catch (JSONException e) {
-                                                                       e.printStackTrace();
+                                                                       } catch (JSONException e) {
+                                                                           e.printStackTrace();
+                                                                       }
                                                                    }
+                                                                   Collections.reverse(listItems);
+                                                                   adapter.notifyDataSetChanged();
+
                                                                    hideProgressDialog();
 
 
@@ -191,8 +248,10 @@ public class LiveFeed extends AppCompatActivity {
         }
         );
 
+
         VolleyMainActivityHandler.getInstance().addToRequestQueue(jsonObjReq, tag_string_req);
         return jArray;
     }
+
 
 }

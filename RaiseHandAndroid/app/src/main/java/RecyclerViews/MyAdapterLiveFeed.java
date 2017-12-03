@@ -35,6 +35,10 @@ public class MyAdapterLiveFeed extends RecyclerView.Adapter<MyAdapterLiveFeed.Vi
         this.context = context;
     }
 
+    public MyAdapterLiveFeed(List<JSONObject> listItems) {
+        this.listItems = listItems;
+    }
+
     /**
      * This method inflates the view for the handler i.e. how the page will look like when the user
      * gets to that page
@@ -57,7 +61,7 @@ public class MyAdapterLiveFeed extends RecyclerView.Adapter<MyAdapterLiveFeed.Vi
 
 //        holder.textViewHead.setText(listItem.getText());
         try {
-            holder.textViewDesc.setText(listItem.get("txt").toString());
+            holder.textViewHead.setText(listItem.get("txt").toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
