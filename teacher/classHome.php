@@ -80,7 +80,7 @@
                   <div class="col-md-12">
                     <div class="jumbotron well">
                       <?php
-                          echo '<h4>Instructor:</h4> ' . $teacher['first_name'] . ' ' . $teacher['last_name'] . '<h6>Contact:</h6> ' . $teacher['email'];
+                          echo '<h1>Instructor</h1><h3>' . $teacher['first_name'] . ' ' . $teacher['last_name'] . '<br>' . $teacher['email'] . '</h3>';
                       ?>
                     </div>
                   </div>
@@ -89,11 +89,12 @@
                   <div class="col-md-12">
                     <div class="jumbotron well">
                       <?php
-                          echo '<h4>Teaching Assistants:</h4>';
+                          echo '<h1>Teaching Assistants:</h1><h3>';
                           $allTAs = getTAs($db, $_GET['class']);
                           foreach ($allTAs as $value) {
                             echo $value . '<br>';
                           }
+                          echo '</h3>';
                       ?>
                     </div>
                   </div>

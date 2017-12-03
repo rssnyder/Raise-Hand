@@ -55,6 +55,29 @@ a.logout {
   color: #524727;
   text-decoration: none;
 }
+/*Buttons in the sidebar*/
+.button {
+    background-color: #F1BE48;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    width: 178px;
+    display: block;
+}
+/*When hovering over the button*/
+.button:hover {
+  background-color: #C8102E;
+}
+/*When clicking the button*/
+.button:active {
+  background-color: #C8102E;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
 /* Style for normal links */
 @linkBlue: #0000ee;
 a {
