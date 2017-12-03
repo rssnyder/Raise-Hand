@@ -69,16 +69,7 @@
                     <div class="jumbotron well">
                       <?php
                         $teacher = getUserInfo($db, $class['teacher_id']);
-                        echo '<h1>' . $class['class_name'] . '</h1><h3>' . $class['description'] . '</h3>';
-                      ?>
-                    </div>
-                  </div>
-                </div>
-                <div class="row row-no-padding">
-                  <div class="col-md-12">
-                    <div class="jumbotron well">
-                      <?php
-                        echo '<h1>Instructor</h1><h3>' . $teacher['first_name'] . ' ' . $teacher['last_name'] . '<br>' . $teacher['email'] . '</h3>';
+                        echo '<h1>' . $class['description'] . '</h1><h3>' . $teacher['first_name'] . ' ' . $teacher['last_name'] . '<br>' . $teacher['email'] . '</h3>';
                       ?>
                     </div>
                   </div>

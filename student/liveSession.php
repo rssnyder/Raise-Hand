@@ -19,6 +19,9 @@
   //Get the db Referance
   $db = getDB();
 
+  //Get this class
+  $class = getClass($db, $_GET['class']);
+  
   //Function to call if no session avalible
   function leaveSession($class){
     header("Location: pages.php?class=$class");

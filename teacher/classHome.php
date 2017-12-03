@@ -71,16 +71,7 @@
                     <div class="jumbotron well">
                       <?php
                         $teacher = getUserInfo($db, $class['teacher_id']);
-                        echo '<h1>' . $class['class_name'] . '</h1><h3>' . $class['description'] . '</h3>';
-                      ?>
-                    </div>
-                  </div>
-                </div>
-                <div class="row row-no-padding">
-                  <div class="col-md-12">
-                    <div class="jumbotron well">
-                      <?php
-                          echo '<h1>Instructor</h1><h3>' . $teacher['first_name'] . ' ' . $teacher['last_name'] . '<br>' . $teacher['email'] . '</h3>';
+                        echo '<h1>' . $class['description'] . '</h1><h3>' . $teacher['first_name'] . ' ' . $teacher['last_name'] . '<br>' . $teacher['email'] . '</h3>';
                       ?>
                     </div>
                   </div>
@@ -95,6 +86,45 @@
                             echo $value . '<br>';
                           }
                           echo '</h3>';
+                      ?>
+                    </div>
+                  </div>
+                </div>
+                <?php
+                  //Time to get the recent threads
+                  $threads = getRecentThreads($db, $_GET['class']);
+                ?>
+                <div class="row row-no-padding">
+                  <div class="col-md-4">
+                    <div class="jumbotron well">
+                      <?php
+                        //If we have at least 3 threads
+                        if($thisT = $threads->fetch_assoc()) {
+                          echo '<h4><a href=posts.php?class=' . $_GET['class'] . '&thread=' . $thisT['ID'] . '>' . $thisT['title'] . '</a></h4>';
+                          echo $thisT['description'];
+                        }
+                      ?>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="jumbotron well">
+                      <?php
+                        //If we have at least 3 threads
+                        if($thisT = $threads->fetch_assoc()) {
+                          echo '<h4><a href=posts.php?class=' . $_GET['class'] . '&thread=' . $thisT['ID'] . '>' . $thisT['title'] . '</a></h4>';
+                          echo $thisT['description'];
+                        }
+                      ?>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="jumbotron well">
+                      <?php
+                        //If we have at least 3 threads
+                        if($thisT = $threads->fetch_assoc()) {
+                          echo '<h4><a href=posts.php?class=' . $_GET['class'] . '&thread=' . $thisT['ID'] . '>' . $thisT['title'] . '</a></h4>';
+                          echo $thisT['description'];
+                        }
                       ?>
                     </div>
                   </div>
