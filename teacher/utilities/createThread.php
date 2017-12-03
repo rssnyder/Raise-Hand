@@ -32,16 +32,20 @@ include '../../utilities/database.php';
   $title = $_POST['title'];
   $desc = $_POST['description'];
   //Create the topic
+  $username = $_SESSION['username'];
+  //Create the topic
   $query = "INSERT INTO threads
     (topic_id,
     owner_id,
     title,
-    description)
+    description,
+    user_name)
     VALUES
     ($topic,
     $uID,
     '$title',
-    '$desc')";
+    '$desc',
+    '$username')";
 
   //die('$query');
   $result = $db->query($query) or die($db->error);
