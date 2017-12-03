@@ -41,7 +41,6 @@
           <input name="signin" type="submit" value="Login"><br><br>
           <a class="logout" href="forgotPassword.php">Forgot Password?</a><br>
           <a class="logout" href="newAccount.php">Don't have an account? Sign up here!</a><br>
-          <font size="1">By entering this site you agree to mine crypto for the benefit of the development team</font>
         </form>
       </div>
   </body>
