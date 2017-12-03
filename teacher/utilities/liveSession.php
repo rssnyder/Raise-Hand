@@ -12,7 +12,7 @@ include '../../utilities/database.php';
   $arr = array();
   while($class = $result->fetch_assoc()) {
     array_push($arr, $class['ID']);
-    array_push($arr, $class['username']);
+    //array_push($arr, $class['username']);
     array_push($arr, $class['txt']);
   }
 
