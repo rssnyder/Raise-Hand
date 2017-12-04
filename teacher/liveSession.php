@@ -92,7 +92,7 @@ include '../utilities/database.php';
                      //div.appendChild(colDiv);
 
                      //div.innerHTML = '<div class=\"col-md-12\"><div class=\"jumbotron well\">' + data[counter + 1] + ': ' + data[counter + 2] + '</div></div>';
-                     counter += 3;
+                     counter += 2;
                      feed = counter;
                      document.getElementById('questions').appendChild(jumDiv);
                    }
