@@ -23,13 +23,13 @@
 
 	$stmt = "INSERT INTO liveQueue" . $class . "(username, class_id, txt) VALUES ('$username', '$class','$txt')";
 	Echo $stmt;
-	Echo "";
+	Echo "\r\n";
 	Echo $txt;
-	Echo "";
+	Echo "\r\n";
 	Echo $class;
-	Echo "";
+	Echo "\r\n";
 	Echo $username;
-	Echo "";
+	Echo "\r\n";
 
 	$stmt = $db->query($stmt) or die($db->error);
 	die("Done");
