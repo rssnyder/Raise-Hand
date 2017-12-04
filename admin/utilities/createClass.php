@@ -125,7 +125,7 @@
                   class_id)
                   VALUES
                   (2,
-                  " . $_SESSION['id'] . ",
+                  " . $teacherID . ",
                   " . $thisClass['ID'] . ");
                   ";
 
