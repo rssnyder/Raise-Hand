@@ -89,7 +89,7 @@
                      jumDiv.setAttribute('class', 'jumbotron well');
                      jumDiv.setAttribute('id', data[counter]);
                      jumDiv.innerHTML = data[counter + 1];
-                     counter += 3;
+                     counter += 2;
                      feed = counter;
                      document.getElementById('questions').appendChild(jumDiv);
                    }
@@ -108,7 +108,7 @@
                 elem.remove();
                 $(elem).appendTo("#questions");
               });
-           }, 500);
+           }, 100);
        </script>
        <script>
         //Function to submit questions to feed
