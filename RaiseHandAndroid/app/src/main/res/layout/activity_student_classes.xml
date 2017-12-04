@@ -37,13 +37,13 @@
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/floatingActionButtonClass"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
             android:layout_margin="16dp"
             android:src="@mipmap/ic_add_black_24dp"
             app:layout_anchor="@id/questionsRecyclerViewStudent"
-            app:layout_anchorGravity="bottom|right|end"/>
+            app:layout_anchorGravity="bottom|right|end" />
 
     </LinearLayout>
 

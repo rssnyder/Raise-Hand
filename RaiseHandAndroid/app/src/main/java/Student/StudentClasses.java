@@ -75,7 +75,7 @@ public class StudentClasses extends AppCompatActivity {
         listItems = currentUser.getClasses();
 
         //remove the last question because it is null
-        listItems.remove(currentUser.getClasses().get(currentUser.getClasses().size()-1));
+        //listItems.remove(currentUser.getClasses().get(currentUser.getClasses().size()-1));
 
         // Adapter to display the classes as recycler views. (cards on the screen)
         adapter = new MyAdapterClassesStudent(listItems, this);

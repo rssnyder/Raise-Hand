@@ -76,7 +76,7 @@ public class MakeQuestion extends AppCompatActivity {
                 //calls the method from the Question class (in Utilities) that adds the question to the database
                 temp.addQuestionToDatabase();
 
-                //Go to Classes (when we figure out the refreshing thing, this should redirect back to the previous reply)
+                //Go to Classes
                 Intent teacherClasses = new Intent(getApplicationContext(), TeacherClasses.class);
                 startActivity(teacherClasses);
 

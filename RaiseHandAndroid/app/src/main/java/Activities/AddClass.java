@@ -71,10 +71,13 @@ public class AddClass  extends AppCompatActivity {
                                 @Override
                                 public void onResponse(String response) {
                                     Log.d(TAG, response.toString());
+                                    String phpResponse=response.toString();
+                                    String classTitle=phpResponse.substring(11,phpResponse.indexOf("ID="));
+                                    String classID=phpResponse.substring(phpResponse.indexOf("ID=")+3);
                                     SharedPreferences.Editor editor = mPreferences.edit();
                                     Gson gson = new Gson();
                                     String json = gson.toJson(currentUser);
-                                    currentUser.getClasses().add(new Classes("this","that"));
+                                    currentUser.getClasses().add(new Classes(classTitle,classID));
                                     editor.putString("currentUser", json);
                                     editor.commit();
 
@@ -89,7 +92,7 @@ public class AddClass  extends AppCompatActivity {
                     );
                     // Adding request to request queue
                     VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
-                    //Go to Classes (when we figure out the refreshing thing, this should redirect back to the previous reply)
+
                     Intent home = new Intent(getApplicationContext(), StudentHomePage.class);
                     startActivity(home);
 

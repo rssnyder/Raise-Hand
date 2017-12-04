@@ -14,6 +14,7 @@ import Teacher.TeacherClasses;
 import Teacher.TeacherHomePage;
 import Teacher.TeacherNotifications;
 import Teacher.TeacherUpvotedQuestions;
+import Student.*;
 
 /**
  * This Class controls the navigation drawer.
@@ -43,6 +44,16 @@ public class NavUtil {
                             theContext.startActivity(teacherHome);
                             break;
                         }
+                    case(R.id.nav_home_student):
+                        if(ActivityEnum == ActivityEnum.HOME){
+                            mDrawerLayout.closeDrawers();
+                            break;
+                        }
+                        else {
+                            Intent studentHome = new Intent(theContext, StudentHomePage.class);
+                            theContext.startActivity(studentHome);
+                            break;
+                        }
                     case (R.id.nav_classes):
                         if(ActivityEnum == ActivityEnum.CLASSES){
                             mDrawerLayout.closeDrawers();
@@ -51,6 +62,16 @@ public class NavUtil {
                         else {
                             Intent teacherClasses = new Intent(theContext, TeacherClasses.class);
                             theContext.startActivity(teacherClasses);
+                            break;
+                        }
+                    case (R.id.nav_classes_student):
+                        if(ActivityEnum == ActivityEnum.CLASSES){
+                            mDrawerLayout.closeDrawers();
+                            break;
+                        }
+                        else {
+                            Intent studentClasses = new Intent(theContext, StudentClasses.class);
+                            theContext.startActivity(studentClasses);
                             break;
                         }
                     case (R.id.nav_notifications):
@@ -64,7 +85,28 @@ public class NavUtil {
                             theContext.startActivity(teacherNotifications);
                             break;
                         }
+                    case (R.id.nav_notifications_student):
+                        if(ActivityEnum == ActivityEnum.NOTIFICATIONS){
+                            mDrawerLayout.closeDrawers();
+                            break;
+                        }
+                        else {
+                            Intent studentNotifications =
+                                    new Intent(theContext, StudentNotifications.class);
+                            theContext.startActivity(studentNotifications);
+                            break;
+                        }
                     case (R.id.nav_settings):
+                        if(ActivityEnum == ActivityEnum.SETTINGS){
+                            mDrawerLayout.closeDrawers();
+                            break;
+                        }
+                        else {
+                            Intent resetPassword = new Intent(theContext, ResetPassword.class);
+                            theContext.startActivity(resetPassword);
+                            break;
+                        }
+                    case (R.id.nav_settings_student):
                         if(ActivityEnum == ActivityEnum.SETTINGS){
                             mDrawerLayout.closeDrawers();
                             break;

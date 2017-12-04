@@ -738,7 +738,6 @@ public class StringParse {
                             time = time + seperated[i] + " ";
                             i++;
                         }
-                        //TODO: Maybe have to parse this too?
                         tempR.setReplyTimestamp(time);
                     }
                     if (i < max && seperated[i].equals("PARENT")) {
