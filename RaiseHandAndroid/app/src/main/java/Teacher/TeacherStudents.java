@@ -10,17 +10,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-
 import com.example.sae1.raisehand.R;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-
 import RecyclerViews.ListItemTeacherStudents;
 import RecyclerViews.MyAdapterStudents;
 import Utilities.ActivitiesNames;
 import Utilities.NavUtil;
+
 /**
  *
  * This class has the students in the teachers class
@@ -31,7 +29,6 @@ public class TeacherStudents extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private List<ListItemTeacherStudents> listItems;
     private Field mDragger;
-
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView nv;

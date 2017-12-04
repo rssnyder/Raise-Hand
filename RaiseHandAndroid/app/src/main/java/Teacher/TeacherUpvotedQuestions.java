@@ -1,6 +1,5 @@
 package Teacher;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,50 +10,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
-
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.StringRequest;
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
-
-import java.lang.reflect.Field;
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-
-import Activities.VolleyMainActivityHandler;
-import RecyclerViews.ListItemTeacherNotifications;
-import RecyclerViews.MyAdapterNotifications;
 import RecyclerViews.MyAdapterQuestions;
 import Utilities.ActivitiesNames;
 import Utilities.Classes;
 import Utilities.NavUtil;
 import Utilities.Question;
-import Utilities.StringParse;
 import Utilities.Topics;
-import Utilities.URLS;
 import Utilities.User;
 
 /**
  *
- * This class has notifications for the teacher.
- * Notifications will include recent questions and replies submitted.
+ * This class has all of the most upvoted questions for the teacher.
+ * The cut off is 5 upvotes or more
  * @author sae1
  */
 public class TeacherUpvotedQuestions extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private ArrayList<Question> listItems;
-
     private User currentUser;
     private SharedPreferences mPreferences;
     private DrawerLayout mDrawerLayout;
@@ -62,6 +39,7 @@ public class TeacherUpvotedQuestions extends AppCompatActivity {
     private Toolbar mToolbar;
     private NavigationView nv;
     private ProgressDialog pDialog;
+
     /**
      *
      * This method starts the activity, initializes the activity view and gets the currentUser, as
@@ -77,12 +55,10 @@ public class TeacherUpvotedQuestions extends AppCompatActivity {
         pDialog= new ProgressDialog(this);
         pDialog.setMessage("Loading...");
         pDialog.setCancelable(false);
-
         listItems=new ArrayList<Question>();
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
         currentUser = gson.fromJson(json, User.class);
-        //getNotifications(currentUser.getClasses());
         for(Classes c: currentUser.getClasses()){
             for(Topics t: c.getTopics()){
                 for(Question q: t.getQuestions()) {

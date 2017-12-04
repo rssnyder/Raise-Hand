@@ -2,7 +2,6 @@ package Teacher;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -11,14 +10,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
-
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-
 import RecyclerViews.MyAdapterClasses;
 import Utilities.ActivitiesNames;
 import Utilities.Classes;
@@ -34,9 +29,7 @@ public class TeacherClasses extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<Classes> listItems;
-    private Field mDragger;
     private SharedPreferences mPreferences;
-
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView nv;
@@ -91,9 +84,6 @@ public class TeacherClasses extends AppCompatActivity {
         // add the menu items to the drawer
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
-
-        //makes it so you can swipe the menu out from anywhere on screen
-//        slideOutMenu();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

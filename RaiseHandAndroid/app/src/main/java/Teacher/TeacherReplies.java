@@ -18,7 +18,6 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -26,11 +25,9 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
-
 import Activities.MakeReply;
 import Activities.VolleyMainActivityHandler;
 import RecyclerViews.MyAdapterReplies;
@@ -43,6 +40,7 @@ import Utilities.SwipeController;
 import Utilities.SwipeControllerActions;
 import Utilities.URLS;
 import Utilities.User;
+
 /**
  *
  * This class has replies for the teacher's class.
@@ -52,7 +50,6 @@ public class TeacherReplies extends AppCompatActivity {
     private RecyclerView recyclerView;
     private MyAdapterReplies adapter;
     private ArrayList<Reply> listItems;
-    private Field mDragger;
     SwipeController swipeController = null;
     private ProgressDialog pDialog;
     private SharedPreferences mPreferences;
