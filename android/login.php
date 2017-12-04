@@ -35,7 +35,7 @@
 		$response['error'] = false;
 		$response['message'] = 'Login successfull';
 		$tempID= $response['ID'];
-	    $stmt = "SELECT class_id FROM userClasses WHERE user_id = '$tempID' ";
+	    $stmt = "SELECT class_id, class_name FROM userClasses WHERE user_id = '$tempID' ";
 	    $stmt = $db->query($stmt) or die($db->error);
 	    if(mysqli_num_rows($stmt)>0){
 	        Echo ' ';
@@ -43,10 +43,12 @@
 	        while($row = $stmt->fetch_array()){
 	             if(mysqli_num_rows($stmt)==1){
 	                Echo ' '.$row['class_id'].'';
+	                Echo ' '.$row['class_name'];
                   
 	            }
 	            else{
-	                Echo ''.$row['class_id'].', ';
+	                Echo ''.$row['class_id'].' ';
+	                Echo ' '.$row['class_name'].', ';
 	               
 	            }
 	        }
