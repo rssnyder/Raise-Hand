@@ -35,14 +35,14 @@
 		$response['error'] = false;
 		$response['message'] = 'Login successfull';
 		$tempID= $response['ID'];
-	    $stmt = "SELECT class_id FROM userClasses WHERE user_id = '$tempID' ";
+	    $stmt = "SELECT class_id FROM userClasses WHERE user_id = $tempID";
 	    $stmt = $db->query($stmt) or die($db->error);
 	    if(mysqli_num_rows($stmt)>0){
 	        Echo ' ';
 	        while($row = $stmt->fetch_array()){
 	             if(mysqli_num_rows($stmt)==1){
 	                $classID= $row['class_id'];
-	                $temp="SELECT class_name FROM classes WHERE ID= '$classID'";
+	                $temp="SELECT class_name FROM classes WHERE ID = " . $row['class_id'];
 	                $temp= $db->query($stmt) or die($db->error);
 	                $temp2=$temp->fetch_array();
 	                Echo ' '.$classID;
