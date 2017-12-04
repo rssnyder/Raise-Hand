@@ -48,7 +48,7 @@
 	             if(mysqli_num_rows($stmt)==1){
 	                Echo ' '.$classID;
 	                Echo ' '.$temp2['class_name'];
-                  
+                    
 	            }
 	            else{
 	                Echo ' '.$classID.'';
