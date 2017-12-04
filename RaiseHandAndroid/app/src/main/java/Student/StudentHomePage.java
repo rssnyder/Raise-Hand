@@ -17,6 +17,9 @@ import java.lang.reflect.Field;
 
 import Activities.MakeQuestion;
 import Activities.LoginActivity;
+import Utilities.ActivitiesNames;
+import Utilities.NavUtil;
+
 /**
  *
  * This is a class for the home page for students
@@ -41,6 +44,7 @@ public class StudentHomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_home_page);
 
+        // Gets stored preferences. User is stored here.
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
 
@@ -50,41 +54,12 @@ public class StudentHomePage extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
 
-        slideOutMenu();
         mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         nv = (NavigationView) findViewById(R.id.nv2);
-        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case(R.id.nav_home_student):
-                        mDrawerLayout.closeDrawers();
-                        break;
-                    case (R.id.nav_classes_student):
-
-                        Intent studentClasses = new Intent(getApplicationContext(), StudentClasses.class);
-                        startActivity(studentClasses);
-                        break;
-                    case (R.id.nav_notifications_student):
-                        Intent studentNotifications = new Intent(getApplicationContext(), StudentNotifications.class);
-                        startActivity(studentNotifications);
-                        break;
-                    case (R.id.nav_settings_student):
-                        Intent studentSettings = new Intent(getApplicationContext(), StudentSettings.class);
-                        startActivity(studentSettings);
-                        break;
-                    case (R.id.nav_logout_student):
-                        Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
-                        startActivity(loginPage);
-                        finish();
-                        break;
-                }
-                return true;
-            }
-        });
+        NavUtil.setNavMenu(nv, ActivitiesNames.HOME, getApplicationContext(), mDrawerLayout);
     }
     /**
      * if an item in the pull out menu is selected, navigate to a new page
@@ -99,44 +74,5 @@ public class StudentHomePage extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private void slideOutMenu(){
-
-        try {
-            mDragger = mDrawerLayout.getClass().getDeclaredField(
-                    "mLeftDragger");//mRightDragger for right obviously
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
-        mDragger.setAccessible(true);
-        ViewDragHelper draggerObj = null;
-        try {
-            draggerObj = (ViewDragHelper) mDragger
-                    .get(mDrawerLayout);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        Field mEdgeSize = null;
-        try {
-            mEdgeSize = draggerObj.getClass().getDeclaredField(
-                    "mEdgeSize");
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
-        mEdgeSize.setAccessible(true);
-        int edge = 0;
-        try {
-            edge = mEdgeSize.getInt(draggerObj);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            mEdgeSize.setInt(draggerObj, edge * 25);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
     }
 }

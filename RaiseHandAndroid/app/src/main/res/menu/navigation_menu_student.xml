@@ -18,6 +18,10 @@
             android:icon="@mipmap/ic_settings_black_24dp"
             android:title="Settings"/>
 
+        <item android:id="@+id/nav_live"
+            android:icon="@mipmap/ic_looks_black_24dp"
+            android:title="Live Session"/>
+
         <item android:id="@+id/nav_logout_student"
             android:icon="@mipmap/ic_power_settings_new_black_24dp"
             android:title="Logout"/>
