@@ -108,7 +108,7 @@
                 elem.remove();
                 $(elem).appendTo("#questions");
               });
-           }, 100);
+           }, 500);
        </script>
        <script>
         //Function to submit questions to feed
