@@ -4,12 +4,10 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v4.widget.ViewDragHelper;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,7 +19,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -29,16 +26,11 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
-
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
-
 import Activities.VolleyMainActivityHandler;
 import RecyclerViews.MyAdapterRepliesStudent;
-import Activities.MakeQuestion;
 import Activities.MakeReply;
-import Activities.LoginActivity;
 import Utilities.ActivitiesNames;
 import Utilities.NavUtil;
 import Utilities.Question;
@@ -48,6 +40,7 @@ import Utilities.SwipeController;
 import Utilities.SwipeControllerActions;
 import Utilities.URLS;
 import Utilities.User;
+
 /**
  *
  * This is a class for the replies in a student's class
@@ -57,7 +50,6 @@ public class StudentReplies extends AppCompatActivity {
     private RecyclerView recyclerView;
     private MyAdapterRepliesStudent adapter;
     private ArrayList<Reply> listItems;
-    private Field mDragger;
     SwipeController swipeController = null;
     private ProgressDialog pDialog;
     private SharedPreferences mPreferences;

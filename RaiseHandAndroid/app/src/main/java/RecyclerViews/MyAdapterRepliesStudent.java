@@ -1,6 +1,5 @@
 package RecyclerViews;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -10,15 +9,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
-
 import java.util.List;
-
 import Student.StudentRepliesReply;
 import Utilities.Reply;
 import Utilities.StringParse;
+
 /**
  *
  * How to view the list of replies on the student side of the app

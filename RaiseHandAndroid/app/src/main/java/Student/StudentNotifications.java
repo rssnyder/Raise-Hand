@@ -1,6 +1,5 @@
 package Student;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,37 +10,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
-
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.StringRequest;
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
-
 import java.lang.reflect.Field;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-
-import Activities.VolleyMainActivityHandler;
-import RecyclerViews.ListItemTeacherNotifications;
-import RecyclerViews.MyAdapterNotifications;
 import RecyclerViews.MyAdapterQuestions;
 import Utilities.ActivitiesNames;
 import Utilities.Classes;
 import Utilities.NavUtil;
 import Utilities.Question;
-import Utilities.StringParse;
 import Utilities.Topics;
-import Utilities.URLS;
 import Utilities.User;
 
 /**
@@ -51,12 +32,9 @@ import Utilities.User;
  * @author sae1
  */
 public class StudentNotifications extends AppCompatActivity {
-    private static String TAG= StudentNotifications.class.getSimpleName();
-    private static String tag_string_req= "string_req";
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private ArrayList<Question> listItems;
-
     private User currentUser;
     private SharedPreferences mPreferences;
     private DrawerLayout mDrawerLayout;
@@ -64,7 +42,7 @@ public class StudentNotifications extends AppCompatActivity {
     private Toolbar mToolbar;
     private NavigationView nv;
     private ProgressDialog pDialog;
-    private Field mDragger;
+
     /**
      *
      * This method starts the activity, initializes the activity view and gets the currentUser, as
@@ -85,7 +63,6 @@ public class StudentNotifications extends AppCompatActivity {
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
         currentUser = gson.fromJson(json, User.class);
-        //getNotifications(currentUser.getClasses());
         for(Classes c: currentUser.getClasses()){
             for(Topics t: c.getTopics()){
                 for(Question q: t.getQuestions()) {
@@ -141,16 +118,5 @@ public class StudentNotifications extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    private void showProgressDialog() {
-        if(!pDialog.isShowing()) {
-            pDialog.show();
-        }
-    }
 
-    private void hideProgressDialog() {
-        if(pDialog.isShowing()) {
-            pDialog.hide();
-            pDialog.dismiss();
-        }
-    }
 }

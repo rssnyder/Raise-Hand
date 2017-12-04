@@ -2,13 +2,11 @@ package Utilities;
 
 import android.util.Log;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
-
 import java.util.ArrayList;
 import Activities.VolleyMainActivityHandler;
 

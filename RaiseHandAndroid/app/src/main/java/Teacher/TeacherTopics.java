@@ -13,39 +13,31 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
-
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-
 import RecyclerViews.MyAdapterTopics;
 import Utilities.ActivitiesNames;
 import Utilities.Classes;
 import Utilities.NavUtil;
 import Utilities.Topics;
 import Utilities.User;
+
 /**
  *
  * This class has topics for the teacher's class.
  *  @author joel2
  */
 public class TeacherTopics extends AppCompatActivity {
-    private String TAG = TeacherTopics.class.getSimpleName();
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private ArrayList<Topics> listItemsOfTopics;
-    private Field mDragger;
-
     private SharedPreferences mPreferences;
-
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView nv;
     private Toolbar mToolbar;
-
     private SwipeRefreshLayout swipeContainer;
 
     /**
@@ -86,7 +78,6 @@ public class TeacherTopics extends AppCompatActivity {
         User currentUser = gson.fromJson(json, User.class);
 
         // loop until you find the Topics from the class you clicked on in TeacherClasses
-        // Can probably do this with the getSingleClass method
         for(Classes c : currentUser.getClasses()){
             if(c.getClassID().equals(classID)){
                 for (Topics t: c.getTopics()) {
@@ -119,8 +110,6 @@ public class TeacherTopics extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
 
-        //makes it so you can swipe the menu out from anywhere on screen
-//        slideOutMenu();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

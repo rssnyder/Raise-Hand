@@ -17,13 +17,10 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
 import com.example.sae1.raisehand.R;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
-
 import Activities.MakeReplyReply;
 import Activities.VolleyMainActivityHandler;
 import RecyclerViews.MyAdapterRepliesReply;
@@ -33,8 +30,6 @@ import Utilities.Reply;
 import Utilities.SwipeController;
 import Utilities.SwipeControllerActions;
 import Utilities.User;
-
-import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
 
 /**

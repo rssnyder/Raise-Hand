@@ -7,11 +7,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-
 import com.example.sae1.raisehand.R;
-
 import Utilities.ActivitiesNames;
 import Utilities.NavUtil;
+
 /**
  *
  * This class has user settings for the teacher.

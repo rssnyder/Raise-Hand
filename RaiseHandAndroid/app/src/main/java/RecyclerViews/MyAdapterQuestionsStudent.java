@@ -1,13 +1,7 @@
 package RecyclerViews;
 
-/**
- *
- * How to view the list of questions on the student side of the app
- * @author jaggarwal
- */
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,15 +9,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.example.sae1.raisehand.R;
 import Student.StudentReplies;
 import com.google.gson.Gson;
 import java.util.List;
-
 import Utilities.Question;
 import Utilities.StringParse;
 
+/**
+ *
+ * How to view the list of questions on the student side of the app
+ * @author jaggarwal
+ */
 public class MyAdapterQuestionsStudent extends RecyclerView.Adapter<MyAdapterQuestionsStudent.ViewHolder> {
 
     private List<Question> listItems;

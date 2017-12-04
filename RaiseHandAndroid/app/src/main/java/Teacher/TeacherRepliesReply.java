@@ -3,7 +3,6 @@ package Teacher;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -17,15 +16,11 @@ import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.MenuItem;
 import android.view.View;
-
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
-
-import Activities.LoginActivity;
 import Activities.MakeReplyReply;
 import RecyclerViews.MyAdapterRepliesReply;
 import Utilities.ActivitiesNames;
@@ -47,14 +42,9 @@ public class TeacherRepliesReply extends AppCompatActivity{
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private ArrayList<Reply> listItems;
-    private Field mDragger;
     SwipeController swipeController = null;
     private SwipeRefreshLayout swipeContainer;
-
-
     private SharedPreferences mPreferences;
-
-
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView nv;

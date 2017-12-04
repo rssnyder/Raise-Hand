@@ -7,11 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
-
 import Teacher.TeacherClasses;
 import Utilities.Question;
 import Utilities.Reply;
@@ -73,11 +70,6 @@ public class MakeReply extends AppCompatActivity {
                 temp.setReply(inputDetails);
                 //calls the method from the Reply class (in Utilities) that adds the reply to the database
                 temp.addToDatabase();
-//
-//                //Go to Classes (when we figure out the refreshing thing, this should redirect back to the previous reply)
-//                Intent teacherClasses = new Intent(getApplicationContext(), TeacherClasses.class);
-//                startActivity(teacherClasses);
-
                 onBackPressed();
                 //Go to Classes (when we figure out the refreshing thing, this should redirect back to the previous reply)
                 Intent teacherClasses = new Intent(getApplicationContext(), TeacherClasses.class);

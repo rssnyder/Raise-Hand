@@ -8,13 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.example.sae1.raisehand.R;
-
 import java.util.List;
-
 import Activities.LiveFeed;
-import Teacher.TeacherTopics;
 import Utilities.Classes;
 
 /**
