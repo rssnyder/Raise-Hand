@@ -81,10 +81,6 @@ public class StudentHomePage extends AppCompatActivity {
                         startActivity(loginPage);
                         finish();
                         break;
-                    case (R.id.nav_question_student):
-                        Intent questionPage = new Intent(getApplicationContext(), MakeQuestion.class);
-                        startActivity(questionPage);
-                        break;
                 }
                 return true;
             }
