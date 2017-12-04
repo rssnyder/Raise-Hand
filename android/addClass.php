@@ -14,14 +14,13 @@
 	//all spaces are encoded as "+"
 	$code=$_GET['code'];
 	$userID= $_GET['userID'];
-    $statemnt= "SELECT ID, class_name, description FROM classes WHERE access_code='$code'";
+    $statemnt= "SELECT ID, class_name FROM classes WHERE access_code='$code'";
     $statemnt= $db->query($statemnt) or die($db->error);
     
     //finally, insert into the database
-	$stmt = "INSERT INTO userClasses(relationship, user_id, class_id) VALUES (4, '$userID', '$statemnt['ID']')";
+	$stmt = "INSERT INTO userClasses(relationship, user_id, class_id) VALUES (4, '$userID', $statemnt['ID'])";
 	$stmt = $db->query($stmt) or die($db->error);
 	echo "className= ". $statemnt['class_name'];
 	echo "ID= ". $statemnt['ID'];
-	echo "Description= ".$statemnt['description'];
 
 ?>
