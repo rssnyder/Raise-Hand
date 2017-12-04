@@ -75,7 +75,7 @@ public class TeacherNotifications extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teacher_questions);
+        setContentView(R.layout.activity_teacher_notifications);
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
         pDialog= new ProgressDialog(this);
         pDialog.setMessage("Loading...");
@@ -123,7 +123,7 @@ public class TeacherNotifications extends AppCompatActivity {
 
         // populate the navigation buttons to go to the correct place
         nv = (NavigationView) findViewById(R.id.nv1);
-        NavUtil.setNavMenu(nv, ActivitiesNames.NONE, getApplicationContext(), mDrawerLayout);
+        NavUtil.setNavMenu(nv, ActivitiesNames.NOTIFICATIONS, getApplicationContext(), mDrawerLayout);
 
     }
 
@@ -141,16 +141,5 @@ public class TeacherNotifications extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    private void showProgressDialog() {
-        if(!pDialog.isShowing()) {
-            pDialog.show();
-        }
-    }
 
-    private void hideProgressDialog() {
-        if(pDialog.isShowing()) {
-            pDialog.hide();
-            pDialog.dismiss();
-        }
-    }
 }

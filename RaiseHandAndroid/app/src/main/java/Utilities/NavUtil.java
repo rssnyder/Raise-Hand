@@ -23,7 +23,7 @@ import Teacher.TeacherClasses;
 import Teacher.TeacherHomePage;
 import Teacher.TeacherNotifications;
 import Teacher.TeacherSettings;
-import Teacher.TeacherStudents;
+import Teacher.TeacherUpvotedQuestions;
 
 /**
  * This Class controls the navigation drawer.
@@ -92,6 +92,16 @@ public class NavUtil {
                         else{
                             Intent selectClass = new Intent(theContext, SelectClassForLiveFeed.class);
                             theContext.startActivity(selectClass);
+                            break;
+                        }
+                    case (R.id.nav_faq):
+                        if(ActivityEnum == ActivityEnum.FAQ){
+                            mDrawerLayout.closeDrawers();
+                            break;
+                        }
+                        else{
+                            Intent faq = new Intent(theContext, TeacherUpvotedQuestions.class);
+                            theContext.startActivity(faq);
                             break;
                         }
                     case (R.id.nav_logout):
