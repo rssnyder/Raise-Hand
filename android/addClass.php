@@ -21,7 +21,7 @@
     //finally, insert into the database
 	$stmt = "INSERT INTO userClasses(relationship, user_id, class_id) VALUES (4, $userID, $classID)";
 	$stmt = $db->query($stmt) or die($db->error);
-	echo "className= ". $statement['class_name'];
+	echo "className= ". $statement['class_name']. ' ';
 	echo "ID= ". $classID;
 
 ?>
