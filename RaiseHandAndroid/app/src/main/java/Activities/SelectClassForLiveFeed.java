@@ -1,14 +1,23 @@
 package Activities;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
 import java.util.ArrayList;
@@ -31,6 +40,8 @@ public class SelectClassForLiveFeed extends AppCompatActivity {
     private NavigationView nv;
     private Toolbar mToolbar;
 
+    private Button startLive;
+    private String classToStart;
 
 
 
@@ -38,6 +49,8 @@ public class SelectClassForLiveFeed extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_class_for_live_feed);
+
+        startLive = (Button) findViewById(R.id.startLive);
 
         LiveFeedVolley.clearJSONArray();
 
@@ -87,7 +100,44 @@ public class SelectClassForLiveFeed extends AppCompatActivity {
         nv = (NavigationView) findViewById(R.id.nv1);
         NavUtil.setNavMenu(nv, ActivitiesNames.LIVE_SESSION, getApplicationContext(), mDrawerLayout);
 
+        startLive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getInput();
+            }
+        });
 
 
+    }
+
+    /**
+     * gets the class that the user wants to start a live session of.
+     */
+    private void getInput(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Class number");
+
+        //set the input
+        final EditText input = new EditText(this);
+        //specify the type of input expected
+        input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        builder.setView(input);
+
+        //set up the buttons
+        builder.setPositiveButton("Start!", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                classToStart = input.getText().toString();
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://proj-309-sa-b-3.cs.iastate.edu/teacher/liveSession.php?class=" + classToStart));
+                startActivity(browserIntent);
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        builder.show();
     }
 }
