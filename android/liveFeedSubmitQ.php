@@ -10,9 +10,9 @@
 	//Connect to database
 	$db = new mysqli($host, $user, $password, $dbname, $port, $socket) or die ('Could not connect to the database server' . mysqli_connect_error());
 
-	if("" == trim($_GET['comment'])) {
-    	die("Comment field is empty");
-  	}	
+// 	if("" == trim($_GET['comment'])) {
+//     	die("Comment field is empty");
+//   	}	
 
 		//start to read from the url
 	//all spaces are encoded as "+"
