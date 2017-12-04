@@ -14,6 +14,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import Activities.VolleyMainActivityHandler;
 
 import static Utilities.URLS.URL_LIVE_FEED;
@@ -60,5 +62,11 @@ public class LiveFeedVolley {
      */
     public static JSONArray getJSON(){
         return jArray;
+    }
+
+    public static void clearJSONArray(){
+        for(int i = 0; i < jArray.length(); i ++){
+            jArray.remove(i);
+        }
     }
 }
