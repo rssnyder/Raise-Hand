@@ -151,6 +151,9 @@ public class LoginActivity extends Activity {
                         }
                         else {
                              Toast.makeText(VolleyMainActivityHandler.getInstance(), "Logged In Failed", Toast.LENGTH_LONG).show();
+                            Intent retry = new Intent(getApplicationContext(), LoginActivity.class);
+                            startActivity(retry);
+                            finish();
                         }
                         hideProgressDialog();
                     }}, new Response.ErrorListener() {
@@ -168,7 +171,7 @@ public class LoginActivity extends Activity {
         String json = (String) map.get("currentUser");
         String reset=json.substring(json.indexOf("reset")+8,json.indexOf("roleID")-3);
         String roleID = json.substring(json.indexOf("roleID")+9,json.indexOf("username")-3);
-
+        
         if(reset.equals("1")) {
             //redirect to a reset password page
             Intent resetPassword = new Intent(getApplicationContext(), ResetPassword.class);

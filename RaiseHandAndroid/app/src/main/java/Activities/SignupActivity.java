@@ -1,5 +1,6 @@
 package Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -128,20 +129,6 @@ public class SignupActivity extends AppCompatActivity {
                     username + "&university=" + university_id + "&emailU=" + email_user +
                     "&emailD=" + email_domain;
             url_final = URLS.URL_REGISTER + urlSuffix;
-     /*
-        //validating inputs
-        if (TextUtils.isEmpty(FirstName)) {
-            editTextUsername.setError("Please enter your username");
-            editTextUsername.requestFocus();
-            return;
-        }
-
-        if (TextUtils.isEmpty(password)) {
-            editTextPassword.setError("Please enter your password");
-            editTextPassword.requestFocus();
-            return;
-        }
-        showProgressDialog();*/
             StringRequest req = new StringRequest(Request.Method.GET, url_final,
                                                   new Response.Listener<String>() {
                                                       @Override
@@ -167,6 +154,9 @@ public class SignupActivity extends AppCompatActivity {
             );
             // Adding request to request queue
             VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
+            Intent navigateLogin = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(navigateLogin);
+            finish();
         }
     }
     public void universityID(String result){
