@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.sae1.raisehand.R;
 
@@ -23,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import Activities.MakeReplyReply;
+import Activities.VolleyMainActivityHandler;
 import RecyclerViews.MyAdapterRepliesReply;
 import Utilities.ActivitiesNames;
 import Utilities.NavUtil;
@@ -48,7 +51,7 @@ public class StudentRepliesReply extends AppCompatActivity{
     private ArrayList<Reply> listItems;
     private Field mDragger;
     SwipeController swipeController = null;
-
+    SwipeRefreshLayout swipeContainer;
 
     private SharedPreferences mPreferences;
 
@@ -101,6 +104,7 @@ public class StudentRepliesReply extends AppCompatActivity{
 
         final String reply = gson.toJson(userReply);
 
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer5);
         // Go to make a new reply page on FAB click
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +118,14 @@ public class StudentRepliesReply extends AppCompatActivity{
         });
         nv = (NavigationView) findViewById(R.id.nv2);
         NavUtil.setNavMenu(nv, ActivitiesNames.NONE, getApplicationContext(), mDrawerLayout);
+
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Intent i = new Intent(getApplicationContext(), StudentTopics.class);
+                startActivity(i);
+            }
+        });
 
     }
 
@@ -148,6 +160,7 @@ public class StudentRepliesReply extends AppCompatActivity{
             @Override
             public void onLeftClicked(int position){
                 //Think what can be done, maybe nothing
+                Toast.makeText(VolleyMainActivityHandler.getInstance(), "Only professor can endorse", Toast.LENGTH_LONG).show();
             }
         });
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);

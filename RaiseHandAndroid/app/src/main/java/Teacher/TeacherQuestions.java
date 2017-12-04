@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -46,6 +47,7 @@ public class TeacherQuestions extends AppCompatActivity {
     private List<Question> listItemsOfQuestions;
     private Field mDragger;
     SwipeController swipeController = null;
+    SwipeRefreshLayout swipeContainer;
 
     private SharedPreferences mPreferences;
 
@@ -115,6 +117,7 @@ public class TeacherQuestions extends AppCompatActivity {
 
         final String topic = gson.toJson(usersTopic);
 
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer3);
         // Go to make a new question page on FAB click
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,6 +132,14 @@ public class TeacherQuestions extends AppCompatActivity {
         // populate the navigation buttons to go to the correct place
         nv = (NavigationView) findViewById(R.id.nv1);
         NavUtil.setNavMenu(nv, ActivitiesNames.NONE, getApplicationContext(), mDrawerLayout);
+
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Intent i = new Intent(getApplicationContext(), TeacherTopics.class);
+                startActivity(i);
+            }
+        });
     }
 
     /**

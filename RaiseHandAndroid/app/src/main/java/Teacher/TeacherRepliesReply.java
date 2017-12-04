@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -48,6 +49,7 @@ public class TeacherRepliesReply extends AppCompatActivity{
     private ArrayList<Reply> listItems;
     private Field mDragger;
     SwipeController swipeController = null;
+    private SwipeRefreshLayout swipeContainer;
 
 
     private SharedPreferences mPreferences;
@@ -102,6 +104,7 @@ public class TeacherRepliesReply extends AppCompatActivity{
 
         final String reply = gson.toJson(userReply);
 
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer2);
         // Go to make a new reply page on FAB click
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -115,6 +118,14 @@ public class TeacherRepliesReply extends AppCompatActivity{
         });
         nv = (NavigationView) findViewById(R.id.nv1);
         NavUtil.setNavMenu(nv, ActivitiesNames.NONE, getApplicationContext(), mDrawerLayout);
+
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Intent i = new Intent(getApplicationContext(), TeacherTopics.class);
+                startActivity(i);
+            }
+        });
     }
 
     @Override
