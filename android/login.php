@@ -44,14 +44,15 @@
 	            $classID= $row['class_id'];
 	            $temp="SELECT class_name FROM classes WHERE ID= '$classID'";
 	            $temp= $db->query($stmt) or die($db->error);
+	            $temp2=$temp->fetch_array();
 	             if(mysqli_num_rows($stmt)==1){
 	                Echo ' '.$classID;
-	                Echo ' '.$temp;
+	                Echo ' '.$temp2['class_name'];
                   
 	            }
 	            else{
-	                Echo ' '.$row['class_id'].'';
-	                Echo ' '.$temp.', ';
+	                Echo ' '.$classID.'';
+	                Echo ' '.$temp2['class_name'].', ';
 	               
 	            }
 	        }
