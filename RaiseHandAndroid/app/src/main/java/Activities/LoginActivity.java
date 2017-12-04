@@ -151,6 +151,9 @@ public class LoginActivity extends Activity {
                         }
                         else {
                              Toast.makeText(VolleyMainActivityHandler.getInstance(), "Logged In Failed", Toast.LENGTH_LONG).show();
+                            Intent retry = new Intent(getApplicationContext(), LoginActivity.class);
+                            startActivity(retry);
+                            finish();
                         }
                         hideProgressDialog();
                     }}, new Response.ErrorListener() {

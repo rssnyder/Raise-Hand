@@ -23,7 +23,7 @@ import Teacher.TeacherClasses;
 import Teacher.TeacherHomePage;
 import Teacher.TeacherNotifications;
 import Teacher.TeacherSettings;
-import Teacher.TeacherStudents;
+import Teacher.TeacherUpvotedQuestions;
 
 /**
  * This Class controls the navigation drawer.
@@ -74,16 +74,6 @@ public class NavUtil {
                             theContext.startActivity(teacherNotifications);
                             break;
                         }
-                    case (R.id.nav_students):
-                        if(ActivityEnum == ActivityEnum.STUDENTS){
-                            mDrawerLayout.closeDrawers();
-                            break;
-                        }
-                        else {
-                            Intent teacherStudents = new Intent(theContext, TeacherStudents.class);
-                            theContext.startActivity(teacherStudents);
-                            break;
-                        }
                     case (R.id.nav_settings):
                         if(ActivityEnum == ActivityEnum.SETTINGS){
                             mDrawerLayout.closeDrawers();
@@ -104,7 +94,18 @@ public class NavUtil {
                             theContext.startActivity(selectClass);
                             break;
                         }
+                    case (R.id.nav_faq):
+                        if(ActivityEnum == ActivityEnum.FAQ){
+                            mDrawerLayout.closeDrawers();
+                            break;
+                        }
+                        else{
+                            Intent faq = new Intent(theContext, TeacherUpvotedQuestions.class);
+                            theContext.startActivity(faq);
+                            break;
+                        }
                     case (R.id.nav_logout):
+                        theContext.getSharedPreferences("mPreferences", 0).edit().clear().commit();
                         Intent loginPage = new Intent(theContext, LoginActivity.class);
                         theContext.startActivity(loginPage);
                         break;

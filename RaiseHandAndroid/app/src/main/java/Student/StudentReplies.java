@@ -20,6 +20,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -86,7 +87,7 @@ public class StudentReplies extends AppCompatActivity {
 
         FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
 
-        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer6);
         pDialog= new ProgressDialog(this);
         pDialog.setMessage("Loading...");
         pDialog.setCancelable(false);
@@ -156,13 +157,13 @@ public class StudentReplies extends AppCompatActivity {
         nv = (NavigationView) findViewById(R.id.nv2);
         NavUtil.setNavMenu(nv, ActivitiesNames.NONE, getApplicationContext(), mDrawerLayout);
         System.out.println("Outside volley # of replies " + userQuestion.getReplies().size());
+
+        // Swipe to refresh
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                refreshReplies(userQuestion);
-                swipeContainer.setRefreshing(false);
-                adapter.clear();
-                adapter.addAll(userQuestion.getParentRepliesOnly());
+                Intent i = new Intent(getApplicationContext(), StudentTopics.class);
+                startActivity(i);
             }
         });
     }
@@ -181,45 +182,6 @@ public class StudentReplies extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-//    private void slideOutMenu(){
-//
-//        try {
-//            mDragger = mDrawerLayout.getClass().getDeclaredField(
-//                    "mLeftDragger");//mRightDragger for right obviously
-//        } catch (NoSuchFieldException e) {
-//            e.printStackTrace();
-//        }
-//        mDragger.setAccessible(true);
-//        ViewDragHelper draggerObj = null;
-//        try {
-//            draggerObj = (ViewDragHelper) mDragger
-//                    .get(mDrawerLayout);
-//        } catch (IllegalAccessException e) {
-//            e.printStackTrace();
-//        }
-//
-//        Field mEdgeSize = null;
-//        try {
-//            mEdgeSize = draggerObj.getClass().getDeclaredField(
-//                    "mEdgeSize");
-//        } catch (NoSuchFieldException e) {
-//            e.printStackTrace();
-//        }
-//        mEdgeSize.setAccessible(true);
-//        int edge = 0;
-//        try {
-//            edge = mEdgeSize.getInt(draggerObj);
-//        } catch (IllegalAccessException e) {
-//            e.printStackTrace();
-//        }
-//
-//        try {
-//            mEdgeSize.setInt(draggerObj, edge * 25);
-//        } catch (IllegalAccessException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     private void showProgressDialog() {
         if(!pDialog.isShowing()) {
@@ -248,7 +210,7 @@ public class StudentReplies extends AppCompatActivity {
             }
             @Override
             public void onLeftClicked(int position){
-                listItems.get(position).endorse();
+                Toast.makeText(VolleyMainActivityHandler.getInstance(), "Only professor can endorse", Toast.LENGTH_LONG).show();
             }
         });
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);

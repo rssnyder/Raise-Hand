@@ -50,7 +50,8 @@
         <activity android:name="Activities.ForgotPassword"/>
         <activity android:name="Activities.LiveFeed"/>
         <activity android:name="Student.StudentRepliesReply"/>
-        <activity android:name="Activities.SelectClassForLiveFeed">
+        <activity android:name="Activities.SelectClassForLiveFeed"/>
+        <activity android:name="Teacher.TeacherUpvotedQuestions">
         </activity>
         <activity android:name="Activities.MakeLiveFeedQuestion">
         </activity>

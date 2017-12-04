@@ -13,5 +13,6 @@ public enum ActivitiesNames{
     LIVE_SESSION,
     LOGOUT,
     QUESTION,
+    FAQ,
     NONE
 }

@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
@@ -25,9 +27,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import Activities.VolleyMainActivityHandler;
 import RecyclerViews.MyAdapterQuestionsStudent;
 import Activities.MakeQuestion;
 import Activities.LoginActivity;
+import Teacher.TeacherTopics;
 import Utilities.ActivitiesNames;
 import Utilities.NavUtil;
 import Utilities.Question;
@@ -50,6 +54,7 @@ public class StudentQuestions extends AppCompatActivity {
     private Field mDragger;
 
     private SwipeController swipeController = null;
+    SwipeRefreshLayout swipeContainer;
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -119,6 +124,8 @@ public class StudentQuestions extends AppCompatActivity {
 
         final String topic = gson.toJson(usersTopic);
 
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer4);
+
         // Go to make a new question page on FAB click
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,6 +139,15 @@ public class StudentQuestions extends AppCompatActivity {
 
         nv = (NavigationView) findViewById(R.id.nv2);
         NavUtil.setNavMenu(nv, ActivitiesNames.NONE, getApplicationContext(), mDrawerLayout);
+
+        // Swipe to refresh
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Intent i = new Intent(getApplicationContext(), TeacherTopics.class);
+                startActivity(i);
+            }
+        });
     }
     /**
      * if an item in the pull out menu is selected, navigate to a new page
@@ -170,6 +186,7 @@ public class StudentQuestions extends AppCompatActivity {
                 // Think of what needs to be done maybe go to reply or just do
                 // nothing
 
+                Toast.makeText(VolleyMainActivityHandler.getInstance(), "Only professor can endorse", Toast.LENGTH_LONG).show();
             }
         });
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
@@ -183,44 +200,4 @@ public class StudentQuestions extends AppCompatActivity {
         });
 
     }
-    /*
-    private void slideOutMenu(){
-
-        try {
-            mDragger = mDrawerLayout.getClass().getDeclaredField(
-                    "mLeftDragger");//mRightDragger for right obviously
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
-        mDragger.setAccessible(true);
-        ViewDragHelper draggerObj = null;
-        try {
-            draggerObj = (ViewDragHelper) mDragger
-                    .get(mDrawerLayout);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        Field mEdgeSize = null;
-        try {
-            mEdgeSize = draggerObj.getClass().getDeclaredField(
-                    "mEdgeSize");
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
-        mEdgeSize.setAccessible(true);
-        int edge = 0;
-        try {
-            edge = mEdgeSize.getInt(draggerObj);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            mEdgeSize.setInt(draggerObj, edge * 25);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
-    */
 }

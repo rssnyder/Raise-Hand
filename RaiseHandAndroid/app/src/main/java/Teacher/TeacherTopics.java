@@ -95,6 +95,11 @@ public class TeacherTopics extends AppCompatActivity {
                 break;
             }
         }
+        if(listItemsOfTopics.isEmpty()){
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
+        }
 
         // Adapter to display the topics as recycler views. (cards on the screen)
         adapter = new MyAdapterTopics(listItemsOfTopics, this);

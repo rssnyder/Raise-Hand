@@ -26,12 +26,10 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
-import com.google.gson.annotations.Expose;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import Activities.MakeReply;
 import Activities.VolleyMainActivityHandler;
@@ -39,7 +37,6 @@ import RecyclerViews.MyAdapterReplies;
 import Utilities.ActivitiesNames;
 import Utilities.NavUtil;
 import Utilities.Question;
-import Utilities.Refresh;
 import Utilities.Reply;
 import Utilities.StringParse;
 import Utilities.SwipeController;
@@ -157,13 +154,13 @@ public class TeacherReplies extends AppCompatActivity {
         nv = (NavigationView) findViewById(R.id.nv1);
         NavUtil.setNavMenu(nv, ActivitiesNames.NONE, getApplicationContext(), mDrawerLayout);
         System.out.println("Outside volley # of replies " + userQuestion.getReplies().size());
+
+        // Swipe to refresh
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                refreshReplies(userQuestion);
-                swipeContainer.setRefreshing(false);
-                adapter.clear();
-                adapter.addAll(userQuestion.getParentRepliesOnly());
+                Intent i = new Intent(getApplicationContext(), TeacherTopics.class);
+                startActivity(i);
             }
         });
     }
@@ -264,7 +261,4 @@ public class TeacherReplies extends AppCompatActivity {
         VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
 
     }
-
-
-
 }
