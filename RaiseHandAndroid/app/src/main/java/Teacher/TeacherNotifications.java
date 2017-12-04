@@ -25,7 +25,9 @@ import com.google.gson.Gson;
 import java.lang.reflect.Field;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -37,8 +39,8 @@ import Utilities.ActivitiesNames;
 import Utilities.Classes;
 import Utilities.NavUtil;
 import Utilities.Question;
-import Utilities.RecentActivity;
 import Utilities.StringParse;
+import Utilities.Topics;
 import Utilities.URLS;
 import Utilities.User;
 
@@ -48,12 +50,12 @@ import Utilities.User;
  * Notifications will include recent questions and replies submitted.
  * @author sae1
  */
-public class TeacherNotifications extends Activity {
+public class TeacherNotifications extends AppCompatActivity {
     private static String TAG= TeacherNotifications.class.getSimpleName();
     private static String tag_string_req= "string_req";
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private List<Question> listItems;
+    private ArrayList<Question> listItems;
 
     private User currentUser;
     private SharedPreferences mPreferences;
@@ -79,10 +81,23 @@ public class TeacherNotifications extends Activity {
         pDialog.setMessage("Loading...");
         pDialog.setCancelable(false);
 
+        listItems=new ArrayList<Question>();
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
         currentUser = gson.fromJson(json, User.class);
-        getNotifications(currentUser.getClasses());
+        //getNotifications(currentUser.getClasses());
+        for(Classes c: currentUser.getClasses()){
+            for(Topics t: c.getTopics()){
+                for(Question q: t.getQuestions()) {
+                    Calendar calendar = Calendar.getInstance();
+                    SimpleDateFormat mdformat = new SimpleDateFormat("yyyy-MM-dd");
+                    if (q.getCreationTime().substring(0, 10).contains(mdformat.format(calendar.getTime()))) {
+                        if(!listItems.contains(q))
+                            listItems.add(q);
+                    }
+                }
+            }
+        }
         // Adapter to display the questions as recycler views. (cards on the screen)
         adapter = new MyAdapterQuestions(listItems,this);
         // Setting up the recycler view
@@ -93,7 +108,7 @@ public class TeacherNotifications extends Activity {
 
         // Get the nav menu
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
-        //setSupportActionBar(mToolbar);
+        setSupportActionBar(mToolbar);
 
         // create the drawer layout (the thing you swipe from the side)
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -104,7 +119,7 @@ public class TeacherNotifications extends Activity {
         mToggle.syncState();
 
 
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // populate the navigation buttons to go to the correct place
         nv = (NavigationView) findViewById(R.id.nv1);
@@ -137,57 +152,5 @@ public class TeacherNotifications extends Activity {
             pDialog.hide();
             pDialog.dismiss();
         }
-    }
-    /**
-     * This method will return an array list of questions that were recently posted in
-     * his or her classes. It will return an empty array list if he or she is not in any classes
-     * or if there is no recent activity
-     * @param userClasses the classes the user is currently in
-     * @return an array list of questions that were recently posted in his or her classes
-     */
-    private void getNotifications(ArrayList<Classes> userClasses){
-        showProgressDialog();
-        listItems=new ArrayList<Question>();
-        String urlSuffix="";
-        if(!userClasses.isEmpty()) {
-            urlSuffix = "?classId=" + userClasses.get(0).getClassID();
-        }
-        for(int i=1; i<userClasses.size()-1; i++) {
-            urlSuffix+=","+userClasses.get(i).getClassID();
-
-        }
-        if(urlSuffix.isEmpty()){
-            //this means the student is not in any classes
-
-            return;
-        }
-        String url_final = URLS.URL_NOTIFICATIONS + urlSuffix;
-        System.out.println(url_final);
-
-        StringRequest req = new StringRequest(Request.Method.GET,url_final,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d(TAG, response.toString());
-                        String phpResponse=response.toString();
-                        listItems= StringParse.parseQuestions(phpResponse);
-                        SharedPreferences.Editor editor = mPreferences.edit();
-                        Gson gson = new Gson();
-                        String json = gson.toJson(listItems);
-                        editor.putString("listItems", json);
-                        editor.commit();
-                        hideProgressDialog();
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-                hideProgressDialog();
-            }
-        }
-        );
-        // Adding request to request queue
-        VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
-        System.out.println(listItems.toString());
     }
 }
