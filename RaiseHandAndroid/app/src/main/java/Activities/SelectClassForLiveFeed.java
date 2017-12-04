@@ -20,6 +20,7 @@ import RecyclerViews.MyAdapterClasses;
 import RecyclerViews.MyAdapterClassesForLiveFeed;
 import Utilities.ActivitiesNames;
 import Utilities.Classes;
+import Utilities.LiveFeedVolley;
 import Utilities.NavUtil;
 import Utilities.User;
 
@@ -41,6 +42,8 @@ public class SelectClassForLiveFeed extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_class_for_live_feed);
+
+        LiveFeedVolley.clearJSONArray();
 
         // Gets stored preferences. User is stored here.
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
@@ -84,7 +87,7 @@ public class SelectClassForLiveFeed extends AppCompatActivity {
 
         // populate the navigation buttons to go to the correct place
         nv = (NavigationView) findViewById(R.id.nv1);
-        NavUtil.setNavMenu(nv, ActivitiesNames.CLASSES, getApplicationContext(), mDrawerLayout);
+        NavUtil.setNavMenu(nv, ActivitiesNames.LIVE_SESSION, getApplicationContext(), mDrawerLayout);
 
 
 

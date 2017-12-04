@@ -16,6 +16,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.android.volley.Request;
@@ -96,6 +97,7 @@ public class LiveFeed extends AppCompatActivity {
         pDialog.setCancelable(false);
 
         LiveSessionVolley(classID);
+
         //set up the recycler view
         recyclerView = (RecyclerView) findViewById(R.id.liveFeedRecyclerView);
         recyclerView.setHasFixedSize(true);
@@ -132,10 +134,7 @@ public class LiveFeed extends AppCompatActivity {
             }
         });
 
-        ObjectMapper mapper = new ObjectMapper();
-
-
-        System.out.println("JSON: " + jArray);
+//        System.out.println("JSON: " + jArray);
 
         // populate the navigation buttons to go to the correct place
         nv = (NavigationView) findViewById(R.id.nv1);
@@ -200,6 +199,7 @@ public class LiveFeed extends AppCompatActivity {
         super.onBackPressed();
         thread.interrupt();
         stopThread = true;
+        LiveFeedVolley.clearJSONArray();
     }
 
     /**
@@ -316,6 +316,21 @@ public class LiveFeed extends AppCompatActivity {
 
         VolleyMainActivityHandler.getInstance().addToRequestQueue(jsonObjReq, tag_string_req);
         return jArray;
+    }
+
+    /**
+     * if an item in the pull out menu is selected, navigate to a new page
+     * @param item the list item that was selected
+     * @return if the item is selected
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(mToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 

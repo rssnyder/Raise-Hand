@@ -2,19 +2,16 @@ package Utilities;
 
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 import Activities.VolleyMainActivityHandler;
 
@@ -25,7 +22,8 @@ import static Utilities.URLS.URL_LIVE_FEED;
  */
 public class LiveFeedVolley {
     private static String TAG = LiveFeedVolley.class.getSimpleName();
-    private static String tag_string_req= "json_req";
+    private static String tag_json_req = "json_req";
+    private static String tag_string_req = "string_req";
     private static JSONArray jArray;
 
     /**
@@ -52,7 +50,7 @@ public class LiveFeedVolley {
                 error.printStackTrace();            }
         });
 
-        VolleyMainActivityHandler.getInstance().addToRequestQueue(jsonObjReq, tag_string_req);
+        VolleyMainActivityHandler.getInstance().addToRequestQueue(jsonObjReq, tag_json_req);
         return jArray;
     }
 
@@ -65,8 +63,38 @@ public class LiveFeedVolley {
     }
 
     public static void clearJSONArray(){
-        for(int i = 0; i < jArray.length(); i ++){
-            jArray.remove(i);
+        if(null != jArray) {
+            for (int i = 0; i < jArray.length(); i++) {
+                jArray.remove(i);
+            }
         }
+    }
+
+    public static void addToLiveFeed(String classID, String username, String comment){
+        //replace spaces with +s
+        comment = comment.replaceAll(" ","+");
+        System.out.println(comment);
+        String url = URLS.URL_SUMBIT_LIVE_FEED+"?class="+classID +"&username="+username +"&comment="+comment;
+        Log.d("URL", url);
+        StringRequest req2 = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                Log.d(TAG, response.toString());
+                String phpResponse = response.toString();
+
+                if (phpResponse.contains("Done")) {
+                    Toast.makeText(VolleyMainActivityHandler.getInstance(), "Success: question added", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(VolleyMainActivityHandler.getInstance(), "Error", Toast.LENGTH_LONG).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+            }
+        });
+        VolleyMainActivityHandler.getInstance().addToRequestQueue(req2, tag_string_req);
     }
 }

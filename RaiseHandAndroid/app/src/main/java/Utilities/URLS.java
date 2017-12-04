@@ -26,4 +26,5 @@ public class URLS {
     public static final String URL_REFRESH_REPLIES_TO_REPLIES = ROOT_URL + "refreshRR.php";
     public static final String URL_NOTIFICATIONS = ROOT_URL + "notifications.php";
     public static final String URL_LIVE_FEED = ROOT_URL + "liveFeed.php";
+    public static final String URL_SUMBIT_LIVE_FEED = ROOT_URL + "liveFeedSubmitQ.php";
 }
