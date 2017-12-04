@@ -23,6 +23,7 @@ public class User {
         this.loggedIn = loggedIn;
 
     }
+
     public String getReset(){
         //if it is a string of 0, then it doesn't need to have a password reset
         return reset;
