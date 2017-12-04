@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -65,7 +66,7 @@ public class AddClass  extends AppCompatActivity {
                     //get the information that the user had submitted in the text boxes
                     final String code = accessCode.getText().toString();
                     String url= Utilities.URLS.URL_ADD_CLASS;
-                    url=url+"?code="+accessCode+"&userID="+currentUser.getId();
+                    url=url+"?code="+code+"&userID="+currentUser.getId();
                     StringRequest req = new StringRequest(Request.Method.GET,url,
                             new Response.Listener<String>() {
                                 @Override
@@ -74,6 +75,7 @@ public class AddClass  extends AppCompatActivity {
                                     String phpResponse=response.toString();
                                     String classTitle=phpResponse.substring(11,phpResponse.indexOf("ID="));
                                     String classID=phpResponse.substring(phpResponse.indexOf("ID=")+3);
+                                    Toast.makeText(VolleyMainActivityHandler.getInstance(), "You have been added to "+classTitle, Toast.LENGTH_LONG).show();
                                     SharedPreferences.Editor editor = mPreferences.edit();
                                     Gson gson = new Gson();
                                     String json = gson.toJson(currentUser);
@@ -87,6 +89,7 @@ public class AddClass  extends AppCompatActivity {
                         public void onErrorResponse(VolleyError error) {
                             System.out.println("IN ERROR RESPONSE");
                             VolleyLog.d(TAG, "Error: " + error.getMessage());
+                            Toast.makeText(VolleyMainActivityHandler.getInstance(), "Invaldid access code", Toast.LENGTH_LONG).show();
                         }
                     }
                     );
