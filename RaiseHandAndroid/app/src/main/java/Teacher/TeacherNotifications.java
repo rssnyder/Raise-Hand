@@ -37,7 +37,6 @@ import Utilities.ActivitiesNames;
 import Utilities.Classes;
 import Utilities.NavUtil;
 import Utilities.Question;
-import Utilities.RecentActivity;
 import Utilities.StringParse;
 import Utilities.URLS;
 import Utilities.User;
@@ -53,7 +52,7 @@ public class TeacherNotifications extends Activity {
     private static String tag_string_req= "string_req";
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private List<Question> listItems;
+    private ArrayList<Question> listItems;
 
     private User currentUser;
     private SharedPreferences mPreferences;
@@ -78,11 +77,15 @@ public class TeacherNotifications extends Activity {
         pDialog= new ProgressDialog(this);
         pDialog.setMessage("Loading...");
         pDialog.setCancelable(false);
-
+        listItems=new ArrayList<Question>();
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
         currentUser = gson.fromJson(json, User.class);
-        getNotifications(currentUser.getClasses());
+        //getNotifications(currentUser.getClasses());
+        for(Classes c: currentUser.getClasses()){
+            if(!c.getNotifications().isEmpty())
+                listItems.addAll(c.getNotifications());
+        }
         // Adapter to display the questions as recycler views. (cards on the screen)
         adapter = new MyAdapterQuestions(listItems,this);
         // Setting up the recycler view
@@ -145,7 +148,7 @@ public class TeacherNotifications extends Activity {
      * @param userClasses the classes the user is currently in
      * @return an array list of questions that were recently posted in his or her classes
      */
-    private void getNotifications(ArrayList<Classes> userClasses){
+    public void getNotifications(ArrayList<Classes> userClasses){
         showProgressDialog();
         listItems=new ArrayList<Question>();
         String urlSuffix="";
@@ -158,7 +161,11 @@ public class TeacherNotifications extends Activity {
         }
         if(urlSuffix.isEmpty()){
             //this means the student is not in any classes
-
+            SharedPreferences.Editor editor = mPreferences.edit();
+            Gson gson = new Gson();
+            String json = gson.toJson(listItems);
+            editor.putString("notifications", json);
+            editor.commit();
             return;
         }
         String url_final = URLS.URL_NOTIFICATIONS + urlSuffix;
@@ -174,7 +181,7 @@ public class TeacherNotifications extends Activity {
                         SharedPreferences.Editor editor = mPreferences.edit();
                         Gson gson = new Gson();
                         String json = gson.toJson(listItems);
-                        editor.putString("listItems", json);
+                        editor.putString("notifications", json);
                         editor.commit();
                         hideProgressDialog();
                     }
@@ -188,6 +195,5 @@ public class TeacherNotifications extends Activity {
         );
         // Adding request to request queue
         VolleyMainActivityHandler.getInstance().addToRequestQueue(req, tag_string_req);
-        System.out.println(listItems.toString());
     }
 }

@@ -6,7 +6,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
+
+import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+
 import Activities.VolleyMainActivityHandler;
 
 /**
@@ -22,6 +27,7 @@ public class Classes {
     private String title;
     private String classID;
     private static ArrayList<Topics> topics;
+    private ArrayList<Question> notifications;
 
     /**
      * Constructor for a class
@@ -32,6 +38,7 @@ public class Classes {
         this.title=title;
         this.classID=classID;
         this.topics = new ArrayList<Topics>();
+        this.notifications=new ArrayList<Question>();
     }
 
     /**
@@ -89,6 +96,9 @@ public class Classes {
         this.classID = classID;
     }
 
+    public void addNotification(Question q){ notifications.add(q);}
+
+    public ArrayList<Question> getNotifications(){return notifications;}
     /**
      * This interfaces with android volley and gets all of the topics that
      * relate to a class
@@ -105,6 +115,16 @@ public class Classes {
                         Log.d(TAG, response.toString());
                         String phpResponse=response.toString();
                         setTopics(StringParse.parseTopicsVolley(phpResponse));
+                        Calendar calendar = Calendar.getInstance();
+                        SimpleDateFormat mdformat = new SimpleDateFormat("yyyy-MM-dd");
+                        for(Topics t: getTopics()){
+                            for(Question q: t.getQuestions()){
+                                System.out.println(q.getCreationTime()+ " vs "+ mdformat.format(calendar.getTime()));
+                                if(q.getCreationTime().equals( mdformat.format(calendar.getTime()))){
+                                    addNotification(q);
+                                }
+                            }
+                        }
                         Log.d(TAG, "Size of topics: " + topics.size());
                     }
                 }, new Response.ErrorListener() {
