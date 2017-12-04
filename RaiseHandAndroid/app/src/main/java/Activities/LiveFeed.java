@@ -41,12 +41,13 @@ import Utilities.LiveFeedVolley;
 import Utilities.NavUtil;
 
 import static Utilities.URLS.URL_LIVE_FEED;
+import static java.lang.Thread.interrupted;
 
 /**
  * Displays the live feed of a class.
  */
 public class LiveFeed extends AppCompatActivity {
-    private static String TAG = LiveFeedVolley.class.getSimpleName();
+    private static String TAG = LiveFeed.class.getSimpleName();
     private static String tag_string_req= "json_req";
     private JSONArray jArray;
 
@@ -74,11 +75,21 @@ public class LiveFeed extends AppCompatActivity {
         setContentView(R.layout.activity_live_feed);
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
 
+        LiveFeedVolley.clearJSONArray();
+        if(null != jArray) {
+            for (int i = 0; i < jArray.length(); i++) {
+                jArray.remove(i);
+            }
+        }
+        // Bundle gets the classID from the class the user clicked on in the TeacherClasses adapter (myAdapterClasses)
+        Bundle bundle = getIntent().getExtras();
+        String classID = bundle.getString("classID");
+
         pDialog= new ProgressDialog(this);
         pDialog.setMessage("Loading...");
         pDialog.setCancelable(false);
 
-        LiveSessionVolley("7");
+        LiveSessionVolley(classID);
         //set up the recycler view
         recyclerView = (RecyclerView) findViewById(R.id.liveFeedRecyclerView);
         recyclerView.setHasFixedSize(true);
@@ -144,7 +155,18 @@ public class LiveFeed extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         };
+    }
 
+    @Override
+    protected void onDestroy() {
+        thread.interrupt();
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        thread.interrupt();
+        super.onPause();
     }
 
     /**
@@ -153,6 +175,10 @@ public class LiveFeed extends AppCompatActivity {
     class MyThread implements Runnable {
         @Override
         public void run(){
+            // stop your thread
+            if (interrupted()) {
+                return;
+            }
             while (true){
                 Message message = Message.obtain();
                 int size = listItems.size();
@@ -163,9 +189,13 @@ public class LiveFeed extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                // Bundle gets the classID from the class the user clicked on in the TeacherClasses adapter (myAdapterClasses)
+                Bundle bundle2 = getIntent().getExtras();
+                String classID = bundle2.getString("classID");
+
 
                 // get the live feed data
-                jArray = LiveFeedVolley.LiveSessionVolley("7");
+                jArray = LiveFeedVolley.LiveSessionVolley(classID);
 
                 listItems.clear();
                 for (int i = 0; i < jArray.length(); i++) {
