@@ -294,12 +294,17 @@ public class StringParse {
             Scanner s = new Scanner(class_ids);
             s.useDelimiter(",");
             while (s.hasNext()) {
-                String id = s.next();
-                id = id.trim();
+                String current = s.next();
+                current= current.trim();
+                if(current.isEmpty()){
+                    break;
+                }
+                String id= current.substring(0,current.indexOf(" "));
                 if (id.equals("0")) {
                     //do nothing, this is not a class, just a place holder
                 } else {
-                    Classes c = new Classes("Class", id);
+                    Classes c = new Classes(current.substring(current.indexOf(" ")), id);
+                    System.out.println(c.getTitle()+" "+ c.getClassID());
                     classes.add(c);
                 }
             }
