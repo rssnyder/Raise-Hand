@@ -23,6 +23,9 @@
 
 	$stmt = "INSERT INTO liveQueue" . $class . "(username, class_id, txt) VALUES ('$username', '$class','$txt')";
 	Echo $stmt;
+	Echo $txt;
+	Echo $class;
+	Echo $username;
 
 	$stmt = $db->query($stmt) or die($db->error);
 	die("Done");
