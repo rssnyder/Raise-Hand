@@ -24,10 +24,13 @@
 	$stmt = "INSERT INTO liveQueue" . $class . "(username, class_id, txt) VALUES ('$username', '$class','$txt')";
 	Echo $stmt;
 	Echo "\r\n";
+	Echo "text:";
 	Echo $txt;
 	Echo "\r\n";
+	Echo "class:";
 	Echo $class;
 	Echo "\r\n";
+	Echo "user:";
 	Echo $username;
 	Echo "\r\n";
 
