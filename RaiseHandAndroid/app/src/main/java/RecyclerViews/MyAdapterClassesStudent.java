@@ -63,7 +63,6 @@ public class MyAdapterClassesStudent extends RecyclerView.Adapter<MyAdapterClass
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO go to the class' Topics
                 Intent studentTopics = new Intent(context.getApplicationContext(), StudentTopics.class);
                 studentTopics.putExtra("classID", listItem.getClassID());
                 listItem.get_topics();

@@ -1,6 +1,8 @@
 package Student;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -10,10 +12,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
+
+import Activities.AddClass;
+import Activities.MakeQuestion;
 import RecyclerViews.MyAdapterClassesStudent;
 import Utilities.ActivitiesNames;
 import Utilities.Classes;
@@ -56,10 +63,13 @@ public class StudentClasses extends AppCompatActivity {
         // i.e. The classes the student is in
         listItems = new ArrayList<>();
 
+        // FAB that makes a new question
+        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButtonClass);
+
         // Converts the mPrferences's json data of the current user to a User object.
         Gson gson = new Gson();
         String json = mPreferences.getString("currentUser", "");
-        User currentUser = gson.fromJson(json, User.class);
+        final User currentUser = gson.fromJson(json, User.class);
 
         // Get the classes the current user is in
         listItems = currentUser.getClasses();
@@ -86,6 +96,14 @@ public class StudentClasses extends AppCompatActivity {
         mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // Go to make a new question page on FAB click
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent addClass= new Intent(getApplicationContext().getApplicationContext(), AddClass.class);
+                startActivity(addClass);
+            }
+        });
 
         nv = (NavigationView) findViewById(R.id.nv2);
         NavUtil.setNavMenu(nv, ActivitiesNames.CLASSES, getApplicationContext(), mDrawerLayout);
