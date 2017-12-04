@@ -38,20 +38,24 @@
 	    $stmt = "SELECT class_id FROM userClasses WHERE user_id = $tempID";
 	    $stmt = $db->query($stmt) or die($db->error);
 	    if(mysqli_num_rows($stmt)>0){
-	        Echo ' ';
+	        Echo ' 1';
 	        while($row = $stmt->fetch_array()){
 	             if(mysqli_num_rows($stmt)==1){
+	                 Echo ' 2';
 	                $temp="SELECT class_name FROM classes WHERE ID = " . $row['class_id'];
 	                $temp= $db->query($stmt) or die($db->error);
 	                $temp2 = $temp->fetch_assoc();
+	                Echo '3';
 	                Echo ' '.$row['class_id'];
 	                Echo ' '.$temp2['class_name'];
                     
 	            }
 	            else{
+	                Echo '4';
 	                $temp="SELECT class_name FROM classes WHERE ID= " . $row['class_id'];
 	                $temp= $db->query($stmt) or die($db->error);
 	                $temp2=$temp->fetch_assoc();
+	                Echo '5';
 	                Echo ' '.$row['class_id'].'';
 	                Echo ' '.$temp2['class_name'].', ';
 	               
