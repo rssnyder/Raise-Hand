@@ -14,7 +14,7 @@
 //     	die("Comment field is empty");
 //   	}	
 
-		//start to read from the url
+	//start to read from the url
 	//all spaces are encoded as "+"
 	$txt=$_GET['comment'];
 	$txt=str_replace("+"," ", $txt);
