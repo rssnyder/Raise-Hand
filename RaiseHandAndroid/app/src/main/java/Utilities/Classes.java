@@ -115,18 +115,6 @@ public class Classes {
                         Log.d(TAG, response.toString());
                         String phpResponse=response.toString();
                         setTopics(StringParse.parseTopicsVolley(phpResponse));
-                        Calendar calendar = Calendar.getInstance();
-                        SimpleDateFormat mdformat = new SimpleDateFormat("yyyy-MM-dd");
-                        ArrayList<Question> tempNot= new ArrayList<Question>();
-                        for(Topics t: getTopics()){
-                            for(Question q: t.getQuestions()){
-                                System.out.println(q.getCreationTime().substring(0,10)+ " vs "+ mdformat.format(calendar.getTime()));
-                                if(q.getCreationTime().substring(0,10).equals( mdformat.format(calendar.getTime()))){
-                                    tempNot.add(q);
-                                }
-                            }
-                        }
-                        setNotification(tempNot);
                         Log.d(TAG, "Size of topics: " + topics.size());
                     }
                 }, new Response.ErrorListener() {
