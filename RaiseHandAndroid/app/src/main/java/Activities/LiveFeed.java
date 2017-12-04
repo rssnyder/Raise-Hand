@@ -233,13 +233,15 @@ public class LiveFeed extends AppCompatActivity {
                 jArray = LiveFeedVolley.LiveSessionVolley(classID);
 
                 listItems.clear();
-                for (int i = 0; i < jArray.length(); i++) {
-                    try {
-                        JSONObject jObject = jArray.getJSONObject(i);
-                        listItems.add(jObject);
+                if(null != jArray) {
+                    for (int i = 0; i < jArray.length(); i++) {
+                        try {
+                            JSONObject jObject = jArray.getJSONObject(i);
+                            listItems.add(jObject);
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
 
