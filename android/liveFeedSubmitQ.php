@@ -21,7 +21,7 @@
     $class=$_GET['class'];
     $username= $_GET['username'];
 
-	$stmt = "INSERT INTO liveQueue" . $_GET['class'] . " (username, class_id, txt) VALUES ('$username', '$class','$txt')";
+	$stmt = "INSERT INTO liveQueue" . $class . " (username, class_id, txt) VALUES ('$username', '$class','$txt')";
 
 	$stmt = $db->query($stmt) or die($db->error);
 	die("Done");
