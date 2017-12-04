@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -15,6 +16,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -66,7 +68,7 @@ public class LiveFeed extends AppCompatActivity {
 
     Thread thread;
     Handler handler;
-    // TODO be able to choose the class
+    boolean stopThread = false;
     // TODO submit questions
     @SuppressLint("HandlerLeak")
     @Override
@@ -83,7 +85,11 @@ public class LiveFeed extends AppCompatActivity {
         }
         // Bundle gets the classID from the class the user clicked on in the TeacherClasses adapter (myAdapterClasses)
         Bundle bundle = getIntent().getExtras();
-        String classID = bundle.getString("classID");
+        final String classID = bundle.getString("classID");
+
+        // FAB that makes a new question
+        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButtonLive);
+
 
         pDialog= new ProgressDialog(this);
         pDialog.setMessage("Loading...");
@@ -155,18 +161,45 @@ public class LiveFeed extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         };
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent makeLiveFeedQuestion = new Intent(getApplicationContext(), MakeLiveFeedQuestion.class);
+                makeLiveFeedQuestion.putExtra("classID", classID);
+                startActivity(makeLiveFeedQuestion);
+            }
+        });
     }
 
     @Override
     protected void onDestroy() {
-        thread.interrupt();
+        //stop the background thread
         super.onDestroy();
+        thread.interrupt();
+        stopThread = true;
     }
 
     @Override
     protected void onPause() {
-        thread.interrupt();
+        //stop the background thread
         super.onPause();
+        thread.interrupt();
+        stopThread = true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        stopThread = false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        //stop the background thread
+        super.onBackPressed();
+        thread.interrupt();
+        stopThread = true;
     }
 
     /**
@@ -175,11 +208,13 @@ public class LiveFeed extends AppCompatActivity {
     class MyThread implements Runnable {
         @Override
         public void run(){
+            boolean go = true;
             // stop your thread
             if (interrupted()) {
+                go = false;
                 return;
             }
-            while (true){
+            while (!stopThread){
                 Message message = Message.obtain();
                 int size = listItems.size();
 

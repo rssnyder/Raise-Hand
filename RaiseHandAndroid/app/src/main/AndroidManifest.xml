@@ -52,6 +52,8 @@
         <activity android:name="Student.StudentRepliesReply"/>
         <activity android:name="Activities.SelectClassForLiveFeed">
         </activity>
+        <activity android:name="Activities.MakeLiveFeedQuestion">
+        </activity>
     </application>
 
 </manifest>
