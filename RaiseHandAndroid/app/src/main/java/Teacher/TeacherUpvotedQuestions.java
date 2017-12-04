@@ -1,4 +1,4 @@
-package Student;
+package Teacher;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -50,8 +50,8 @@ import Utilities.User;
  * Notifications will include recent questions and replies submitted.
  * @author sae1
  */
-public class StudentNotifications extends AppCompatActivity {
-    private static String TAG= StudentNotifications.class.getSimpleName();
+public class TeacherUpvotedQuestions extends AppCompatActivity {
+    private static String TAG= TeacherNotifications.class.getSimpleName();
     private static String tag_string_req= "string_req";
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -75,7 +75,7 @@ public class StudentNotifications extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_questions);
+        setContentView(R.layout.activity_teacher_questions);
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
         pDialog= new ProgressDialog(this);
         pDialog.setMessage("Loading...");
@@ -141,16 +141,5 @@ public class StudentNotifications extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    private void showProgressDialog() {
-        if(!pDialog.isShowing()) {
-            pDialog.show();
-        }
-    }
 
-    private void hideProgressDialog() {
-        if(pDialog.isShowing()) {
-            pDialog.hide();
-            pDialog.dismiss();
-        }
-    }
 }
