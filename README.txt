@@ -30,8 +30,6 @@ Jevay: Android
 Riley: Website stuff
 
 Bugs found:
-Takes two clicks to get all of the topics to show up for a class
-Logout doesn't work (teacher and student menu items get switched upon logout)
-With wrong password it still goes to the home page, the Toast shows up though
+Currently all bugs are fixed
 
 
