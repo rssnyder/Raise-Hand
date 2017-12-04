@@ -39,18 +39,22 @@
 	    $stmt = $db->query($stmt) or die($db->error);
 	    if(mysqli_num_rows($stmt)>0){
 	        Echo ' ';
-	        
 	        while($row = $stmt->fetch_array()){
-	            $classID= $row['class_id'];
-	            $temp="SELECT class_name FROM classes WHERE ID= '$classID'";
-	            $temp= $db->query($stmt) or die($db->error);
-	            $temp2=$temp->fetch_assoc();
+	            
 	             if(mysqli_num_rows($stmt)==1){
+	                $classID= $row['class_id'];
+	                $temp="SELECT class_name FROM classes WHERE ID= '$classID'";
+	                $temp= $db->query($stmt) or die($db->error);
+	                $temp2=$temp->fetch_assoc();
 	                Echo ' '.$classID;
 	                Echo ' '.$temp2['class_name'];
                     
 	            }
 	            else{
+	                $classID= $row['class_id'];
+	                $temp="SELECT class_name FROM classes WHERE ID= '$classID'";
+	                $temp= $db->query($stmt) or die($db->error);
+	                $temp2=$temp->fetch_assoc();
 	                Echo ' '.$classID.'';
 	                Echo ' '.$temp2['class_name'].', ';
 	               
