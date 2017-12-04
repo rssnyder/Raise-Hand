@@ -78,7 +78,7 @@ public class StudentNotifications extends AppCompatActivity {
         // Adapter to display the questions as recycler views. (cards on the screen)
         adapter = new MyAdapterQuestions(listItems,this);
         // Setting up the recycler view
-        recyclerView = (RecyclerView) findViewById(R.id.questionsRecyclerView);
+        recyclerView = (RecyclerView) findViewById(R.id.questionsRecyclerViewStudent);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
