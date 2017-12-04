@@ -1,24 +1,20 @@
 package RecyclerViews;
 
-/**
- *
- * How to view the list of notifications on the student side of the app
- * @author jaggarwal
- */
-
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.example.sae1.raisehand.R;
-
 import java.util.List;
-
 import Utilities.Question;
 
+/**
+ *
+ * How to view the list of notifications on the student side of the app
+ * @author jaggarwal
+ */
 public class MyAdapterNotificationsStudent extends RecyclerView.Adapter<MyAdapterNotificationsStudent.ViewHolder>{
 
     private List<Question> listItems;

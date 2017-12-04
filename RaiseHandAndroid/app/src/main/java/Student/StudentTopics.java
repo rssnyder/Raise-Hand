@@ -2,10 +2,8 @@ package Student;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.ViewDragHelper;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,34 +11,26 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
-
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import RecyclerViews.MyAdapterTopicsStudent;
-import Activities.MakeQuestion;
 import Utilities.ActivitiesNames;
 import Utilities.Classes;
-import Activities.LoginActivity;
 import Utilities.NavUtil;
 import Utilities.Topics;
 import Utilities.User;
+
 /**
  *
  * This is a class for the topics in a student's class
  * @author jaggarwal
  */
 public class StudentTopics extends AppCompatActivity {
-    private String TAG = StudentClasses.class.getSimpleName();
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private ArrayList<Topics> listItems;
-    private Field mDragger;
-
     private SharedPreferences mPreferences;
-
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView nv;
@@ -78,8 +68,7 @@ public class StudentTopics extends AppCompatActivity {
         String json = mPreferences.getString("currentUser", "");
         User currentUser = gson.fromJson(json, User.class);
 
-        // loop until you find the Topics from the class you clicked on in TeacherClasses
-        // Can probably do this with the getSingleClass method
+        // loop until you find the Topics from the class you clicked on in StudentClasses
         for(Classes c : currentUser.getClasses()){
             if(c.getClassID().equals(classID)){
                 for (Topics t: c.getTopics()) {
@@ -110,9 +99,6 @@ public class StudentTopics extends AppCompatActivity {
         // add the menu items to the drawer
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
-
-        //makes it so you can swipe the menu out from anywhere on screen
-//        slideOutMenu();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

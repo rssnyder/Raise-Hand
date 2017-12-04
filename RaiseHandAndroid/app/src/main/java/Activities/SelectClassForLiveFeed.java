@@ -9,14 +9,10 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import RecyclerViews.MyAdapterClasses;
 import RecyclerViews.MyAdapterClassesForLiveFeed;
 import Utilities.ActivitiesNames;
 import Utilities.Classes;

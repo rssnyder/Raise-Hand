@@ -18,31 +18,24 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.sae1.raisehand.R;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
-
 import RecyclerViews.MyAdapterLiveFeed;
 import Utilities.ActivitiesNames;
 import Utilities.LiveFeedVolley;
 import Utilities.NavUtil;
-
 import static Utilities.URLS.URL_LIVE_FEED;
 import static java.lang.Thread.interrupted;
 

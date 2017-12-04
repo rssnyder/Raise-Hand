@@ -19,10 +19,8 @@ import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import android.view.MenuItem;
-
 import Utilities.AppCompatPreferenceActivity;
 import com.example.sae1.raisehand.R;
-
 import java.util.List;
 
 /**
@@ -40,11 +38,6 @@ import java.util.List;
  *
  */
 public class StudentSettings extends AppCompatPreferenceActivity {
-
-//    private DrawerLayout mDrawerLayout;
-//    private ActionBarDrawerToggle mToggle;
-//    private NavigationView nv;
-//    private Toolbar mToolbar;
 
     /**
      * A preference value change listener that updates the preference's summary
@@ -131,48 +124,7 @@ public class StudentSettings extends AppCompatPreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_student_settings);
         setupActionBar();
-//
-//        mToolbar = (Toolbar) findViewById(R.id.nav_action);
-//        setSupportActionBar(mToolbar);
-//
-//        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-//        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
-//
-//        mDrawerLayout.addDrawerListener(mToggle);
-//        mToggle.syncState();
-//
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        nv = (NavigationView) findViewById(R.id.nv1);
-//        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                switch (item.getItemId()){
-//                    case(R.id.nav_home):
-//                        Intent studentHome = new Intent(getApplicationContext(), StudentHomePage.class);
-//                        startActivity(studentHome);
-//                        break;
-//                    case (R.id.nav_classes):
-//                        Intent StudentClasses = new Intent(getApplicationContext(), StudentClasses.class);
-//                        startActivity(StudentClasses);
-//                        break;
-//                    case (R.id.nav_notifications):
-//                        mDrawerLayout.closeDrawers();
-//                        break;
-//                    case (R.id.nav_settings):
-//                        Intent studentSettings = new Intent(getApplicationContext(), StudentSettings.class);
-//                        startActivity(studentSettings);
-//                        break;
-//                    case (R.id.nav_logout):
-//                        Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
-//                        startActivity(loginPage);
-//                        finish();
-//                        break;
-//                }
-//                return true;
-//            }
-//        });
 
     }
 

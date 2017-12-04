@@ -1,28 +1,18 @@
 package Utilities;
 
-
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
-
 import com.example.sae1.raisehand.R;
-
-import Activities.ForgotPassword;
-import Activities.LiveFeed;
 import Activities.LoginActivity;
-import Activities.MakeQuestion;
 import Activities.ResetPassword;
 import Activities.SelectClassForLiveFeed;
 import Teacher.TeacherClasses;
 import Teacher.TeacherHomePage;
 import Teacher.TeacherNotifications;
-import Teacher.TeacherSettings;
 import Teacher.TeacherUpvotedQuestions;
 
 /**

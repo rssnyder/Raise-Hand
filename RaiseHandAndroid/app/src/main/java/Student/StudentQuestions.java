@@ -3,7 +3,6 @@ package Student;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -18,28 +17,23 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
 import com.example.sae1.raisehand.R;
 import com.google.gson.Gson;
-
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import Activities.VolleyMainActivityHandler;
 import RecyclerViews.MyAdapterQuestionsStudent;
 import Activities.MakeQuestion;
-import Activities.LoginActivity;
 import Teacher.TeacherTopics;
 import Utilities.ActivitiesNames;
 import Utilities.NavUtil;
 import Utilities.Question;
-import Utilities.Reply;
 import Utilities.SwipeController;
 import Utilities.SwipeControllerActions;
 import Utilities.Topics;
 import Utilities.User;
+
 /**
  *
  * This is a class for the questions in a student's class
@@ -51,11 +45,8 @@ public class StudentQuestions extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
     private NavigationView nv;
     private Toolbar mToolbar;
-    private Field mDragger;
-
     private SwipeController swipeController = null;
     SwipeRefreshLayout swipeContainer;
-
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<Question> listItems;
@@ -116,8 +107,6 @@ public class StudentQuestions extends AppCompatActivity {
         // add the menu items to the drawer
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
-
-        //slideOutMenu();
         mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
