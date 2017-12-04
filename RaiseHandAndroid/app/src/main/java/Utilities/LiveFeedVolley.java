@@ -86,7 +86,7 @@ public class LiveFeedVolley {
                 if (phpResponse.contains("Done")) {
                     Toast.makeText(VolleyMainActivityHandler.getInstance(), "Success: question added", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(VolleyMainActivityHandler.getInstance(), "Error", Toast.LENGTH_LONG).show();
+                    Toast.makeText(VolleyMainActivityHandler.getInstance(), "No Live Session currently", Toast.LENGTH_LONG).show();
                 }
             }
         }, new Response.ErrorListener() {
