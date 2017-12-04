@@ -79,7 +79,9 @@ public class MakeReply extends AppCompatActivity {
 //                startActivity(teacherClasses);
 
                 onBackPressed();
-                Toast.makeText(VolleyMainActivityHandler.getInstance(), "Swipe to Refresh", Toast.LENGTH_LONG).show();
+                //Go to Classes (when we figure out the refreshing thing, this should redirect back to the previous reply)
+                Intent teacherClasses = new Intent(getApplicationContext(), TeacherClasses.class);
+                startActivity(teacherClasses);
             }
         });
 
