@@ -96,7 +96,7 @@ public class Classes {
         this.classID = classID;
     }
 
-    public void addNotification(Question q){ notifications.add(q);}
+    public void setNotification(ArrayList<Question> q){ this.notifications=q;}
 
     public ArrayList<Question> getNotifications(){return notifications;}
     /**
@@ -117,14 +117,16 @@ public class Classes {
                         setTopics(StringParse.parseTopicsVolley(phpResponse));
                         Calendar calendar = Calendar.getInstance();
                         SimpleDateFormat mdformat = new SimpleDateFormat("yyyy-MM-dd");
+                        ArrayList<Question> tempNot= new ArrayList<Question>();
                         for(Topics t: getTopics()){
                             for(Question q: t.getQuestions()){
-                                System.out.println(q.getCreationTime()+ " vs "+ mdformat.format(calendar.getTime()));
-                                if(q.getCreationTime().equals( mdformat.format(calendar.getTime()))){
-                                    addNotification(q);
+                                System.out.println(q.getCreationTime().substring(0,10)+ " vs "+ mdformat.format(calendar.getTime()));
+                                if(q.getCreationTime().substring(0,10).equals( mdformat.format(calendar.getTime()))){
+                                    tempNot.add(q);
                                 }
                             }
                         }
+                        setNotification(tempNot);
                         Log.d(TAG, "Size of topics: " + topics.size());
                     }
                 }, new Response.ErrorListener() {

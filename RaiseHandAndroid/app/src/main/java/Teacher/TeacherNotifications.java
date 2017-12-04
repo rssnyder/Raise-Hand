@@ -83,8 +83,8 @@ public class TeacherNotifications extends Activity {
         currentUser = gson.fromJson(json, User.class);
         //getNotifications(currentUser.getClasses());
         for(Classes c: currentUser.getClasses()){
-            if(!c.getNotifications().isEmpty())
-                listItems.addAll(c.getNotifications());
+            listItems.addAll(c.getNotifications());
+            System.out.println(c.getNotifications().size());
         }
         // Adapter to display the questions as recycler views. (cards on the screen)
         adapter = new MyAdapterQuestions(listItems,this);
