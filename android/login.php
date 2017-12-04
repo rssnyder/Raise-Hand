@@ -43,7 +43,7 @@
 	        while($row = $stmt->fetch_array()){
 	            $classID= $row['class_id'];
 	            $temp="SELECT class_name FROM classes WHERE ID= '$classID'";
-	            
+	            $temp= $db->query($stmt) or die($db->error);
 	             if(mysqli_num_rows($stmt)==1){
 	                Echo ' '.$classID;
 	                Echo ' '.$temp;
