@@ -53,7 +53,7 @@ public class StudentNotifications extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_questions);
+        setContentView(R.layout.activity_student_notifications);
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
         pDialog= new ProgressDialog(this);
         pDialog.setMessage("Loading...");
@@ -99,7 +99,7 @@ public class StudentNotifications extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // populate the navigation buttons to go to the correct place
-        nv = (NavigationView) findViewById(R.id.nv1);
+        nv = (NavigationView) findViewById(R.id.nv2);
         NavUtil.setNavMenu(nv, ActivitiesNames.NOTIFICATIONS, getApplicationContext(), mDrawerLayout);
 
     }
