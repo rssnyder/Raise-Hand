@@ -123,7 +123,7 @@ public class TeacherNotifications extends AppCompatActivity {
 
         // populate the navigation buttons to go to the correct place
         nv = (NavigationView) findViewById(R.id.nv1);
-        NavUtil.setNavMenu(nv, ActivitiesNames.NONE, getApplicationContext(), mDrawerLayout);
+        NavUtil.setNavMenu(nv, ActivitiesNames.NOTIFICATIONS, getApplicationContext(), mDrawerLayout);
 
     }
 

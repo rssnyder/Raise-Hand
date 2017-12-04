@@ -22,6 +22,10 @@
               android:icon="@mipmap/ic_looks_black_24dp"
               android:title="Live Session"/>
 
+        <item android:id="@+id/nav_faq"
+            android:icon="@mipmap/ic_people_black_24dp"
+            android:title="Students' FAQ"/>
+
         <item android:id="@+id/nav_logout"
           android:icon="@mipmap/ic_power_settings_new_black_24dp"
           android:title="Logout"/>

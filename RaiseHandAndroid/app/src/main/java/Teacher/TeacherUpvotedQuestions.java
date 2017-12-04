@@ -51,8 +51,6 @@ import Utilities.User;
  * @author sae1
  */
 public class TeacherUpvotedQuestions extends AppCompatActivity {
-    private static String TAG= TeacherNotifications.class.getSimpleName();
-    private static String tag_string_req= "string_req";
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private ArrayList<Question> listItems;
@@ -64,7 +62,6 @@ public class TeacherUpvotedQuestions extends AppCompatActivity {
     private Toolbar mToolbar;
     private NavigationView nv;
     private ProgressDialog pDialog;
-    private Field mDragger;
     /**
      *
      * This method starts the activity, initializes the activity view and gets the currentUser, as
@@ -75,7 +72,7 @@ public class TeacherUpvotedQuestions extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teacher_questions);
+        setContentView(R.layout.activity_teacher_notifications);
         mPreferences = getSharedPreferences("preferences", MODE_PRIVATE);
         pDialog= new ProgressDialog(this);
         pDialog.setMessage("Loading...");
@@ -89,9 +86,7 @@ public class TeacherUpvotedQuestions extends AppCompatActivity {
         for(Classes c: currentUser.getClasses()){
             for(Topics t: c.getTopics()){
                 for(Question q: t.getQuestions()) {
-                    Calendar calendar = Calendar.getInstance();
-                    SimpleDateFormat mdformat = new SimpleDateFormat("yyyy-MM-dd");
-                    if (q.getCreationTime().substring(0, 10).contains(mdformat.format(calendar.getTime()))) {
+                    if (Integer.parseInt(q.getStudentRating())>5) {
                         if(!listItems.contains(q))
                             listItems.add(q);
                     }
@@ -123,7 +118,7 @@ public class TeacherUpvotedQuestions extends AppCompatActivity {
 
         // populate the navigation buttons to go to the correct place
         nv = (NavigationView) findViewById(R.id.nv1);
-        NavUtil.setNavMenu(nv, ActivitiesNames.NONE, getApplicationContext(), mDrawerLayout);
+        NavUtil.setNavMenu(nv, ActivitiesNames.FAQ, getApplicationContext(), mDrawerLayout);
 
     }
 
