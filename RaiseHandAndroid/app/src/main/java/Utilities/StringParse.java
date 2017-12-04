@@ -303,7 +303,7 @@ public class StringParse {
                 if (id.equals("0")) {
                     //do nothing, this is not a class, just a place holder
                 } else {
-                    Classes c = new Classes(current.substring(current.indexOf(" ")), id);
+                    Classes c = new Classes(current.substring(current.indexOf(" ")+1), id);
                     System.out.println(c.getTitle()+" "+ c.getClassID());
                     classes.add(c);
                 }
