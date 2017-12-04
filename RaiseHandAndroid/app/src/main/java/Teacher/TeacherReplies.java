@@ -36,6 +36,7 @@ import java.util.List;
 import Activities.MakeReply;
 import Activities.VolleyMainActivityHandler;
 import RecyclerViews.MyAdapterReplies;
+import Student.StudentTopics;
 import Utilities.ActivitiesNames;
 import Utilities.NavUtil;
 import Utilities.Question;
@@ -157,13 +158,21 @@ public class TeacherReplies extends AppCompatActivity {
         nv = (NavigationView) findViewById(R.id.nv1);
         NavUtil.setNavMenu(nv, ActivitiesNames.NONE, getApplicationContext(), mDrawerLayout);
         System.out.println("Outside volley # of replies " + userQuestion.getReplies().size());
+//        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                refreshReplies(userQuestion);
+//                swipeContainer.setRefreshing(false);
+//                adapter.clear();
+//                adapter.addAll(userQuestion.getParentRepliesOnly());
+//            }
+//        });
+
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                refreshReplies(userQuestion);
-                swipeContainer.setRefreshing(false);
-                adapter.clear();
-                adapter.addAll(userQuestion.getParentRepliesOnly());
+                Intent i = new Intent(getApplicationContext(), TeacherTopics.class);
+                startActivity(i);
             }
         });
     }
